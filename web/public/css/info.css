@@ -1,0 +1,237 @@
+/*
+ * Globals
+ */
+
+.navbar-default {
+    background-color: rgb(245, 245, 245) !important;
+}
+
+.navbar .navbar-brand {
+    font-size: 19px !important;
+}
+
+.navbar a {
+    font-size: 15px !important;
+}
+
+nav.navbar-fixed-top {
+    left: 0;
+    right: 0;
+    clear: both;
+}
+
+#accordion{
+    text-decoration: none;
+}
+
+.TFtable{
+    width:100%;
+    border-collapse:collapse;
+    table-layout: auto;
+}
+.TFtable td{
+    padding:4px;
+    border:#4e95f4 1px solid;
+    width:1%;
+    white-space:nowrap;
+}
+/* provide some minimal visual accomodation for IE8 and below */
+.TFtable tr{
+    background: #b8d1f3;
+}
+/*  Define the background color for all the ODD background rows  */
+.TFtable tr:nth-child(odd){
+    /*background: #b8d1f3;*/
+    background-image: linear-gradient(to bottom,#d6ebf2 0,#BBD2DB 100%);
+}
+/*  Define the background color for all the EVEN background rows  */
+.TFtable tr:nth-child(even){
+    /*background: #dae5f4;*/
+    background-image: linear-gradient(to bottom,#eef7fa 0,#f6fbfc 100%);
+}
+
+.hero-spacer {
+    margin-top: 50px;
+}
+
+.hero-feature {
+    margin-bottom: 30px;
+}
+/*
+ * Base structure
+ */
+
+/*html,*/
+/*body {*/
+    /*height: 100%;*/
+    /*/!*background-color: #333;*!/*/
+    /*/!*background-image: url(http://www.halland.com/wp-content/uploads/2013/11/biotechnology.jpg);*!/*/
+/*}*/
+body {
+    color: #000;
+    text-align: center;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%; /* For at least Firefox */
+    min-height: 100%;
+    /*-webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);*/
+    /*box-shadow: inset 0 0 100px rgba(0,0,0,.5);*/
+}
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+}
+.cover-container {
+    margin-bottom: 70px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+    padding: 30px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+    display: inline-block;
+}
+.masthead-nav > li + li {
+    margin-left: 20px;
+}
+.masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: lightslategray; /* IE8 proofing */
+    color: rgba(119, 136, 153, 0.75);
+    border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: #a9a9a9;
+    border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+    color: #000;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .masthead-brand {
+        float: left;
+    }
+    .masthead-nav {
+        float: right;
+    }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+    padding: 0 20px;
+}
+.cover .btn-lg {
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+    color: #999; /* IE8 proofing */
+    color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+    /* Pull out the header and footer */
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+    .mastfoot {
+        position: fixed;
+        bottom: 0;
+    }
+    /* Start the vertical centering */
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+    /* Handle the widths */
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 700px;
+    }
+}
+
+.malarkey{
+    color:red;
+    font-family:monospace;
+    font-size:100%;
+}
+.input-group-btn > .btn {
+    border-left-width:0;left:-2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.input-group .form-control:focus {
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    border-color:#cccccc;
+}
+
+.bd2k-footer {
+    position: absolute; bottom: 0; left: 0; right: 0; clear:both;
+}
+
+/*html,body*/
+/*{*/
+    /*position: relative;*/
+    /*min-height: 100%;*/
+/*}*/
+
+
+body {
+    overflow-x:hidden;
+    margin-bottom: 5em;
+}
+
+#divPanels div.panel{
+    background-color: rgb(245, 245, 245);
+}

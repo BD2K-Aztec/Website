@@ -1,0 +1,61 @@
+#!/bin/bash
+
+LNAM=$(logname)
+
+cd ~
+
+rm -f bitnami-solr-5.2.1-1-linux-x64-installer.run
+
+wget "https://bitnami.com/redirect/to/64899/bitnami-solr-5.2.1-1-linux-x64-installer.run"
+
+chmod -R 7777 *
+
+chown -R $LNAM *
+
+chmod -R 7777 *
+
+cd ~
+
+~/solr/uninstall --mode unattended
+
+rm -rf solr
+
+sudo -u $LNAM ~/bitnami-solr-5.2.1-1-linux-x64-installer.run --mode unattended --prefix ~/solr --apache_server_port 8080 --apache_server_ssl_port 8443
+
+cd ~
+
+chmod -R 7777 *
+
+chown -R $LNAM *
+
+cd solr/apache-solr/bin
+
+sudo -u $LNAM ./solr create_core -c BD2K
+
+cd ~
+
+chmod -R 7777 *
+
+chown -R $LNAM *
+
+cd solr
+
+./ctlscript.sh stop
+
+cd apache-solr/solr/BD2K
+
+rm -rf conf
+
+cd ~/solr/apache-solr/solr/configsets/basic_configs
+
+cp -R conf ~/solr/apache-solr/solr/BD2K/conf
+
+cd ~
+
+chmod -R 7777 *
+
+chown -R $LNAM *
+
+cd solr
+
+sudo -u $LNAM ./ctlscript.sh start solr

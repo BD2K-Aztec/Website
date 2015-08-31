@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html style="background-color: #FBFBFB">
+<head>
+    <title>AZTEC - advanced</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/public/css/sticky-footer.css" rel="stylesheet">
+    <link href="/public/css/examples.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="/public/css/bd2k.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/public/js/typeahead.js"></script>
+    <script src="/public/js/bd2k.js"></script>
+    <script src="/public/viewmodels/resource/search-viewmodel.js"></script>
+    <script>
+        BD2K.ready(function(){
+            var options = {};
+            options.strict = {};
+            options.page = '1';
+            options.perPage = '<%- perPage %>';
+            options.searchUuids = [];
+            options.sub = 'false';
+            options.back = 'false';
+            options.placeHolderMap = <%- JSON.stringify(placeHolderMap) %>;
+            var searchViewModel = new BD2K.Resource.SearchViewModel(options);
+
+            var substringMatcher = function(strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+
+                    // an array that will be populated with substring matches
+                    matches = [];
+
+                    // regex used to determine if a string contains the substring `q`
+                    substrRegex = new RegExp(q, 'i');
+
+                    // iterate through the pool of strings and for any string that
+                    // contains the substring `q`, add it to the `matches` array
+                    $.each(strs, function(i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+                'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+                'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+                'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+                'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+                'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+            ];
+        });
+    </script>
+</head>
+<body style="height:100%; font-family: 'Open Sans', sans-serif;">
+    <div id="divMenu" class="row" style="position: relative; background-color: #BBD2DB">
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-2 vcenter text-center" style="opacity: 1.0;">
+                    <a href="/">
+                        <img border="0" src="/public/images/bd2k_4.svg" width="200" height="100">
+                    </a>
+                </div>
+                <div class="col-lg-7 vcenter">
+                    <div class="input-group" id="submitForm">
+                        <input type="text" class="form-control" id="query" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button id="searchButton" class="btn btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    <input type="hidden" id="sendJson" name="input">
+                </div>
+                <!--<form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">-->
+                <!--<div align="middle" class="input-group add-on form-group">-->
+                <!--&lt;!&ndash;col-sm-10 col-sm-offset-1&ndash;&gt;-->
+                <!--<input type="text" class="form-control input-lg" placeholder="Search Resources by Name, DOI, Description, Tags, or Authors." style="color:black" id="query">-->
+                <!--<div class="input-group-btn">-->
+                <!--<button class="btn btn-default input-lg" type="submit"><i class="fa fa-search"></i></button>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<input type="hidden" id="sendJson" name="input">-->
+                <!--&lt;!&ndash;<input type="submit" class="btn btn-default btn-sm" value="Submit" id="submitButton">&ndash;&gt;-->
+                <!--</form>-->
+                <!--<form class="input-group" action="/resource/search" method="GET" id="submitForm">-->
+                <!--<input type="text" class="form-control" id="query" placeholder="Search">-->
+                <!--<span class="input-group-btn">-->
+                <!--<button class="btn btn-default" type="submit">-->
+                <!--<i class="fa fa-search"></i>-->
+                <!--</button>-->
+                <!--</span>-->
+                <!--<input type="hidden" id="sendJson" name="input">-->
+                <!--</form>-->
+            </div>
+            <div class="col-lg-2 vcenter">
+                <div class="btn-group dropdown">
+                    <a class="btn btn-primary" href="#">Advanced</a>
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><span class="icon-caret-down"></span></a>
+                    <ul id="ulMenu" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li class="dropdown-submenu-hide" data-level="1">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>Filter</a>
+                        </li>
+                        <li class="dropdown-submenu-hide" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- Tools</a>
+                        </li>
+                        <% for (var key in toolFilters) { %>
+                        <li style="display: none;" data-level="3">
+                            <a href="#" data-filter="<%= toolFilters[key].key %>" data-place="<%= toolFilters[key].label %>"><i class="fa fa-check invisible" style="padding-right:3px"></i>------ <%= toolFilters[key].label %></a>
+                        </li>
+                        <% } %>
+                        <li class="disabled" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- Datasets</a>
+                        </li>
+                        <li class="disabled" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- APIs</a>
+                        </li>
+                        <li class="disabled" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- Articles</a>
+                        </li>
+                        <li data-level="1" class="disabled">
+                            <a id="lnkSub" href="#"><i class="fa fa-check invisible" style="padding-right:3px">
+                                </i>Subsearch</a>
+                        </li>
+                        <li class="disabled" data-level="1">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>Graph</a>
+                        </li>
+                        <li class="disabled" data-level="1">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>NLP</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center hidden" style="margin-top:15px; margin-bottom:20px">
+            <div class="col-lg-1" style="opacity: 1.0">
+                &nbsp;
+            </div>
+            <div class="col-lg-7 text-center">
+                <button id="btnSearch" type="button" class="btn btn-primary" style="margin-right:20px">Search</button>
+                <div class="btn-group dropdown" style="margin-left:20px">
+
+                </div>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="row" style="position: absolute; bottom: 0; left: 0; right: 0; clear:both">
+            <div class="col-lg-12 text-center" style="padding-top: 10px; padding-bottom: 10px; border: 0px solid black; background-color: rgb(245, 245, 245);">
+                <div class="row" style="padding-top: 2px">
+                    <div class="col-lg-12 text-center">
+                        <a href="#"><span class="" style="color: darkgrey">NIH BD2K Az Tec</span></a>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 5px">
+                    <div class="col-lg-4 text-center">
+                        <a href="http://www.nih.gov/"><span class="" style="margin-top: 20px; color: rgb(119, 119, 119); font-size: 18px"><i class="fa fa-flask"></i> NIH</span></a>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <a href="#"><span class="" style="margin-top: 20px; color: rgb(119, 119, 119); font-size: 18px"><i class="fa fa-envelope"></i> Contact</span></a>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <a href="#"><span class="" style="margin-top: 20px; color: rgb(119, 119, 119); font-size: 18px"><i class="fa fa-twitter"></i> Connect</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

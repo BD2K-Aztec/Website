@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en" id="home-index">
+<head>
+    <title>AZTEC</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/cover.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/malarkey.js"></script>
+    <script src="/public/js/home.js"></script>
+    <script src="/public/js/bd2k.js"></script>
+    <script src="/public/js/queue.v1.min.js"></script>
+    <script src="/public/js/d3.min.js"></script>
+    <script src="/public/js/pieCharts.js"></script>
+    <script src="/public/js/bubbles.js"></script>
+    <script>
+        BD2K.ready(function(){
+            pie_charts_repos_omics();
+            TagBubbles();
+            PlatformBubbles();
+            $("#liHome").addClass("active");
+        });
+    </script>
+</head>
+<body style="font-family: 'Open Sans', sans-serif;">
+<div class="visible-xs visible-sm" style="color:black;">
+    Mobile Version Coming Soon...
+</div>
+<div class="hidden-xs hidden-sm" style="height:100%">
+    <div class="site-wrapper">
+        <!--<div class="site-wrapper-inner myDiv" style="background-color: #BBD2DB">-->
+        <div class="site-wrapper-inner myDiv" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%) ">
+            <div class="cover-container">
+                <%- include ../shared/header.ejs %>
+                <div class="inner cover">
+                    <table>
+                        <tr>
+                            <td>
+                        <img border="0" src="/public/images/bd2k.svg" width="300" height="300">
+                            </td>
+                            <td>
+                        <h1 class="cover-heading"><span>AZ<span style="font-size: 80%">TEC</span></span> is <span id="aztec-malarkey"></span>
+                            </td>
+                        </tr>
+                    </table>
+                    </h1>
+                    <br><br>
+                    <p class="lead" style="clear:both; font-weight:600">Search Resources by Name, DOI, Description, Tags, or Authors.</p>
+                    <form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">
+                        <div align="middle" class="input-group add-on form-group">
+                            <!--col-sm-10 col-sm-offset-1-->
+                            <input type="text" class="form-control input-lg" placeholder="Search" style="color:black" id="query">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="sendJson" name="input">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
+
+        <div class="col-md-4 col-sm-6 hero-feature">
+
+            <div class="panel panel-default" style="height:360px">
+                <div>
+                    <h1> <i class="fa fa-cogs" style="color:lightslategray"></i>&nbsp;Top Resources</h1>
+                </div>
+                <blockquote>
+                    <p id="statisticsBox" style="margin:8px" align="left">
+                        TopHat <br><br>
+                        Genome Atlas <br><br>
+                        Bowtie <br><br>
+                        Entrez Protein Clusters <br><br>
+                    </p>
+                </blockquote>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4 col-sm-6 hero-feature">
+
+            <div class="panel panel-default" style="height:360px">
+                <div>
+                    <h1> <i class="fa fa-bar-chart" style="color:lightslategray"></i>&nbsp;Statistics</h1>
+                </div>
+                <blockquote>
+                    <p id="statisticsBox" style="margin:8px" align="left">
+                        5431 <b>resources</b> <br><br>
+                        on 48 <b>platforms</b> <br><br>
+                        in 7 <b>domains</b><br><br>
+                        with 2242 <b>tags</b><br><br>
+                    </p>
+                </blockquote>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-sm-6 hero-feature">
+            <div class="panel panel-default" style="height:360px">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="myCarousel">
+                                <img style="min-width:0%; height:360px; max-width:100%; opacity: .3;" src="http://genetics.cs.ucla.edu/caviar/images/final_caviar.png" alt="car4">
+                            </div>
+                            <div class="carousel-caption">
+                                <h3>CAVIAR</h3>
+                                    <p>CAVIAR (CAusal Variants Identication in Associated Regions), a statistical framework that quantifies the probability of each variant to be causal while allowing with arbitrary number of causal variants. </p>
+                                    <p><a class="btn btn-lg btn-primary" href="/tool/show?id=5434" role="button">Try it out!</a></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="myCarousel">
+                                <img style="min-width:0%; height:360px; max-width:100%; opacity: .3;" src="http://proteowizard.sourceforge.net/images/pwiz_purple_logo.png" alt="car1">
+                            </div>
+                            <div class="carousel-caption">
+                                <h3>ProteoWizard</h3>
+                                <p>The ProteoWizard Library and Tools are a set of modular and extensible open-source, cross-platform tools and software libraries that facilitate proteomics data analysis. </p>
+                                <p><a class="btn btn-lg btn-primary" href="/tool/show?id=4798" role="button">Try it out!</a></p>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background:#333">
+                            <div class="myCarousel">
+                                <img style="min-width:0%; height:360px; max-width:100%; opacity: .3;" src="http://www.wwpdb.org/img/core/rcsb-pdb.png" alt="car2">
+                            </div>
+                            <div class="carousel-caption">
+                                <h3>PDB</h3>
+                                <p>RESTful interface to search and retrieve data from the Protein Data Bank (PDB). The Protein Data Bank is the single worldwide repository of information about the 3D structures of large biological molecules, including proteins and nucleic acids.</p>
+                                <p><a class="btn btn-lg btn-primary" href="/tool/show?id=510" role="button">Try it out!</a></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="myCarousel">
+                                <img style="min-width:0%; height:360px; max-width:100%; opacity: .3;" src="http://elm.eu.org/media/ELM_logo.jpg" alt="car3">
+                            </div>
+                            <div class="carousel-caption">
+                                <h3>Phospho.ELM</h3>
+                                <p>Phospho.ELM is a database of experimentally verified phosphorylation sites in eukaryotic proteins. </p>
+                                <p><a class="btn btn-lg btn-primary" href="/tool/show?id=1053" role="button">Try it out!</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row text-center" style="color:black; margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
+
+        <div class="col-md-4 col-sm-6 hero-feature">
+            <div>
+                <h1> <i class="fa fa-laptop" style="color:lightslategray"></i>&nbsp;Platforms</h1>
+            </div>
+            <div id="platformBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+            </div>
+        </div>
+
+
+        <div class="col-md-4" style="font: 14px sans-serif;">
+            <div>
+                <h1> <i class="fa fa-tags" style="color:lightslategray"></i>&nbsp;Tags</h1>
+            </div>
+            <div id="tagBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div>
+                <h1> <i class="fa fa-database" style="color:lightslategray"></i>&nbsp;Repositories</h1>
+            </div>
+            <div id="chart_repos_omics" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+            </div>
+        </div>
+
+    </div>
+    <%- include ../shared/footer.ejs %>
+</div>
+
+</body>
+</html>

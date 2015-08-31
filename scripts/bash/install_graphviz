@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd  ~
+
+cd BD2K/resources/after-npm
+
+cp graph.js ~/BD2K/web/node_modules/graphviz/lib/deps/graph.js
+
+cd ~
+
+apt-add-repository ppa:dperry/ppa-graphviz-test
+apt-get update
+apt-get autoremove graphviz
+apt-get -y install graphviz

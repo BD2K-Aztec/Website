@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AZTEC - new</title>
+
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/info.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="/public/css/sticky-footer.css" rel="stylesheet">
+    <link href="/public/css/bd2k.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <script src="/public/viewmodels/resource/create-viewmodel.js"></script>
+    <script src="/public/js/bd2k.js"></script>
+
+    <script>
+
+        BD2K.ready(function () {
+            var domains = <%-JSON.stringify(domains)%>;
+            var types = <%-JSON.stringify(types)%>;
+            var platforms = <%-JSON.stringify(platforms)%>;
+            var fileTypes = <%-JSON.stringify(fileTypes)%>;
+            var preset = <%- JSON.stringify(preset) %>;
+            new NewTool(types, domains, platforms, fileTypes, preset);
+            $("#liRegister").addClass("active");
+        });
+    </script>
+
+</head>
+
+<body style="font-family: 'Open Sans', sans-serif; background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+<div class="row" style="padding-bottom: 4em">
+<%- include ../shared/header.ejs %>
+</div>
+
+<h1 class="text-center" id="title"> Register New Resource </h1>
+<br />
+<div class="row" style="padding-bottom: 2em">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-6">
+        <div class="text-left">
+            <form action="/resource/add" method="GET" id="form">
+
+                <table class="TFtable">
+                    <tr><td align="left">Name</td><td style="width:100%"><input style="width:100%" type="text" id="name" value=""></td></tr>
+                    <tr><td align="left">Logo URL</td><td><input style="width:100%" type="text" id="logo" value=""></td></tr>
+                    <tr><td align="left">Description</td><td><textarea style="width:100%; vertical-align: top" type="text" id="description" value=""></textarea></td></tr>
+                    <tr><td align="left">Source Code URL</td><td><input style="width:100%" type="text" id="sourceCodeURL" value=""></td></tr>
+                    <tr><td align="left">Publication DOI</td><td><input style="width:100%" type="text" id="publicationDOI" value=""></td></tr>
+                    <tr><td align="left">Tool DOI</td><td><input style="width:100%" type="text" id="toolDOI" value=""></td></tr>
+                    <tr><td align="left">Language</td><td><input style="width:100%" type="text" id="language" value=""></td></tr>
+                    <tr><td align="left">Latest Version Number</td><td><input style="width:100%" type="text" id="versionNum" value=""></td></tr>
+                    <tr><td align="left">Latest Version Release Date</td><td><input style="width:100%" type="text" id="versionDate" value=""></td></tr>
+                    <tr><td align="left">Previous Version</td><td><input style="width:100%" type="text" id="prevVersion" value=""></td></tr>
+                    <tr><td align="left">Next Version</td><td><input style="width:100%" type="text" id="nextVersion" value=""></td></tr>
+                    <tr><td align="middle"><b>Links</b></td><td></td></tr>
+                    <tr><td align="left">Link Description</td><td><input style="width:70%" id="linkDesc" type="text" /></td></tr>
+                    <tr><td align="left">Link URL</td><td><input style="width:70%" id="linkURL" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="linkButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>License</b></td><td></td></tr>
+                    <tr><td align="left">License</td><td><input style="width:70%" id="license" type="text" /></td></tr>
+                    <tr><td align="left">License URL</td><td><input style="width:70%" id="licenseUrl" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="licenseButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Resource Types</b></td><td></td></tr>
+                    <tr><td>Type</td><td>
+                            <select id="softwareType" style="width:70%;height:100%">
+                                <option value="Tool">Tool</option>
+                                <option value="Database">Database</option>
+                                <option value="Widget">Widget</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="softwareTypeButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Biological Domains</b></td><td></td></tr>
+                    <tr><td>Biological Domain</td><td>
+                            <select id="domain" style="width:70%;height:100%">
+                                <option value="Genomics">Genomics</option>
+                                <option value="Proteomics">Proteomics</option>
+                                <option value="Epigenomics">Epigenomics</option>
+                                <option value="Metagenomics">Metagenomics</option>
+                                <option value="Metabolomics">Metabolomics</option>
+                                <option value="Systems Biology">Systems Biology</option>
+                                <option value="Biomedical">Biomedical</option>
+                            </select>
+                            <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="domainButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Authors</b></td><td></td></tr>
+                    <tr><td>Author Name</td><td><input style="width:70%" id="authorName" type="text"/></td></tr>
+                    <tr><td>Author Email</td><td><input style="width:70%" id="authorEmail" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="authorButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Institutes</b></td><td></td></tr>
+                    <tr><td>Institute</td><td><input style="width:70%" id="institute" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="instituteButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Funders</b></td><td></td></tr>
+                    <tr><td>Funder</td><td><input style="width:70%" id="funding" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="fundingButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Platforms</b></td><td></td></tr>
+                    <tr><td>Platform</td><td><input style="width:70%" id="platform" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="platformButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Input File Types</b></td><td></td></tr>
+                    <tr><td>Input File Type</td><td><input style="width:70%" id="inputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="inputTypeButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Output File Types</b></td><td></td></tr>
+                    <tr><td>Output File Type</td><td><input style="width:70%" id="outputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="outputTypeButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Downstream Tools</b></td><td></td></tr>
+                    <tr><td>Downstream Tool</td><td><input style="width:70%" id="downstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="downstreamButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Upstream Tools</b></td><td></td></tr>
+                    <tr><td>Upstream Tool</td><td><input style="width:70%" id="upstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="upstreamButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Dependencies</b></td><td></td></tr>
+                    <tr><td>Dependency</td><td><input style="width:70%" id="dependency" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="dependencyButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Tags</b></td><td></td></tr>
+                    <tr><td>Tag</td><td><input style="width:70%" id="tag" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="tagButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Maintainers</b></td><td></td></tr>
+                    <tr><td>Maintainer</td><td><input style="width:70%" id="maintainer" type="text"/></td></tr>
+                    <tr><td>Maintainer Email</td><td><input style="width:70%" id="maintainerEmail" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="maintainerButton">Add</button></td></tr>
+                    <tr><td colspan="2"><input class="" style="width:100%;" type="submit" value="Submit"></td></tr>
+                </table>
+
+                <input type="hidden" id="sendAddJson" name="input">
+
+            </form>
+        </div>
+    </div>
+    <div id="divPanels" class="col-md-4 text-left" style="padding:15px">
+        <b>Links</b>
+        <div id="links">
+            <br>
+        </div>
+        <b>Licenses</b>
+        <div id="licenses">
+            <br>
+        </div>
+        <b>Types</b>
+        <div id="softwareTypes">
+            <br>
+        </div>
+        <b>Domains</b>
+        <div id="domains">
+            <br>
+        </div>
+        <b>Authors</b>
+        <div id="authors">
+            <br>
+        </div>
+        <b>Institutes</b>
+        <div id="institutes">
+            <br>
+        </div>
+        <b>Funders</b>
+        <div id="fundings">
+            <br>
+        </div>
+        <b>Platforms</b>
+        <div id="platforms">
+            <br>
+        </div>
+        <b>Input Types</b>
+        <div id="inputTypes">
+            <br>
+        </div>
+        <b>Output Types</b>
+        <div id="outputTypes">
+            <br>
+        </div>
+        <b>Downstreams</b>
+        <div id="downstreams">
+            <br>
+        </div>
+        <b>Upstreams</b>
+        <div id="upstreams">
+            <br>
+        </div>
+        <b>Dependencies</b>
+        <div id="dependencies">
+            <br>
+        </div>
+        <b>Tags</b>
+        <div id="tags">
+            <br>
+        </div>
+        <b>Maintainers</b>
+        <div id="maintainers">
+            <br>
+        </div>
+    </div>
+</div>
+<%- include ../shared/footer.ejs %>
+</body>
+</html>

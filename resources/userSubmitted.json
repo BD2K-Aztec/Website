@@ -1,0 +1,513 @@
+http://localhost:8983/solr/BD2K/select?q=source%3A%22User+Submission%22&wt=json&indent=true
+{
+  "responseHeader": {
+    "status": 0,
+    "QTime": 11,
+    "params": {
+      "indent": "true",
+      "q": "source:\"User Submission\"",
+      "_": "1440201431973",
+      "wt": "json"
+    }
+  },
+  "response": {
+    "numFound": 9,
+    "start": 0,
+    "docs": [
+      {
+        "name": "CAVIAR",
+        "logo": "http://genetics.cs.ucla.edu/caviar/images/final_caviar.png",
+        "description": "CAVIAR (CAusal Variants Identication in Associated Regions), a statistical framework that quantifies the probability of each variant to be causal while allowing with arbitrary number of causal variants.",
+        "sourceCodeURL": "https://github.com/fhormoz/caviar",
+        "publicationDOI": "doi:10.1534/genetics.114.167908",
+        "toolDOI": "",
+        "language": "C++",
+        "versionNum": "0.1",
+        "versionDate": "1 Aug 2015",
+        "prevVersion": "0.0",
+        "nextVersion": "0.0",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "inputFiles": [
+          "Significant score for each variant such as Z-score",
+          "Pair-wise genotype correlation for variants in the loci in a matrix format",
+          "Tool"
+        ],
+        "outputFiles": [
+          " p-causal set which contains the variants ID that are selected by CAVIAR as causal"
+        ],
+        "linkDescriptions": [
+          "Homepage",
+          "Documentation"
+        ],
+        "linkUrls": [
+          "http://genetics.cs.ucla.edu/caviar/",
+          "http://genetics.cs.ucla.edu/caviar/manual.html"
+        ],
+        "authors": [
+          "Farhad Hormozdiari",
+          "Bogdan Pasaniuc",
+          "Eleazar Eskin"
+        ],
+        "authorEmails": [
+          "farhad.hormozdiari@gmail.com",
+          "bpasaniuc@mednet.ucla.edu",
+          "eeskin@cs.ucla.edu"
+        ],
+        "institutions": [
+          "University of California Los Angeles"
+        ],
+        "funding": [
+          "NSF 0513612, 0731455, 0729049, 0916676, 1065276,1302448, and 1320589",
+          "NIH K25- HL080079, U01-DA024417, P01-HL30568, P01-HL28481, R01-GM083198, R01-MH101782 and R01-ES022282"
+        ],
+        "upstreams": [
+          "PLINK or any tools which compute the significant score for each variant and pair-wise genotype correlation (LD matrix)"
+        ],
+        "tags": [
+          "Fine Mapping",
+          "SNP",
+          "Causal Variants"
+        ],
+        "maintainers": [
+          "Farhad Hormozdiari"
+        ],
+        "maintainerEmails": [
+          "farhad.hormozdiari@gmail.com"
+        ],
+        "id": "5434",
+        "source": "User Submission",
+        "_version_": 1509996594474254300
+      },
+      {
+        "name": "Tophat2",
+        "logo": "",
+        "description": "TopHat is a fast splice junction mapper for RNA-Seq reads. It aligns RNA-Seq reads to mammalian-sized genomes using the ultra high-throughput short read aligner Bowtie, and then analyzes the mapping results to identify splice junctions between exons. \n",
+        "sourceCodeURL": "https://ccb.jhu.edu/software/tophat/downloads/tophat-2.1.0.tar.gz",
+        "publicationDOI": "doi:10.1186/gb-2013-14-4-r36",
+        "toolDOI": "",
+        "language": "C++",
+        "versionNum": "2.1.0",
+        "versionDate": "",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "platforms": [
+          "Linux (Unix)",
+          "Mac OS X"
+        ],
+        "inputFiles": [
+          "Fasta",
+          "Fastq"
+        ],
+        "outputFiles": [
+          "BAM"
+        ],
+        "linkDescriptions": [
+          "Homepage",
+          "Documentation"
+        ],
+        "linkUrls": [
+          "https://ccb.jhu.edu/software/tophat/index.shtml",
+          "https://ccb.jhu.edu/software/tophat/manual.shtml"
+        ],
+        "authors": [
+          "Daehwan Kim",
+          "Geo Pertea",
+          "Cole Trapnell",
+          "Harold Pimentel",
+          "Ryan Kelley",
+          "Steven L Salzberg"
+        ],
+        "authorEmails": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "institutions": [
+          "Johns Hopkins University",
+          "University of Washington",
+          "University of Maryland, College Park"
+        ],
+        "funding": [
+          "NIH R01-HG006102 and R01-HG006677."
+        ],
+        "dependencies": [
+          "Bowtie2",
+          "Boost C++ libraries (1.47)"
+        ],
+        "tags": [
+          "RNA",
+          "RNA-Seq"
+        ],
+        "id": "5433",
+        "source": "User Submission",
+        "_version_": 1509994232322982000
+      },
+      {
+        "name": "Sailfish",
+        "logo": "http://www.cs.cmu.edu/~ckingsf/software/sailfish/images/sailfish_logo.png",
+        "description": "Sailfish: Rapid Alignment-free Quantification of Isoform Abundance. RNA-seq expression estimates need not take longer than a cup of coffee",
+        "sourceCodeURL": "http://www.cs.cmu.edu/~ckingsf/software/sailfish/downloads.html",
+        "publicationDOI": "doi:10.1038/nbt.2862",
+        "toolDOI": "",
+        "language": "C++",
+        "versionNum": "0.6.3",
+        "versionDate": "",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "platforms": [
+          "Linux (Unix)"
+        ],
+        "linkDescriptions": [
+          "Homepage",
+          "Documentation"
+        ],
+        "linkUrls": [
+          "http://www.cs.cmu.edu/~ckingsf/software/sailfish/",
+          "http://www.cs.cmu.edu/~ckingsf/software/sailfish/README.html"
+        ],
+        "authors": [
+          "Rob Patro",
+          "Stephen M Mount",
+          "Carl Kingsford"
+        ],
+        "authorEmails": [
+          "",
+          "",
+          ""
+        ],
+        "institutions": [
+          "Carnegie Mellon University",
+          "University of Maryland, College Park"
+        ],
+        "funding": [
+          "NSF CCF-1256087, CCF-1053918, EF-0849899",
+          "NNIH 1R21HG006913, 1R21AI085376",
+          "Alfred P. Sloan Foundation Sloan Research Fellowship to Carl Kingsford"
+        ],
+        "tags": [
+          "RNA-seq",
+          "Gene Expression"
+        ],
+        "licenses": [
+          "GPLv3"
+        ],
+        "licenseUrls": [
+          ""
+        ],
+        "id": "5432",
+        "source": "User Submission",
+        "_version_": 1509970874971717600
+      },
+      {
+        "name": "HARSH",
+        "logo": "",
+        "description": "HAplotype inference using Reference and Sequencing tecHnology (HARSH) is a method to infer the haplotype using haplotype reference panel and high throughput sequencing data. It is based on a novel probabilistic model and Gibbs sampler method.",
+        "sourceCodeURL": "http://genetics.cs.ucla.edu/harsh/download.html",
+        "publicationDOI": "10.1093/bioinformatics/btt386",
+        "toolDOI": "",
+        "language": "C++",
+        "versionNum": "",
+        "versionDate": "",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "linkDescriptions": [
+          "Homepage"
+        ],
+        "linkUrls": [
+          "http://genetics.cs.ucla.edu/harsh/index.html"
+        ],
+        "authors": [
+          "Wen-Yun Yang",
+          "Farhad Hormozdiari",
+          "Zhanyong Wang",
+          "Bogdan Pasaniuc",
+          "Eleazar Eskin"
+        ],
+        "authorEmails": [
+          "wenyun.yang@gmail.com",
+          "farhad.hormozdiari@gmail.com",
+          "yong.z.wang@gmail.com",
+          "bpasaniuc@mednet.ucla.edu",
+          "eeskin@cs.ucla.edu"
+        ],
+        "institutions": [
+          "University of California, Los Angeles"
+        ],
+        "funding": [
+          "NSF  0513612, 0731455, 0729049, 0916676, 1065276, and 1320589",
+          "NIH K25-HL080079, U01-DA024417, P01-HL30568 and PO1- HL28481",
+          "NIH 1R03CA162200 and 5R01GM053275",
+          "NINDS Informatics Center for Neurogenetics and Neurogenomics (P30 NS062691)"
+        ],
+        "downstreams": [
+          "Mapping tools such as Bowtie, mrFAST, mrsFAST, BWA"
+        ],
+        "tags": [
+          "haplotype",
+          "Gibbs Sampling"
+        ],
+        "id": "5436",
+        "source": "User Submission",
+        "_version_": 1510044219082801200
+      },
+      {
+        "name": "SPA",
+        "logo": "http://genetics.cs.ucla.edu/spa/images/2d.jpg",
+        "description": "Spatial Ancestry analysis (SPA) is a method for predicting ancestry or where an individual is from using the individual's DNA. Accurately modeling ancestry is an important step in identifying genetic variation involved in disease.",
+        "sourceCodeURL": "http://genetics.cs.ucla.edu/spa/download.html",
+        "publicationDOI": "doi:10.1038/ng.2285",
+        "toolDOI": "",
+        "language": "C, MATLAB",
+        "versionNum": "",
+        "versionDate": "",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "inputFiles": [
+          "PLINK file"
+        ],
+        "linkDescriptions": [
+          "Homepage",
+          "Documentation"
+        ],
+        "linkUrls": [
+          "http://genetics.cs.ucla.edu/spa/index.html",
+          "http://genetics.cs.ucla.edu/spa/manual.html"
+        ],
+        "authors": [
+          "Wen-Yun Yang",
+          "John Novembre",
+          "Eleazar Eskin",
+          "Eran Halperin"
+        ],
+        "authorEmails": [
+          "doi:10.1038/ng.2285",
+          "jnovembre@uchicago.edu",
+          "eeskin@cs.ucla.edu",
+          "eranhalperin@gmail.com"
+        ],
+        "funding": [
+          "NSF 0513612, 0731455, 0729049, 0916676 and 1065276",
+          "NIH K25 HL080079, U01 DA024417, P01 HL30568 and PO1 HL28481",
+          "Israeli Science Foundation (grant 04514831)",
+          "IBM open collaborative research award program",
+          "Searle Scholars Program"
+        ],
+        "tags": [
+          "SNP",
+          "Ancestry analysis"
+        ],
+        "maintainers": [
+          "Wen-Yun Yang"
+        ],
+        "maintainerEmails": [
+          "wenyun.yang@gmail.com"
+        ],
+        "id": "5437",
+        "source": "User Submission",
+        "_version_": 1510058364230434800
+      },
+      {
+        "name": "pyLMM",
+        "logo": "",
+        "description": "A fast and lightweight python-based linear mixed-model solver for use in genome-wide association studies.",
+        "sourceCodeURL": "https://github.com/nickFurlotte/pylmm",
+        "publicationDOI": "",
+        "toolDOI": "",
+        "language": "python",
+        "versionNum": "",
+        "versionDate": "June 2015",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "inputFiles": [
+          "PLINK input (BED or TPED) or EMMA input"
+        ],
+        "outputFiles": [
+          "simple text. Each row indicates one variants and contains the p-value and significant score"
+        ],
+        "authors": [
+          "Nick Furlotte",
+          "Eleazar Eskin"
+        ],
+        "authorEmails": [
+          "nick.furlotte@gmail.com",
+          "eeskin@cs.ucla.edu"
+        ],
+        "institutions": [
+          "University of California, Los Angeles"
+        ],
+        "upstreams": [
+          "CAVIAR"
+        ],
+        "tags": [
+          "GWAS",
+          "Linear Mixed Model"
+        ],
+        "licenses": [
+          "GNU Affero GPL"
+        ],
+        "licenseUrls": [
+          "https://www.gnu.org/licenses/why-affero-gpl.html"
+        ],
+        "id": "5435",
+        "source": "User Submission",
+        "_version_": 1510058555958362000
+      },
+      {
+        "name": "RseqFlow2",
+        "logo": "",
+        "description": "RNA-Seq analysis pipeline which offers an express implementation of analysis steps. It can perform pre and post mapping quality control (QC) for sequencing data, calculate expression levels for uniquely mapped reads, identify differentially expressed genes, and convert file formats for ease of visualization.",
+        "sourceCodeURL": "http://sourceforge.net/projects/rseqflow/",
+        "publicationDOI": "RseqFlow: workflows for RNA-Seq data analysis. Bioinformatics, 2011, 27 (18): 2598–2600",
+        "toolDOI": "",
+        "language": "Python",
+        "versionNum": "2.2",
+        "versionDate": "2014-09-21",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "platforms": [
+          "Unix"
+        ],
+        "inputFiles": [
+          "fastq"
+        ],
+        "outputFiles": [
+          "sam",
+          "text"
+        ],
+        "linkDescriptions": [
+          "SourceForge download page"
+        ],
+        "linkUrls": [
+          "http://sourceforge.net/projects/rseqflow/"
+        ],
+        "institutions": [
+          "University of Southern California"
+        ],
+        "tags": [
+          "RNA-Seq"
+        ],
+        "maintainers": [
+          "Jennifer Herstein"
+        ],
+        "maintainerEmails": [
+          "herstein@med.usc.edu"
+        ],
+        "source": "User Submission",
+        "id": "5438",
+        "_version_": 1510150937928269800
+      },
+      {
+        "name": "GT-FAR",
+        "logo": "",
+        "description": "RNA seq pipeline that allows users to do  Alignment, Quantification, Differential Expression, and Variant Calling",
+        "sourceCodeURL": "",
+        "publicationDOI": "",
+        "toolDOI": "",
+        "language": "Python",
+        "versionNum": "",
+        "versionDate": "",
+        "prevVersion": "",
+        "nextVersion": "",
+        "source": "User Submission",
+        "id": "5439",
+        "_version_": 1510151834162954200
+      },
+      {
+        "name": "GT-FAR",
+        "logo": "",
+        "description": "Genome and Transcriptome Free Analysis of RNA (GT-FAR). RNA seq pipeline that allows users to do  Alignment, Quantification, Differential Expression, and Variant Calling",
+        "sourceCodeURL": "",
+        "publicationDOI": "",
+        "toolDOI": "",
+        "language": "Python",
+        "versionNum": "",
+        "versionDate": "",
+        "prevVersion": "",
+        "nextVersion": "",
+        "types": [
+          "Tool"
+        ],
+        "domains": [
+          "Genomics"
+        ],
+        "platforms": [
+          "Unix",
+          "Web Interface"
+        ],
+        "inputFiles": [
+          "fastq"
+        ],
+        "outputFiles": [
+          "sam",
+          "text"
+        ],
+        "linkDescriptions": [
+          "GT-FAR Pipeline webpage"
+        ],
+        "linkUrls": [
+          "https://genomics.isi.edu/gtfar"
+        ],
+        "authors": [
+          "Tade Souaiaia"
+        ],
+        "authorEmails": [
+          "souaiaia@usc.edu"
+        ],
+        "institutions": [
+          "University of Southern California"
+        ],
+        "tags": [
+          "RNA-seq",
+          "Alignment",
+          "Quantification",
+          "Differential Expression",
+          "Variant Calling"
+        ],
+        "source": "User Submission",
+        "id": "5440",
+        "_version_": 1510152155279917000
+      }
+    ]
+  }
+}

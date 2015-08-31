@@ -1,0 +1,29 @@
+{
+  "name": "BD2K",
+  "version": "1.0.0",
+  "scripts": {
+  "start-debug": "supervisor server.js",
+	"start": "supervisor server.js"
+  },
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "express": "^4.9.5",
+    "mysql": "^2.5.1",
+    "supervisor": "*",
+    "moment": "*",
+    "forever": "*",
+    "neo4j": "*",
+    "solr-client": "*",
+    "body-parser": "*",
+    "xml2js": "*",
+    "libxmljs": "*",
+    "xpath" : "*",
+    "xmldom" : "*",
+	"querystring": "*",
+    "request" : "*",
+    "mongodb" : "*",
+    "uuid" : "*",
+    "graphviz":"*",
+    "serve-favicon":"*"
+  }
+}

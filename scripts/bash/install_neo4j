@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cd ~
+
+wget -O - http://debian.neo4j.org/neotechnology.gpg.key | apt-key add -
+
+echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list
+
+apt-get update
+
+apt-get install -y neo4j
+
+service neo4j-service stop
+
+cd ~
+
+chmod -R 7777 *
+
+if ! grep -Fxq 'export NEO4J_HOME=/var/lib/neo4j' ~/.bashrc ; then 
+   printf '%s\n' 'export NEO4J_HOME=/var/lib/neo4j' >> ~/.bashrc
+   source ~/.bashrc
+fi
+
+/var/lib/neo4j/bin/neo4j start
+
+cd ~
+
+chmod -R 7777 *
+
+cd ~

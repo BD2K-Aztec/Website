@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Tools</title>
+        <script src="/public/jquery-2.1.4.js"></script>
+        <script>
+            var myList = <%- JSON.stringify(data) %>;
+
+            function buildHtmlTable() {
+                var columns = addAllColumnHeaders(myList);
+
+                for (var i = 0 ; i < myList.length ; i++) {
+                    var row$ = $('<tr/>');
+                    for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
+                        var cellValue = myList[i][columns[colIndex]];
+
+                        if (cellValue == null) { cellValue = ""; }
+
+                        row$.append($('<td/>').html(cellValue));
+                    }
+                    $("#table").append(row$);
+                }
+            }
+
+            // Adds a header row to the table and returns the set of columns.
+            // Need to do union of keys from all records as some records may not contain
+            // all records
+            function addAllColumnHeaders(myList)
+            {
+                var columnSet = [];
+                var headerTr$ = $('<tr/>');
+
+                for (var i = 0 ; i < myList.length ; i++) {
+                    var rowHash = myList[i];
+                    for (var key in rowHash) {
+                        if ($.inArray(key, columnSet) == -1){
+                            columnSet.push(key);
+                            headerTr$.append($('<th/>').html(key));
+                        }
+                    }
+                }
+                $("#table").append(headerTr$);
+
+                return columnSet;
+            }
+        </script>
+    </head>
+    <body onload="buildHtmlTable()">
+        <div align="center">
+            <h1>Show Tools</h1>
+
+            <table id="table" border="1">
+            </table>
+
+        </div>
+    </body>
+</html>

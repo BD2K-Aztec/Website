@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AZTEC - results</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/public/css/sticky-footer.css" rel="stylesheet">
+    <link href="/public/css/examples.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="/public/css/bd2k.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/public/js/typeahead.js"></script>
+    <script src="/public/js/bd2k.js"></script>
+    <script src="/public/viewmodels/resource/search-viewmodel.js"></script>
+    <script>
+        BD2K.ready(function(){
+            var options = {};
+            options.searchFilters = <%- JSON.stringify(search.toHash().searchFilters) %>;
+            <% var refine = JSON.stringify(strict)%>
+            options.strict = <%- refine %>;
+            options.page = '<%- page %>';
+            options.perPage = '<%- perPage %>';
+            <% var uuids = JSON.stringify(searchUuids) %>
+            options.searchUuids = <%- uuids %>;
+            options.sub = <%- subsearch %>;
+            options.back = <%- back %>;
+            <% uuids = JSON.parse(uuids) %>
+            options.placeHolderMap = <%- JSON.stringify(placeHolderMap) %>;
+            var searchViewModel = new BD2K.Resource.SearchViewModel(options);
+        });
+    </script>
+</head>
+<body style="height:100%;font-family: 'Open Sans', sans-serif;">
+    <div id="divMenu" class="row" style="position: relative; background-color: #BBD2DB">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-2 vcenter text-center" style="opacity: 1.0;">
+                    <a href="/">
+                        <img border="0" src="/public/images/bd2k_4.svg" width="200" height="100">
+                    </a>
+                </div>
+                <div class="col-lg-7 vcenter">
+                    <div class="input-group" id="submitForm">
+                        <input type="text" class="form-control" id="query" <% if(!subsearch) { %> placeholder="Search" <% } else {%>placeholder="Subsearch"<% } %>>
+                        <span class="input-group-btn">
+                            <button id="searchButton" class="btn btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    <input type="hidden" id="sendJson" name="input">
+                </div>
+            </div>
+            <div class="col-lg-2 vcenter">
+                <div class="btn-group dropdown">
+                    <a class="btn btn-primary" data-toggle="dropdown" href="#">Advanced</a>
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><span class="icon-caret-down"></span></a>
+                    <ul id="ulMenu" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li class="dropdown-submenu-hide" data-level="1">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>Filter</a>
+                        </li>
+                        <li class="dropdown-submenu-hide" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- Tools</a>
+                        </li>
+                        <% for (var key in toolFilters) { %>
+                        <li style="display: none;" data-level="3">
+                            <a href="#" data-filter="<%= toolFilters[key].key %>" data-place="<%= toolFilters[key].label %>"><i class="fa fa-check invisible" style="padding-right:3px"></i>------ <%= toolFilters[key].label %></a>
+                        </li>
+                        <% } %>
+                        <li class="disabled" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- Datasets</a>
+                        </li>
+                        <li class="disabled" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- APIs</a>
+                        </li>
+                        <li class="disabled" style="display: none;" data-level="2">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>--- Articles</a>
+                        </li>
+                        <li data-level="1">
+                            <a id="lnkSub" href="#" data-check="true"><i class="fa fa-check <% if(!subsearch) { %> invisible <% } %>" style="padding-right:3px">
+                                </i>Subsearch</a>
+                        </li>
+                        <li class="disabled" data-level="1">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>Graph</a>
+                        </li>
+                        <li class="disabled" data-level="1">
+                            <a href="#"><i class="fa fa-check invisible" style="padding-right:3px"></i>NLP</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center hidden" style="margin-top:15px; margin-bottom:20px">
+            <div class="col-lg-2" style="opacity: 1.0">
+                &nbsp;
+            </div>
+            <div class="col-lg-7 text-center">
+                <button id="btnSearch" type="button" class="btn btn-primary" style="margin-right:20px">Search</button>
+                <div class="btn-group dropdown" style="margin-left:20px">
+
+                </div>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <div class="row" style=" border-bottom: 1px solid lightgray;">
+        <div class="col-lg-3" style="border: 0px solid black; <%if (resources.length() <= 4) {%>border-right: 1px solid lightgray<%}%>">
+            <div class="row" style="padding-top:10px; padding-left:10px">
+                <span align="center" style="color:lightslategray"><h3><b>Search Refinement</b></h3></span>
+                <div class="col-lg-12" style="border: 0px solid black">
+                    <div>
+                        <% for(var i = 0; i < resultFilters[0].list.length; i++) { %>
+                        <% var firstLetter = resultFilters[0].list[i].labelArr[0].charAt(0) %>
+                        <span class="icon-stack" style="margin-bottom:5px;">
+                            <i class="icon-sign-blank icon-stack-base" style="color:
+                                    <% if(firstLetter==="T"){ %>
+                                    rgb(135, 172, 235)
+                                    <%} else if(firstLetter==="W"){%>
+                                    rgb(135, 206, 235)
+                                    <%} else if(firstLetter==="D"){%>
+                                    rgb(135, 139, 235)
+                                    <%} else {%>
+                                    rgb(164, 135, 235)
+                                    <%}%>
+                                    "></i>
+                            <span class="icon-fixed-width icon-light char-overlay" style="padding:0px;font-weight:600"">
+                                <%- firstLetter %>
+                            </span>
+                        </span>
+                        <a href="#" class="onTypeClick"><b><%- resultFilters[0].list[i].labelArr[0] %></b> <span style="font-size: xx-small">(<%= resultFilters[0].list[i].labelArr[1] %>)</span></a><br>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:10px; padding-left:10px">
+                <% for (var i=1; i< resultFilters.length; i++) { %>
+                <% if(resultFilters[i].list.length > 1) {%>
+                <div class="col-lg-12" style="border: 0px solid black">
+                    <span><%= resultFilters[i].label %></span>
+                    <div class="panel panel-primary" data-raw="<%= resultFilters[i].raw %>">
+                        <div class="panel-body" style="padding-top:0px; padding-bottom: 0px; min-height: 120px; max-height: 120px; overflow-y: auto">
+                            <% for (var j=0; j< resultFilters[i].list.length; j++) { %>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="" <%if (resultFilters[i].list[j].checked) {%>checked<%}%>>
+                                    <span><%= resultFilters[i].list[j].labelArr[0] %></span>
+                                    <span style="font-size: xx-small">(<%= resultFilters[i].list[j].labelArr[1] %>)</span>
+                                </label>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+        <div class="col-lg-6" style="border: 0px solid black; <%if (resources.length() > 4) {%>border-left: 1px solid lightgray;<%}%><%if (resources.length() > 4) {%>border-right: 1px solid lightgray<%}%>">
+            <div class="row">
+                <table><tr><td>
+                            <div class="col-md-12">
+                                <h5>
+                                    Showing <b><%if(resources.length() > 0){ %><%= (parseInt(page) - 1)*parseInt(perPage) + 1 %> <%}else{%> <%=0%> <%}%>- <%= Math.min(resources.length(), (parseInt(page)-1)*parseInt(perPage)+parseInt(perPage)) %> </b>of <b><%= resources.length() %></b>
+                                </h5>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-md-12 text-right">
+                                <span class="vcenter">Results Per Page:</span>
+                                <ul id="ulPer" class="pagination pagination-sm numPages vcenter">
+                                    <li <% if(parseInt(perPage) === 5) {%> class="active" <% } %>><a>5</a></li>
+                                    <li <% if(parseInt(perPage) === 10) {%> class="active" <% } %>><a>10</a></li>
+                                    <li <% if(parseInt(perPage) === 25) {%> class="active" <% } %>><a>25</a></li>
+                                    <li <% if(parseInt(perPage) === 50) {%> class="active" <% } %>><a>50</a></li>
+                                    <li <% if(parseInt(perPage) === 100) {%> class="active" <% } %>><a>100</a></li>
+                                </ul>
+                            </div>
+                        </td></tr>
+                </table>
+            </div>
+            <% for (var i=(parseInt(page)-1)*parseInt(perPage); i< Math.min(resources.length(), (parseInt(page)-1)*parseInt(perPage)+parseInt(perPage)); i++) { %>
+            <div class="row">
+                <div class="col-lg-12" style="background:<% if(i % 2 === 0) { %>#E8E8E8 <%} else{%> whitesmoke <%}%>">
+                    <% if(resources.group[i].name) { %>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <span class="icon-stack">
+                                     <i class="icon-sign-blank icon-stack-base" style="color:
+                                     <% firstLetter = resources.group[i].type.charAt(0) %>
+                                     <% if(firstLetter==="T"){ %>
+                                             rgb(135, 172, 235)
+                                     <%} else if(firstLetter==="W"){%>
+                                             rgb(135, 206, 235)
+                                     <%} else if(firstLetter==="D"){%>
+                                             rgb(135, 139, 235)
+                                     <%} else {%>
+                                             rgb(164, 135, 235)
+                                     <%}%>
+                                             "></i>
+                                     <span class="icon-fixed-width icon-light char-overlay" style="padding:0px;font-weight:600""><%= firstLetter %></span>
+                                </span>
+                            <span><a href="/tool/show?id=<%= resources.group[i].id%>"><%= resources.group[i].name %></a></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(resources.group[i].description) { %>
+                    <div class="row" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <span><b>Description: </b><%= resources.group[i].description %></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(resources.group[i].authors) { %>
+                    <div class="row">
+                        <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <span><b>Author: </b><%= resources.group[i].authors.join(", ") %></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(resources.group[i].sourceCodeURL) { %>
+                    <div class="row">
+                        <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <span><b>Source Code URL: </b><%= resources.group[i].sourceCodeURL %></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(resources.group[i].language) { %>
+                    <div class="row">
+                        <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <span><b>Language: </b><%= resources.group[i].language %></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(resources.group[i].source) { %>
+                    <div class="row">
+                        <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <span><b>Source: </b><%= resources.group[i].source %></span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <!--<div class="row">-->
+                    <!--<div class="col-lg-12" style="border: 0px solid black">-->
+                    <!--<span><b>Version: </b><%= resources.group[i].versionNum %></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <% if(resources.group[i].tags) { %>
+                    <div class="row" style="margin-bottom:10px;">
+                        <div class="tag col-lg-12" style="border: 0px solid black;">
+                                <span><b>Tags: </b><% if(resources.group[i].tags) {for (var j = 0; j < Math.min(resources.group[i].tags.length, 4); j++) { %>
+                                    &nbsp;<button type="button" class="btn btn-info btn-xs"><i class="fa fa-tag"></i>&nbsp;<%= resources.group[i].tags[j] %></button>
+                                    <% }} %>
+                                </span>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12" style="padding-top:10px; border: 0px solid black">
+                    <span align="center" style="color:lightslategray"><h3><b>Search History</b></h3></span>
+                    <ul class="list-group" id="searchHistory">
+                        <% var countHash = 0 %>
+                        <% var first = true %>
+                        <% for (var i=0; i<prevSearches.length; i++) { %>
+                        <li class="list-group-item" id="searchNum<%= i %>" data-key="<%= uuids[i] %>" >
+                            <i class="fa fa-search-plus"></i>&nbsp;&nbsp;
+                            <% for (var key in prevSearches[i].toHash().searchFilters) { %>
+                            <span><b><%= key.substr(0,1).toUpperCase() + key.substr(1) %></b>: <%= prevSearches[i].toHash().searchFilters[key] %> </span>
+                            <% countHash++ %>
+                            <% } %>
+                            &nbsp;&nbsp;<span class="badge" style="cursor: pointer;"><i class="fa fa-times-circle"></i></span></li>
+                        <% } %>
+                        <% if(!back) {%>
+                        <li class="list-group-item" id="curSearch" data-key="<%= uuids[uuids.length - 1] %>"><i class="fa fa-search-plus"></i>&nbsp;&nbsp;
+                            <% for (var key in search.toHash().searchFilters) { %>
+                            <span>          <b><%= key.substr(0,1).toUpperCase() + key.substr(1) %></b>: <%= search.toHash().searchFilters[key] %></span>
+                            <% } %>
+                            &nbsp;&nbsp;<span class="badge" style="cursor: pointer;"><i class="fa fa-times-circle"></i></span></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+
+            <% var refined = JSON.parse(refine)%>
+            <% if(Object.keys(refined).length > 0) { %>
+            <div class="row">
+                <div class="col-lg-12" style="border: 0px solid black">
+                    <br> <span align="center" style="color:lightslategray"><h3><b>Refinements</b></h3></span><br>
+                    <ul class="list-group" id="refinements">
+                        <% for (var key in refined) { %>
+                            <% for(var i = 0; i < Object.keys(refined[key]).length; i++) {%>
+                                <li class="list-group-item" key="<%= key %>" ><i class="fa fa-th-list"></i>&nbsp;&nbsp;
+                                    <span><b><%= key.substr(0,1).toUpperCase() + key.substr(1) %></b>: <%= Object.keys(refined[key])[i] %> </span>
+                                    &nbsp;&nbsp;<span class="badge" style="cursor: pointer;"><i class="fa fa-times-circle"></i></span>
+                                </li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+            <% } %>
+
+            <%if (hasEdam) {%>
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-12" style="border: 0px solid black">
+                    <span><b>Definition: </b><%= edam.definition %></span>
+                    <br /><br />
+                            <span style="margin-top: 20px"><b>Hierarchy: </b><%= edam.hierarchy[0] %>
+                                <% for (var i=1; i<edam.hierarchy.length; i++) { %>
+                                <b> > </b><%= edam.hierarchy[i] %>
+                                <% } %>
+                            </span>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center" style="border: 0px solid black">
+            <nav>
+                <ul class="pagination actualPagination">
+                    <li <%if (page == "1") {%>class="disabled"<%}%>><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <% for (var i=Math.max(1, parseInt(page)-5); i < Math.max(11, parseInt(page) + 5) && i < Math.ceil(resources.length() / parseInt(perPage)) + 1; i++) { %>
+                    <li <%if (page == i.toString()) {%>class="active"<%}%>><a href="#"><%= i %></a></li>
+                    <% } %>
+                    <li <%if ((parseInt(page) == (Math.ceil(resources.length()/parseInt(perPage)))) || (resources.length() == 0)) {%>class="disabled"<%}%>><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <%- include ../shared/footer.ejs %>
+</body>
+</html>
