@@ -8,8 +8,6 @@ chmod -R 7777 *
 
 cd Aztec-Web/scripts/bash
 
-source mysql_install
-
 cd ~
 
 chmod -R 7777 *
