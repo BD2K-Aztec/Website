@@ -2,9 +2,9 @@
 
 cd  ~
 
-cd BD2K/resources/after-npm
+cd Aztec-Web/resources/after-npm
 
-cp graph.js ~/BD2K/web/node_modules/graphviz/lib/deps/graph.js
+cp graph.js ~/Aztec-Web/web/node_modules/graphviz/lib/deps/graph.js
 
 cd ~
 
