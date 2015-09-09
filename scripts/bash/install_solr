@@ -4,9 +4,9 @@ LNAM=$LOGNAME
 
 cd ~
 
-rm -f bitnami-solr-5.2.1-1-linux-x64-installer.run
+rm -f bitnami-solr-5.3.0.0-linux-x64-installer.run
 
-wget "https://bitnami.com/redirect/to/64899/bitnami-solr-5.2.1-1-linux-x64-installer.run"
+wget "https://bitnami.com/redirect/to/69970/bitnami-solr-5.3.0-0-linux-x64-installer.run"
 
 chmod -R 7777 *
 
@@ -18,11 +18,11 @@ cd ~
 
 rm -rf solr
 
-sudo -u $LNAM ~/bitnami-solr-5.2.1-1-linux-x64-installer.run --mode unattended --prefix ~/solr --apache_server_port 8080 --apache_server_ssl_port 8443
+# sudo -u $LNAM ~/bitnami-solr-5.3.0-0-linux-x64-installer.run --mode unattended --prefix ~/solr --apache_server_port 8080 --apache_server_ssl_port 8443
 
-cd ~
+# cd ~
 
-./bitnami-solr-5.2.1-1-linux-x64-installer.run
+./bitnami-solr-5.3.0-0-linux-x64-installer.run
 
 cd ~
 
