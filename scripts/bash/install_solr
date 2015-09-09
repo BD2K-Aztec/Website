@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LNAM=$(logname)
+LNAM=$LOGNAME
 
 cd ~
 
@@ -12,8 +12,6 @@ chmod -R 7777 *
 
 chown -R $LNAM *
 
-chmod -R 7777 *
-
 cd ~
 
 ~/solr/uninstall --mode unattended
@@ -24,13 +22,17 @@ sudo -u $LNAM ~/bitnami-solr-5.2.1-1-linux-x64-installer.run --mode unattended -
 
 cd ~
 
+./bitnami-solr-5.2.1-1-linux-x64-installer.run
+
+cd ~
+
 chmod -R 7777 *
 
 chown -R $LNAM *
 
 cd solr/apache-solr/bin
 
-sudo -u $LNAM ./solr create_core -c BD2K
+sudo ./solr create_core -c BD2K
 
 cd ~
 
@@ -52,10 +54,14 @@ cp -R conf ~/solr/apache-solr/solr/BD2K/conf
 
 cd ~
 
+cd ~/Aztec-Web/resources
+
+cp schema.xml ~/solr/apache-solr/solr/BD2K/conf
+
 chmod -R 7777 *
 
 chown -R $LNAM *
 
 cd solr
 
-sudo -u $LNAM ./ctlscript.sh start solr
+sudo ./ctlscript.sh start solr
