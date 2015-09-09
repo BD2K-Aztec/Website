@@ -21,7 +21,7 @@ if ! grep -Fxq 'export NEO4J_HOME=/var/lib/neo4j' ~/.bashrc ; then
    source ~/.bashrc
 fi
 
-/var/lib/neo4j/bin/neo4j start
+# /var/lib/neo4j/bin/neo4j start
 
 cd ~
 
