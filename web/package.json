@@ -16,7 +16,6 @@
     "solr-client": "*",
     "body-parser": "*",
     "xml2js": "*",
-    "libxmljs": "*",
     "xpath" : "*",
     "xmldom" : "*",
 	"querystring": "*",
