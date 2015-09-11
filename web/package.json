@@ -23,6 +23,7 @@
     "mongodb" : "*",
     "uuid" : "*",
     "graphviz":"*",
-    "serve-favicon":"*"
+    "serve-favicon":"*",
+    "bignumber.js":"*"
   }
 }
