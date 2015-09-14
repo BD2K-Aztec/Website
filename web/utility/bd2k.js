@@ -326,8 +326,13 @@ BD2K.mongo.search = function(collectionStr, search, callback){
 
     //---- onConnect --------------------
     container.onConnect = function (err, db) {
-        var search = container.search;
-        search(db);
+        if(err)
+            console.log(err);
+        else{
+            var search = container.search;
+            search(db);
+        }
+
     };
 
     //---- search --------------------
