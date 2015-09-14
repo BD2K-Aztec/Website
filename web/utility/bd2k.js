@@ -372,8 +372,12 @@ BD2K.mongo.insert = function(collectionStr, data, callback){
 
     //---- onConnect --------------------
     container.onConnect = function (err, db) {
-        var insert = container.insert;
-        insert(db);
+        if(err)
+            console.log(err);
+        else{
+            var insert = container.insert;
+            insert(db);
+        }
     };
 
     //---- insert --------------------
@@ -415,8 +419,10 @@ BD2K.mongo.upsert = function(collectionStr, search, document, callback){
     container.onConnect = function (err, db) {
         if(err)
             console.log("mongo" + err);
-        var upsert = container.upsert;
-        upsert(db);
+        else{
+            var upsert = container.upsert;
+            upsert(db);
+        }
     };
 
     //---- upsert --------------------
@@ -458,8 +464,12 @@ BD2K.mongo.update = function(collectionStr, search, document, callback){
 
     //---- onConnect --------------------
     container.onConnect = function (err, db) {
-        var update = container.update;
-        update(db);
+        if(err)
+            console.log(err);
+        else{
+            var update = container.update;
+            update(db);
+        }
     };
 
     //---- update --------------------
