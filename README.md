@@ -32,3 +32,16 @@ docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -
 docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
 
 docker run -i -t -p 80:3000 tanpatrick/aztec-server
+
+
+pull repo
+install nodejs and npm
+npm install
+install graphviz
+ln -s /usr/bin/nodejs /usr/bin/node
+
+run resource/update -> insertstats
+
+cd Aztec-Web/web
+
+node_modules/forever/bin/forever start server.js
