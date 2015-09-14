@@ -408,6 +408,8 @@ BD2K.mongo.upsert = function(collectionStr, search, document, callback){
 
     //---- onConnect --------------------
     container.onConnect = function (err, db) {
+        if(err)
+            console.log("mongo" + err);
         var upsert = container.upsert;
         upsert(db);
     };

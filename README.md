@@ -1,71 +1,34 @@
-TODO:
+docker
 
-
-Parsing more data (biocatalogue, galaxy)
-
-~~Adding number of items to show per page~~
-
-~~Search refine = search within the result~~
-
-~~search refine updated on click~~
-
-~~update strict filtering to include counts of results~~
-
-~~use some color(gray, green) to show/demonstrate the work in process~~
-
-~~make result box smaller, use the right hand side for something else = tree, refer to pubmed~~
-
-~~use alternating shades to display results instead of panels~~
-
-~~use ... for more descriptions/tags if too long~~
-
-~~"save" queries within each session~~
-
-~~at the bottom: link back to NIH site~~
-
-show the ontology of the specific search word
-
-~~auto-identification of "query" or "refined filtering"~~
-
-~~main box = query statistics (word cloud, or sequences of query)~~
-
-~~carousel background to highlight tools~~
-
-~~test all major browsers for compatibility~~
-
-~~change elixir topics to domains~~
-
-work in progress: ontology mapping in the future for biological domains
-
-try to get tool type to work
-
-table to show what info each resource gives us
-
-~~neo4j workflow~~
-
-~~allow input new tool~~
-
-bugs:
-~~pagination doesn't work past 10~~
+looking around
+http://stackoverflow.com/questions/28037802/docker-exec-failed-to-exec-exec-cd-executable-file-not-found-in-path
 
 
 
-TABLE
+solr https://hub.docker.com/r/makuk66/docker-solr/
 
-technologies
+SOLR_CONTAINER=$(docker run -d -p 8983:8983 -t makuk66/docker-solr) #aztec-solr
 
-dbs
-node
-solr
-aws
-mvc
-d3
+copy schema file and config file
+http://stackoverflow.com/questions/22907231/copying-files-from-host-to-docker-container
+sudo cp schema.xml /var/lib/docker/aufs/mnt/**/var/lib/docker/aufs/mnt/**a3be2e5897bf48c36805f005cbd6a9a31878b02c25edbf71a782d929c689fa13**/opt/solr-5.3.0/server/solr/BD2K/conf
 
-TABLE
 
-4 sources
+cd ~/solr
+./ctlscript service start | restart | stop
 
-nih
-literature
-author submit
-repository
+input 
+curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @solr.json -H 'Content-type:application/json'
+
+neo4j https://hub.docker.com/r/tpires/neo4j/
+
+copy over database
+docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -p 7474:7474 tpires/neo4j
+
+#/var/lib/neo4j/bin/neo4j start
+
+
+
+docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
+
+docker run -i -t -p 80:3000 tanpatrick/aztec-server
