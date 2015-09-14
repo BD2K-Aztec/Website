@@ -62,7 +62,7 @@ Resource.prototype._update = function (self, callback) {
         .rows(1000);
     client.search(tagQuery,function(err,obj){
         if(err){
-            console.log(err);
+            console.log("solr" + err);
         }else{
             console.log(obj);
 
@@ -101,7 +101,7 @@ Resource.prototype._update = function (self, callback) {
         .rows(1000);
     client.search(platformQuery,function(err,obj){
         if(err){
-            console.log(err);
+            console.log("solr" + err);
         }else{
             console.log(obj);
 
