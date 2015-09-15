@@ -73,7 +73,7 @@ ToolInfoViewModel.prototype._load = function (self, callback) {
             }
         }, function (error, response, body) {
             if (error) {
-                console.log(error);
+                console.log("run -> neo4j: " + error);
                 self.neo4j = [];
                 self.onLoad();
             } else {
