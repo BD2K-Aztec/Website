@@ -214,7 +214,22 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         send.logo = $("#logo").val();
         send.description = $("#description").val();
         send.sourceCodeURL = $("#sourceCodeURL").val();
-        send.publicationDOI = $("#publicationDOI").val();
+        if($("#publicationDOI").val()){
+            var pubDOI = $("#publicationDOI").val().trim().toLowerCase();
+            if(pubDOI.indexOf("doi:") === 0)
+                pubDOI = pubDOI;
+            else if (pubDOI.indexOf("doi") === 0){
+                pubDOI = "doi:" + pubDOI.substr(3);
+            }
+            else{
+                pubDOI = "doi:" + pubDOI;
+            }
+            send.publicationDOI = pubDOI;
+        }
+        else{
+            send.publicationDOI = $("#publicationDOI").val();
+        }
+
         send.toolDOI = $("#toolDOI").val();
         send.language = $("#language").val();
         send.versionNum = $("#versionNum").val();
@@ -301,7 +316,16 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         var inputLicenseUrls = [];
 
         for (i = 0; i < otherDOIs.length; i++) {
-            inputOtherDOIs.push(otherDOIs[i].innerHTML.trim());
+            var pubDOI = otherDOIs[i].innerHTML.trim().toLowerCase();
+            if(pubDOI.indexOf("doi:") === 0)
+                pubDOI = pubDOI;
+            else if (pubDOI.indexOf("doi") === 0){
+                pubDOI = "doi:" + pubDOI.substr(3);
+            }
+            else{
+                pubDOI = "doi:" + pubDOI;
+            }
+            inputOtherDOIs.push(pubDOI);
         }
 
         for (i = 0; i < linkDescs.length; i++) {

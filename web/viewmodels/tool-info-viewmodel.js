@@ -43,8 +43,8 @@ ToolInfoViewModel.prototype._load = function (self, callback) {
             '}'
         ].join('\n');
         var g = graphviz.digraph("G");
-        //g.outputStr(dot, cont.onSvgLoaded);
-        cont.onSvgLoaded("");
+        g.outputStr(dot, cont.onSvgLoaded);
+        //cont.onSvgLoaded("");
     };
 
     cont.onSvgLoaded = function(html) {
