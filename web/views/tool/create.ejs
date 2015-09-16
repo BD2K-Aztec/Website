@@ -18,6 +18,7 @@
     <script>
 
         BD2K.ready(function () {
+            $('[data-toggle="popover"]').popover()
             var domains = <%-JSON.stringify(domains)%>;
             var types = <%-JSON.stringify(types)%>;
             var platforms = <%-JSON.stringify(platforms)%>;
@@ -25,6 +26,11 @@
             var preset = <%- JSON.stringify(preset) %>;
             new NewTool(types, domains, platforms, fileTypes, preset);
             $("#liRegister").addClass("active");
+            $('.pop').popover().click(function () {
+                setTimeout(function () {
+                    $('.pop').popover('hide');
+                }, 2000);
+            });
         });
     </script>
 
@@ -45,27 +51,27 @@
             <form action="/resource/add" method="GET" id="form">
 
                 <table class="TFtable">
-                    <tr><td align="left">Resource Name</td><td style="width:100%"><input style="width:100%" type="text" id="name" value="" placeholder="Sailfish"></td></tr>
-                    <tr><td align="left">Logo URL</td><td><input style="width:100%" type="text" id="logo" value="" placeholder="http://www.cs.cmu.edu/~ckingsf/software/sailfish/images/sailfish_logo.png"></td></tr>
-                    <tr><td align="left">Description</td><td><textarea style="width:100%; vertical-align: top" type="text" id="description" value="" placeholder="Sailfish: Rapid Alignment-free Quantification of Isoform Abundance. RNA-seq expression estimates need not take longer than a cup of coffee"></textarea></td></tr>
-                    <tr><td align="left">Source Code URL</td><td><input style="width:100%" type="text" id="sourceCodeURL" value="" placeholder="http://www.cs.cmu.edu/~ckingsf/software/sailfish/downloads.html"></td></tr>
-                    <tr><td align="left">Primary Publication DOI</td><td><input style="width:100%" type="text" id="publicationDOI" value="" placeholder="doi:10.1038/nbt.2862"></td></tr>
+                    <tr><td align="left">Resource Name<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td style="width:100%"><input style="width:100%" type="text" id="name" value="" placeholder="Sailfish"></td></tr>
+                    <tr><td align="left">Logo URL<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="logo" value="" placeholder="http://www.cs.cmu.edu/~ckingsf/software/sailfish/images/sailfish_logo.png"></td></tr>
+                    <tr><td align="left">Description<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><textarea style="width:100%; vertical-align: top" type="text" id="description" value="" placeholder="Sailfish: Rapid Alignment-free Quantification of Isoform Abundance. RNA-seq expression estimates need not take longer than a cup of coffee"></textarea></td></tr>
+                    <tr><td align="left">Source Code URL<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="sourceCodeURL" value="" placeholder="http://www.cs.cmu.edu/~ckingsf/software/sailfish/downloads.html"></td></tr>
+                    <tr><td align="left">Primary Publication DOI<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="publicationDOI" value="" placeholder="doi:10.1038/nbt.2862"></td></tr>
                     <tr><td align="middle"><b>Other Publication DOIs</b></td><td></td></tr>
-                    <tr><td>Publication DOI</td><td><input style="width:70%" id="otherDOI" type="text" placeholder="doi:10.1038/nbt.2862"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="otherDOIButton">Add</button></td></tr>
-                    <tr><td align="left">Tool DOI</td><td><input style="width:100%" type="text" id="toolDOI" value="" placeholder="doi:10.1038/nbt.2862"></td></tr>
-                    <tr><td align="left">Programming Languages</td><td><input style="width:100%" type="text" id="language" value="" placeholder="C++"></td></tr>
-                    <tr><td align="left">Latest Version Number</td><td><input style="width:100%" type="text" id="versionNum" value="" placeholder="0.7.3"></td></tr>
-                    <tr><td align="left">Latest Version Release Date</td><td><input style="width:100%" type="text" id="versionDate" value="" placeholder="September 3, 2015"></td></tr>
-                    <tr><td align="left">Previous Version</td><td><input style="width:100%" type="text" id="prevVersion" value="" placeholder="0.7.2"></td></tr>
-                    <tr><td align="left">Next Version</td><td><input style="width:100%" type="text" id="nextVersion" value="" placeholder="0.7.4"></td></tr>
+                    <tr><td>Publication DOI<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="otherDOI" type="text" placeholder="doi:10.1038/nbt.2862"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="otherDOIButton">Add</button></td></tr>
+                    <tr><td align="left">Tool DOI<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="toolDOI" value="" placeholder="doi:10.1038/nbt.2862"></td></tr>
+                    <tr><td align="left">Programming Languages<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="language" value="" placeholder="C++"></td></tr>
+                    <tr><td align="left">Latest Version Number<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="versionNum" value="" placeholder="0.7.3"></td></tr>
+                    <tr><td align="left">Latest Version Release Date<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="versionDate" value="" placeholder="September 3, 2015"></td></tr>
+                    <tr><td align="left">Previous Version<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="prevVersion" value="" placeholder="0.7.2"></td></tr>
+                    <tr><td align="left">Next Version<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="nextVersion" value="" placeholder="0.7.4"></td></tr>
                     <tr><td align="middle"><b>Links</b></td><td></td></tr>
-                    <tr><td align="left">Link Description</td><td><input style="width:70%" id="linkDesc" type="text" placeholder="Homepage"/></td></tr>
-                    <tr><td align="left">Link URL</td><td><input style="width:70%" id="linkURL" type="text" placeholder="http://www.cs.cmu.edu/~ckingsf/software/sailfish/"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="linkButton">Add</button></td></tr>
+                    <tr><td align="left">Link Description<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="linkDesc" type="text" placeholder="Homepage"/></td></tr>
+                    <tr><td align="left">Link URL<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="linkURL" type="text" placeholder="http://www.cs.cmu.edu/~ckingsf/software/sailfish/"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="linkButton">Add</button></td></tr>
                     <tr><td align="middle"><b>License</b></td><td></td></tr>
-                    <tr><td align="left">License</td><td><input style="width:70%" id="license" type="text" placeholder="GPLv3"/></td></tr>
-                    <tr><td align="left">License URL</td><td><input style="width:70%" id="licenseUrl" type="text" placeholder="http://www.gnu.org/licenses/gpl-3.0.en.html"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="licenseButton">Add</button></td></tr>
+                    <tr><td align="left">License<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="license" type="text" placeholder="GPLv3"/></td></tr>
+                    <tr><td align="left">License URL<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="licenseUrl" type="text" placeholder="http://www.gnu.org/licenses/gpl-3.0.en.html"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="licenseButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Resource Types</b></td><td></td></tr>
-                    <tr><td>Resource Type</td><td>
+                    <tr><td>Resource Type<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td>
                             <select id="softwareType" style="width:70%;height:100%">
                                 <option value="Tool">Tool</option>
                                 <option value="Database">Database</option>
@@ -74,7 +80,7 @@
                             </select>
                             <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="softwareTypeButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Biological Domains</b></td><td></td></tr>
-                    <tr><td>Biological Domain</td><td>
+                    <tr><td>Biological Domain<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td>
                             <select id="domain" style="width:70%;height:100%">
                                 <option value="Genomics">Genomics</option>
                                 <option value="Proteomics">Proteomics</option>
@@ -86,29 +92,29 @@
                             </select>
                             <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="domainButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Authors</b></td><td></td></tr>
-                    <tr><td>Author Name</td><td><input style="width:70%" id="authorName" type="text" placeholder="Carl Kingsford"/></td></tr>
-                    <tr><td>Author Email</td><td><input style="width:70%" id="authorEmail" type="text" placeholder="carlk@cs.cmu.edu"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="authorButton">Add</button></td></tr>
+                    <tr><td>Author Name<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="authorName" type="text" placeholder="Carl Kingsford"/></td></tr>
+                    <tr><td>Author Email<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="authorEmail" type="text" placeholder="carlk@cs.cmu.edu"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="authorButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Institutes</b></td><td></td></tr>
-                    <tr><td>Institute</td><td><input style="width:70%" id="institute" type="text" placeholder="Carnegie Mellon University"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="instituteButton">Add</button></td></tr>
+                    <tr><td>Institute<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="institute" type="text" placeholder="Carnegie Mellon University"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="instituteButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Funders</b></td><td></td></tr>
-                    <tr><td>Funder</td><td><input style="width:70%" id="funding" type="text" placeholder="NSF CCF-1256087, CCF-1053918, EF-0849899"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="fundingButton">Add</button></td></tr>
+                    <tr><td>Funder<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="funding" type="text" placeholder="NSF CCF-1256087, CCF-1053918, EF-0849899"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="fundingButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Platforms</b></td><td></td></tr>
-                    <tr><td>Platform</td><td><input style="width:70%" id="platform" type="text" placeholder="Linux (Unix)"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="platformButton">Add</button></td></tr>
+                    <tr><td>Platform<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="platform" type="text" placeholder="Linux (Unix)"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="platformButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Input File Types</b></td><td></td></tr>
-                    <tr><td>Input File Type</td><td><input style="width:70%" id="inputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="inputTypeButton">Add</button></td></tr>
+                    <tr><td>Input File Type<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="inputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="inputTypeButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Output File Types</b></td><td></td></tr>
-                    <tr><td>Output File Type</td><td><input style="width:70%" id="outputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="outputTypeButton">Add</button></td></tr>
+                    <tr><td>Output File Type<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="outputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="outputTypeButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Downstream Tools</b></td><td></td></tr>
-                    <tr><td>Downstream Tool</td><td><input style="width:70%" id="downstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="downstreamButton">Add</button></td></tr>
+                    <tr><td>Downstream Tool<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="downstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="downstreamButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Upstream Tools</b></td><td></td></tr>
-                    <tr><td>Upstream Tool</td><td><input style="width:70%" id="upstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="upstreamButton">Add</button></td></tr>
+                    <tr><td>Upstream Tool<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="upstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="upstreamButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Dependencies</b></td><td></td></tr>
-                    <tr><td>Dependency</td><td><input style="width:70%" id="dependency" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="dependencyButton">Add</button></td></tr>
+                    <tr><td>Dependency<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="dependency" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="dependencyButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Tags</b></td><td></td></tr>
-                    <tr><td>Tag</td><td><input style="width:70%" id="tag" type="text" placeholder="RNA-seq"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="tagButton">Add</button></td></tr>
+                    <tr><td>Tag<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="tag" type="text" placeholder="RNA-seq"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="tagButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Maintainers</b></td><td></td></tr>
-                    <tr><td>Maintainer</td><td><input style="width:70%" id="maintainer" type="text"/></td></tr>
-                    <tr><td>Maintainer Email</td><td><input style="width:70%" id="maintainerEmail" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="maintainerButton">Add</button></td></tr>
+                    <tr><td>Maintainer<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="maintainer" type="text"/></td></tr>
+                    <tr><td>Maintainer Email<i data-content="Description" style="float:right" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="maintainerEmail" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="maintainerButton">Add</button></td></tr>
                     <tr><td colspan="2"><input class="" style="width:100%;" type="submit" value="Submit"></td></tr>
                 </table>
 
