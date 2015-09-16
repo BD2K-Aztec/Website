@@ -1,47 +1,42 @@
-docker
+##Docker Images Usage
 
-looking around
-http://stackoverflow.com/questions/28037802/docker-exec-failed-to-exec-exec-cd-executable-file-not-found-in-path
+###[Solr](https://hub.docker.com/r/makuk66/docker-solr/)
 
+SOLR_CONTAINER=$(docker run -d -p 8983:8983 -t tanpatrick/aztec-solr)
 
+###[Neo4j](https://hub.docker.com/r/tpires/neo4j/)
 
-solr https://hub.docker.com/r/makuk66/docker-solr/
+docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -p 7474:7474 tanpatrick/aztec-neo4j
 
-SOLR_CONTAINER=$(docker run -d -p 8983:8983 -t makuk66/docker-solr) #aztec-solr
-
-copy schema file and config file
-http://stackoverflow.com/questions/22907231/copying-files-from-host-to-docker-container
-sudo cp schema.xml /var/lib/docker/aufs/mnt/**/var/lib/docker/aufs/mnt/**a3be2e5897bf48c36805f005cbd6a9a31878b02c25edbf71a782d929c689fa13**/opt/solr-5.3.0/server/solr/BD2K/conf
-
-
-cd ~/solr
-./ctlscript service start | restart | stop
-
-input 
-curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @solr.json -H 'Content-type:application/json'
-
-neo4j https://hub.docker.com/r/tpires/neo4j/
-
-copy over database
-docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -p 7474:7474 tpires/neo4j
-
-#/var/lib/neo4j/bin/neo4j start
-
-
-
+###[MongoDB](https://docs.docker.com/examples/mongodb/)
 docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
 
-docker run -i -t -p 80:3000 tanpatrick/aztec-server
 
+##Server Setup
 
-pull repo
-install nodejs and npm
-npm install
-install graphviz
-ln -s /usr/bin/nodejs /usr/bin/node
+Pull Repository
+Install Nodejs and npm
+cd web && npm install
+cd scripts/bash and run install_graphviz
+Link nodejs to node command: ln -s /usr/bin/nodejs /usr/bin/node
+Start all docker images (see above)
 
-run resource/update -> insertstats
+node_modules/forever/bin/forever start server.json
 
-cd Aztec-Web/web
+Direct browser to /resource/update
+cd web and run: node scripts/insert_stats.js
 
-node_modules/forever/bin/forever start server.js
+##How To:
+
+###Copy Files to Docker
+
+http://stackoverflow.com/questions/22907231/copying-files-from-host-to-docker-container
+
+sudo cp schema.xml /var/lib/docker/aufs/mnt/a3be2e5897bf48c36805f005cbd6a9a31878b02c25edbf71a782d929c689fa13/opt/solr-5.3.0/server/solr/BD2K/conf
+
+###Input json file to Solr
+
+curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @file.json -H 'Content-type:application/json'
+
+###View Files in Docker
+http://stackoverflow.com/questions/28037802/docker-exec-failed-to-exec-exec-cd-executable-file-not-found-in-path
