@@ -37,6 +37,16 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         $("#sendJson").val(JSON.stringify(parameters));
     });
 
+    $("#otherDOIButton").click(function () {
+            var tempid = id;
+            var newLink = '<div class="panel panel-default" style="position:relative; padding:10px;" id="div' + tempid + '">Publication DOI: <span class="otherPubDOIs">' + $("#otherDOI").val() + '</span>';
+            newLink += '<button style="position:absolute; right:10px;" onclick="removeElement(div' + tempid + ')" type="button" class="btn btn-danger btn-xs" id="delete' + tempid + '">Delete Publication</button></div>';
+            $("#otherDOIs").html($("#otherDOIs").html() + newLink);
+            id++;
+            $("#otherDOI").val("");
+        }
+    );
+
     id = 0;
     $("#linkButton").click(function () {
             var tempid = id;
@@ -258,7 +268,7 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         //send.outputFiles = outputFileArr;
 
 
-
+        var otherDOIs = $(".otherPubDOIs");
         var linkDescs = $(".linkDescs");
         var linkURLs = $(".linkURLs");
         var authorNames = $(".authorNames");
@@ -274,6 +284,7 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         var licenses = $(".licenses");
         var licenseUrls = $(".licenseUrls");
 
+        var inputOtherDOIs = [];
         var inputDescs = [];
         var inputURLs = [];
         var inputAuthors = [];
@@ -288,6 +299,10 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         var inputMaintainerEmails = [];
         var inputLicenses = [];
         var inputLicenseUrls = [];
+
+        for (i = 0; i < otherDOIs.length; i++) {
+            inputOtherDOIs.push(otherDOIs[i].innerHTML.trim());
+        }
 
         for (i = 0; i < linkDescs.length; i++) {
             inputDescs.push(linkDescs[i].innerHTML.trim());
@@ -371,6 +386,7 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         send.inputFiles= inputInputTypes;
         send.outputFiles= inputOutputTypes;
         //END EXTRA
+        send.otherPublicationDOI = inputOtherDOIs;
         send.linkDescriptions = inputDescs;
         send.linkUrls = inputURLs;
         send.authors = inputAuthors;
@@ -414,6 +430,10 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         }
         if(preset.publicationDOI){
             $("#publicationDOI").val(preset.publicationDOI);
+        }
+        for (var i in preset.otherPublicationDOI) {
+            $("#otherDOI").val(preset.otherPublicationDOI[i]);
+            $("#otherDOIButton").click();
         }
         if(preset.toolDOI){
             $("#toolDOI").val(preset.toolDOI);

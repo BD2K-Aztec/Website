@@ -45,13 +45,15 @@
             <form action="/resource/add" method="GET" id="form">
 
                 <table class="TFtable">
-                    <tr><td align="left">Name</td><td style="width:100%"><input style="width:100%" type="text" id="name" value=""></td></tr>
+                    <tr><td align="left">Resource Name</td><td style="width:100%"><input style="width:100%" type="text" id="name" value=""></td></tr>
                     <tr><td align="left">Logo URL</td><td><input style="width:100%" type="text" id="logo" value=""></td></tr>
                     <tr><td align="left">Description</td><td><textarea style="width:100%; vertical-align: top" type="text" id="description" value=""></textarea></td></tr>
                     <tr><td align="left">Source Code URL</td><td><input style="width:100%" type="text" id="sourceCodeURL" value=""></td></tr>
-                    <tr><td align="left">Publication DOI</td><td><input style="width:100%" type="text" id="publicationDOI" value=""></td></tr>
+                    <tr><td align="left">Primary Publication DOI</td><td><input style="width:100%" type="text" id="publicationDOI" value=""></td></tr>
+                    <tr><td align="middle"><b>Other Publication DOIs</b></td><td></td></tr>
+                    <tr><td>Publication DOI</td><td><input style="width:70%" id="otherDOI" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="otherDOIButton">Add</button></td></tr>
                     <tr><td align="left">Tool DOI</td><td><input style="width:100%" type="text" id="toolDOI" value=""></td></tr>
-                    <tr><td align="left">Language</td><td><input style="width:100%" type="text" id="language" value=""></td></tr>
+                    <tr><td align="left">Programming Languages</td><td><input style="width:100%" type="text" id="language" value=""></td></tr>
                     <tr><td align="left">Latest Version Number</td><td><input style="width:100%" type="text" id="versionNum" value=""></td></tr>
                     <tr><td align="left">Latest Version Release Date</td><td><input style="width:100%" type="text" id="versionDate" value=""></td></tr>
                     <tr><td align="left">Previous Version</td><td><input style="width:100%" type="text" id="prevVersion" value=""></td></tr>
@@ -63,7 +65,7 @@
                     <tr><td align="left">License</td><td><input style="width:70%" id="license" type="text" /></td></tr>
                     <tr><td align="left">License URL</td><td><input style="width:70%" id="licenseUrl" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="licenseButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Resource Types</b></td><td></td></tr>
-                    <tr><td>Type</td><td>
+                    <tr><td>Resource Type</td><td>
                             <select id="softwareType" style="width:70%;height:100%">
                                 <option value="Tool">Tool</option>
                                 <option value="Database">Database</option>
@@ -116,6 +118,10 @@
         </div>
     </div>
     <div id="divPanels" class="col-md-4 text-left" style="padding:15px">
+        <b>Other Publication DOIs</b>
+        <div id="otherDOIs">
+            <br>
+        </div>
         <b>Links</b>
         <div id="links">
             <br>

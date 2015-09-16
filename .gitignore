@@ -1,0 +1,11 @@
+.idea/
+.DS_Store
+node_modules
+public/videos
+!.gitignore
+*.pem
+web_changs/config/
+public_holder
+web/debug/
+archive/
+web/node_modules

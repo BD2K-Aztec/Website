@@ -62,6 +62,7 @@ function Info(resource, neo4j) {
         acc += createAccList("Links", linkArr);
     }
     if (resource.publicationDOI) {
+        var dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
         var doi = resource.publicationDOI.replace(/ *\([^)]*\) */g, "");;
         var link = 'DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>';
         acc += createAcc("Publication DOI", link);
@@ -76,7 +77,7 @@ function Info(resource, neo4j) {
         acc += createAcc("Version Date", resource.versionDate);
     }
     if (resource.types) {
-        acc += createAccList("Tool Types", resource.types);
+        acc += createAccList("Resource Types", resource.types);
     }
     var regEx = /<|>/g;
     if (resource.licenses) {

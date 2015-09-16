@@ -116,6 +116,7 @@
    <field name="description" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
    <field name="sourceCodeURL" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
    <field name="publicationDOI" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
+   <field name="otherPublicationDOI" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="toolDOI" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
    <field name="language" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
    <field name="versionNum" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
