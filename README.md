@@ -9,29 +9,21 @@ SOLR_CONTAINER=$(docker run -d -p 8983:8983 -t tanpatrick/aztec-solr)
 docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -p 7474:7474 tanpatrick/aztec-neo4j
 
 ###[MongoDB](https://docs.docker.com/examples/mongodb/)
+
 docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
 
 
 ##Server Setup
 
-Pull Repository
-
-Install Nodejs and npm
-
-cd web && npm install
-
-cd scripts/bash and run install_graphviz
-
-Link nodejs to node command: ln -s /usr/bin/nodejs /usr/bin/node
-
-Start all docker images (see above)
-
-
-node_modules/forever/bin/forever start server.json
-
-
-Direct browser to /resource/update
-cd web and run: node scripts/insert_stats.js
+* Pull Repository
+* Install Nodejs and npm
+* cd web && npm install
+* cd scripts/bash and run install_graphviz
+* Link nodejs to node command: ln -s /usr/bin/nodejs /usr/bin/node
+* Start all docker images (see above)
+* node_modules/forever/bin/forever start server.json
+* Direct browser to /resource/update
+* cd web and run: node scripts/insert_stats.js
 
 ##How To:
 
