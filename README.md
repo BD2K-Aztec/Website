@@ -15,13 +15,20 @@ docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
 ##Server Setup
 
 Pull Repository
+
 Install Nodejs and npm
+
 cd web && npm install
+
 cd scripts/bash and run install_graphviz
+
 Link nodejs to node command: ln -s /usr/bin/nodejs /usr/bin/node
+
 Start all docker images (see above)
 
+
 node_modules/forever/bin/forever start server.json
+
 
 Direct browser to /resource/update
 cd web and run: node scripts/insert_stats.js
