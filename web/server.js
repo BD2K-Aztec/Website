@@ -27,6 +27,7 @@ app.use(favicon(__dirname + '/public/images/bd2k.ico'));
 
 app.get('/', HomeController.index);
 app.get('/home/index', HomeController.index);
+app.get('/home/overview', HomeController.overview);
 
 app.get('/resource/raw', ResourceController.raw);
 app.get('/resource/advanced', ResourceController.advanced);
