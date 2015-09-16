@@ -62,7 +62,9 @@ function Info(resource, neo4j) {
         acc += createAccList("Links", linkArr);
     }
     if (resource.publicationDOI) {
-        var dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
+        var dois = [resource.publicationDOI];
+        if(resource.otherPublicationDOI)
+            dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
         var doiArr = [];
         for(var i = 0; i < dois.length; i++){
             var doi = dois[i].replace(/ *\([^)]*\) */g, "");;
