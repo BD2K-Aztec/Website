@@ -9,11 +9,17 @@ function HomeController() {
     var self = this;
 
     this.index = function(req, res) { self._index(self, req, res); };
+    this.overview = function(req, res) { self._overview(self, req, res); };
 }
 
 //--- index -----------------------------------------------------------------------
 HomeController.prototype._index = function (self, req, res) {
     res.render("home/index");
+};
+
+//--- overview -----------------------------------------------------------------------
+HomeController.prototype._overview = function (self, req, res) {
+    res.render("home/overview");
 };
 
 //---------------------------------------------------------------------------------
