@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AZTEC - Technologies</title>
+
+  <script src="/public/js/jquery-2.1.4.js"></script>
+  <script src="/public/js/bootstrap.min.js"></script>
+  <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/public/css/info.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="/public/css/sticky-footer.css" rel="stylesheet">
+  <link href="/public/css/bd2k.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <script src="/public/viewmodels/resource/create-viewmodel.js"></script>
+  <script src="/public/js/bd2k.js"></script>
+  <style>
+    .TFtable td{
+      white-space:normal;
+    }
+  </style>
+</head>
+
+<body style="font-family: 'Open Sans', sans-serif; background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+<div class="row" style="padding-bottom: 4em">
+  <%- include ../shared/header.ejs %>
+</div>
+
+<h1 class="text-center" id="title"> <img border="0" src="/public/images/bd2k.svg" width="125" height="125">&nbsp;&nbsp;&nbsp;&nbsp;Technologies </h1>
+<br />
+<div class="row" style="padding-bottom: 2em">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <div class="text-left">
+      <table class="TFtable">
+        <tr><td align="left" style="width:20%">MySQL</td><td align="left" style="width:80%">A relational database management system that executes SQL commands. The resource information is stored in structured schemas that are created in advance to preserve the data integrity.</td></tr>
+        <tr><td align="left">Solr (Apache Lucene)</td><td align="left">A reliable and scalable search platform that enables Aztec to set different priorities to searchable fields, and allows users to search by filters or search by faceting.</td></tr>
+        <tr><td align="left">MongoDB</td><td align="left">A NoSQL database is used to store resource statistics, search statistics, and search histories. Its flexible and scalable operations speed up the front-end delivery for a smoother interface.</td></tr>
+        <tr><td align="left">Neo4j</td><td align="left">A graph database that uses the cypher query language to display relationships between objects. It provides a graphical presentation of the workflow among software tools.</td></tr>
+        <tr><td align="left">Amazon EC2</td><td align="left">The web application is hosted on Amazon Web Services (AWS). AWS provides a flexible computational capacity by simply increasing the computing power of the EC2 instance if needed.</td></tr>
+        <tr><td align="left">REST API</td><td align="left">Provides a programmatic interface that allows an easy integration of the web application data.</td></tr>
+        <tr><td align="left">D3</td><td align="left">A JavaScript graphing library that integrates HTML, SVG, and CSS to create an interactive graphical visualization. It is mainly used to display the statistics of Aztec resources.</td></tr>
+        <tr><td align="left">Nodejs</td><td align="left">A lightweight JavaScript platform to create a fast and scalable application. It is used as the backbone and framework for Aztec to connect the front-end to the back-end and expose web service endpoints.</td></tr>
+        <tr><td align="left">MVC Design Pattern</td><td align="left">The development of user interface follows the Model-View-Controller paradigm. The separation of model, view, and controller further facilitates Agile programming among developers.</td></tr>
+      </table>
+      <br><br>
+      <table class="TFtable">
+        <tr><td align="center" colspan="2"><b><i>Backend Databases and Web Service</i></b></td></tr>
+        <tr><td align="left" style="width:20%">MySQL</td><td align="left" style="width:80%">A relational database management system that executes SQL commands. The resource information is stored in structured schemas that are created in advance to preserve the data integrity.</td></tr>
+        <tr><td align="left">Solr (Apache Lucene)</td><td align="left">A reliable and scalable search platform that enables Aztec to set different priorities to searchable fields, and allows users to search by filters or search by faceting.</td></tr>
+        <tr><td align="left">MongoDB</td><td align="left">A NoSQL database is used to store resource statistics, search statistics, and search histories. Its flexible and scalable operations speed up the front-end delivery for a smoother interface.</td></tr>
+        <tr><td align="left">Neo4j</td><td align="left">A graph database that uses the cypher query language to display relationships between objects. It provides a graphical presentation of the workflow among software tools.</td></tr>
+        <tr><td align="left">Amazon EC2</td><td align="left">The web application is hosted on Amazon Web Services (AWS). AWS provides a flexible computational capacity by simply increasing the computing power of the EC2 instance if needed.</td></tr>
+      </table>
+
+      <table class="TFtable">
+        <tr><td align="center" colspan="2"><b><i>Front-end Interfaces</i></b></td></tr>
+        <tr><td align="left" style="width:20%">REST API</td><td align="left" style="width:80%">Provides a programmatic interface that allows an easy integration of the web application data.</td></tr>
+        <tr><td align="left">D3</td><td align="left">A JavaScript graphing library that integrates HTML, SVG, and CSS to create an interactive graphical visualization. It is mainly used to display the statistics of Aztec resources.</td></tr>
+      </table>
+
+      <table class="TFtable">
+        <tr><td align="center" colspan="2"><b><i>General</i></b></td></tr>
+        <tr><td align="left" style="width:20%">Nodejs</td><td align="left" style="width:80%">A lightweight JavaScript platform to create a fast and scalable application. It is used as the backbone and framework for Aztec to connect the front-end to the back-end and expose web service endpoints.</td></tr>
+        <tr><td align="left">MVC Design Pattern</td><td align="left">The development of user interface follows the Model-View-Controller paradigm. The separation of model, view, and controller further facilitates Agile programming among developers.</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+
+<%- include ../shared/footer.ejs %>
+</body>
+</html>
+
+<html>
+
+<body>
+</body>
+</html>
