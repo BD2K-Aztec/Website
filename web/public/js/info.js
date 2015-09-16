@@ -63,9 +63,12 @@ function Info(resource, neo4j) {
     }
     if (resource.publicationDOI) {
         var dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
-        var doi = resource.publicationDOI.replace(/ *\([^)]*\) */g, "");;
-        var link = 'DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>';
-        acc += createAcc("Publication DOI", link);
+        var doiArr = [];
+        for(var i = 0; i < dois.length; i++){
+            var doi = dois[i].replace(/ *\([^)]*\) */g, "");;
+            doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
+        }
+        acc += createAccList("Publication DOIs", doiArr);
     }
     if (resource.toolDOI) {
         acc += createAcc("Tool DOI", resource.toolDOI);
