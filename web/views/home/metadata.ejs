@@ -29,33 +29,39 @@
     <div class="text-left">
       <h1 id="title" style="color:white"> <img border="0" src="/public/images/bd2k.svg" width="200" height="200">&nbsp;&nbsp;&nbsp;&nbsp;Metadata </h1>
       <table class="TFtable">
-        <tr><td align="center"><b><i>Resource Name</i></b></td><td align="center"><b><i>Data Type</i></b></td><td align="center"><b><i>Required</i></b></td><td align="center"><b><i>Example</i></b></td></tr>
+        <tr><td align="center"><b><i>Field</i></b></td><td align="center"><b><i>Data Type</i></b></td><td align="center"><b><i>Required?</i></b></td><td align="center"><b><i>Example</i></b></td></tr>
+        <tr><td align="left">Resource Name</td><td align="left">Text</td><td align="left">Yes</td><td align="left">ProSequencer</td></tr>
         <tr><td align="left">Accession number</td><td align="left">Integer with 'AZ' prefix</td><td align="left">Yes</td><td align="left">AZ78549</td></tr>
-        <tr><td align="left">DOI</td><td align="left">DOI</td><td align="left">No</td><td align="left">10.5281/zenodo.22715</td></tr>
+        <tr><td align="left">Tool DOI</td><td align="left">DOI</td><td align="left">No</td><td align="left">10.5281/zenodo.22715</td></tr>
         <tr><td align="left">Description</td><td align="left">Text</td><td align="left">Yes</td><td align="left">A fast, novel sequencing algorithm.</td></tr>
         <tr><td align="left">Logo</td><td align="left">URL</td><td align="left">No</td><td align="left">http://www.my.tool.edu/logo.png</td></tr>
-        <tr><td align="left">Image(s)</td><td align="left">Text(Description)/URL pairs</td><td align="left">No</td><td align="left">Loading screen, my.tool.edu/image.png</td></tr>
+        <!--<tr><td align="left">Image(s)</td><td align="left">Text(Description)/URL pairs</td><td align="left">No</td><td align="left">Loading screen, my.tool.edu/image.png</td></tr>-->
         <tr><td align="left">Link(s)</td><td align="left">Text(Description)/URL pairs</td><td align="left">Yes</td><td align="left">Download, my.tool.edu/download</td></tr>
-        <tr><td align="left">Type</td><td align="left">Enum</td><td align="left">Yes</td><td align="left">Script</td></tr>
-        <tr><td align="left">Function(s)</td><td align="left">Defined by EDAM</td><td align="left">Yes</td><td align="left">Sequence alignment</td></tr>
-        <tr><td align="left">Source repository</td><td align="left">URL</td><td align="left">No</td><td align="left">http://www.github.com/bleakley/proseq</td></tr>
+        <tr><td align="left">License(s)</td><td align="left">Text(Description)/URL pairs</td><td align="left">Yes</td><td align="left">GPLv3, http://www.gnu.org/licenses/gpl-3.0.en.html</td></tr>
+        <tr><td align="left">Type</td><td align="left">Enum</td><td align="left">Yes</td><td align="left">Tool</td></tr>
+        <!--<tr><td align="left">Function(s)</td><td align="left">Defined by EDAM</td><td align="left">Yes</td><td align="left">Sequence alignment</td></tr>-->
+        <tr><td align="left">Source Repository</td><td align="left">URL</td><td align="left">No</td><td align="left">http://www.github.com/bleakley/proseq</td></tr>
+        <tr><td align="left">Dependencies</td><td align="left">Text</td><td align="left">No</td><td align="left">Python 3.0</td></tr>
         <tr><td align="left">Language(s)</td><td align="left">Enum</td><td align="left">No</td><td align="left">R</td></tr>
-        <tr><td align="left">Author(s)</td><td align="left">Text/Email/ORCID triples</td><td align="left">Yes</td><td align="left">Ding Wang, dwang@ucla.edu, 9930-2169</td></tr>
-        <tr><td align="left">PI(s)</td><td align="left">Text/Email/ORCID triples</td><td align="left">No</td><td align="left">Peipei Ping</td></tr>
-        <tr><td align="left">Institution(s)</td><td align="left">Text/URL pairs</td><td align="left">No</td><td align="left">UCLA, http://www.ucla.edu</td></tr>
-        <tr><td align="left">Primary publication</td><td align="left">Text/DOI pairs</td><td align="left">No</td><td align="left">ProSequencer, 10.5283/jci.26215</td></tr>
-        <tr><td align="left">Other publication(s)</td><td align="left">Text/DOI pairs</td><td align="left">No</td><td align="left">ProSequencer, 10.5283/jci.26215</td></tr>
-        <tr><td align="left">Funding source(s)</td><td align="left">Enum</td><td align="left">No</td><td align="left">National Institutes of Health</td></tr>
-        <tr><td align="left">Award number(s)</td><td align="left">Text</td><td align="left">No</td><td align="left">RFA-HG-14-006</td></tr>
-        <tr><td align="left">Biological domain(s)</td><td align="left">Defined by EDAM</td><td align="left">Yes</td><td align="left">Molecular Genetics</td></tr>
-        <tr><td align="left">Release(s)</td><td align="left">Text(Version)/Epoch pairs</td><td align="left">Yes</td><td align="left">1.0.2, 1438560000</td></tr>
+        <tr><td align="left">Author(s)</td><td align="left">Text/Email pairs</td><td align="left">Yes</td><td align="left">Ding Wang, dwang@ucla.edu</td></tr>
+        <!--<tr><td align="left">PI(s)</td><td align="left">Text/Email/ORCID triples</td><td align="left">No</td><td align="left">Peipei Ping</td></tr>-->
+        <tr><td align="left">Institution(s)</td><td align="left">Text</td><td align="left">No</td><td align="left">UCLA</td></tr>
+        <tr><td align="left">Primary Publication DOI</td><td align="left">DOI</td><td align="left">No</td><td align="left">10.5283/jci.26215</td></tr>
+        <tr><td align="left">Other Publication(s) DOI</td><td align="left">DOI</td><td align="left">No</td><td align="left">10.5283/jci.26215</td></tr>
+        <tr><td align="left">Funding source(s)</td><td align="left">Text</td><td align="left">No</td><td align="left">National Institutes of Health</td></tr>
+        <!--<tr><td align="left">Award number(s)</td><td align="left">Text</td><td align="left">No</td><td align="left">RFA-HG-14-006</td></tr>-->
+        <tr><td align="left">Biological domain(s)</td><td align="left">Defined by EDAM</td><td align="left">Yes</td><td align="left">Genetics</td></tr>
+        <tr><td align="left">Release Version</td><td align="left">Text(Version)</td><td align="left">No</td><td align="left">1.0.2</td></tr>
+        <tr><td align="left">Release Date</td><td align="left">Text(Date)</td><td align="left">No</td><td align="left">September 5, 2014</td></tr>
         <tr><td align="left">Platform(s)</td><td align="left">Enum</td><td align="left">Yes</td><td align="left">Windows, Mac, Linux</td></tr>
         <tr><td align="left">Input format(s)</td><td align="left">Defined by EDAM</td><td align="left">No</td><td align="left">FASTA</td></tr>
         <tr><td align="left">Output format(s)</td><td align="left">Defined by EDAM</td><td align="left">No</td><td align="left">CSV</td></tr>
         <tr><td align="left">Upstream workflow tool(s)</td><td align="left">Foreign keys</td><td align="left">No</td><td align="left">AZ24349</td></tr>
         <tr><td align="left">Downstream workflow tool(s)</td><td align="left">Foreign keys</td><td align="left">No</td><td align="left">AZ75894</td></tr>
-        <tr><td align="left">Reimplementation of</td><td align="left">Foreign keys</td><td align="left">No</td><td align="left">AZ98432</td></tr>
-        <tr><td align="left">Reimplemented by</td><td align="left">Foreign keys</td><td align="left">No</td><td align="left">AZ24354</td></tr>
+        <tr><td align="left">Maintainer(s)</td><td align="left">Text/Email pairs</td><td align="left">No</td><td align="left">Ding Wang, dwang@ucla.edu</td></tr>
+        <tr><td align="left">Tags</td><td align="left">Text</td><td align="left">No</td><td align="left">RNA-seq</td></tr>
+        <!--<tr><td align="left">Reimplementation of</td><td align="left">Foreign keys</td><td align="left">No</td><td align="left">AZ98432</td></tr>-->
+        <!--<tr><td align="left">Reimplemented by</td><td align="left">Foreign keys</td><td align="left">No</td><td align="left">AZ24354</td></tr>-->
       </table>
     </div>
   </div>
