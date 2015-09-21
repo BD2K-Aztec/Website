@@ -1,12 +1,18 @@
 var express = require('express');
 var http = require('http');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var configDB = require('./config/database.js');
 var app = express();
 var bodyParser = require('body-parser');
 var config = require('./config/app.json');
-var HomeController = require('./controllers/home-controller.js');
-var ResourceController = require('./controllers/resource-controller.js');
-var ToolController = require('./controllers/tool-controller.js');
 var favicon = require('serve-favicon');
+
+mongoose.connect(configDB.url); // connect to our database
 
 //*********************************************************************************
 //  init
@@ -20,29 +26,23 @@ app.use('/public', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/images/bd2k.ico'));
+// require('./config/passport')(passport); // pass passport for configuration
+
+// set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 //*********************************************************************************
 //  route
 //*********************************************************************************
-
-app.get('/', HomeController.index);
-app.get('/home/index', HomeController.index);
-app.get('/home/overview', HomeController.overview);
-app.get('/home/metadata', HomeController.metadata);
-app.get('/home/technologies', HomeController.technologies);
-app.get('/home/sources', HomeController.sources);
-
-app.get('/resource/raw', ResourceController.raw);
-app.get('/resource/advanced', ResourceController.advanced);
-app.get('/resource/search', ResourceController.search);
-app.get('/resource/update', ResourceController.update);
-app.get('/resource/stat', ResourceController.stat);
-app.get('/resource/add', ResourceController.add);
-
-app.get('/tool/filters', ToolController.filters);
-app.get('/tool/show', ToolController.show);
-app.get('/tool/create', ToolController.create);
-app.get('/tool/edit', ToolController.edit);
+require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 //*********************************************************************************
 //  run
