@@ -319,7 +319,7 @@ var pie_charts_repos_omics = function () {
 //            }
             if (value == 'Repos') {
                 data = repos;
-                text_total.text("Total:" + total_repos);
+                //text_total.text("Total:" + total_repos);
 //                text_unavail.text("");
                 url_pre = 'resource/search?input=';
                 // text_total.text("Total:"+total_repos);
