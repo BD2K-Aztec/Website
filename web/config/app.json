@@ -5,7 +5,7 @@
   "mysqlPassword":"6594e577f9bdf2e8e6ac04c9338eb458",
   "solrHost":"localhost",
   "solrPort":"8983",
-  "mongoHost":"localhost",
+  "mongoHost":"192.168.99.100",
   "mongoPort":"27017",
   "neo4jUrl": "http://localhost:7474"
 }

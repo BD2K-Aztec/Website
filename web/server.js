@@ -48,7 +48,7 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 //  run
 //*********************************************************************************
 
-var port = config.serverPort;
+var port = config.serverPort; // fix it back to config.serverPort before uploading
 app.listen(port);
 
 console.log("server up and running on port " + port);
