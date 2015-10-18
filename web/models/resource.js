@@ -150,6 +150,8 @@ Resource.prototype._add = function (self, json, callback) {
             var insertTool = insert[0];
             var maxID = parseInt(result.response.docs[0].description);
             insertTool.id = maxID;
+            insertTool.dateCreated = new Date().toISOString();
+            insertTool.dateUpdated = new Date().toISOString();
             self.id = maxID;
 
             BD2K.solr.add(insertTool, function(result){});
@@ -162,7 +164,7 @@ Resource.prototype._add = function (self, json, callback) {
     }
     else{
         self.id = insert.id;
-
+        insert.dateUpdated = new Date().toISOString();
         BD2K.solr.delete("id", insert.id, function(obj){
             BD2K.solr.add(insert, function(result){
                 self.onAdd();

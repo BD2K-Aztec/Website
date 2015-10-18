@@ -11,6 +11,9 @@ module.exports = function(app, passport) {
     app.get('/home/metadata', HomeController.metadata);
     app.get('/home/technologies', HomeController.technologies);
     app.get('/home/sources', HomeController.sources);
+    app.get('/home/authenticate', HomeController.authenticate);
+    app.get('/home/success', HomeController.success);
+    app.get('/home/failure', HomeController.failure);
 
     app.get('/resource/raw', ResourceController.raw);
     app.get('/resource/advanced', ResourceController.advanced);
@@ -55,10 +58,8 @@ module.exports = function(app, passport) {
 
     // process the signup form
     app.post('/home/signup', passport.authenticate('local-signup', {
-        successRedirect : '/home/profile', // redirect to the secure profile section
         failureRedirect : '/home/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    }), HomeController.signup);
 
     // =====================================
     // PROFILE SECTION =====================

@@ -29,19 +29,46 @@ ToolController.prototype._filters = function (self, req, res){
 //--- create ------------------------------------------------------------------
 ToolController.prototype._create = function (self, req, res){
     var tool = new CreateViewModel(req.query.input);
-    tool.load(function(i){ res.render("tool/create", i); });
+    tool.load(function(i){
+        if(req.isAuthenticated()) {
+            i.email = req.user.email;
+            res.render("tool/create", i);
+        }
+        else{
+            res.render("home/failure");
+        }
+    });
 };
 
 //--- edit ------------------------------------------------------------------
 ToolController.prototype._edit = function (self, req, res){
     var tool = new EditViewModel(req.query.id);
-    tool.load(function(i){ res.render("tool/create", i); });
+    tool.load(function(i){
+        if(req.isAuthenticated() && (i.owners || req.user.isAdmin)){
+            if(req.user.isAdmin || i.resource.owners.indexOf(req.user.email) > -1){
+                i.email = req.user.email;
+                res.render("tool/create", i);
+            }
+        }
+        else {
+            res.render("tool/uneditable", i);
+        }
+    });
 };
 
 //--- show -----------------------------------------------------------------------
 ToolController.prototype._show = function (self,req,res){
     var info = new ToolInfoViewModel(req.query.id);
+
     info.load(function(i){
+
+        i.resource.editable = false;
+        if(req.isAuthenticated() && (i.resource.owners || req.user.isAdmin)){
+            if(req.user.isAdmin || i.resource.owners.indexOf(req.user.email) > -1){
+                i.resource.editable = true;
+            }
+        }
+
         res.render("tool/show", i);
     });
 };

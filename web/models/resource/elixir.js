@@ -243,6 +243,9 @@ Elixir.prototype._load = function (self, callback) {
                 var url = 'http://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/?tool=ElixirToJsonConverter&' +
                     'email=patrickptt@ucla.edu&ids=' + publicationID + '&format=json';
 
+                newTool.dateCreated = new Date().toISOString();
+                newTool.dateUpdated = new Date().toISOString();
+                newTool.owners = ["adminOnly"];
                 self.toolArr.push(newTool);
                 var currentSpot = self.toolArr.length - 1;
 

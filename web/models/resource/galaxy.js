@@ -63,6 +63,9 @@ Galaxy.prototype._load = function (self, callback) {
         //newTool.linkDescriptions = linkDescArr;
         //newTool.tags = tagArr;
         curTool.source = "Galaxy";
+        curTool.dateCreated = new Date().toISOString();
+        curTool.dateUpdated = new Date().toISOString();
+        curTool.owners = ["adminOnly"];
         toolArr.push(curTool);
     }
     self.savedJSON = JSON.stringify(toolArr);

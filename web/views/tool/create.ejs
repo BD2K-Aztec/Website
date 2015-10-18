@@ -24,7 +24,8 @@
             var platforms = <%-JSON.stringify(platforms)%>;
             var fileTypes = <%-JSON.stringify(fileTypes)%>;
             var preset = <%- JSON.stringify(preset) %>;
-            new NewTool(types, domains, platforms, fileTypes, preset);
+            var email = "<%- email %>";
+            new NewTool(types, domains, platforms, fileTypes, preset, email);
             $("#liRegister").addClass("active");
             $('body').on('click', function (e) {
                 $('[data-toggle="popover"]').each(function () {

@@ -1,4 +1,4 @@
-function NewTool(types, domains, platforms, fileTypes, preset) {
+function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
     var self = this;
     $("#domain").val("");
@@ -425,6 +425,14 @@ function NewTool(types, domains, platforms, fileTypes, preset) {
         send.maintainerEmails = inputMaintainerEmails;
         send.licenses = inputLicenses;
         send.licenseUrls = inputLicenseUrls;
+
+        if(preset.owners){
+            send.owners = preset.owners;
+        }
+        else{
+            send.owners = [email];
+        }
+
         if(preset.id)
             send.id = preset.id;
         if(preset.source)
