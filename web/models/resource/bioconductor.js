@@ -110,6 +110,9 @@ Bioconductor.prototype._load = function (self, callback) {
         //    }
         //}
         //newTool.source = "bioconductor";
+        curTool.dateCreated = new Date().toISOString();
+        curTool.dateUpdated = new Date().toISOString();
+        curTool.owners = ["adminOnly"];
         toolArr.push(curTool);
     }
     self.savedJSON = JSON.stringify(toolArr);

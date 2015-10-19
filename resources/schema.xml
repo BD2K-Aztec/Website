@@ -143,6 +143,9 @@
    <field name="tags" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="maintainers" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="maintainerEmails" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
+   <field name="owners" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
+   <field name="dateCreated" type="date" indexed="true" stored="true" required="false" multiValued="true" /> 
+   <field name="dateUpdated" type="date" indexed="true" stored="true" required="false" multiValued="true" /> 
    <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 
        EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)

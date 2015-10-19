@@ -31,10 +31,25 @@
     /*border: 1px solid #fff;*/
 /*}*/
 
+
+#login-btn
+{
+    background-image: none;
+    padding: 23px; 
+    color: #777; 
+    z-index: +10; 
+    padding-top: 10px; 
+    position: relative;
+    top:16px;
+    left:80px;
+    visibility: visible !important;
+}
 #home-index .btn-default {
 background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%) !important;
 border: 0 !important; border-bottom-left-radius: 0 !important;; border-top-left-radius: 0 !important;
 }
+
+
 
 .myDiv {
     position: relative;
