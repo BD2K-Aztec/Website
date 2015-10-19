@@ -1,5 +1,6 @@
 {
   "serverPort":"80",
+  "sslPort":"3443",
   "mysqlHost":"localhost",
   "mysqlUser":"9cb182249d9a9c001b17a72fcd17dc28",
   "mysqlPassword":"6594e577f9bdf2e8e6ac04c9338eb458",

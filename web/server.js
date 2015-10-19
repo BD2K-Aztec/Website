@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -11,6 +12,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var config = require('./config/app.json');
 var favicon = require('serve-favicon');
+var fs = require('fs');
 
 mongoose.connect(configDB.url); // connect to our database
 
@@ -18,7 +20,28 @@ mongoose.connect(configDB.url); // connect to our database
 //  init
 //*********************************************************************************
 
-http.createServer(app);
+
+var port = config.serverPort;
+//var sslPort = config.sslPort;
+//
+//var hskey = fs.readFileSync('utility/hacksparrow-key.pem');
+//var hscert = fs.readFileSync('utility/hacksparrow-cert.pem')
+//
+//var options = {
+//    key: hskey,
+//    cert: hscert
+//};
+//
+//
+//function requireHTTPS(req, res, next) {
+//    if (!req.secure) {
+//        //FYI this should work for local development as well
+//        return res.redirect('https://' + req.get('host') + req.url);
+//    }
+//    next();
+//}
+//
+//app.use(requireHTTPS);
 
 app.set('view engine', 'ejs');
 app.set('view options', { layout: false });
@@ -52,3 +75,8 @@ var port = config.serverPort; // fix it back to config.serverPort before uploadi
 app.listen(port);
 
 console.log("server up and running on port " + port);
+
+//http.createServer(app).listen(port);
+//https.createServer(options, app).listen(sslPort);
+//console.log("server up and running on port " + port + " and on port " + sslPort);
+//>>>>>>> Stashed changes

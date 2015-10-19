@@ -87,7 +87,7 @@ HomeController.prototype._signup = function (self, req, res) {
                     text: 'Hi ' + user.firstName + ',\n\n' +
                     'You have created an Aztec account.\n' +
                     'Please authenticate your account by clicking the link below:\n\n' +
-                    'http://' + req.headers.host + '/home/authenticate?token=' + user.token + '\n\n' +
+                    'http://' + req.headers.host + '/home/authenticate?token=' + user.authenticateToken + '\n\n' +
                     'Thanks!\n\n' +
                     'Aztec.bio'
                 };
