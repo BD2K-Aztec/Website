@@ -128,6 +128,7 @@
    <field name="source" type="standard" indexed="true" stored="true" required="false" multiValued="false" /> 
    <field name="types" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="domains" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
+   <field name="dataTypes" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="platforms" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="inputFiles" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="outputFiles" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 

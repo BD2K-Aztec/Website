@@ -176,6 +176,15 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
             $("#domain").val("");
         }
     );
+    $("#dataTypeButton").click(function () {
+            var tempid = id;
+            var newLink = '<div class="panel panel-default" style="position:relative; padding:10px;" id="div' + tempid + '">Data Type: <span class="dataTypes">' + $("#dataType").val() + '</span>';
+            newLink += '<button style="position:absolute; right:10px;" onclick="removeElement(div' + tempid + ')" type="button" class="btn btn-danger btn-xs" id="delete' + tempid + '">Delete Data Type</button></div>';
+            $("#dataTypes").html($("#dataTypes").html() + newLink);
+            id++;
+            $("#dataType").val("");
+        }
+    );
     $("#platformButton").click(function () {
             var tempid = id;
             var newLink = '<div class="panel panel-default" style="position:relative; padding:10px;" id="div' + tempid + '">Platform: <span class="platforms">' + $("#platform").val() + '</span>';
@@ -375,11 +384,13 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
         //START EXTRA
         var softwareTypes = $(".softwareTypes");
         var domains = $(".domains");
+        var dataTypes = $(".dataTypes");
         var platforms = $(".platforms");
         var inputTypes = $(".inputTypes");
         var outputTypes = $(".outputTypes");
         var inputSoftwareTypes = [];
         var inputDomains = [];
+        var inputDataTypes = [];
         var inputPlatforms = [];
         var inputInputTypes = [];
         var inputOutputTypes = [];
@@ -390,6 +401,10 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
         for (i = 0; i < domains.length; i++) {
             inputDomains.push(domains[i].innerHTML);
+        }
+
+        for (i = 0; i < dataTypes.length; i++) {
+            inputDataTypes.push(dataTypes[i].innerHTML);
         }
 
         for (i = 0; i < platforms.length; i++) {
@@ -406,6 +421,7 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
         send.types= inputSoftwareTypes;
         send.domains= inputDomains;
+        send.dataTypes= inputDataTypes;
         send.platforms= inputPlatforms;
         send.inputFiles= inputInputTypes;
         send.outputFiles= inputOutputTypes;
@@ -506,6 +522,11 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
         for (var i in preset.domains) {
             $("#domain").val(preset.domains[i]);
             $("#domainButton").click();
+        }
+
+        for (var i in preset.dataTypes) {
+            $("#dataType").val(preset.dataTypes[i]);
+            $("#dataTypeButton").click();
         }
 
         for (var i in preset.authors) {

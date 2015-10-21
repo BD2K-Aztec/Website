@@ -48,7 +48,7 @@
 
 <h1 class="text-center" id="title"> Register New Resource </h1>
 <br />
-<div class="row" style="padding-bottom: 2em">
+<div class="row" style="padding-bottom: 100px;">
     <div class="col-md-1">
     </div>
     <div class="col-md-6">
@@ -81,11 +81,13 @@
                                 <option value="Tool">Tool</option>
                                 <option value="Database">Database</option>
                                 <option value="Widget">Widget</option>
+                                <option value="Algorithm">Algorithm</option>
+                                <option value="Tool Suite">Tool Suite</option>
                                 <option value="Other">Other</option>
                             </select>
                             <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="softwareTypeButton">Add</button></td></tr>
-                    <tr><td align="middle"><b>Biological Domains</b></td><td></td></tr>
-                    <tr><td>Biological Domain<i data-content="Select one or more biological domains that are relevant to this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td>
+                    <tr><td align="middle"><b>Biological or Clinical Domains</b></td><td></td></tr>
+                    <tr><td>Biological or Clinical  Domain<i data-content="Select one or more biological domains that are relevant to this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td>
                             <select id="domain" style="width:70%;height:100%">
                                 <option value="Genomics">Genomics</option>
                                 <option value="Proteomics">Proteomics</option>
@@ -96,6 +98,19 @@
                                 <option value="Biomedical">Biomedical</option>
                             </select>
                             <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="domainButton">Add</button></td></tr>
+                    <tr><td align="middle"><b>Data Types</b></td><td></td></tr>
+                    <tr><td>Data Types<i data-content="Select one or more data types that are relevant to this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td>
+                            <select id="dataType" style="width:70%;height:100%">
+                                <option value="Genomics">Genomics</option>
+                                <option value="Imaging">Imaging</option>
+                                <option value="Proteomics">Proteomics</option>
+                                <option value="Epigenomics">Epigenomics</option>
+                                <option value="Metagenomics">Metagenomics</option>
+                                <option value="Metabolomics">Metabolomics</option>
+                                <option value="Systems Biology">Systems Biology</option>
+                                <option value="Biomedical">Biomedical</option>
+                            </select>
+                            <button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="dataTypeButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Authors</b></td><td></td></tr>
                     <tr><td>Author Name<i data-content="Developer for this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="authorName" type="text" placeholder="e.g. Carl Kingsford"/></td></tr>
                     <tr><td>Author Email<i data-content="Email address of the developer." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="authorEmail" type="text" placeholder="e.g. carlk@cs.cmu.edu"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="authorButton">Add</button></td></tr>
@@ -147,6 +162,10 @@
         </div>
         <b>Domains</b>
         <div id="domains">
+            <br>
+        </div>
+        <b>Data Types</b>
+        <div id="dataTypes">
             <br>
         </div>
         <b>Authors</b>

@@ -103,6 +103,9 @@ function Info(resource, neo4j) {
     if (resource.domains) {
         acc += createAccList("Domains", resource.domains);
     }
+    if (resource.dataTypes) {
+        acc += createAccList("Data Types", resource.dataTypes);
+    }
     if (resource.platforms) {
         acc += createAccList("Platforms", resource.platforms);
     }
