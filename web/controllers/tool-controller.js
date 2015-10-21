@@ -35,6 +35,7 @@ ToolController.prototype._create = function (self, req, res){
             res.render("tool/create", i);
         }
         else{
+            i.email = "admin"; //change
             res.render("home/gologin"); //change
         }
     });
