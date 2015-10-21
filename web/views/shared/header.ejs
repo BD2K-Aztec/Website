@@ -1,25 +1,22 @@
-
-<nav class="navbar navbar-default navbar-fixed-top" style="position: absolute;">
-    <div class="container" style="margin:0; margin-left: 9em">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid" style="margin:0; margin-left: 9em; margin-right: 20em">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">AZ<span style="font-size: 80%">TEC</span></a>
         </div>
+
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/home/overview">Overview</a></li>
-                    <li><a href="/home/metadata">Metadata</a></li>
-                    <li><a href="/home/technologies">Technologies</a></li>
-                    <li><a href="/home/sources">Sources</a></li>
-                  </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/home/overview">Overview</a></li>
+                        <li><a href="/home/metadata">Metadata</a></li>
+                        <li><a href="/home/technologies">Technologies</a></li>
+                        <li><a href="/home/sources">Sources</a></li>
+                    </ul>
                 </li>
                 <li id="liAdvanced"><a href="/resource/advanced">Advanced Search</a></li>
                 <li id="liRegister"><a href="/tool/create">Register New Resource</a></li>
@@ -32,22 +29,10 @@
                 </li>
             </ul>
 
-            <div class="container" style="background-color: transparent">
-
-                <a href="/home/login"  id = "login-btn" style="visibility:hidden"><span class="fa fa-user"></span>Login</a>
-                <a href="/home/signup"  id = "login-btn" style="visibility:hidden"><span class="fa fa-user"></span>Signup</a>
-            </div>
-
-
-            <!--<form class="navbar-form navbar-right" role="form" action="/resource/search" method="GET" id="submitTopForm">-->
-                <!--<div class="input-group add-on form-group">-->
-                    <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Search" style="color:black" id="topQuery">&ndash;&gt;-->
-                    <!--<div class="input-group-btn" style="visibility: hidden">-->
-                        <!--<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>-->
-                    <!--</div>-->
-                    <!--<input type="hidden" id="sendTopJson" name="input">-->
-                <!--</div>-->
-            <!--</form>-->
-        </div><!--/.nav-collapse -->
+            <ul class="nav navbar-nav navbar-right" style="float:right">
+                <li> <a href="/home/login" id="login-btn" class="navbar-nav pull-right"><span class="fa fa-user"></span>Login</a> </li>
+                <li> <a href="/home/signup" id="login-btn" class="navbar-nav pull-right">Signup</a> </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
     </div>
 </nav>
