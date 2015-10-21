@@ -35,7 +35,7 @@ ToolController.prototype._create = function (self, req, res){
             res.render("tool/create", i);
         }
         else{
-            res.render("home/failure");
+            res.render("home/gologin"); //change
         }
     });
 };
@@ -51,7 +51,8 @@ ToolController.prototype._edit = function (self, req, res){
             }
         }
         else {
-            res.render("tool/uneditable", i);
+            //res.render("tool/uneditable", i);
+            res.render("tool/create", i); //change to failure page later
         }
     });
 };

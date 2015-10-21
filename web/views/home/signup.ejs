@@ -25,6 +25,78 @@
         }
     </style>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+
+        function checkForm(form)
+        {
+            if(form.email.value == "") {
+                alert("Error: Email cannot be blank!");
+                form.email.focus();
+                return false;
+            }
+            if(form.firstName.value == "") {
+                alert("Error: Email cannot be blank!");
+                form.firstName.focus();
+                return false;
+            }
+            if(form.lastName.value == "") {
+                alert("Error: Email cannot be blank!");
+                form.lastName.focus();
+                return false;
+            }
+            re = /^\w+$/;
+            if(!re.test(form.email.value)) {
+                alert("Error: Email must contain only letters, numbers and underscores!");
+                form.username.focus();
+                return false;
+            }
+
+            if(form.password.value != "") {
+                if(form.password.value !== form.password2.value){
+                    alert("Error: Passwords must be equivalent");
+                    form.password.focus();
+                    return false;
+                }
+                if(form.password.value.length < 6) {
+                    alert("Error: Password must contain at least six characters!");
+                    form.password.focus();
+                    return false;
+                }
+                if(form.password.value == form.username.value) {
+                    alert("Error: Password must be different from Email!");
+                    form.pwd1.focus();
+                    return false;
+                }
+//                re = /[0-9]/;
+//                if(!re.test(form.password.value)) {
+//                    alert("Error: password must contain at least one number (0-9)!");
+//                    form.pwd1.focus();
+//                    return false;
+//                }
+//                re = /[a-z]/;
+//                if(!re.test(form.pwd1.value)) {
+//                    alert("Error: password must contain at least one lowercase letter (a-z)!");
+//                    form.pwd1.focus();
+//                    return false;
+//                }
+//                re = /[A-Z]/;
+//                if(!re.test(form.pwd1.value)) {
+//                    alert("Error: password must contain at least one uppercase letter (A-Z)!");
+//                    form.pwd1.focus();
+//                    return false;
+//                }
+            } else {
+                alert("Error: Please check that you've entered and confirmed your password!");
+                form.password.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+    </script>
+
 </head>
 <body style="font-family: 'Open Sans', sans-serif; ">
 <%- include ../shared/header.ejs %>
@@ -41,7 +113,7 @@
             <% } %>
 
             <!-- LOGIN FORM -->
-            <form action="/home/signup" method="post">
+            <form action="/home/signup" method="post" onsubmit="return checkForm(this);">
                 <div class="form-group">
                     <label>Email</label>
                     <input type="text" class="form-control" name="email">
@@ -49,6 +121,10 @@
                 <div class="form-group">
                     <label>Password</label>
                     <input type="password" class="form-control" name="password">
+                </div>
+                <div class="form-group">
+                    <label>Re Enter Password</label>
+                    <input type="password" class="form-control" name="password2">
                 </div>
                 <div class="form-group">
                     <label>First Name</label>
