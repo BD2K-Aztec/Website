@@ -53,6 +53,7 @@ ToolController.prototype._edit = function (self, req, res){
         }
         else {
             //res.render("tool/uneditable", i);
+            i.email = "admin"; //change
             res.render("tool/create", i); //change to failure page later
         }
     });
