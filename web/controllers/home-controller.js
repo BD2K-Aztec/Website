@@ -33,6 +33,8 @@ function HomeController() {
     this.sources = function(req, res) { self._sources(self, req, res); };
     this.signup = function(req, res) { self._signup(self, req, res); };
     this.authenticate = function(req, res) { self._authenticate(self, req, res); };
+    this.password = function(req, res) { self._password(self, req, res); };
+    this.postPassword = function(req, res) { self._postPassword(self, req, res); };
 }
 
 //--- index -----------------------------------------------------------------------
@@ -70,6 +72,33 @@ HomeController.prototype._sources = function (self, req, res) {
     res.render("home/sources");
 };
 
+//--- password -----------------------------------------------------------------------
+HomeController.prototype._password = function (self, req, res) {
+    if(req.isAuthenticated()){
+        i = {};
+        i.email = req.user.email;
+        i.message = req.flash('passwordMessage');
+        res.render("home/password", i);
+    }
+};
+
+//--- postPassword -----------------------------------------------------------------------
+HomeController.prototype._postPassword = function (self, req, res) {
+    User.findOne({email: req.body.email}, function (error, user) {
+        if (!error && user) {
+            user.password = user.generateHash(req.body.new);
+            user.save(function () {
+                req.flash('profileMessage', 'Password changed successfully.');
+                res.redirect('/home/profile');
+            });
+        }
+        else {
+            res.redirect('/home/password');
+        }
+    });
+};
+
+
 //--- signup -----------------------------------------------------------------------
 HomeController.prototype._signup = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
@@ -101,7 +130,8 @@ HomeController.prototype._signup = function (self, req, res) {
 
                 });
 
-                res.redirect('/home/profile');
+                req.flash('loginMessage', 'Please authenticate your account. An email has been sent to you.');
+                res.redirect('/home/logout');
             });
         }
         else {

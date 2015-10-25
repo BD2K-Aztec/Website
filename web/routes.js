@@ -27,7 +27,11 @@ module.exports = function(app, passport) {
     app.get('/tool/create', ToolController.create);
     app.get('/tool/edit', ToolController.edit);
 
-
+    app.get('/home/password', HomeController.password);
+    app.post('/home/password', passport.authenticate('local-password', {
+        failureRedirect : '/home/password', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }), HomeController.postPassword);
     // =====================================
     // LOGIN ===============================
     // =====================================
@@ -68,16 +72,17 @@ module.exports = function(app, passport) {
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/home/profile', isLoggedIn, function(req, res) {
         res.render('home/profile', {
-            user : req.user // get the user out of session and pass to template
+            user : req.user, // get the user out of session and pass to template
+            message: req.flash('profileMessage')
         });
     });
 
     // =====================================
     // LOGOUT ==============================
     // =====================================
-    app.get('/logout', function(req, res) {
+    app.get('/home/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/home/login');
     });
 };
 
@@ -89,5 +94,5 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/home/login');
 }

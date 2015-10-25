@@ -45,12 +45,6 @@
                 form.lastName.focus();
                 return false;
             }
-            re = /^\w+$/;
-            if(!re.test(form.email.value)) {
-                alert("Error: Email must contain only letters, numbers and underscores!");
-                form.username.focus();
-                return false;
-            }
 
             if(form.password.value != "") {
                 if(form.password.value !== form.password2.value){
