@@ -218,6 +218,28 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
     $('#form').submit(function () {
 
+        if($("#name").val() == "") {
+            alert("Error: Name cannot be blank!");
+            $("#name").focus();
+            return false;
+        }
+        if($("#description").val() == "") {
+            alert("Error: Description cannot be blank!");
+            $("#description").focus();
+            return false;
+        }
+        if(form.lastName.value == "") {
+            alert("Error: Email cannot be blank!");
+            form.lastName.focus();
+            return false;
+        }
+        re = /^\w+$/;
+        if(!re.test(form.email.value)) {
+            alert("Error: Email must contain only letters, numbers and underscores!");
+            form.username.focus();
+            return false;
+        }
+
         var send = {};
         send.name = $("#name").val();
         send.logo = $("#logo").val();
@@ -463,7 +485,7 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
 
     if(Object.keys(preset).length > 0){
-        $("#title").html("Edit Resource: " + preset.id);
+        $("#title").html("Edit Resource: " + preset.name);
         if(preset.name){
             $("#name").val(preset.name);
         }
