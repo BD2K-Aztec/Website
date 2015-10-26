@@ -6,6 +6,7 @@
 //  HomeController
 //
 var User = require('../models/user.js');
+var BD2K = require('../utility/bd2k.js');
 var uuid = require('uuid');
 var nodemailer = require('nodemailer');
 
@@ -34,42 +35,64 @@ function HomeController() {
     this.signup = function(req, res) { self._signup(self, req, res); };
     this.authenticate = function(req, res) { self._authenticate(self, req, res); };
     this.password = function(req, res) { self._password(self, req, res); };
+    this.profile = function(req, res) { self._profile(self, req, res); };
     this.postPassword = function(req, res) { self._postPassword(self, req, res); };
 }
 
 //--- index -----------------------------------------------------------------------
 HomeController.prototype._index = function (self, req, res) {
-    res.render("home/index");
+    res.render("home/index", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- success -----------------------------------------------------------------------
 HomeController.prototype._success = function (self, req, res) {
-    res.render("home/success");
+    res.render("home/success", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- failure -----------------------------------------------------------------------
 HomeController.prototype._failure = function (self, req, res) {
-    res.render("home/failure");
+    res.render("home/failure", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- overview -----------------------------------------------------------------------
 HomeController.prototype._overview = function (self, req, res) {
-    res.render("home/overview");
+    res.render("home/overview", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- metadata -----------------------------------------------------------------------
 HomeController.prototype._metadata = function (self, req, res) {
-    res.render("home/metadata");
+    res.render("home/metadata", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- technologies -----------------------------------------------------------------------
 HomeController.prototype._technologies = function (self, req, res) {
-    res.render("home/technologies");
+    res.render("home/technologies", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- sources -----------------------------------------------------------------------
 HomeController.prototype._sources = function (self, req, res) {
-    res.render("home/sources");
+    res.render("home/sources", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
 };
 
 //--- password -----------------------------------------------------------------------
@@ -78,9 +101,26 @@ HomeController.prototype._password = function (self, req, res) {
         i = {};
         i.email = req.user.email;
         i.message = req.flash('passwordMessage');
-        res.render("home/password", i);
+        res.render("home/password", BD2K.extend(i, {
+            loggedIn: req.loggedIn,
+            user: req.user
+        }));
     }
 };
+
+//--- profile -----------------------------------------------------------------------
+HomeController.prototype._profile = function (self, req, res) {
+    BD2K.solr.search({owners: req.user.email}, function(r){
+        res.render('home/profile', {
+            loggedIn : req.loggedIn,
+            user : req.user, // get the user out of session and pass to template
+            message: req.flash('profileMessage'),
+            resources: r.response.docs
+        });
+    })
+};
+
+
 
 //--- postPassword -----------------------------------------------------------------------
 HomeController.prototype._postPassword = function (self, req, res) {

@@ -27,6 +27,13 @@ BD2K.removeDuplicates = function(arr){
     return a;
 };
 
+BD2K.extend = function(obj, src) {
+    for (var key in src) {
+        if (src.hasOwnProperty(key)) obj[key] = src[key];
+    }
+    return obj;
+}
+
 //--- encrypt ------------------------------------------------------------------------------
 BD2K.encrypt = function (message) {
     var algorithm = 'aes256';

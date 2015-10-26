@@ -4,7 +4,7 @@
 <head>
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <style>
         html{
@@ -31,7 +31,6 @@
 <%- include ../shared/header.ejs %>
 <div id="back-container" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
     <div class="container" style="padding: 80px">
-
         <div class="page-header text-center">
             <h1><span class="fa fa-anchor"></span> Profile Page</h1>
             <a href="/home/password" class="btn btn-default btn-sm">Change Password</a>
@@ -46,13 +45,28 @@
             <!-- LOCAL INFORMATION -->
             <div class="col-sm-6">
                 <div class="well">
-                    <h3><span class="fa fa-user"></span> Local</h3>
+                    <h3><span class="fa fa-user"></span> Profile Information</h3>
 
                     <p>
                         <strong>email</strong>: <%= user.email %><br>
                         <strong>firstName</strong>: <%= user.firstName %><br>
                         <strong>lastName</strong>: <%= user.lastName %>
                     </p>
+
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3><span class="fa fa-object-group"></span> User Created Resources</h3>
+
+                    <% for(var i = 0; i < resources.length; i ++) { %>
+                    <p>
+                        <%= resources[i].name %>:
+                        <a href="/tool/show?id=<%= resources[i].id %>" class="btn btn-info" role="button">View Resource</a>
+                        <a href="/tool/edit?id=<%= resources[i].id %>" class="btn btn-info" role="button">Edit Resource</a>
+                    </p>
+                    <% } %>
 
                 </div>
             </div>
