@@ -1,14 +1,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid" style="margin:0; margin-left: 9em; margin-right: 20em">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">AZ<span style="font-size: 80%">TEC</span></a>
+            <a class="navbar-brand" href="/" style="padding-left:2em">AZ<span style="font-size: 80%;">TEC</span></a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="margin: 0;padding: 0px 15px;">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -19,11 +21,11 @@
                     </ul>
                 </li>
                 <li id="liAdvanced"><a href="/resource/advanced">Advanced Search</a></li>
-                <li id="liRegister"><a href="/tool/create">Register New Resource</a></li>
+                <li id="liRegister"><a href="/tool/create">Register Resource</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Related Links<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Links<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://heartbd2k.org">HeartBD2K/a></li>
+                        <li><a href="http://heartbd2k.org">HeartBD2K</a></li>
                         <li><a href="https://bd2kccc.org">BD2K Centers-Coordination Center</a></li>
                         <li><a href="https://datascience.nih.gov/bd2k">NIH BD2K Initiative</a></li>
                     </ul>
@@ -31,13 +33,14 @@
             </ul>
 
             <% if(loggedIn) {%>
-            <ul class="nav navbar-nav navbar-right" style="float:right">
-                <li> <a href="/home/profile" id="profile-btn" class="navbar-nav pull-right"><span class="fa fa-user"> <%- user.firstName %> <%- user.lastName %></a> </li>
+            <ul class="nav navbar-nav navbar-right" style="margin: 0;padding: 0px 15px;">
+                <li> <a href="/home/profile" id="profile-btn" class="navbar-nav"><span class="fa fa-user"> <%- user.firstName %> <%- user.lastName %></a> </li>
+                <li> <a href="/home/logout" id="logout-btn" class="navbar-nav">Log Out</a> </li>
             </ul>
             <% } else { %>
-            <ul class="nav navbar-nav navbar-right" style="float:right">
-                <li> <a href="/home/login" id="login-btn" class="navbar-nav pull-right"><span class="fa fa-user"></span>Login</a> </li>
-                <li> <a href="/home/signup" id="login-btn" class="navbar-nav pull-right">Signup</a> </li>
+            <ul class="nav navbar-nav navbar-right" style="margin: 0;padding: 0px 15px;">
+                <li> <a href="/home/login" id="login-btn" class="navbar-nav"><span class="fa fa-user"></span>Login</a> </li>
+                <li> <a href="/home/signup" id="login-btn" class="navbar-nav">Signup</a> </li>
             </ul>
             <% } %>
         </div><!-- /.navbar-collapse -->
