@@ -73,7 +73,11 @@ module.exports = function(passport) {
 
                         // if there is no user with that email or we can replace unauthenticated user
                         // create the user
-                        var newUser            = user;
+                        var newUser;
+                        if(user)
+                            newUser = user;
+                        else
+                            newUser = new User();
 
                         // set the user's local credentials
                         newUser.email    = email;

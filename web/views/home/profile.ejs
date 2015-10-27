@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+
+    <link href="/public/css/bd2k.css" rel="stylesheet">
+    <link href='/fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <style>
         html{
             min-height:100%;/* make sure it is at least as tall as the viewport */
@@ -25,52 +29,134 @@
             overflow:hidden;
             z-index:-1; /* Remove this line if it's not going to be a background! */
         }
+        .vertical-align {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body style="font-family: 'Open Sans', sans-serif;">
 <%- include ../shared/header.ejs %>
 <div id="back-container" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
     <div class="container" style="padding: 80px">
+        <%- JSON.stringify(resources) %>
         <div class="page-header text-center">
             <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+
+            <% if (message.length > 0) { %>
+            <div class="alert alert-success"><%= message %></div>
+            <% } %>
+
+            <div class="row text-left">
+
+                <!-- LOCAL INFORMATION -->
+                <div class="col-sm-12">
+                    <div class="well">
+                        <h3><span class="fa fa-user"></span> Profile Information</h3>
+
+                        <p>
+                            <strong>email</strong>: <%= user.email %><br>
+                            <strong>firstName</strong>: <%= user.firstName %><br>
+                            <strong>lastName</strong>: <%= user.lastName %>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
             <a href="/home/password" class="btn btn-default btn-sm">Change Password</a>
             <a href="/home/logout" class="btn btn-default btn-sm">Logout</a>
         </div>
 
-        <% if (message.length > 0) { %>
-        <div class="alert alert-success"><%= message %></div>
-        <% } %>
         <div class="row">
+            <div class="well">
+                <h3><span class="fa fa-object-group"></span> User Created Resources</h3>
+                <% for(var i = 0; i < resources.length; i ++) { %>
+                <div class="row vertical-align">
+                    <div class="col-sm-9">
 
-            <!-- LOCAL INFORMATION -->
-            <div class="col-sm-6">
-                <div class="well">
-                    <h3><span class="fa fa-user"></span> Profile Information</h3>
+                        <div class="row">
+                            <div class="col-lg-12" style="background:<% if(i % 2 === 0) { %>#E8E8E8 <%} else{%> whitesmoke <%}%>">
+                                <% if(resources[i].name) { %>
+                                <div class="row" style="padding-top:10px">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                    <span class="icon-stack">
+                                         <i class="icon-sign-blank icon-stack-base" style="color:
+                                         <% firstLetter = resources[i].types[0].charAt(0) %>
+                                         <% if(firstLetter==="T"){ %>
+                                                 rgb(135, 172, 235)
+                                         <%} else if(firstLetter==="W"){%>
+                                                 rgb(135, 206, 235)
+                                         <%} else if(firstLetter==="D"){%>
+                                                 rgb(135, 139, 235)
+                                         <%} else {%>
+                                                 rgb(164, 135, 235)
+                                         <%}%>
+                                                 "></i>
+                                         <span class="icon-fixed-width icon-light char-overlay" style="padding:0px;font-weight:600""><%= firstLetter %></span>
+                                        </span>
+                                        <span><a href="/tool/show?id=<%= resources[i].id%>"><%= resources[i].name %></a></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].description) { %>
+                                <div class="row" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Description: </b><%= resources[i].description %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].authors) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Author: </b><%= resources[i].authors.join(", ") %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].sourceCodeURL) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Source Code URL: </b><%= resources[i].sourceCodeURL %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].language) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Language: </b><%= resources[i].language %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].source) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Source: </b><%= resources[i].source %></span>
+                                    </div>
+                                </div>
+                                <% } %>
 
-                    <p>
-                        <strong>email</strong>: <%= user.email %><br>
-                        <strong>firstName</strong>: <%= user.firstName %><br>
-                        <strong>lastName</strong>: <%= user.lastName %>
-                    </p>
+                                <% if(resources[i].tags) { %>
+                                <div class="row" style="margin-bottom:10px;">
+                                    <div class="tag col-lg-12" style="border: 0px solid black;">
+                                    <span><b>Tags: </b><% if(resources[i].tags) {for (var j = 0; j < Math.min(resources[i].tags.length, 4); j++) { %>
+                                        &nbsp;<button type="button" class="btn btn-info btn-xs"><i class="fa fa-tag"></i>&nbsp;<%= resources[i].tags[j] %></button>
+                                        <% }} %>
+                                    </span>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
 
+                    </div>
+
+                    <div class="col-sm-3">
+                        <p>
+                            <a href="/tool/edit?id=<%= resources[i].id %>" class="btn btn-info" role="button">Edit Resource</a>
+                        </p>
+                    </div>
                 </div>
+                <% } %>
             </div>
-
-            <div class="col-sm-6">
-                <div class="well">
-                    <h3><span class="fa fa-object-group"></span> User Created Resources</h3>
-
-                    <% for(var i = 0; i < resources.length; i ++) { %>
-                    <p>
-                        <%= resources[i].name %>:
-                        <a href="/tool/show?id=<%= resources[i].id %>" class="btn btn-info" role="button">View Resource</a>
-                        <a href="/tool/edit?id=<%= resources[i].id %>" class="btn btn-info" role="button">Edit Resource</a>
-                    </p>
-                    <% } %>
-
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
