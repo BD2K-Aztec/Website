@@ -226,9 +226,9 @@ Elixir.prototype._load = function (self, callback) {
                 newTool.linkDescriptions = linkDescArr;
                 newTool.platforms = platformArr;
                 newTool.types = typeArr;
-                newTool.tags = BD2K.removeDuplicates(tagArr);
-                newTool.inputFiles = BD2K.removeDuplicates(inputArr);
-                newTool.outputFiles = BD2K.removeDuplicates(outputArr);
+                newTool.tags = tagArr;
+                newTool.inputFiles = inputArr;
+                newTool.outputFiles = outputArr;
                 newTool.domains = uniqueDomains;
                 var publicationID = "";
                 if(curTool.publications){

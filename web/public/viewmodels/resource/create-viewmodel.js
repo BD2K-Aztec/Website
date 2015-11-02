@@ -3,8 +3,6 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
     var self = this;
     $("#domain").val("");
     $("#softwareType").val("");
-    $("#dataType").val("");
-
     //for(var i = 0; i < types.length; i++){
     //    $("#typeDiv").append('<input type="checkbox" class="types" value="' + types[i].TypeID + '">' + types[i].Type + '<br>');
     //}
@@ -219,27 +217,6 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
 
     $('#form').submit(function () {
-
-        if($("#name").val() === "") {
-            alert("Error: Name cannot be blank!");
-            $("#name").focus();
-            return false;
-        }
-        if($("#description").val() === "") {
-            alert("Error: Description cannot be blan");
-            $("#description").focus();
-            return false;
-        }
-        if($(".linkDescs").length === 0) {
-            alert("Error: At  least one link must be used. (i.e. homepage, download link)");
-            $("#linkDesc").focus();
-            return false;
-        }
-        if($(".softwareTypes").length === 0) {
-            alert("Error: At  least one resource type must be selected");
-            $("#softwareType").focus();
-            return false;
-        }
 
         var send = {};
         send.name = $("#name").val();
@@ -486,7 +463,7 @@ function NewTool(types, domains, platforms, fileTypes, preset, email) {
 
 
     if(Object.keys(preset).length > 0){
-        $("#title").html("Edit Resource: " + preset.name);
+        $("#title").html("Edit Resource: " + preset.id);
         if(preset.name){
             $("#name").val(preset.name);
         }
