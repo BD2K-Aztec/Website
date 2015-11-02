@@ -112,6 +112,13 @@ function Info(resource, neo4j) {
     if (resource.language) {
         acc += createAcc("Language", resource.language);
     }
+    if (resource.inputFiles){
+        acc += createAccList("Input File Types", resource.inputFiles);
+    }
+    if (resource.outputFiles){
+        acc += createAccList("Output File Types", resource.outputFiles);
+    }
+
     if(resource.authors){
         var authorArr = [];
         for(var i = 0; i < resource.authors.length; i++){
@@ -163,28 +170,28 @@ function Info(resource, neo4j) {
     //svgElement[0].removeAttribute("height");
 
     $("#accordion").html(acc);
-    $('#submitTopForm').submit(function() {
-        filteredBy = ["name", "description", "id", "authors"];
-        filtersText = $("#topQuery").val();
-
-        inputTypes = [];
-        inputFilters = [];
-
-        var filters = {};
-
-        for (i = 0; i < filteredBy.length; i++) {
-            filters[filteredBy[i]] = filtersText;
-            inputTypes.push(filteredBy[i]);
-            inputFilters.push(filtersText);
-        }
-
-        var parameters = {};
-        parameters.searchFilters = filters;
-
-        $("#sendTopJson").val(JSON.stringify(parameters));
-        $("#submitTopForm").submit();
-        return false; // return false to cancel form action
-    });
+    //$('#submitTopForm').submit(function() {
+    //    filteredBy = ["name", "description", "id", "authors"];
+    //    filtersText = $("#topQuery").val();
+    //
+    //    inputTypes = [];
+    //    inputFilters = [];
+    //
+    //    var filters = {};
+    //
+    //    for (i = 0; i < filteredBy.length; i++) {
+    //        filters[filteredBy[i]] = filtersText;
+    //        inputTypes.push(filteredBy[i]);
+    //        inputFilters.push(filtersText);
+    //    }
+    //
+    //    var parameters = {};
+    //    parameters.searchFilters = filters;
+    //
+    //    $("#sendTopJson").val(JSON.stringify(parameters));
+    //    $("#submitTopForm").submit();
+    //    return false; // return false to cancel form action
+    //});
 
 //    function idIndex(a,id) {
 //        for (var i=0;i<a.length;i++) {

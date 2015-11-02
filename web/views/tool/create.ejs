@@ -7,11 +7,11 @@
     <script src="/public/js/bootstrap.min.js"></script>
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/css/info.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="/public/css/sticky-footer.css" rel="stylesheet">
     <link href="/public/css/bd2k.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <script src="/public/viewmodels/resource/create-viewmodel.js"></script>
     <script src="/public/js/bd2k.js"></script>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="col-md-6">
         <div class="text-left">
-            <form action="/resource/add" method="GET" id="form">
+            <form action="/resource/add" method="GET" id="form" onsubmit="return checkForm(this);">
 
                 <table class="TFtable">
                     <tr><td align="left">Resource Name<i data-content="Name of the resource." style="float:right;font-size:20px;" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td style="width:100%"><input style="width:100%" type="text" id="name" value="" placeholder="e.g. Sailfish"></td></tr>
@@ -64,7 +64,6 @@
                     <tr><td align="middle"><b>Other Publication DOIs</b></td><td></td></tr>
                     <tr><td>Publication DOI<i data-content="DOI of other publication (optional)" style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="otherDOI" type="text" placeholder="e.g. doi:10.1038/nbt.2862"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="otherDOIButton">Add</button></td></tr>
                     <tr><td align="left">Tool DOI<i data-content="If there is no publication for this resource, please provide the DOI for this resource (optional)." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="toolDOI" value="" placeholder="e.g. doi:10.1038/nbt.2862"></td></tr>
-                    <tr><td align="left">Programming Languages<i data-content="The programming language used for resource implementation." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="language" value="" placeholder="e.g. C++"></td></tr>
                     <tr><td align="left">Latest Version Number<i data-content="Latest released version." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="versionNum" value="" placeholder="e.g. 0.7.3"></td></tr>
                     <tr><td align="left">Latest Version Release Date &nbsp;<i data-content="The date of latest release (option)." style="font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="versionDate" value="" placeholder="e.g. September 3, 2015"></td></tr>
                     <tr><td align="left">Previous Version<i data-content="Previous version of this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:100%" type="text" id="prevVersion" value="" placeholder="e.g. 0.7.2"></td></tr>

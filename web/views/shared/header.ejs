@@ -30,10 +30,16 @@
                 </li>
             </ul>
 
+            <% if(loggedIn) {%>
+            <ul class="nav navbar-nav navbar-right" style="float:right">
+                <li> <a href="/home/profile" id="profile-btn" class="navbar-nav pull-right"><span class="fa fa-user"> <%- user.firstName %> <%- user.lastName %></a> </li>
+            </ul>
+            <% } else { %>
             <ul class="nav navbar-nav navbar-right" style="float:right">
                 <li> <a href="/home/login" id="login-btn" class="navbar-nav pull-right"><span class="fa fa-user"></span>Login</a> </li>
                 <li> <a href="/home/signup" id="login-btn" class="navbar-nav pull-right">Signup</a> </li>
             </ul>
+            <% } %>
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>

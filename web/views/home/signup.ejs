@@ -3,8 +3,13 @@
 <html>
 <head>
     <title>Signup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
     <style>
         html{
             min-height:100%;/* make sure it is at least as tall as the viewport */
@@ -24,7 +29,6 @@
             z-index:-1; /* Remove this line if it's not going to be a background! */
         }
     </style>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript">
 
@@ -43,12 +47,6 @@
             if(form.lastName.value == "") {
                 alert("Error: Email cannot be blank!");
                 form.lastName.focus();
-                return false;
-            }
-            re = /^\w+$/;
-            if(!re.test(form.email.value)) {
-                alert("Error: Email must contain only letters, numbers and underscores!");
-                form.username.focus();
                 return false;
             }
 
