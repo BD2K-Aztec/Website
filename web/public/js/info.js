@@ -163,6 +163,12 @@ function Info(resource, neo4j) {
         //$("#tag").html('<b>Tags: </b><span>' + tagsHtml + '</span>');
         acc += createAcc("Tags", tagsHtml);
     }
+    if(resource.dateCreated){
+        acc += createAcc("Date Created", new Date(resource.dateCreated).toLocaleDateString());
+    }
+    if(resource.dateUpdated){
+        acc += createAcc("Date Updated", new Date(resource.dateUpdated).toLocaleDateString());
+    }
 
     var svgElement = document.getElementsByTagName("svg");
     $("svg").css("width", "100%");
