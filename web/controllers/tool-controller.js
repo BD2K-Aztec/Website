@@ -58,12 +58,12 @@ ToolController.prototype._edit = function (self, req, res){
             }
         }
         else {
-            //res.render("tool/uneditable", i);
-            i.email = "admin"; //change
-            res.render("tool/create", BD2K.extend(i, {
-                loggedIn: req.loggedIn,
-                user: req.user
-            })); //change to failure page later
+            res.render("tool/uneditable", i);
+            //i.email = "admin"; //change
+            //res.render("tool/create", BD2K.extend(i, {
+            //    loggedIn: req.loggedIn,
+            //    user: req.user
+            //})); //change to failure page later
         }
     });
 };
