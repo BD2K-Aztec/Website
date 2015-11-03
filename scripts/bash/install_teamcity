@@ -1,0 +1,21 @@
+#!/bin/sh
+
+wget http://download.jetbrains.com/teamcity/TeamCity-8.1.4.tar.gz
+
+tar xfz TeamCity-8.1.4.tar.gz
+
+mkdir /opt/jetbrains
+
+mv TeamCity/ /opt/jetbrains
+
+useradd teamcity
+
+chown -R teamcity:teamcity /opt/jetbrains/TeamCity
+
+cp -i teamcity /etc/init.d/teamcity
+
+update-rc.d teamcity defaults
+
+chmod +x /etc/init.d/teamcity
+
+service teamcity start
