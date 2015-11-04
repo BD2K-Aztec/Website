@@ -48,13 +48,16 @@ ToolController.prototype._create = function (self, req, res){
 ToolController.prototype._edit = function (self, req, res){
     var tool = new EditViewModel(req.query.id);
     tool.load(function(i){
-        if(req.isAuthenticated() && (i.owners || req.user.isAdmin)){
-            if(req.user.isAdmin || i.resource.owners.indexOf(req.user.email) > -1){
+        if(req.isAuthenticated() && (i.preset.owners || req.user.isAdmin)){
+            if(req.user.isAdmin || i.preset.owners.indexOf(req.user.email) > -1){
                 i.email = req.user.email;
                 res.render("tool/create", BD2K.extend(i, {
                     loggedIn: req.loggedIn,
                     user: req.user
                 }));
+            }
+            else{
+                res.render("tool/unedtiable", i);
             }
         }
         else {
