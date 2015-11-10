@@ -37,8 +37,7 @@
     "maintainers":["Farhad Hormozdiari"],
     "maintainerEmails":["farhad.hormozdiari@gmail.com"],
     "id":"5434",
-    "source":"User Submission",
-    "_version_":1511864760718589952},
+    "source":"User Submission"},
   {
     "name":"Tophat2",
     "logo":"",
@@ -83,8 +82,7 @@
     "tags":["RNA",
       "RNA-Seq"],
     "id":"5433",
-    "source":"User Submission",
-    "_version_":1511864760718589953},
+    "source":"User Submission"},
   {
     "name":"Sailfish",
     "logo":"http://www.cs.cmu.edu/~ckingsf/software/sailfish/images/sailfish_logo.png",
@@ -120,8 +118,7 @@
     "licenses":["GPLv3"],
     "licenseUrls":[""],
     "id":"5432",
-    "source":"User Submission",
-    "_version_":1511864760718589954},
+    "source":"User Submission"},
   {
     "name":"SPA",
     "logo":"http://genetics.cs.ucla.edu/spa/images/2d.jpg",
@@ -159,8 +156,7 @@
     "maintainers":["Wen-Yun Yang"],
     "maintainerEmails":["wenyun.yang@gmail.com"],
     "id":"5437",
-    "source":"User Submission",
-    "_version_":1511864760718589956},
+    "source":"User Submission"},
   {
     "name":"HARSH",
     "logo":"",
@@ -196,8 +192,7 @@
     "tags":["haplotype",
       "Gibbs Sampling"],
     "id":"5436",
-    "source":"User Submission",
-    "_version_":1511864760718589957},
+    "source":"User Submission"},
   {
     "name":"RseqFlow2",
     "logo":"",
@@ -223,8 +218,7 @@
     "maintainers":["Jennifer Herstein"],
     "maintainerEmails":["herstein@med.usc.edu"],
     "source":"User Submission",
-    "id":"5438",
-    "_version_":1511864760719638528},
+    "id":"5438"},
   {
     "name":"Genome STRiP",
     "logo":"http://www.broadinstitute.org/software/genomestrip/sites/default/files/gs_logo_sm.png",
@@ -254,8 +248,7 @@
     "licenses":[""],
     "licenseUrls":["http://www.broadinstitute.org/software/genomestrip/sites/default/files/LICENSE.txt"],
     "id":"5441",
-    "source":"User Submission",
-    "_version_":1511864760719638529},
+    "source":"User Submission"},
   {
     "name":"pyLMM",
     "logo":"",
@@ -282,8 +275,7 @@
     "licenses":["GNU Affero GPL"],
     "licenseUrls":["https://www.gnu.org/licenses/why-affero-gpl.html"],
     "id":"5435",
-    "source":"User Submission",
-    "_version_":1511864760719638530},
+    "source":"User Submission"},
   {
     "name":"Scripps Genome Adviser",
     "logo":"https://genomics.scripps.edu/ADVISER/",
@@ -298,8 +290,7 @@
     "nextVersion":"",
     "tags":[""],
     "source":"User Submission",
-    "id":"5442",
-    "_version_":1511864760719638531},
+    "id":"5442"},
   {
     "name":"GT-FAR",
     "logo":"",
@@ -330,8 +321,7 @@
       "Differential Expression",
       "Variant Calling"],
     "source":"User Submission",
-    "id":"5440",
-    "_version_":1511864760719638532},
+    "id":"5440"},
   {
     "name":"GT-FAR",
     "logo":"",
@@ -345,8 +335,7 @@
     "prevVersion":"",
     "nextVersion":"",
     "source":"User Submission",
-    "id":"5439",
-    "_version_":1511864760719638533},
+    "id":"5439"},
   {
     "name":"Pegasus Workflow Management System",
     "logo":"http://pegasus.isi.edu/static/logos/pegasus-logo.png",
@@ -402,8 +391,7 @@
     "licenses":["Apache Version 2"],
     "licenseUrls":["https://pegasus.isi.edu/license"],
     "source":"User Submission",
-    "id":"5443",
-    "_version_":1511864760719638534},
+    "id":"5443"},
   {
     "name":"GotCloud",
     "logo":"http://genome.sph.umich.edu/w/images/thumb/f/f6/Gotcloud.puzzles.v2.png/799px-Gotcloud.puzzles.v2.png",
@@ -417,8 +405,7 @@
     "prevVersion":"1.17.3",
     "nextVersion":"",
     "source":"User Submission",
-    "id":"5444",
-    "_version_":1511864760719638535},
+    "id":"5444"},
   {
     "name":"GATK",
     "logo":"https://www.broadinstitute.org/gatk/resources/img_shared/logo-gatk.png",
@@ -445,8 +432,7 @@
     "licenses":["GATK license page"],
     "licenseUrls":["https://www.broadinstitute.org/gatk/auth?package=GATK"],
     "source":"User Submission",
-    "id":"5445",
-    "_version_":1511864760719638536},
+    "id":"5445"},
   {
     "name":"GenomeVIP",
     "logo":"",
@@ -470,8 +456,7 @@
     "institutions":["Washington University at Saint Louis"],
     "funding":["NIH/NHGRI"],
     "source":"User Submission",
-    "id":"5446",
-    "_version_":1511864760719638537},
+    "id":"5446"},
   {
     "name":"gkno",
     "logo":"",
@@ -494,8 +479,7 @@
     "licenses":["MIT license"],
     "licenseUrls":[""],
     "source":"User Submission",
-    "id":"5447",
-    "_version_":1511864760720687104},
+    "id":"5447"},
   {
     "name":"iobio",
     "logo":"",
@@ -517,8 +501,7 @@
     "authorEmails":["chmille4@gmail.com"],
     "institutions":["University of Utah - Department of Human Genetics"],
     "source":"User Submission",
-    "id":"5448",
-    "_version_":1511864760720687105},
+    "id":"5448"},
   {
     "name":"Freebayes",
     "logo":"",
@@ -534,8 +517,7 @@
     "types":["Tool"],
     "domains":["Genomics"],
     "source":"User Submission",
-    "id":"5449",
-    "_version_":1511864760720687106},
+    "id":"5449"},
   {
     "name":"bamtools",
     "logo":"",
@@ -556,8 +538,7 @@
     "authorEmails":["derekwbarnett@gmail.com"],
     "institutions":["Gabor Marth Lab"],
     "source":"User Submission",
-    "id":"5450",
-    "_version_":1511864760720687108},
+    "id":"5450"},
   {
     "name":"SEQUEST",
     "logo":"",
@@ -583,8 +564,7 @@
     "source":"User Submission",
     "id":"5457",
     "dateCreated":["2015-10-20T21:24:35.508Z"],
-    "dateUpdated":["2015-10-20T21:24:35.508Z"],
-    "_version_":1515586873474416640},
+    "dateUpdated":["2015-10-20T21:24:35.508Z"]},
   {
     "name":"tool1",
     "logo":"",
@@ -601,8 +581,7 @@
     "source":"User Submission",
     "id":"5453",
     "dateCreated":["2015-10-20T19:27:04.817Z"],
-    "dateUpdated":["2015-10-20T19:27:04.817Z"],
-    "_version_":1515579480336236544},
+    "dateUpdated":["2015-10-20T19:27:04.817Z"]},
   {
     "name":"slds=fwefowiefwoi",
     "logo":"",
@@ -616,8 +595,7 @@
     "prevVersion":"",
     "nextVersion":"",
     "source":"User Submission",
-    "id":"5451",
-    "_version_":1513149670349602816},
+    "id":"5451"},
   {
     "name":"",
     "logo":"",
@@ -631,8 +609,7 @@
     "prevVersion":"",
     "nextVersion":"",
     "source":"User Submission",
-    "id":"5452",
-    "_version_":1514325624565530624},
+    "id":"5452"},
   {
     "name":"RawExtracter",
     "logo":"",
@@ -657,8 +634,7 @@
     "source":"User Submission",
     "id":"5460",
     "dateCreated":["2015-10-20T21:55:01.043Z"],
-    "dateUpdated":["2015-10-20T21:55:01.043Z"],
-    "_version_":1515588787680313344},
+    "dateUpdated":["2015-10-20T21:55:01.043Z"]},
   {
     "name":"PatternLab for Proteomics",
     "logo":"http://pcarvalho.com/patternlab/images/logo.png",
@@ -680,8 +656,7 @@
     "source":"User Submission",
     "id":"5462",
     "dateCreated":["2015-10-20T23:15:58.676Z"],
-    "dateUpdated":["2015-10-20T23:15:58.676Z"],
-    "_version_":1515593881281888256},
+    "dateUpdated":["2015-10-20T23:15:58.676Z"]},
   {
     "name":"YADA",
     "logo":"",
@@ -706,8 +681,7 @@
     "source":"User Submission",
     "id":"5461",
     "dateCreated":["2015-10-20T22:16:40.281Z"],
-    "dateUpdated":["2015-10-20T22:16:40.281Z"],
-    "_version_":1515590150031147008},
+    "dateUpdated":["2015-10-20T22:16:40.281Z"]},
   {
     "name":"GutenTag",
     "logo":"",
@@ -735,8 +709,7 @@
     "source":"User Submission",
     "id":"5467",
     "dateCreated":["2015-10-20T23:57:39.212Z"],
-    "dateUpdated":["2015-10-20T23:57:39.212Z"],
-    "_version_":1515596503283924992},
+    "dateUpdated":["2015-10-20T23:57:39.212Z"]},
   {
     "name":"Unitemare",
     "logo":"",
@@ -760,8 +733,7 @@
     "source":"User Submission",
     "id":"5463",
     "dateCreated":["2015-10-20T23:20:40.808Z"],
-    "dateUpdated":["2015-10-20T23:20:40.808Z"],
-    "_version_":1515594177115586560},
+    "dateUpdated":["2015-10-20T23:20:40.808Z"]},
   {
     "name":"Census",
     "logo":"",
@@ -783,8 +755,7 @@
     "source":"User Submission",
     "id":"5459",
     "dateCreated":["2015-10-20T21:45:12.797Z"],
-    "dateUpdated":["2015-10-20T21:45:12.797Z"],
-    "_version_":1515588170860724224},
+    "dateUpdated":["2015-10-20T21:45:12.797Z"]},
   {
     "name":"DeBunker",
     "logo":"",
@@ -805,8 +776,7 @@
     "source":"User Submission",
     "id":"5465",
     "dateCreated":["2015-10-20T23:32:18.181Z"],
-    "dateUpdated":["2015-10-20T23:32:18.181Z"],
-    "_version_":1515594908369420288},
+    "dateUpdated":["2015-10-20T23:32:18.181Z"]},
   {
     "name":"Charge Prediction Machine",
     "logo":"",
@@ -834,8 +804,7 @@
     "source":"User Submission",
     "id":"5464",
     "dateCreated":["2015-10-20T23:29:53.851Z"],
-    "dateUpdated":["2015-10-20T23:29:53.851Z"],
-    "_version_":1515594757025300480},
+    "dateUpdated":["2015-10-20T23:29:53.851Z"]},
   {
     "name":"Colander",
     "logo":"",
@@ -862,8 +831,7 @@
     "source":"User Submission",
     "id":"5466",
     "dateCreated":["2015-10-20T23:37:40.382Z"],
-    "dateUpdated":["2015-10-20T23:37:40.382Z"],
-    "_version_":1515595246221656064},
+    "dateUpdated":["2015-10-20T23:37:40.382Z"]},
   {
     "name":"ProteinInferencer",
     "logo":"",
@@ -889,8 +857,7 @@
     "source":"User Submission",
     "id":"5468",
     "dateCreated":["2015-10-21T20:36:39.573Z"],
-    "dateUpdated":["2015-10-21T20:36:39.573Z"],
-    "_version_":1515674454802300928},
+    "dateUpdated":["2015-10-21T20:36:39.573Z"]},
   {
     "name":"ProLuCID",
     "logo":"",
@@ -917,8 +884,7 @@
     "owners":["magelpy@ucla.edu"],
     "id":"5458",
     "source":"User Submission",
-    "dateUpdated":["2015-10-21T03:36:19.264Z"],
-    "_version_":1515610260661862400},
+    "dateUpdated":["2015-10-21T03:36:19.264Z"]},
   {
     "name":"DTASelect",
     "logo":"",
@@ -941,8 +907,7 @@
     "owners":["magelpy@ucla.edu"],
     "id":"5456",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T01:04:36.677Z"],
-    "_version_":1515691312872947712},
+    "dateUpdated":["2015-10-22T01:04:36.677Z"]},
   {
     "name":"The Integrated Proteomics Pipeline (IP2)",
     "logo":"",
@@ -961,8 +926,7 @@
     "source":"User Submission",
     "id":"5470",
     "dateCreated":["2015-10-22T00:21:09.54Z"],
-    "dateUpdated":["2015-10-22T00:21:09.54Z"],
-    "_version_":1515688579083272192},
+    "dateUpdated":["2015-10-22T00:21:09.54Z"]},
   {
     "name":"Harmonizome",
     "logo":"http://amp.pharm.mssm.edu/Harmonizome/image/logo_100x87.png",
@@ -989,8 +953,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5471",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:18:24.019Z"],
-    "_version_":1515763902999166976},
+    "dateUpdated":["2015-10-22T20:18:24.019Z"]},
   {
     "name":"GEO2Enrichr",
     "logo":"http://amp.pharm.mssm.edu/g2e/static/image/logo-50x50.png",
@@ -1014,8 +977,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5473",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:20:19.686Z"],
-    "_version_":1515764024284807168},
+    "dateUpdated":["2015-10-22T20:20:19.686Z"]},
   {
     "name":"Enrichr",
     "logo":"http://amp.pharm.mssm.edu/Enrichr/images/enrichr-icon.png",
@@ -1038,8 +1000,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5472",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:17:37.158Z"],
-    "_version_":1515763853861847040},
+    "dateUpdated":["2015-10-22T20:17:37.158Z"]},
   {
     "name":"Drug/Cell-line Browser",
     "logo":"http://www.lincs-dcic.info/images/apps/drug-cell-line-browser.png",
@@ -1061,8 +1022,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5481",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:29:23.662Z"],
-    "_version_":1515764594683936768},
+    "dateUpdated":["2015-10-22T20:29:23.662Z"]},
   {
     "name":"L1000CDS2",
     "logo":"http://amp.pharm.mssm.edu/L1000CDS2/CSS/images/sigine.png",
@@ -1085,8 +1045,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5476",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:22:31.72Z"],
-    "_version_":1515764162733539328},
+    "dateUpdated":["2015-10-22T20:22:31.72Z"]},
   {
     "name":"LINCS Canvas Browser",
     "logo":"http://www.lincs-dcic.info/images/apps/lincs-canvas-browser.png",
@@ -1109,8 +1068,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5480",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:28:02.541Z"],
-    "_version_":1515764509625548800},
+    "dateUpdated":["2015-10-22T20:28:02.541Z"]},
   {
     "name":"iLINCS",
     "logo":"http://www.lincs-dcic.info/images/apps/ilincs.png",
@@ -1131,8 +1089,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5479",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:26:36.442Z"],
-    "_version_":1515764419343155200},
+    "dateUpdated":["2015-10-22T20:26:36.442Z"]},
   {
     "name":"LINCS Information Framework (LIFE)",
     "logo":"http://life.ccs.miami.edu/life/web/images/logo-splash.png",
@@ -1153,8 +1110,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5478",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:25:55.235Z"],
-    "_version_":1515764376132386816},
+    "dateUpdated":["2015-10-22T20:25:55.235Z"]},
   {
     "name":"LINCS Data Portal",
     "logo":"http://www.lincs-dcic.info/images/apps/portal.png",
@@ -1180,8 +1136,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5474",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:21:08.409Z"],
-    "_version_":1515764075376672768},
+    "dateUpdated":["2015-10-22T20:21:08.409Z"]},
   {
     "name":"piLINCS",
     "logo":"http://www.lincs-dcic.info/images/apps/pilincs.png",
@@ -1201,8 +1156,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5475",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:21:45.988Z"],
-    "_version_":1515764114779013120},
+    "dateUpdated":["2015-10-22T20:21:45.988Z"]},
   {
     "name":"PAEA",
     "logo":"http://www.lincs-dcic.info/images/apps/paea.png",
@@ -1222,8 +1176,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5477",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:23:13.43Z"],
-    "_version_":1515764206467547136},
+    "dateUpdated":["2015-10-22T20:23:13.43Z"]},
   {
     "name":"PRIDE Archive",
     "logo":"",
@@ -1245,8 +1198,7 @@
     "source":"User Submission",
     "id":"5489",
     "dateCreated":["2015-10-22T21:55:12.488Z"],
-    "dateUpdated":["2015-10-22T21:55:12.488Z"],
-    "_version_":1515769993615114240},
+    "dateUpdated":["2015-10-22T21:55:12.488Z"]},
   {
     "name":"REACTOME",
     "logo":"https://www.ebi.ac.uk/sites/ebi.ac.uk/files/resource/logo/Reactome_logo_2013.jpg",
@@ -1271,8 +1223,7 @@
     "source":"User Submission",
     "id":"5488",
     "dateCreated":["2015-10-22T21:46:32.483Z"],
-    "dateUpdated":["2015-10-22T21:46:32.483Z"],
-    "_version_":1515769448350351360},
+    "dateUpdated":["2015-10-22T21:46:32.483Z"]},
   {
     "name":"Docent I",
     "logo":"http://www.lincs-dcic.info/images/apps/docent-i.png",
@@ -1294,8 +1245,7 @@
     "source":"User Submission",
     "id":"5483",
     "dateCreated":["2015-10-22T20:45:39.535Z"],
-    "dateUpdated":["2015-10-22T20:45:39.535Z"],
-    "_version_":1515765617956749312},
+    "dateUpdated":["2015-10-22T20:45:39.535Z"]},
   {
     "name":"Network2Canvas",
     "logo":"http://www.lincs-dcic.info/images/apps/network2canvas.png",
@@ -1318,8 +1268,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5482",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:30:04.126Z"],
-    "_version_":1515764637116661760},
+    "dateUpdated":["2015-10-22T20:30:04.126Z"]},
   {
     "name":"Docent II",
     "logo":"http://www.lincs-dcic.info/images/apps/docent-ii.png",
@@ -1340,8 +1289,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5484",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:51:34.561Z"],
-    "_version_":1515765990235832320},
+    "dateUpdated":["2015-10-22T20:51:34.561Z"]},
   {
     "name":"Docent III",
     "logo":"http://www.lincs-dcic.info/images/apps/docent-iii.png",
@@ -1362,8 +1310,7 @@
     "owners":["cjh9595@g.ucla.edu"],
     "id":"5485",
     "source":"User Submission",
-    "dateUpdated":["2015-10-22T20:59:40.431Z"],
-    "_version_":1515766499703259136},
+    "dateUpdated":["2015-10-22T20:59:40.431Z"]},
   {
     "name":"REACTOM<",
     "logo":"",
@@ -1380,8 +1327,7 @@
     "source":"User Submission",
     "id":"5487",
     "dateCreated":["2015-10-22T21:09:05.755Z"],
-    "dateUpdated":["2015-10-22T21:09:05.755Z"],
-    "_version_":1515767092485292032},
+    "dateUpdated":["2015-10-22T21:09:05.755Z"]},
   {
     "name":"Docent IV",
     "logo":"http://www.lincs-dcic.info/images/apps/docent-iv.png",
@@ -1403,8 +1349,7 @@
     "source":"User Submission",
     "id":"5486",
     "dateCreated":["2015-10-22T20:58:21.333Z"],
-    "dateUpdated":["2015-10-22T20:58:21.333Z"],
-    "_version_":1515766416761946112},
+    "dateUpdated":["2015-10-22T20:58:21.333Z"]},
   {
     "name":"OLEA Sphere",
     "logo":"",
@@ -1433,8 +1378,7 @@
     "source":"User Submission",
     "id":"5495",
     "dateCreated":["2015-10-24T00:02:31.871Z"],
-    "dateUpdated":["2015-10-24T00:02:31.871Z"],
-    "_version_":1515868601057280000},
+    "dateUpdated":["2015-10-24T00:02:31.871Z"]},
   {
     "name":"nordicICE",
     "logo":"",
@@ -1462,8 +1406,7 @@
     "source":"User Submission",
     "id":"5497",
     "dateCreated":["2015-10-24T00:05:47.448Z"],
-    "dateUpdated":["2015-10-24T00:05:47.448Z"],
-    "_version_":1515868806131482624},
+    "dateUpdated":["2015-10-24T00:05:47.448Z"]},
   {
     "name":"ProteomeXchange",
     "logo":"http://www.proteomexchange.org/sites/proteomexchange.org/themes/custom/proteomexchange/logo.png",
@@ -1485,8 +1428,7 @@
     "source":"User Submission",
     "id":"5490",
     "dateCreated":["2015-10-22T22:09:37.854Z"],
-    "dateUpdated":["2015-10-22T22:09:37.854Z"],
-    "_version_":1515770901016084480},
+    "dateUpdated":["2015-10-22T22:09:37.854Z"]},
   {
     "name":"nordicBrainEx",
     "logo":"",
@@ -1514,8 +1456,7 @@
     "source":"User Submission",
     "id":"5496",
     "dateCreated":["2015-10-24T00:04:13.405Z"],
-    "dateUpdated":["2015-10-24T00:04:13.405Z"],
-    "_version_":1515868707523395584},
+    "dateUpdated":["2015-10-24T00:04:13.405Z"]},
   {
     "name":"SPIN",
     "logo":"",
@@ -1539,8 +1480,7 @@
     "source":"User Submission",
     "id":"5504",
     "dateCreated":["2015-10-24T00:16:27.145Z"],
-    "dateUpdated":["2015-10-24T00:16:27.145Z"],
-    "_version_":1515869476903452672},
+    "dateUpdated":["2015-10-24T00:16:27.145Z"]},
   {
     "name":"ComKAT",
     "logo":"",
@@ -1572,8 +1512,7 @@
     "source":"User Submission",
     "id":"5499",
     "dateCreated":["2015-10-24T00:09:34.089Z"],
-    "dateUpdated":["2015-10-24T00:09:34.089Z"],
-    "_version_":1515869043781795840},
+    "dateUpdated":["2015-10-24T00:09:34.089Z"]},
   {
     "name":"quickVol II",
     "logo":"",
@@ -1603,8 +1542,7 @@
     "source":"User Submission",
     "id":"5500",
     "dateCreated":["2015-10-24T00:11:03.637Z"],
-    "dateUpdated":["2015-10-24T00:11:03.637Z"],
-    "_version_":1515869137681776640},
+    "dateUpdated":["2015-10-24T00:11:03.637Z"]},
   {
     "name":"UMMPerfusion",
     "logo":"",
@@ -1632,8 +1570,7 @@
     "source":"User Submission",
     "id":"5502",
     "dateCreated":["2015-10-24T00:14:12.324Z"],
-    "dateUpdated":["2015-10-24T00:14:12.324Z"],
-    "_version_":1515869335534436352},
+    "dateUpdated":["2015-10-24T00:14:12.324Z"]},
   {
     "name":"ANALYZE",
     "logo":"",
@@ -1663,8 +1600,7 @@
     "source":"User Submission",
     "id":"5498",
     "dateCreated":["2015-10-24T00:07:19.446Z"],
-    "dateUpdated":["2015-10-24T00:07:19.446Z"],
-    "_version_":1515868902604668928},
+    "dateUpdated":["2015-10-24T00:07:19.446Z"]},
   {
     "name":"ExploreDTI",
     "logo":"",
@@ -1693,8 +1629,7 @@
     "source":"User Submission",
     "id":"5501",
     "dateCreated":["2015-10-24T00:12:39.961Z"],
-    "dateUpdated":["2015-10-24T00:12:39.961Z"],
-    "_version_":1515869238687956992},
+    "dateUpdated":["2015-10-24T00:12:39.961Z"]},
   {
     "name":"Perfusion Mismatch Analyzer",
     "logo":"",
@@ -1723,8 +1658,7 @@
     "source":"User Submission",
     "id":"5503",
     "dateCreated":["2015-10-24T00:15:35.576Z"],
-    "dateUpdated":["2015-10-24T00:15:35.576Z"],
-    "_version_":1515869422828388352},
+    "dateUpdated":["2015-10-24T00:15:35.576Z"]},
   {
     "name":"ASGENSENG",
     "logo":"",
@@ -1765,8 +1699,7 @@
     "source":"User Submission",
     "id":"5505",
     "dateCreated":["2015-10-27T04:11:26.675Z"],
-    "dateUpdated":["2015-10-27T04:11:26.676Z"],
-    "_version_":1516156052233519104},
+    "dateUpdated":["2015-10-27T04:11:26.676Z"]},
   {
     "name":"The Cardiac Organellar Protein Atlas Knowledgebase (COPaKB)",
     "logo":"http://www.heartproteome.org/copa/assets/img/copamed.jpg",
@@ -1797,8 +1730,7 @@
     "owners":["mage.hku@gmail.com"],
     "id":"5469",
     "source":"User Submission",
-    "dateUpdated":["2015-10-26T19:40:37.253Z"],
-    "_version_":1516123913988341760},
+    "dateUpdated":["2015-10-26T19:40:37.253Z"]},
   {
     "name":"Spotlite",
     "logo":"https://lbgsites2.bioinf.unc.edu/spotlite/images/favicon.ico",
@@ -1840,8 +1772,7 @@
     "source":"User Submission",
     "id":"5506",
     "dateCreated":["2015-10-27T14:16:16.588Z"],
-    "dateUpdated":["2015-10-27T14:16:16.588Z"],
-    "_version_":1516194104967430144},
+    "dateUpdated":["2015-10-27T14:16:16.588Z"]},
   {
     "name":"IBMiner",
     "logo":"",
@@ -1880,8 +1811,7 @@
     "owners":["gaoshi@cs.ucla.edu"],
     "id":"5492",
     "source":"User Submission",
-    "dateUpdated":["2015-10-28T04:14:51.75Z"],
-    "_version_":1516246864238739456},
+    "dateUpdated":["2015-10-28T04:14:51.75Z"]},
   {
     "name":"SWiPE",
     "logo":"",
@@ -1914,8 +1844,7 @@
     "owners":["gaoshi@cs.ucla.edu"],
     "id":"5493",
     "source":"User Submission",
-    "dateUpdated":["2015-10-28T04:10:11.625Z"],
-    "_version_":1516246570506387456},
+    "dateUpdated":["2015-10-28T04:10:11.625Z"]},
   {
     "name":"DeAL",
     "logo":"",
@@ -1951,8 +1880,7 @@
     "owners":["gaoshi@cs.ucla.edu"],
     "id":"5494",
     "source":"User Submission",
-    "dateUpdated":["2015-10-28T04:12:53.492Z"],
-    "_version_":1516246740236238848},
+    "dateUpdated":["2015-10-28T04:12:53.492Z"]},
   {
     "name":"Context-aware Synonym Suggestion System",
     "logo":"",
@@ -1988,8 +1916,7 @@
     "owners":["gaoshi@cs.ucla.edu"],
     "id":"5509",
     "source":"User Submission",
-    "dateUpdated":["2015-10-28T04:08:50.368Z"],
-    "_version_":1516246485301198848},
+    "dateUpdated":["2015-10-28T04:08:50.368Z"]},
   {
     "name":"CLUBS+",
     "logo":"",
@@ -2020,8 +1947,7 @@
     "source":"User Submission",
     "id":"5511",
     "dateCreated":["2015-10-28T22:18:31.015Z"],
-    "dateUpdated":["2015-10-28T22:18:31.015Z"],
-    "_version_":1516315041874313216},
+    "dateUpdated":["2015-10-28T22:18:31.015Z"]},
   {
     "name":"EnigmaVis",
     "logo":"http://enigma.ini.usc.edu/wp-content/uploads/2012/01/Screen-Shot-2015-04-16-at-12.34.26-PM.png",
@@ -2059,8 +1985,7 @@
     "owners":["brianbleakley@gmail.com"],
     "id":"5508",
     "source":"User Submission",
-    "dateUpdated":["2015-10-27T22:55:36.96Z"],
-    "_version_":1516226778987757568},
+    "dateUpdated":["2015-10-27T22:55:36.96Z"]},
   {
     "name":"CANaLI",
     "logo":"",
@@ -2088,8 +2013,7 @@
     "source":"User Submission",
     "id":"5510",
     "dateCreated":["2015-10-28T04:18:42.62Z"],
-    "dateUpdated":["2015-10-28T04:18:42.62Z"],
-    "_version_":1516247106322432000},
+    "dateUpdated":["2015-10-28T04:18:42.62Z"]},
   {
     "name":"Sage Synapse",
     "logo":"data:image/png;base64,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",
@@ -2126,8 +2050,7 @@
     "owners":["vincekyi@gmail.com"],
     "id":"5512",
     "source":"User Submission",
-    "dateUpdated":["2015-10-29T16:39:28.524Z"],
-    "_version_":1516384308196016128},
+    "dateUpdated":["2015-10-29T16:39:28.524Z"]},
   {
     "name":"Expression Atlas",
     "logo":"https://www.ebi.ac.uk/gxa/resources/images/ExpressionAtlas_logo_web.png",
@@ -2161,8 +2084,7 @@
     "source":"User Submission",
     "id":"5515",
     "dateCreated":["2015-10-29T16:54:12.179Z"],
-    "dateUpdated":["2015-10-29T16:54:12.179Z"],
-    "_version_":1516385234772295680},
+    "dateUpdated":["2015-10-29T16:54:12.179Z"]},
   {
     "name":"MyGene.info",
     "logo":"",
@@ -2201,8 +2123,7 @@
     "source":"User Submission",
     "id":"5513",
     "dateCreated":["2015-10-29T16:45:33.628Z"],
-    "dateUpdated":["2015-10-29T16:45:33.628Z"],
-    "_version_":1516384691034259456},
+    "dateUpdated":["2015-10-29T16:45:33.628Z"]},
   {
     "name":"Expression Atlas",
     "logo":"https://www.ebi.ac.uk/gxa/resources/images/ExpressionAtlas_logo_web.png",
@@ -2229,8 +2150,7 @@
     "source":"User Submission",
     "id":"5516",
     "dateCreated":["2015-10-29T17:15:26.519Z"],
-    "dateUpdated":["2015-10-29T17:15:26.519Z"],
-    "_version_":1516386571014635520},
+    "dateUpdated":["2015-10-29T17:15:26.519Z"]},
   {
     "name":"MetaboLights",
     "logo":"http://www.ebi.ac.uk/metabolights/img/MetaboLightsLogo.png",
@@ -2256,8 +2176,7 @@
     "source":"User Submission",
     "id":"5514",
     "dateCreated":["2015-10-29T16:53:39.022Z"],
-    "dateUpdated":["2015-10-29T16:53:39.022Z"],
-    "_version_":1516385200006758400},
+    "dateUpdated":["2015-10-29T16:53:39.022Z"]},
   {
     "name":"PSICQUIC View",
     "logo":"",
@@ -2281,8 +2200,7 @@
     "source":"User Submission",
     "id":"5517",
     "dateCreated":["2015-10-29T17:31:31.794Z"],
-    "dateUpdated":["2015-10-29T17:31:31.794Z"],
-    "_version_":1516387583179882496},
+    "dateUpdated":["2015-10-29T17:31:31.794Z"]},
   {
     "name":"ProTurn",
     "logo":"http://www.heartproteome.org/proturn/assets/images/bioturn_logo.png",
@@ -2320,8 +2238,7 @@
     "owners":["magelpy@ucla.edu"],
     "id":"5454",
     "source":"User Submission",
-    "dateUpdated":["2015-10-29T20:10:50.215Z"],
-    "_version_":1516397605914935296},
+    "dateUpdated":["2015-10-29T20:10:50.215Z"]},
   {
     "name":"MyVariant.info",
     "logo":"http://myvariant.info/content/images/2015/05/myvariant-1.png",
@@ -2350,8 +2267,7 @@
     "source":"User Submission",
     "id":"5519",
     "dateCreated":["2015-10-29T22:06:29.751Z"],
-    "dateUpdated":["2015-10-29T22:06:29.751Z"],
-    "_version_":1516404882540593152},
+    "dateUpdated":["2015-10-29T22:06:29.751Z"]},
   {
     "name":"Trans-Proteomic Pipeline (TPP)",
     "logo":"",
@@ -2375,8 +2291,7 @@
     "owners":["CBersano@mednet.ucla.edu"],
     "id":"5507",
     "source":"User Submission",
-    "dateUpdated":["2015-10-29T20:13:59.279Z"],
-    "_version_":1516397804162908160},
+    "dateUpdated":["2015-10-29T20:13:59.279Z"]},
   {
     "name":"BD2KPubMed",
     "logo":"http://www.heartproteome.org/pubmed/assets/images/bd2kpubmed_logo_300_inv.png",
@@ -2404,8 +2319,7 @@
     "owners":["magelpy@ucla.edu"],
     "id":"5455",
     "source":"User Submission",
-    "dateUpdated":["2015-10-29T20:15:13.6Z"],
-    "_version_":1516397882093076480},
+    "dateUpdated":["2015-10-29T20:15:13.6Z"]},
   {
     "name":"Beagle",
     "logo":"",
@@ -2435,8 +2349,7 @@
     "owners":["CBersano@mednet.ucla.edu"],
     "id":"5518",
     "source":"User Submission",
-    "dateUpdated":["2015-10-29T20:09:42.811Z"],
-    "_version_":1516397535234621440},
+    "dateUpdated":["2015-10-29T20:09:42.811Z"]},
   {
     "name":"rMATS",
     "logo":"",
@@ -2467,8 +2380,7 @@
     "source":"User Submission",
     "id":"5520",
     "dateCreated":["2015-10-29T22:13:05.935Z"],
-    "dateUpdated":["2015-10-29T22:13:05.935Z"],
-    "_version_":1516405297971724288},
+    "dateUpdated":["2015-10-29T22:13:05.935Z"]},
   {
     "name":"MedInria",
     "logo":"data:image/jpeg;base64,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",
@@ -2512,8 +2424,7 @@
     "owners":["novasmedley@ucla.edu"],
     "id":"5522",
     "source":"User Submission",
-    "dateUpdated":["2015-10-30T17:51:58.26Z"],
-    "_version_":1516479466192240640},
+    "dateUpdated":["2015-10-30T17:51:58.26Z"]},
   {
     "name":"SwissSkullStripper (Slicer plugin)",
     "logo":"http://www.slicer.org/slicerWiki/index.php/Documentation/Nightly/Modules/SwissSkullStripper",
@@ -2549,8 +2460,7 @@
     "source":"User Submission",
     "id":"5524",
     "dateCreated":["2015-10-30T17:46:09.503Z"],
-    "dateUpdated":["2015-10-30T17:46:09.503Z"],
-    "_version_":1516479100491923456},
+    "dateUpdated":["2015-10-30T17:46:09.503Z"]},
   {
     "name":"StripsTs",
     "logo":"www.istb.unibe.ch/content/research",
@@ -2583,8 +2493,7 @@
     "source":"User Submission",
     "id":"5523",
     "dateCreated":["2015-10-30T17:43:30.466Z"],
-    "dateUpdated":["2015-10-30T17:43:30.466Z"],
-    "_version_":1516478933728493568},
+    "dateUpdated":["2015-10-30T17:43:30.466Z"]},
   {
     "name":"dcm4che",
     "logo":"http://www.dcm4che.org/",
@@ -2611,8 +2520,7 @@
     "owners":["novasmedley@ucla.edu"],
     "id":"5521",
     "source":"User Submission",
-    "dateUpdated":["2015-10-30T17:54:02.53Z"],
-    "_version_":1516479596497731584},
+    "dateUpdated":["2015-10-30T17:54:02.53Z"]},
   {
     "name":"www.monarchinitiative.org",
     "logo":"",
@@ -2646,8 +2554,7 @@
     "source":"User Submission",
     "id":"5525",
     "dateCreated":["2015-11-01T18:56:57.064Z"],
-    "dateUpdated":["2015-11-01T18:56:57.064Z"],
-    "_version_":1516664748313149440},
+    "dateUpdated":["2015-11-01T18:56:57.064Z"]},
   {
     "name":"Microsoft Research Volume Rendering SDK",
     "logo":"",
@@ -2673,8 +2580,7 @@
     "source":"User Submission",
     "id":"5528",
     "dateCreated":["2015-11-02T08:53:23.143Z"],
-    "dateUpdated":["2015-11-02T08:53:23.143Z"],
-    "_version_":1516717372231122944},
+    "dateUpdated":["2015-11-02T08:53:23.143Z"]},
   {
     "name":"GeoS",
     "logo":"",
@@ -2701,8 +2607,7 @@
     "source":"User Submission",
     "id":"5527",
     "dateCreated":["2015-11-02T08:48:53.124Z"],
-    "dateUpdated":["2015-11-02T08:48:53.124Z"],
-    "_version_":1516717089096728576},
+    "dateUpdated":["2015-11-02T08:48:53.124Z"]},
   {
     "name":"FusionViewer",
     "logo":"",
@@ -2739,8 +2644,7 @@
     "source":"User Submission",
     "id":"5537",
     "dateCreated":["2015-11-02T09:21:20.634Z"],
-    "dateUpdated":["2015-11-02T09:21:20.634Z"],
-    "_version_":1516719131208974336},
+    "dateUpdated":["2015-11-02T09:21:20.634Z"]},
   {
     "name":"ezDICOM",
     "logo":"http://www.cabiatl.com/mricro/ezdicom/icon.png",
@@ -2775,8 +2679,7 @@
     "source":"User Submission",
     "id":"5531",
     "dateCreated":["2015-11-02T09:05:09.242Z"],
-    "dateUpdated":["2015-11-02T09:05:09.242Z"],
-    "_version_":1516718112629587968},
+    "dateUpdated":["2015-11-02T09:05:09.242Z"]},
   {
     "name":"MicroView",
     "logo":"",
@@ -2822,8 +2725,7 @@
     "source":"User Submission",
     "id":"5530",
     "dateCreated":["2015-11-02T09:01:25.806Z"],
-    "dateUpdated":["2015-11-02T09:01:25.806Z"],
-    "_version_":1516717878339960832},
+    "dateUpdated":["2015-11-02T09:01:25.806Z"]},
   {
     "name":"DICOMscope",
     "logo":"http://dicom.offis.de/images/dologo.gif",
@@ -2847,8 +2749,7 @@
     "source":"User Submission",
     "id":"5535",
     "dateCreated":["2015-11-02T09:16:27.392Z"],
-    "dateUpdated":["2015-11-02T09:16:27.392Z"],
-    "_version_":1516718823722450944},
+    "dateUpdated":["2015-11-02T09:16:27.392Z"]},
   {
     "name":"Synedra View Personal",
     "logo":"http://www.synedra.com/img/syn-redesign-home-v01_03.png",
@@ -2873,8 +2774,7 @@
     "source":"User Submission",
     "id":"5529",
     "dateCreated":["2015-11-02T08:57:20.249Z"],
-    "dateUpdated":["2015-11-02T08:57:20.249Z"],
-    "_version_":1516717620855832576},
+    "dateUpdated":["2015-11-02T08:57:20.249Z"]},
   {
     "name":"Vinci",
     "logo":"http://www.nf.mpg.de/vinci3/images/vinci_head.png",
@@ -2912,8 +2812,7 @@
     "source":"User Submission",
     "id":"5533",
     "dateCreated":["2015-11-02T09:11:24.381Z"],
-    "dateUpdated":["2015-11-02T09:11:24.381Z"],
-    "_version_":1516718505994485760},
+    "dateUpdated":["2015-11-02T09:11:24.381Z"]},
   {
     "name":"Weasis",
     "logo":"",
@@ -2941,8 +2840,7 @@
     "source":"User Submission",
     "id":"5536",
     "dateCreated":["2015-11-02T09:18:23.931Z"],
-    "dateUpdated":["2015-11-02T09:18:23.931Z"],
-    "_version_":1516718945924546560},
+    "dateUpdated":["2015-11-02T09:18:23.931Z"]},
   {
     "name":"Ginkgo CADx",
     "logo":"http://ginkgo-cadx.com/en/data/uploads/ginkgo.png",
@@ -2972,8 +2870,7 @@
     "source":"User Submission",
     "id":"5534",
     "dateCreated":["2015-11-02T09:14:23.088Z"],
-    "dateUpdated":["2015-11-02T09:14:23.088Z"],
-    "_version_":1516718693383405568},
+    "dateUpdated":["2015-11-02T09:14:23.088Z"]},
   {
     "name":"fpimage",
     "logo":"",
@@ -3007,8 +2904,7 @@
     "source":"User Submission",
     "id":"5532",
     "dateCreated":["2015-11-02T09:08:03.634Z"],
-    "dateUpdated":["2015-11-02T09:08:03.634Z"],
-    "_version_":1516718295494950912},
+    "dateUpdated":["2015-11-02T09:08:03.634Z"]},
   {
     "name":"MINC Brain Imaging Toolbox",
     "logo":"",
@@ -3039,8 +2935,7 @@
     "source":"User Submission",
     "id":"5538",
     "dateCreated":["2015-11-02T09:23:20.854Z"],
-    "dateUpdated":["2015-11-02T09:23:20.854Z"],
-    "_version_":1516719257267732480},
+    "dateUpdated":["2015-11-02T09:23:20.854Z"]},
   {
     "name":"AMC Postprocessing Package",
     "logo":"",
@@ -3071,8 +2966,7 @@
     "source":"User Submission",
     "id":"5542",
     "dateCreated":["2015-11-02T09:33:11.995Z"],
-    "dateUpdated":["2015-11-02T09:33:11.995Z"],
-    "_version_":1516719877123997696},
+    "dateUpdated":["2015-11-02T09:33:11.995Z"]},
   {
     "name":"Tudor DICOM Tools",
     "logo":"",
@@ -3101,8 +2995,7 @@
     "source":"User Submission",
     "id":"5540",
     "dateCreated":["2015-11-02T09:27:14.15Z"],
-    "dateUpdated":["2015-11-02T09:27:14.15Z"],
-    "_version_":1516719501897367552},
+    "dateUpdated":["2015-11-02T09:27:14.15Z"]},
   {
     "name":"K-PACS",
     "logo":"",
@@ -3129,8 +3022,7 @@
     "source":"User Submission",
     "id":"5545",
     "dateCreated":["2015-11-02T09:37:28.384Z"],
-    "dateUpdated":["2015-11-02T09:37:28.384Z"],
-    "_version_":1516720145970495488},
+    "dateUpdated":["2015-11-02T09:37:28.384Z"]},
   {
     "name":"PGCTN",
     "logo":"",
@@ -3160,8 +3052,7 @@
     "source":"User Submission",
     "id":"5539",
     "dateCreated":["2015-11-02T09:25:27.965Z"],
-    "dateUpdated":["2015-11-02T09:25:27.965Z"],
-    "_version_":1516719390553276416},
+    "dateUpdated":["2015-11-02T09:25:27.965Z"]},
   {
     "name":"DicomWorks",
     "logo":"",
@@ -3194,8 +3085,7 @@
     "source":"User Submission",
     "id":"5544",
     "dateCreated":["2015-11-02T09:36:25.948Z"],
-    "dateUpdated":["2015-11-02T09:36:25.948Z"],
-    "_version_":1516720080499507200},
+    "dateUpdated":["2015-11-02T09:36:25.948Z"]},
   {
     "name":"XIP: The Extensible Imaging PI",
     "logo":"",
@@ -3222,8 +3112,7 @@
     "source":"User Submission",
     "id":"5541",
     "dateCreated":["2015-11-02T09:30:06.142Z"],
-    "dateUpdated":["2015-11-02T09:30:06.142Z"],
-    "_version_":1516719682243002368},
+    "dateUpdated":["2015-11-02T09:30:06.142Z"]},
   {
     "name":"CreaTools",
     "logo":"",
@@ -3248,8 +3137,7 @@
     "source":"User Submission",
     "id":"5543",
     "dateCreated":["2015-11-02T09:34:48.485Z"],
-    "dateUpdated":["2015-11-02T09:34:48.485Z"],
-    "_version_":1516719978303193088},
+    "dateUpdated":["2015-11-02T09:34:48.485Z"]},
   {
     "name":"XNAT",
     "logo":"",
@@ -3278,8 +3166,7 @@
     "source":"User Submission",
     "id":"5547",
     "dateCreated":["2015-11-02T09:40:29.398Z"],
-    "dateUpdated":["2015-11-02T09:40:29.398Z"],
-    "_version_":1516720335775334400},
+    "dateUpdated":["2015-11-02T09:40:29.398Z"]},
   {
     "name":"ImageVis3D",
     "logo":"",
@@ -3304,8 +3191,7 @@
     "source":"User Submission",
     "id":"5546",
     "dateCreated":["2015-11-02T09:38:51.554Z"],
-    "dateUpdated":["2015-11-02T09:38:51.554Z"],
-    "_version_":1516720233177415680},
+    "dateUpdated":["2015-11-02T09:38:51.554Z"]},
   {
     "name":"Carimas",
     "logo":"",
@@ -3330,8 +3216,7 @@
     "source":"User Submission",
     "id":"5551",
     "dateCreated":["2015-11-02T09:45:40.096Z"],
-    "dateUpdated":["2015-11-02T09:45:40.096Z"],
-    "_version_":1516720661567897600},
+    "dateUpdated":["2015-11-02T09:45:40.096Z"]},
   {
     "name":"InVesalius",
     "logo":"",
@@ -3359,8 +3244,7 @@
     "source":"User Submission",
     "id":"5549",
     "dateCreated":["2015-11-02T09:43:09.422Z"],
-    "dateUpdated":["2015-11-02T09:43:09.422Z"],
-    "_version_":1516720503571611648},
+    "dateUpdated":["2015-11-02T09:43:09.422Z"]},
   {
     "name":"ClearCanvas",
     "logo":"",
@@ -3385,8 +3269,7 @@
     "source":"User Submission",
     "id":"5552",
     "dateCreated":["2015-11-02T09:46:58.733Z"],
-    "dateUpdated":["2015-11-02T09:46:58.733Z"],
-    "_version_":1516720744021622784},
+    "dateUpdated":["2015-11-02T09:46:58.733Z"]},
   {
     "name":"XnView",
     "logo":"",
@@ -3420,8 +3303,7 @@
     "source":"User Submission",
     "id":"5548",
     "dateCreated":["2015-11-02T09:41:56.745Z"],
-    "dateUpdated":["2015-11-02T09:41:56.745Z"],
-    "_version_":1516720427364253696},
+    "dateUpdated":["2015-11-02T09:41:56.745Z"]},
   {
     "name":"eviewbox",
     "logo":"",
@@ -3447,8 +3329,7 @@
     "source":"User Submission",
     "id":"5550",
     "dateCreated":["2015-11-02T09:44:13.085Z"],
-    "dateUpdated":["2015-11-02T09:44:13.085Z"],
-    "_version_":1516720570328154112},
+    "dateUpdated":["2015-11-02T09:44:13.085Z"]},
   {
     "name":"Sobox Image Viewer",
     "logo":"",
@@ -3472,8 +3353,7 @@
     "source":"User Submission",
     "id":"5554",
     "dateCreated":["2015-11-02T09:49:03.123Z"],
-    "dateUpdated":["2015-11-02T09:49:03.123Z"],
-    "_version_":1516720874453991424},
+    "dateUpdated":["2015-11-02T09:49:03.123Z"]},
   {
     "name":"IrfanView",
     "logo":"",
@@ -3500,8 +3380,7 @@
     "source":"User Submission",
     "id":"5553",
     "dateCreated":["2015-11-02T09:48:03.987Z"],
-    "dateUpdated":["2015-11-02T09:48:03.987Z"],
-    "_version_":1516720812447498240},
+    "dateUpdated":["2015-11-02T09:48:03.987Z"]},
   {
     "name":"Onis Viewer",
     "logo":"",
@@ -3525,8 +3404,7 @@
     "source":"User Submission",
     "id":"5560",
     "dateCreated":["2015-11-02T09:55:43.529Z"],
-    "dateUpdated":["2015-11-02T09:55:43.529Z"],
-    "_version_":1516721294313259008},
+    "dateUpdated":["2015-11-02T09:55:43.529Z"]},
   {
     "name":"MEDISP DICOM viewer",
     "logo":"",
@@ -3554,8 +3432,7 @@
     "source":"User Submission",
     "id":"5559",
     "dateCreated":["2015-11-02T09:54:08.584Z"],
-    "dateUpdated":["2015-11-02T09:54:08.584Z"],
-    "_version_":1516721194753064960},
+    "dateUpdated":["2015-11-02T09:54:08.584Z"]},
   {
     "name":"Oviyam 2",
     "logo":"",
@@ -3579,8 +3456,7 @@
     "source":"User Submission",
     "id":"5555",
     "dateCreated":["2015-11-02T09:50:00.045Z"],
-    "dateUpdated":["2015-11-02T09:50:00.045Z"],
-    "_version_":1516720934142083072},
+    "dateUpdated":["2015-11-02T09:50:00.045Z"]},
   {
     "name":"MyFreePACS",
     "logo":"",
@@ -3606,8 +3482,7 @@
     "source":"User Submission",
     "id":"5561",
     "dateCreated":["2015-11-02T09:56:38.328Z"],
-    "dateUpdated":["2015-11-02T09:56:38.328Z"],
-    "_version_":1516721351771029504},
+    "dateUpdated":["2015-11-02T09:56:38.328Z"]},
   {
     "name":"RView",
     "logo":"",
@@ -3633,8 +3508,7 @@
     "source":"User Submission",
     "id":"5556",
     "dateCreated":["2015-11-02T09:50:59.682Z"],
-    "dateUpdated":["2015-11-02T09:50:59.682Z"],
-    "_version_":1516720996676009984},
+    "dateUpdated":["2015-11-02T09:50:59.682Z"]},
   {
     "name":"StrokeTool-CT",
     "logo":"",
@@ -3660,8 +3534,7 @@
     "source":"User Submission",
     "id":"5558",
     "dateCreated":["2015-11-02T09:53:03.998Z"],
-    "dateUpdated":["2015-11-02T09:53:03.998Z"],
-    "_version_":1516721127029735424},
+    "dateUpdated":["2015-11-02T09:53:03.998Z"]},
   {
     "name":"MEDWX",
     "logo":"",
@@ -3687,8 +3560,7 @@
     "source":"User Submission",
     "id":"5562",
     "dateCreated":["2015-11-02T09:57:33.136Z"],
-    "dateUpdated":["2015-11-02T09:57:33.136Z"],
-    "_version_":1516721409241382912},
+    "dateUpdated":["2015-11-02T09:57:33.136Z"]},
   {
     "name":"DICOM Vista Light",
     "logo":"",
@@ -3713,8 +3585,7 @@
     "source":"User Submission",
     "id":"5557",
     "dateCreated":["2015-11-02T09:52:05.099Z"],
-    "dateUpdated":["2015-11-02T09:52:05.099Z"],
-    "_version_":1516721065270706176},
+    "dateUpdated":["2015-11-02T09:52:05.099Z"]},
   {
     "name":"DWV - DICOM Web Viewer",
     "logo":"",
@@ -3742,8 +3613,7 @@
     "source":"User Submission",
     "id":"5564",
     "dateCreated":["2015-11-02T09:59:49.896Z"],
-    "dateUpdated":["2015-11-02T09:59:49.896Z"],
-    "_version_":1516721552644636672},
+    "dateUpdated":["2015-11-02T09:59:49.896Z"]},
   {
     "name":"Slice:Drop",
     "logo":"",
@@ -3770,8 +3640,7 @@
     "source":"User Submission",
     "id":"5569",
     "dateCreated":["2015-11-02T10:05:02.434Z"],
-    "dateUpdated":["2015-11-02T10:05:02.434Z"],
-    "_version_":1516721880364482560},
+    "dateUpdated":["2015-11-02T10:05:02.434Z"]},
   {
     "name":"ImLook4D",
     "logo":"",
@@ -3797,8 +3666,7 @@
     "source":"User Submission",
     "id":"5567",
     "dateCreated":["2015-11-02T10:02:59.255Z"],
-    "dateUpdated":["2015-11-02T10:02:59.255Z"],
-    "_version_":1516721751201939456},
+    "dateUpdated":["2015-11-02T10:02:59.255Z"]},
   {
     "name":"VV: the 4D viewer",
     "logo":"",
@@ -3822,8 +3690,7 @@
     "source":"User Submission",
     "id":"5570",
     "dateCreated":["2015-11-02T10:06:04.699Z"],
-    "dateUpdated":["2015-11-02T10:06:04.699Z"],
-    "_version_":1516721945654067200},
+    "dateUpdated":["2015-11-02T10:06:04.699Z"]},
   {
     "name":"RadScaper",
     "logo":"",
@@ -3847,8 +3714,7 @@
     "source":"User Submission",
     "id":"5563",
     "dateCreated":["2015-11-02T09:58:32.793Z"],
-    "dateUpdated":["2015-11-02T09:58:32.793Z"],
-    "_version_":1516721471796281344},
+    "dateUpdated":["2015-11-02T09:58:32.793Z"]},
   {
     "name":"JiveX DICOM Viewer",
     "logo":"",
@@ -3872,8 +3738,7 @@
     "source":"User Submission",
     "id":"5566",
     "dateCreated":["2015-11-02T10:01:34.255Z"],
-    "dateUpdated":["2015-11-02T10:01:34.255Z"],
-    "_version_":1516721662072979456},
+    "dateUpdated":["2015-11-02T10:01:34.255Z"]},
   {
     "name":"DVS: Dicom Viewing Software",
     "logo":"",
@@ -3900,8 +3765,7 @@
     "source":"User Submission",
     "id":"5565",
     "dateCreated":["2015-11-02T10:00:45.013Z"],
-    "dateUpdated":["2015-11-02T10:00:45.013Z"],
-    "_version_":1516721610439000064},
+    "dateUpdated":["2015-11-02T10:00:45.013Z"]},
   {
     "name":"CarDiCon",
     "logo":"",
@@ -3927,8 +3791,7 @@
     "source":"User Submission",
     "id":"5568",
     "dateCreated":["2015-11-02T10:03:48.255Z"],
-    "dateUpdated":["2015-11-02T10:03:48.255Z"],
-    "_version_":1516721802582163456},
+    "dateUpdated":["2015-11-02T10:03:48.255Z"]},
   {
     "name":"MVE - Medical Volume Explorer",
     "logo":"",
@@ -3954,8 +3817,7 @@
     "source":"User Submission",
     "id":"5575",
     "dateCreated":["2015-11-02T10:10:17.109Z"],
-    "dateUpdated":["2015-11-02T10:10:17.109Z"],
-    "_version_":1516722210325135360},
+    "dateUpdated":["2015-11-02T10:10:17.109Z"]},
   {
     "name":"MAYAM",
     "logo":"",
@@ -3979,8 +3841,7 @@
     "source":"User Submission",
     "id":"5576",
     "dateCreated":["2015-11-02T10:11:08.535Z"],
-    "dateUpdated":["2015-11-02T10:11:08.535Z"],
-    "_version_":1516722264249204736},
+    "dateUpdated":["2015-11-02T10:11:08.535Z"]},
   {
     "name":"MicroDicom",
     "logo":"",
@@ -4006,8 +3867,7 @@
     "source":"User Submission",
     "id":"5573",
     "dateCreated":["2015-11-02T10:08:31.486Z"],
-    "dateUpdated":["2015-11-02T10:08:31.486Z"],
-    "_version_":1516722099571392512},
+    "dateUpdated":["2015-11-02T10:08:31.486Z"]},
   {
     "name":"MIView",
     "logo":"",
@@ -4031,8 +3891,7 @@
     "source":"User Submission",
     "id":"5577",
     "dateCreated":["2015-11-02T10:12:00.239Z"],
-    "dateUpdated":["2015-11-02T10:12:00.239Z"],
-    "_version_":1516722318464778240},
+    "dateUpdated":["2015-11-02T10:12:00.239Z"]},
   {
     "name":"MedImaView",
     "logo":"",
@@ -4058,8 +3917,7 @@
     "source":"User Submission",
     "id":"5571",
     "dateCreated":["2015-11-02T10:06:52.399Z"],
-    "dateUpdated":["2015-11-02T10:06:52.399Z"],
-    "_version_":1516721995671142400},
+    "dateUpdated":["2015-11-02T10:06:52.399Z"]},
   {
     "name":"JDicom",
     "logo":"",
@@ -4085,8 +3943,7 @@
     "source":"User Submission",
     "id":"5574",
     "dateCreated":["2015-11-02T10:09:25.983Z"],
-    "dateUpdated":["2015-11-02T10:09:25.983Z"],
-    "_version_":1516722156715638784},
+    "dateUpdated":["2015-11-02T10:09:25.983Z"]},
   {
     "name":"DicomLite",
     "logo":"",
@@ -4111,8 +3968,7 @@
     "source":"User Submission",
     "id":"5572",
     "dateCreated":["2015-11-02T10:07:43.501Z"],
-    "dateUpdated":["2015-11-02T10:07:43.501Z"],
-    "_version_":1516722049255473152},
+    "dateUpdated":["2015-11-02T10:07:43.501Z"]},
   {
     "name":"Visible Paient",
     "logo":"",
@@ -4136,8 +3992,7 @@
     "source":"User Submission",
     "id":"5578",
     "dateCreated":["2015-11-02T10:12:49.242Z"],
-    "dateUpdated":["2015-11-02T10:12:49.242Z"],
-    "_version_":1516722369848147968},
+    "dateUpdated":["2015-11-02T10:12:49.242Z"]},
   {
     "name":"SATURN",
     "logo":"",
@@ -4165,8 +4020,7 @@
     "source":"User Submission",
     "id":"5580",
     "dateCreated":["2015-11-02T10:17:15.774Z"],
-    "dateUpdated":["2015-11-02T10:17:15.774Z"],
-    "_version_":1516722649328254976},
+    "dateUpdated":["2015-11-02T10:17:15.774Z"]},
   {
     "name":"TomoVision",
     "logo":"",
@@ -4191,8 +4045,7 @@
     "source":"User Submission",
     "id":"5579",
     "dateCreated":["2015-11-02T10:15:58.805Z"],
-    "dateUpdated":["2015-11-02T10:15:58.805Z"],
-    "_version_":1516722568619360256},
+    "dateUpdated":["2015-11-02T10:15:58.805Z"]},
   {
     "name":"etdips",
     "logo":"",
@@ -4219,8 +4072,7 @@
     "source":"User Submission",
     "id":"5581",
     "dateCreated":["2015-11-02T10:18:14.764Z"],
-    "dateUpdated":["2015-11-02T10:18:14.764Z"],
-    "_version_":1516722711183753216},
+    "dateUpdated":["2015-11-02T10:18:14.764Z"]},
   {
     "name":"Exhalation-B",
     "logo":"",
@@ -4247,8 +4099,7 @@
     "source":"User Submission",
     "id":"5582",
     "dateCreated":["2015-11-02T10:19:31.862Z"],
-    "dateUpdated":["2015-11-02T10:19:31.862Z"],
-    "_version_":1516722792025817088},
+    "dateUpdated":["2015-11-02T10:19:31.862Z"]},
   {
     "name":"Facor",
     "logo":"",
@@ -4272,8 +4123,7 @@
     "source":"User Submission",
     "id":"5584",
     "dateCreated":["2015-11-02T10:22:18.154Z"],
-    "dateUpdated":["2015-11-02T10:22:18.154Z"],
-    "_version_":1516722966396665856},
+    "dateUpdated":["2015-11-02T10:22:18.154Z"]},
   {
     "name":"Paxera Viewer",
     "logo":"",
@@ -4297,8 +4147,7 @@
     "source":"User Submission",
     "id":"5583",
     "dateCreated":["2015-11-02T10:20:24.744Z"],
-    "dateUpdated":["2015-11-02T10:20:24.744Z"],
-    "_version_":1516722847476613120},
+    "dateUpdated":["2015-11-02T10:20:24.744Z"]},
   {
     "name":"Facor: digital X Ray",
     "logo":"",
@@ -4322,8 +4171,7 @@
     "source":"User Submission",
     "id":"5586",
     "dateCreated":["2015-11-02T10:23:53.563Z"],
-    "dateUpdated":["2015-11-02T10:23:53.563Z"],
-    "_version_":1516723066441302016},
+    "dateUpdated":["2015-11-02T10:23:53.563Z"]},
   {
     "name":"Facor: 3D MRI",
     "logo":"",
@@ -4347,8 +4195,7 @@
     "source":"User Submission",
     "id":"5585",
     "dateCreated":["2015-11-02T10:22:59.713Z"],
-    "dateUpdated":["2015-11-02T10:22:59.713Z"],
-    "_version_":1516723009973387264},
+    "dateUpdated":["2015-11-02T10:22:59.713Z"]},
   {
     "name":"RNASkim",
     "logo":"",
@@ -4378,8 +4225,7 @@
     "owners":["chelseaju@ucla.edu"],
     "id":"5526",
     "source":"User Submission",
-    "dateUpdated":["2015-11-02T22:43:26.435Z"],
-    "_version_":1516769594772029440},
+    "dateUpdated":["2015-11-02T22:43:26.435Z"]},
   {
     "name":"Ogles2",
     "logo":"",
@@ -4408,8 +4254,7 @@
     "source":"User Submission",
     "id":"5591",
     "dateCreated":["2015-11-03T08:33:25.266Z"],
-    "dateUpdated":["2015-11-03T08:33:25.266Z"],
-    "_version_":1516806713132449792},
+    "dateUpdated":["2015-11-03T08:33:25.266Z"]},
   {
     "name":"SIVIC - Stereoscopic Image Vis",
     "logo":"",
@@ -4436,8 +4281,7 @@
     "source":"User Submission",
     "id":"5587",
     "dateCreated":["2015-11-02T10:25:09.201Z"],
-    "dateUpdated":["2015-11-02T10:25:09.201Z"],
-    "_version_":1516723145751396352},
+    "dateUpdated":["2015-11-02T10:25:09.201Z"]},
   {
     "name":"MedView",
     "logo":"",
@@ -4465,8 +4309,7 @@
     "source":"User Submission",
     "id":"5588",
     "dateCreated":["2015-11-02T10:26:21.519Z"],
-    "dateUpdated":["2015-11-02T10:26:21.519Z"],
-    "_version_":1516723221582315520},
+    "dateUpdated":["2015-11-02T10:26:21.519Z"]},
   {
     "name":"LONI Inspector",
     "logo":"",
@@ -4491,8 +4334,7 @@
     "source":"User Submission",
     "id":"5593",
     "dateCreated":["2015-11-03T08:36:07.868Z"],
-    "dateUpdated":["2015-11-03T08:36:07.868Z"],
-    "_version_":1516806883633004544},
+    "dateUpdated":["2015-11-03T08:36:07.868Z"]},
   {
     "name":"Medal",
     "logo":"",
@@ -4520,8 +4362,7 @@
     "source":"User Submission",
     "id":"5589",
     "dateCreated":["2015-11-02T10:27:24.756Z"],
-    "dateUpdated":["2015-11-02T10:27:24.756Z"],
-    "_version_":1516723287891116032},
+    "dateUpdated":["2015-11-02T10:27:24.756Z"]},
   {
     "name":"SkullyDoo",
     "logo":"",
@@ -4548,8 +4389,7 @@
     "source":"User Submission",
     "id":"5592",
     "dateCreated":["2015-11-03T08:34:43.362Z"],
-    "dateUpdated":["2015-11-03T08:34:43.363Z"],
-    "_version_":1516806795023089664},
+    "dateUpdated":["2015-11-03T08:34:43.363Z"]},
   {
     "name":"DICOM Parser",
     "logo":"",
@@ -4573,8 +4413,7 @@
     "source":"User Submission",
     "id":"5590",
     "dateCreated":["2015-11-03T08:29:18.475Z"],
-    "dateUpdated":["2015-11-03T08:29:18.475Z"],
-    "_version_":1516806454356475904},
+    "dateUpdated":["2015-11-03T08:29:18.475Z"]},
   {
     "name":"Cornerstone",
     "logo":"",
@@ -4602,8 +4441,7 @@
     "source":"User Submission",
     "id":"5599",
     "dateCreated":["2015-11-03T08:46:03.114Z"],
-    "dateUpdated":["2015-11-03T08:46:03.114Z"],
-    "_version_":1516807507793674240},
+    "dateUpdated":["2015-11-03T08:46:03.114Z"]},
   {
     "name":"Orhanc Web Viewer",
     "logo":"",
@@ -4632,8 +4470,7 @@
     "source":"User Submission",
     "id":"5596",
     "dateCreated":["2015-11-03T08:40:15.247Z"],
-    "dateUpdated":["2015-11-03T08:40:15.247Z"],
-    "_version_":1516807143029735424},
+    "dateUpdated":["2015-11-03T08:40:15.247Z"]},
   {
     "name":"Yakami DICOM Tools",
     "logo":"",
@@ -4661,8 +4498,7 @@
     "source":"User Submission",
     "id":"5598",
     "dateCreated":["2015-11-03T08:44:50.358Z"],
-    "dateUpdated":["2015-11-03T08:44:50.358Z"],
-    "_version_":1516807431505575936},
+    "dateUpdated":["2015-11-03T08:44:50.358Z"]},
   {
     "name":"ORS Viewer Lite",
     "logo":"",
@@ -4686,8 +4522,7 @@
     "source":"User Submission",
     "id":"5597",
     "dateCreated":["2015-11-03T08:43:20.461Z"],
-    "dateUpdated":["2015-11-03T08:43:20.461Z"],
-    "_version_":1516807337240690688},
+    "dateUpdated":["2015-11-03T08:43:20.461Z"]},
   {
     "name":"MITK 3M3 Image Analysis",
     "logo":"",
@@ -4711,8 +4546,7 @@
     "source":"User Submission",
     "id":"5595",
     "dateCreated":["2015-11-03T08:38:30.017Z"],
-    "dateUpdated":["2015-11-03T08:38:30.017Z"],
-    "_version_":1516807032687034368},
+    "dateUpdated":["2015-11-03T08:38:30.017Z"]},
   {
     "name":"VVNT: Volume Visualization",
     "logo":"",
@@ -4736,8 +4570,7 @@
     "source":"User Submission",
     "id":"5594",
     "dateCreated":["2015-11-03T08:37:20.193Z"],
-    "dateUpdated":["2015-11-03T08:37:20.193Z"],
-    "_version_":1516806959471263744},
+    "dateUpdated":["2015-11-03T08:37:20.193Z"]},
   {
     "name":"Orpalis Dicom Viewer",
     "logo":"",
@@ -4761,8 +4594,7 @@
     "source":"User Submission",
     "id":"5601",
     "dateCreated":["2015-11-03T08:47:49.545Z"],
-    "dateUpdated":["2015-11-03T08:47:49.545Z"],
-    "_version_":1516807619394666496},
+    "dateUpdated":["2015-11-03T08:47:49.545Z"]},
   {
     "name":"Santesoft DICOM Viewer 3D",
     "logo":"",
@@ -4786,8 +4618,7 @@
     "source":"User Submission",
     "id":"5600",
     "dateCreated":["2015-11-03T08:46:54.44Z"],
-    "dateUpdated":["2015-11-03T08:46:54.44Z"],
-    "_version_":1516807561614983168},
+    "dateUpdated":["2015-11-03T08:46:54.44Z"]},
   {
     "name":"dicom3tools",
     "logo":"",
@@ -4816,8 +4647,7 @@
     "source":"User Submission",
     "id":"5603",
     "dateCreated":["2015-11-03T08:51:11.089Z"],
-    "dateUpdated":["2015-11-03T08:51:11.089Z"],
-    "_version_":1516807830729916416},
+    "dateUpdated":["2015-11-03T08:51:11.089Z"]},
   {
     "name":"ImLib3D",
     "logo":"",
@@ -4846,8 +4676,7 @@
     "source":"User Submission",
     "id":"5605",
     "dateCreated":["2015-11-03T08:53:56.165Z"],
-    "dateUpdated":["2015-11-03T08:53:56.165Z"],
-    "_version_":1516808003823599616},
+    "dateUpdated":["2015-11-03T08:53:56.165Z"]},
   {
     "name":"PSEA-Quant",
     "logo":"",
@@ -4875,8 +4704,7 @@
     "source":"User Submission",
     "id":"5608",
     "dateCreated":["2015-11-03T21:27:18.013Z"],
-    "dateUpdated":["2015-11-03T21:27:18.013Z"],
-    "_version_":1516855401398665216},
+    "dateUpdated":["2015-11-03T21:27:18.013Z"]},
   {
     "name":"kradview",
     "logo":"",
@@ -4904,8 +4732,7 @@
     "source":"User Submission",
     "id":"5606",
     "dateCreated":["2015-11-03T08:55:03.718Z"],
-    "dateUpdated":["2015-11-03T08:55:03.718Z"],
-    "_version_":1516808074658054144},
+    "dateUpdated":["2015-11-03T08:55:03.718Z"]},
   {
     "name":"BRAINS",
     "logo":"",
@@ -4932,8 +4759,7 @@
     "source":"User Submission",
     "id":"5604",
     "dateCreated":["2015-11-03T08:52:43.15Z"],
-    "dateUpdated":["2015-11-03T08:52:43.15Z"],
-    "_version_":1516807927261822976},
+    "dateUpdated":["2015-11-03T08:52:43.15Z"]},
   {
     "name":"BioGPS",
     "logo":"",
@@ -4964,8 +4790,7 @@
     "source":"User Submission",
     "id":"5610",
     "dateCreated":["2015-11-05T23:46:11.956Z"],
-    "dateUpdated":["2015-11-05T23:46:11.956Z"],
-    "_version_":1517045334106177536},
+    "dateUpdated":["2015-11-05T23:46:11.956Z"]},
   {
     "name":"Navegatium DICOM Viewer",
     "logo":"",
@@ -4989,8 +4814,7 @@
     "source":"User Submission",
     "id":"5602",
     "dateCreated":["2015-11-03T08:49:54.545Z"],
-    "dateUpdated":["2015-11-03T08:49:54.545Z"],
-    "_version_":1516807750468763648},
+    "dateUpdated":["2015-11-03T08:49:54.545Z"]},
   {
     "name":"Lipsia",
     "logo":"",
@@ -5017,8 +4841,7 @@
     "source":"User Submission",
     "id":"5607",
     "dateCreated":["2015-11-03T08:56:07.679Z"],
-    "dateUpdated":["2015-11-03T08:56:07.679Z"],
-    "_version_":1516808141728120832},
+    "dateUpdated":["2015-11-03T08:56:07.679Z"]},
   {
     "name":"Knowledge.Bio",
     "logo":"",
@@ -5039,8 +4862,7 @@
     "source":"User Submission",
     "id":"5609",
     "dateCreated":["2015-11-03T21:35:47.293Z"],
-    "dateUpdated":["2015-11-03T21:35:47.293Z"],
-    "_version_":1516855935417450496},
+    "dateUpdated":["2015-11-03T21:35:47.293Z"]},
   {
     "name":"Mark2Cure",
     "logo":"https://mark2cure.org/static/images/landing/mark2cure-flatbox-logo-white.png",
@@ -5071,8 +4893,7 @@
     "source":"User Submission",
     "id":"5611",
     "dateCreated":["2015-11-05T23:54:12.158Z"],
-    "dateUpdated":["2015-11-05T23:54:12.158Z"],
-    "_version_":1517045837630275584},
+    "dateUpdated":["2015-11-05T23:54:12.158Z"]},
   {
     "name":"Big Data Dashboard",
     "logo":"",
@@ -5109,8 +4930,7 @@
     "source":"User Submission",
     "id":"5612",
     "dateCreated":["2015-11-06T00:39:39.847Z"],
-    "dateUpdated":["2015-11-06T00:39:39.847Z"],
-    "_version_":1517048697819496448},
+    "dateUpdated":["2015-11-06T00:39:39.847Z"]},
   {
     "name":"DeepDive",
     "logo":"http://deepdive.stanford.edu/images/header_logo.png",
@@ -5140,8 +4960,7 @@
     "source":"User Submission",
     "id":"5613",
     "dateCreated":["2015-11-06T00:58:36.783Z"],
-    "dateUpdated":["2015-11-06T00:58:36.783Z"],
-    "_version_":1517049889984348160},
+    "dateUpdated":["2015-11-06T00:58:36.783Z"]},
   {
     "name":"OpenSim",
     "logo":"https://simtk.org/templates/xml/images/logo_simtk.gif",
@@ -5166,8 +4985,7 @@
     "source":"User Submission",
     "id":"5614",
     "dateCreated":["2015-11-06T01:45:03.967Z"],
-    "dateUpdated":["2015-11-06T01:45:03.967Z"],
-    "_version_":1517052812557549568},
+    "dateUpdated":["2015-11-06T01:45:03.967Z"]},
   {
     "name":"SNAP",
     "logo":"http://snap.stanford.edu/images/snap_logo.png",
@@ -5190,8 +5008,7 @@
     "source":"User Submission",
     "id":"5615",
     "dateCreated":["2015-11-06T03:06:24.361Z"],
-    "dateUpdated":["2015-11-06T03:06:24.361Z"],
-    "_version_":1517057930021568512},
+    "dateUpdated":["2015-11-06T03:06:24.361Z"]},
   {
     "name":"Cerebral Cortex",
     "logo":"https://md2k.org/software/",
@@ -5211,8 +5028,7 @@
     "source":"User Submission",
     "id":"5616",
     "dateCreated":["2015-11-06T22:15:15.025Z"],
-    "dateUpdated":["2015-11-06T22:15:15.025Z"],
-    "_version_":1517130209061502976},
+    "dateUpdated":["2015-11-06T22:15:15.025Z"]},
   {
     "name":"Infobox Editor (IBE)",
     "logo":"",
@@ -5250,5 +5066,4 @@
     "owners":["gaoshi@cs.ucla.edu"],
     "id":"5491",
     "source":"User Submission",
-    "dateUpdated":["2015-11-09T21:46:03.065Z"],
-    "_version_":1517400162910076928}]
+    "dateUpdated":["2015-11-09T21:46:03.065Z"]}]
