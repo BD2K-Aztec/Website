@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <l
+    ink href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/css/cover.css" rel="stylesheet">
     <script src="/public/js/jquery-2.1.4.js"></script>
@@ -55,7 +56,7 @@
                     </table>
                     </h1>
                     <br><br>
-                    <p class="lead" style="clear:both; font-weight:600">Search Resources by Name, DOI, Description, Tags, or Authors.</p>
+                    <p class="lead" id="searchkey" >Search Resources by Name, DOI, Description, Tags, or Authors.</p>
                     <form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">
                         <div align="middle" class="input-group add-on form-group">
                             <!--col-sm-10 col-sm-offset-1-->
@@ -66,7 +67,7 @@
                         </div>
                         <input type="hidden" id="sendJson" name="input">
                     </form>
-                    <p class="lead" style="">Thoroughly tested on Google Chrome.</p>
+                    <p class="lead" id="tested-GC">Thoroughly tested on Google Chrome.</p>
                 </div>
             </div>
           

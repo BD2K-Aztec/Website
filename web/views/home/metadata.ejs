@@ -16,7 +16,7 @@
 
 </head>
 
-<body style="font-family: 'Open Sans', sans-serif; background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+<body style="font-family: 'Open Sans', sans-serif; background-image: linear-gradient(#FFFFFF 0px, #BBD2DB 400%);">
 <div class="row" style="padding-bottom: 4em">
   <%- include ../shared/header.ejs %>
 </div>
@@ -26,10 +26,10 @@
   </div>
   <div class="col-md-8 ">
     <div class="text-left">
-      <h1 id="title" style="color:white"> <img border="0" src="/public/images/bd2k.png" width="200" style="margin-bottom:30px">&nbsp;&nbsp;&nbsp;&nbsp;Metadata </h1>
+      <h1 id="title" style="color:black"> <img border="0" src="/public/images/bd2k.png" width="200" style="margin-bottom:30px">&nbsp;&nbsp;&nbsp;&nbsp;Metadata </h1>
 
       <table class="TFtable">
-        <tr><td align="center"><b><i>Field</i></b></td><td align="center"><b><i>Data Type</i></b></td><td align="center"><b><i>Required?</i></b></td><td align="center"><b><i>Example</i></b></td></tr>
+        <tr><td align="center" id ="table-head">Field</td><td align="center" id ="table-head">Data Type</td><td align="center" id ="table-head">Required?</td><td align="center" id ="table-head">Example</td></tr>
         <tr><td align="left">Resource Name</td><td align="left">Text</td><td align="left">Yes</td><td align="left">ProSequencer</td></tr>
         <tr><td align="left">Accession number</td><td align="left">Integer with 'AZ' prefix</td><td align="left">Yes</td><td align="left">AZ78549</td></tr>
         <tr><td align="left">Tool DOI</td><td align="left">DOI</td><td align="left">No</td><td align="left">10.5281/zenodo.22715</td></tr>
