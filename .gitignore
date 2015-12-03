@@ -9,3 +9,4 @@ public_holder
 web/debug/
 archive/
 web/node_modules
+*.csr

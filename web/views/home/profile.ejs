@@ -2,9 +2,29 @@
 <!doctype html>
 <html>
 <head>
+<<<<<<< HEAD
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+=======
+    <title>Profile</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link href="/public/css/bd2k.css" rel="stylesheet">
+
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/info.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+
+
+>>>>>>> aefdac2380fd884c15941b70698086208bdb91a4
     <style>
         html{
             min-height:100%;/* make sure it is at least as tall as the viewport */
@@ -12,16 +32,14 @@
         }
         body{
             height:100%; /* force the BODY element to match the height of the HTML element */
-            padding-top:80px;
             word-wrap:break-word;
         }
         #back-container{
-            position:absolute;
+
             top:0;
             bottom:0;
             left:0;
             right:0;
-            overflow:hidden;
             z-index:-1; /* Remove this line if it's not going to be a background! */
         }
     </style>
@@ -29,15 +47,89 @@
 </head>
 <body style="font-family: 'Open Sans', sans-serif;">
 <%- include ../shared/header.ejs %>
+<<<<<<< HEAD
 <div id="back-container" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
     <div class="container" style="padding: 80px">
 
+=======
+<div id="container" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+    <div class="container" style="padding: 80px; background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+>>>>>>> aefdac2380fd884c15941b70698086208bdb91a4
         <div class="page-header text-center">
             <h1><span class="fa fa-anchor"></span> Profile Page</h1>
             <a href="/logout" class="btn btn-default btn-sm">Logout</a>
         </div>
 
         <div class="row">
+<<<<<<< HEAD
+=======
+            <div class="well">
+                <h3><span class="fa fa-object-group"></span> User Created Resources</h3>
+                <% for(var i = 0; i < resources.length; i ++) { %>
+                <div class="row vertical-align">
+                    <div class="col-sm-9">
+
+                        <div class="row">
+                            <div class="col-lg-12" style="background:<% if(i % 2 === 0) { %>#E8E8E8 <%} else{%> whitesmoke <%}%>">
+                                <% if(resources[i].name) { %>
+                                <div class="row" style="padding-top:10px">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                    <span class="icon-stack">
+                                         <i class="icon-sign-blank icon-stack-base" style="color:
+                                         <% if(resources[i].types) { firstLetter = resources[i].types[0].charAt(0) %>
+                                         <% if(firstLetter==="T"){ %>
+                                                 rgb(135, 172, 235)
+                                         <%} else if(firstLetter==="W"){%>
+                                                 rgb(135, 206, 235)
+                                         <%} else if(firstLetter==="D"){%>
+                                                 rgb(135, 139, 235)
+                                         <%} else {%>
+                                                 rgb(164, 135, 235)
+                                         <%}%>
+                                                 "></i>
+                                         <span class="icon-fixed-width icon-light char-overlay" style="padding:0px;font-weight:600""><%= firstLetter %></span>
+                                        </span>
+                                        <% } %>
+                                        <span><a href="/tool/show?id=<%= resources[i].id%>"><%= resources[i].name %></a></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].description) { %>
+                                <div class="row" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Description: </b><%= resources[i].description %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].authors) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Author: </b><%= resources[i].authors.join(", ") %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].sourceCodeURL) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Source Code URL: </b><%= resources[i].sourceCodeURL %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].language) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Language: </b><%= resources[i].language %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% if(resources[i].source) { %>
+                                <div class="row">
+                                    <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <span><b>Source: </b><%= resources[i].source %></span>
+                                    </div>
+                                </div>
+                                <% } %>
+>>>>>>> aefdac2380fd884c15941b70698086208bdb91a4
 
             <!-- LOCAL INFORMATION -->
             <div class="col-sm-6">
@@ -55,6 +147,7 @@
 
         </div>
     </div>
+    <%- include ../shared/footer.ejs %>
 </div>
 </body>
 </html>
