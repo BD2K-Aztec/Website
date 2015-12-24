@@ -8,14 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-=======
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <l
-    ink href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
->>>>>>> aefdac2380fd884c15941b70698086208bdb91a4
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/css/cover.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -28,7 +21,6 @@
     <script src="/public/js/d3.min.js"></script>
     <script src="/public/js/pieCharts.js"></script>
     <script src="/public/js/bubbles.js"></script>
-    <%- include ../shared/analytics.ejs%>
     <script>
         BD2K.ready(function(){
             pie_charts_repos_omics();
@@ -61,7 +53,7 @@
                     </table>
                     </h1>
                     <br><br>
-                    <p class="lead" id="searchkey" >Search Resources by Name, DOI, Description, Tags, or Authors.</p>
+                    <p class="lead" style="clear:both; font-weight:600">Search Resources by Name, DOI, Description, Tags, or Authors.</p>
                     <form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">
                         <div align="middle" class="input-group add-on form-group">
                             <!--col-sm-10 col-sm-offset-1-->
@@ -72,10 +64,6 @@
                         </div>
                         <input type="hidden" id="sendJson" name="input">
                     </form>
-<<<<<<< HEAD
-=======
-                    <p class="lead" id="tested-GC">Thoroughly tested on Google Chrome.</p>
->>>>>>> aefdac2380fd884c15941b70698086208bdb91a4
                 </div>
             </div>
           
@@ -112,7 +100,7 @@
                 </div>
                 <blockquote>
                     <p id="statisticsBox" style="margin:8px" align="left">
-                        5838 <b>resources</b> <br><br>
+                        5431 <b>resources</b> <br><br>
                         on 48 <b>platforms</b> <br><br>
                         in 7 <b>domains</b><br><br>
                         with 2242 <b>tags</b><br><br>

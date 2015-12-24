@@ -43,9 +43,9 @@ function Info(resource, neo4j) {
         $("#name").html(typeStr + '<span style="margin-left:15px; font-weight:600; font-style:bold">' + resource.name + '</span>');
         $("[data-icon]").html(typeStr + '<span style="margin-left:15px; font-weight:600; font-style:bold">' + resource.name[0] + '</span>');
 
-        if(resource.editable){
+        //if(resource.editable){
             $("#name").html($("#name").html() + '&nbsp; &nbsp; <a href="/tool/edit?id=' + resource.id + '" class="btn btn-info" role="button">Edit Resource</a>') //change: put in if block
-        }
+        //}
     }
     if (resource.description) {
         acc += createAcc("Description", resource.description);
@@ -155,12 +155,6 @@ function Info(resource, neo4j) {
         tagsHtml += '</div></div>';
         //$("#tag").html('<b>Tags: </b><span>' + tagsHtml + '</span>');
         acc += createAcc("Tags", tagsHtml);
-    }
-    if(resource.dateCreated){
-        acc += createAcc("Date Created", new Date(resource.dateCreated).toLocaleDateString());
-    }
-    if(resource.dateUpdated){
-        acc += createAcc("Date Updated", new Date(resource.dateUpdated).toLocaleDateString());
     }
 
     var svgElement = document.getElementsByTagName("svg");

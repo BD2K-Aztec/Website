@@ -5,7 +5,6 @@ var ToolController = require('./controllers/tool-controller.js');
 
 module.exports = function(app, passport) {
 
-<<<<<<< HEAD
     app.get('/', HomeController.index);
     app.get('/home/index', HomeController.index);
     app.get('/home/overview', HomeController.overview);
@@ -15,21 +14,6 @@ module.exports = function(app, passport) {
     app.get('/home/authenticate', HomeController.authenticate);
     app.get('/home/success', HomeController.success);
     app.get('/home/failure', HomeController.failure);
-=======
-    app.get('/', getLoginInformation, HomeController.index);
-    app.get('/home/index', getLoginInformation, HomeController.index);
-    app.get('/home/overview', getLoginInformation, HomeController.overview);
-    app.get('/home/metadata', getLoginInformation, HomeController.metadata);
-    app.get('/home/technologies', getLoginInformation, HomeController.technologies);
-    app.get('/home/sources', getLoginInformation, HomeController.sources);
-    app.get('/home/authenticate', getLoginInformation, HomeController.authenticate);
-    app.get('/home/recover', getLoginInformation, HomeController.recover);
-    app.post('/home/sendPassword', getLoginInformation, HomeController.sendPassword);
-    app.get('/home/resetPassword', getLoginInformation, HomeController.resetPasswordGet);
-    app.post('/home/resetPassword', getLoginInformation, HomeController.resetPasswordPost);
-    app.get('/home/success', getLoginInformation, HomeController.success);
-    app.get('/home/failure', getLoginInformation, HomeController.failure);
->>>>>>> aefdac2380fd884c15941b70698086208bdb91a4
 
     app.get('/resource/raw', ResourceController.raw);
     app.get('/resource/advanced', ResourceController.advanced);

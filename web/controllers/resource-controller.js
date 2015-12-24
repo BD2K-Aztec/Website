@@ -4,7 +4,6 @@ var Biojs = require('../models/resource/biojs.js');
 var Elixir = require('../models/resource/elixir.js');
 var Bioconductor = require('../models/resource/bioconductor.js');
 var Biocatalogue = require('../models/resource/biocatalogue.js');
-var Cytoscape = require('../models/resource/cytoscape.js');
 var Galaxy = require('../models/resource/galaxy.js');
 var Resource = require('../models/resource.js');
 var Search = require('../models/search.js');
@@ -77,7 +76,6 @@ ResourceController.prototype._raw = function (self,req,res){
     source = sourceStr == "bioconductor" ? new Bioconductor() : source;
     source = sourceStr == "biocatalogue" ? new Biocatalogue() : source;
     source = sourceStr == "galaxy" ? new Galaxy() : source;
-    source = sourceStr == "cytoscape" ? new Cytoscape() : source;
 
     source.load(function(i){res.render("resource/raw", i);});
 };

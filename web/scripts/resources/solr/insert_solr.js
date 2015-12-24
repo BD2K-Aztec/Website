@@ -15,10 +15,8 @@ var bioconductor = require('../../../scripts/resources/solr/bioconductor.json');
 var biojs = require('../../../scripts/resources/solr/biojs.json');
 var elixir = require('../../../scripts/resources/solr/elixir.json');
 var galaxy = require('../../../scripts/resources/solr/galaxy.json');
-var cytoscape = require('../../../scripts/resources/solr/cytoscape.json');
-var user = require('../../../scripts/resources/solr/user.json');
 
-var insert_all = biocatalogue.concat(bioconductor).concat(biojs).concat(elixir).concat(galaxy).concat(cytoscape).concat(user);
+var insert_all = biocatalogue.concat(bioconductor).concat(biojs).concat(elixir).concat(galaxy);
 
 count = 0;
 finalMax = 0;
