@@ -6,6 +6,8 @@ var ToolController = require('./controllers/tool-controller.js');
 module.exports = function(app, passport) {
 
     app.get('/', HomeController.index);
+    app.get('/:id', ToolController.idRoute);
+
     app.get('/home/index', HomeController.index);
     app.get('/home/overview', HomeController.overview);
     app.get('/home/metadata', HomeController.metadata);

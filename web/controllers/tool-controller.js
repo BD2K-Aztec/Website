@@ -15,6 +15,7 @@ function ToolController() {
     var self = this;
 
     this.show = function(req, res) { self._show(self, req, res) };
+    this.idRoute = function(req, res) { self._idRoute(self, req, res) };
     this.create = function(req, res) { self._create(self, req, res) };
     this.filters = function(req, res) { self._filters(self, req, res); };
     this.edit = function(req, res) { self._edit(self, req, res); };
@@ -74,6 +75,27 @@ ToolController.prototype._show = function (self,req,res){
 
         res.render("tool/show", i);
     });
+};
+
+//--- idRoute -----------------------------------------------------------------------
+ToolController.prototype._idRoute = function (self,req,res){
+    if(req.params.id){
+        console.log(req.params.id);
+
+        var info = new ToolInfoViewModel(req.params.id.substring(2));
+
+        info.load(function(i){
+
+            i.resource.editable = false;
+            if(req.isAuthenticated() && (i.resource.owners || req.user.isAdmin)){
+                if(req.user.isAdmin || i.resource.owners.indexOf(req.user.email) > -1){
+                    i.resource.editable = true;
+                }
+            }
+
+            res.render("tool/show", i);
+        });
+    }
 };
 
 //---------------------------------------------------------------------------------
