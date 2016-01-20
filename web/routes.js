@@ -5,17 +5,20 @@ var ToolController = require('./controllers/tool-controller.js');
 
 module.exports = function(app, passport) {
 
-    app.get('/', HomeController.index);
-    app.get('/:id', ToolController.idRoute);
-
-    app.get('/home/index', HomeController.index);
-    app.get('/home/overview', HomeController.overview);
-    app.get('/home/metadata', HomeController.metadata);
-    app.get('/home/technologies', HomeController.technologies);
-    app.get('/home/sources', HomeController.sources);
-    app.get('/home/authenticate', HomeController.authenticate);
-    app.get('/home/success', HomeController.success);
-    app.get('/home/failure', HomeController.failure);
+    app.get('/', getLoginInformation, HomeController.index);
+    app.get('/:id', getLoginInformation, ToolController.idRoute);
+    app.get('/home/index', getLoginInformation, HomeController.index);
+    app.get('/home/overview', getLoginInformation, HomeController.overview);
+    app.get('/home/metadata', getLoginInformation, HomeController.metadata);
+    app.get('/home/technologies', getLoginInformation, HomeController.technologies);
+    app.get('/home/sources', getLoginInformation, HomeController.sources);
+    app.get('/home/authenticate', getLoginInformation, HomeController.authenticate);
+    app.get('/home/recover', getLoginInformation, HomeController.recover);
+    app.post('/home/sendPassword', getLoginInformation, HomeController.sendPassword);
+    app.get('/home/resetPassword', getLoginInformation, HomeController.resetPasswordGet);
+    app.post('/home/resetPassword', getLoginInformation, HomeController.resetPasswordPost);
+    app.get('/home/success', getLoginInformation, HomeController.success);
+    app.get('/home/failure', getLoginInformation, HomeController.failure);
 
     app.get('/resource/raw', ResourceController.raw);
     app.get('/resource/advanced', ResourceController.advanced);
@@ -25,10 +28,9 @@ module.exports = function(app, passport) {
     app.get('/resource/add', ResourceController.add);
 
     app.get('/tool/filters', ToolController.filters);
-    app.get('/tool/show', ToolController.show);
-    app.get('/tool/create', ToolController.create);
-    app.get('/tool/edit', ToolController.edit);
-
+    //app.get('/tool/show', getLoginInformation, ToolController.show);
+    app.get('/tool/create', getLoginInformation, ToolController.create);
+    app.get('/tool/edit', getLoginInformation, ToolController.edit);
 
     app.get('/home/password', HomeController.password);
     app.post('/home/password', passport.authenticate('local-password', {
