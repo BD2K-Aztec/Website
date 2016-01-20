@@ -4,6 +4,7 @@
 
 .navbar-default {
     background-color: rgb(245, 245, 245) !important;
+    font-weight: 200;
 }
 
 .navbar .navbar-brand {
@@ -20,8 +21,27 @@ nav.navbar-fixed-top {
     clear: both;
 }
 
+/*Overview Stuff*/
+#title{
+    color: black;
+    font-weight: 200;
+}
+
+/*clear:both; font-weight:600; color: white;
+*/
+#para1, #para2{
+    clear:both;
+    font-weight:100;
+    color: black;
+}
+
+
 #accordion{
     text-decoration: none;
+}
+
+#table-head{
+    font-size: 18px;
 }
 
 .TFtable{
@@ -31,19 +51,19 @@ nav.navbar-fixed-top {
 }
 .TFtable td{
     padding:4px;
-    border:#4e95f4 1px solid;
+    border: lightgray 1px solid;
     width:1%;
     white-space:nowrap;
 }
 /* provide some minimal visual accomodation for IE8 and below */
 .TFtable tr{
-    background: #b8d1f3;
-}
+    /*    background: #b8d1f3;
+    */}
 /*  Define the background color for all the ODD background rows  */
 .TFtable tr:nth-child(odd){
     /*background: #b8d1f3;*/
-    background-image: linear-gradient(to bottom,#d6ebf2 0,#BBD2DB 100%);
-}
+    /*  background-image: linear-gradient(to bottom,#d6ebf2 0,#BBD2DB 100%);
+    */}
 /*  Define the background color for all the EVEN background rows  */
 .TFtable tr:nth-child(even){
     /*background: #dae5f4;*/
@@ -63,9 +83,9 @@ nav.navbar-fixed-top {
 
 /*html,*/
 /*body {*/
-    /*height: 100%;*/
-    /*/!*background-color: #333;*!/*/
-    /*/!*background-image: url(http://www.halland.com/wp-content/uploads/2013/11/biotechnology.jpg);*!/*/
+/*height: 100%;*/
+/*/!*background-color: #333;*!/*/
+/*/!*background-image: url(http://www.halland.com/wp-content/uploads/2013/11/biotechnology.jpg);*!/*/
 /*}*/
 body {
     color: #000;
@@ -222,8 +242,8 @@ body {
 
 /*html,body*/
 /*{*/
-    /*position: relative;*/
-    /*min-height: 100%;*/
+/*position: relative;*/
+/*min-height: 100%;*/
 /*}*/
 
 

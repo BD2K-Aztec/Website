@@ -5,10 +5,15 @@
     <title>Signup</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" type='text/css'>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+
     <style>
         html{
             min-height:100%;/* make sure it is at least as tall as the viewport */
-            position:relative;
         }
         body{
             height:100%; /* force the BODY element to match the height of the HTML element */
@@ -36,12 +41,12 @@
                 return false;
             }
             if(form.firstName.value == "") {
-                alert("Error: Email cannot be blank!");
+                alert("Error: First name cannot be blank!");
                 form.firstName.focus();
                 return false;
             }
             if(form.lastName.value == "") {
-                alert("Error: Email cannot be blank!");
+                alert("Error: Last name cannot be blank!");
                 form.lastName.focus();
                 return false;
             }

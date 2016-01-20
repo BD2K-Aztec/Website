@@ -15,12 +15,16 @@ BD2K.solr.delete("source", "biocatalogue", function(obj){
         BD2K.solr.delete("source", "biojs", function(obj){
             BD2K.solr.delete("source", "elixir", function(obj){
                 BD2K.solr.delete("source", "galaxy", function(obj){
-                    BD2K.solr.delete("id", "-1", function(obj){
-                        BD2K.solr.add({"id":-1,"name":"maxID","source":"hidden",description:1}, function(obj){
-
+                    BD2K.solr.delete("source", "cytoscape", function(obj){
+                        BD2K.solr.delete("source", "User Submission", function(obj){
+                            //BD2K.solr.delete("source", "galaxy", function(obj){
+                            BD2K.solr.delete("id", "-1", function(obj){
+                                BD2K.solr.add({"id":-1,"name":"maxID","source":"hidden",description:1}, function(obj){
+                                });
+                            });
+                            //});
                         });
                     });
-
                 });
             });
         });

@@ -1,5 +1,5 @@
 /*
- * Globals
+ * Globals : we use font-family: 'Open Sans', sans-serif;
  */
 
 /* Links */
@@ -11,6 +11,7 @@
 
 .navbar-default {
     background-color: rgb(245, 245, 245) !important;
+    font-weight: 200;
 }
 
 .navbar .navbar-brand {
@@ -21,34 +22,48 @@
     font-size: 15px !important;
 }
 
+/*malarkey text styling
+*/
+
+h1{
+    font-weight: 200;
+}
+
+#searchkey{
+    clear: both;
+    font-weight: 200;
+}
+#tested-GC{
+    font-size: small;
+}
+
 /* Custom default button */
 /*.btn-default,*/
 /*.btn-default:hover,*/
 /*.btn-default:focus {*/
-    /*color: #333;*/
-    /*text-shadow: none; /!* Prevent inheritence from `body` *!/*/
-    /*background-color: #fff;*/
-    /*border: 1px solid #fff;*/
+/*color: #333;*/
+/*text-shadow: none; /!* Prevent inheritence from `body` *!/*/
+/*background-color: #fff;*/
+/*border: 1px solid #fff;*/
 /*}*/
 
 
 /*#login-btn*/
 /*{*/
-    /*background-image: none;*/
-    /*padding: 23px; */
-    /*color: #777; */
-    /*z-index: +10; */
-    /*padding-top: 10px; */
-    /*position: relative;*/
-    /*top:16px;*/
-    /*left:80px;*/
-    /*visibility: visible !important;*/
+/*background-image: none;*/
+/*padding: 23px; */
+/*color: #777; */
+/*z-index: +10; */
+/*padding-top: 10px; */
+/*position: relative;*/
+/*top:16px;*/
+/*left:80px;*/
+/*visibility: visible !important;*/
 /*}*/
 #home-index .btn-default {
-background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%) !important;
-border: 0 !important; border-bottom-left-radius: 0 !important;; border-top-left-radius: 0 !important;
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%) !important;
+    border: 0 !important; border-bottom-left-radius: 0 !important;; border-top-left-radius: 0 !important;
 }
-
 
 
 .myDiv {
@@ -115,6 +130,21 @@ border: 0 !important; border-bottom-left-radius: 0 !important;; border-top-left-
 
 .hero-feature {
     margin-bottom: 30px;
+}
+/*Carousel styling*/
+.right.carousel-control, .left.carousel-control {
+    opacity: 0;
+    filter:alpha(opacity=0); /* IE support */
+}
+.btn-primary{
+    color: white;
+    text-transform: uppercase;
+    background-color: #bbd2db;
+    border-color: transparent;
+    font-weight: 200;
+}
+.carousel-caption{
+    font-weight: 200;
 }
 /*
  * Base structure

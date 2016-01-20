@@ -15,10 +15,10 @@ function ToolController() {
     var self = this;
 
     this.show = function(req, res) { self._show(self, req, res) };
-    this.idRoute = function(req, res) { self._idRoute(self, req, res) };
     this.create = function(req, res) { self._create(self, req, res) };
     this.filters = function(req, res) { self._filters(self, req, res); };
     this.edit = function(req, res) { self._edit(self, req, res); };
+    this.idRoute = function(req, res) { self._idRoute(self, req, res); };
 }
 
 //--- filters ------------------------------------------------------------------
@@ -33,7 +33,10 @@ ToolController.prototype._create = function (self, req, res){
     tool.load(function(i){
         if(req.isAuthenticated()) {
             i.email = req.user.email;
-            res.render("tool/create", i);
+            res.render("tool/create", BD2K.extend(i, {
+                loggedIn: req.loggedIn,
+                user: req.user
+            }));
         }
         else{
             i.email = "admin"; //change
@@ -46,16 +49,25 @@ ToolController.prototype._create = function (self, req, res){
 ToolController.prototype._edit = function (self, req, res){
     var tool = new EditViewModel(req.query.id);
     tool.load(function(i){
-        if(req.isAuthenticated() && (i.owners || req.user.isAdmin)){
-            if(req.user.isAdmin || i.resource.owners.indexOf(req.user.email) > -1){
+        if(req.isAuthenticated() && (i.preset.owners || req.user.isAdmin)){
+            if(req.user.isAdmin || i.preset.owners.indexOf(req.user.email) > -1){
                 i.email = req.user.email;
-                res.render("tool/create", i);
+                res.render("tool/create", BD2K.extend(i, {
+                    loggedIn: req.loggedIn,
+                    user: req.user
+                }));
+            }
+            else{
+                res.render("tool/unedtiable", i);
             }
         }
         else {
-            //res.render("tool/uneditable", i);
-            i.email = "admin"; //change
-            res.render("tool/create", i); //change to failure page later
+            res.render("tool/uneditable", i);
+            //i.email = "admin"; //change
+            //res.render("tool/create", BD2K.extend(i, {
+            //    loggedIn: req.loggedIn,
+            //    user: req.user
+            //})); //change to failure page later
         }
     });
 };
@@ -73,9 +85,13 @@ ToolController.prototype._show = function (self,req,res){
             }
         }
 
-        res.render("tool/show", i);
+        res.render("tool/show", BD2K.extend(i, {
+            loggedIn: req.loggedIn,
+            user: req.user
+        }));
     });
 };
+
 
 //--- idRoute -----------------------------------------------------------------------
 ToolController.prototype._idRoute = function (self,req,res){
@@ -93,7 +109,10 @@ ToolController.prototype._idRoute = function (self,req,res){
                 }
             }
 
-            res.render("tool/show", i);
+            res.render("tool/show", BD2K.extend(i, {
+                loggedIn: req.loggedIn,
+                user: req.user
+            }));
         });
     }
 };
