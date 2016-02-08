@@ -98,7 +98,18 @@ ToolController.prototype._idRoute = function (self,req,res){
     if(req.params.id){
         console.log(req.params.id);
 
-        var info = new ToolInfoViewModel(req.params.id.substring(2));
+        if(req.params.id.substring(0,2) != 'AZ') {
+            res.redirect('/home/failure');
+            return false;
+        }
+
+        if(req.params.id.substring(2).length != 7){
+            var newId = ("0000000" + req.params.id.substring(2)).slice(-7);
+            res.redirect('/AZ' + newId)
+        }
+
+        var id = parseInt(req.params.id.substring(2), 10);
+        var info = new ToolInfoViewModel(id);
 
         info.load(function(i){
 
@@ -114,6 +125,9 @@ ToolController.prototype._idRoute = function (self,req,res){
                 user: req.user
             }));
         });
+    }
+    else{
+        res.redirect('/home/failure');
     }
 };
 
