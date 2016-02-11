@@ -147,6 +147,16 @@
    <field name="owners" type="standard" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="dateCreated" type="date" indexed="true" stored="true" required="false" multiValued="true" /> 
    <field name="dateUpdated" type="date" indexed="true" stored="true" required="false" multiValued="true" /> 
+   
+   <copyField source="name" dest="suggestName"/>
+   <copyField source="name" dest="suggestNamePrefix"/>
+   <field name="suggestName" type="text_suggest" indexed="true" stored="true" required="false" multiValued="false" /> 
+   <field name="suggestNamePrefix" type="text_suggest_prefix" indexed="true" stored="true" required="false" multiValued="false" />
+   
+   <copyField source="tags" dest="suggestTag"/>
+   <copyField source="tags" dest="suggestTagPrefix"/>
+   <field name="suggestTag" type="text_suggest" indexed="true" stored="true" required="false" multiValued="true" /> 
+   <field name="suggestTagPrefix" type="text_suggest_prefix" indexed="true" stored="true" required="false" multiValued="true" />
    <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 
        EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)
@@ -190,7 +200,56 @@
 
    <dynamicField name="random_*" type="random" />
 
-   <!-- uncomment the following to ignore any fields that don't already match an existing 
+   
+   <fieldType name="nametext" class="solr.TextField">
+	  <analyzer type="index">
+		<tokenizer class="solr.StandardTokenizerFactory"/>
+		<filter class="solr.LowerCaseFilterFactory"/>
+	
+	  </analyzer>
+	  <analyzer type="query">
+		<tokenizer class="solr.StandardTokenizerFactory"/>
+		<filter class="solr.LowerCaseFilterFactory"/>
+	  </analyzer>
+	</fieldType>
+	
+	 <!-- text_suggest : Matches whole terms in the suggest text  -->
+    <fieldType name="text_suggest" class="solr.TextField">
+      <analyzer type="index">
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.NGramFilterFactory" maxGramSize="50" minGramSize="1"/>
+		<filter class="solr.PatternReplaceFilterFactory" pattern=" " replacement="zzzzzzz" replace="all"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+		<filter class="solr.PatternReplaceFilterFactory" pattern=" " replacement="zzzzzzz" replace="all"/>
+      </analyzer>
+    </fieldType>
+	
+	<fieldType name="text_suggest_prefix" class="solr.TextField">
+      <analyzer type="index">
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="([\.,;:-_])" replacement=" " replace="all"/>
+        <filter class="solr.EdgeNGramFilterFactory" maxGramSize="50" minGramSize="1"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="([^\w\d\*æøåÆØÅ ])" replacement="" replace="all"/>
+		<filter class="solr.PatternReplaceFilterFactory" pattern=" " replacement="zzzzzzz" replace="all"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="([\.,;:-_])" replacement=" " replace="all"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="([^\w\d\*æøåÆØÅ ])" replacement="" replace="all"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="^(.{30})(.*)?" replacement="$1" replace="all"/>
+		<filter class="solr.PatternReplaceFilterFactory" pattern=" " replacement="zzzzzzz" replace="all"/>
+      </analyzer>
+    </fieldType>
+   
+   <!-- 
+   <filter class="solr.EdgeNGramFilterFactory" minGramSize="4" maxGramSize="5" />
+   uncomment the following to ignore any fields that don't already match an existing 
         field name or dynamic field, rather than reporting them as an error. 
         alternately, change the type="ignored" to some other type e.g. "text" if you want 
         unknown fields indexed and/or stored by default --> 
@@ -224,13 +283,15 @@
       -->
     <fieldType name="standard" class="solr.TextField">
       <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
+	  <filter class="solr.NGramFilterFactory" minGramSize="4" maxGramSize="5" />
+	  <filter class="solr.LowerCaseFilterFactory"/>
     </fieldType>
 
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
 
     <!-- boolean type: "true" or "false" -->
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
-
+	
     <!-- sortMissingLast and sortMissingFirst attributes are optional attributes are
          currently supported on types that are sorted internally as strings
          and on numeric types.
@@ -520,7 +581,6 @@
     <fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
-        <filter class="solr.LowerCaseFilterFactory" />
       </analyzer>
     </fieldType>
 

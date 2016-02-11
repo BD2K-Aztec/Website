@@ -434,10 +434,30 @@
       -->
      <lst name="defaults">
        <str name="echoParams">explicit</str>
-       <int name="rows">10</int>
+	   <str name="qf">text_suggest_prefix^70 text_suggest^50</str>
+       <int name="rows">30</int>
      </lst>
 
     </requestHandler>
+	
+	<requestHandler name="/suggestResource" class="solr.SearchHandler">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+	   <str name="qf">text_suggest_prefix^70 text_suggest^50</str>
+       <int name="rows">30</int>
+     </lst>
+
+    </requestHandler>
+	
+	<requestHandler name="/suggestTag" class="solr.SearchHandler">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+	   <str name="qf">text_suggest_prefix^70 text_suggest^50</str>
+       <int name="rows">30</int>
+     </lst>
+
+    </requestHandler>
+
 
   <!-- A request handler that returns indented JSON by default -->
   <requestHandler name="/query" class="solr.SearchHandler">
@@ -575,7 +595,7 @@
     </arr>
   </requestHandler>
 
-  <!-- Legacy config for the admin interface -->
+  <!-- Legacy config for the admin interface  http://localhost:8983/solr/B2DK/suggest?suggest.dictionary=mySuggester&suggest=true&suggest.build=true&suggest.q=Reac -->
   <admin>
     <defaultQuery>*:*</defaultQuery>
   </admin>
