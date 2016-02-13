@@ -15,6 +15,7 @@ function Search() {
     var self = this;
     this.save = function(callback) { return self._save(self, callback); };
     this.load = function(callback) { return self._load(self, callback); };
+    this.suggest = function(callback) { return self._suggest(self, callback); };
     this.toHash = function(i) {
         if(i > -1)
             console.log("i")
@@ -84,7 +85,22 @@ Search.prototype._insert = function (self, callback) {
     return search.uuid;
 };
 
-//---------------------------------------------------------------------------------
+//---suggest-----------------------------------------------------------------------------
+Search.prototype._suggest = function(self, callback) {
+    query = self.query;
+    console.log("models/search.js self._suggest query: " + JSON.stringify(self.query));
+    var fields = {}
+    //console.log( JSON.stringify(query["input"]searchFilters))
+    fields.name = query["searchFilters"]["resource"];
+    fields.searchType = query.searchFilters.searchType;
+    solr.search_suggest(fields, function(r){
+        var results = Resources.fromSolrSuggest(r, fields);
+        callback(results);
+    });
+}
+
+
+
 //---------------------------------------------------------------------------------
 
 module.exports = Search;

@@ -22,6 +22,7 @@ function ResourceController() {
     var self = this;
 
     this.search = function(req, res) { self._search(self, req, res) };
+    this.autocomplete = function(req,res) { self._autocomplete(self, req, res)};
     this.raw = function(req, res) { self._raw(self, req, res) };
     this.update = function(req, res) { self._update(self, req, res) };
     this.stat = function(req, res) { self._stat(self, req, res) };
@@ -116,6 +117,19 @@ ResourceController.prototype._search = function (self,req,res){
 
     var uuid = search.save(onSave);
 
+
+};
+
+ResourceController.prototype._autocomplete = function (self,req,res){
+    var search = new Search();
+    search.raw = req.query;
+
+    var query = req.query;
+    search.query = query;
+
+    search.suggest(function(i){
+        res.send(JSON.stringify(i));
+    });
 
 };
 

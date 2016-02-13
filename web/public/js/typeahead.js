@@ -1129,7 +1129,7 @@
                 input: {
                     position: "relative",
                     verticalAlign: "top",
-                    backgroundColor: "transparent"
+                    backgroundColor: "white"
                 },
                 inputWithNoHint: {
                     position: "relative",

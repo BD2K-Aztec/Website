@@ -95,6 +95,65 @@ Resources.fromSolr = function (results) {
     return resources;
 };
 
+Resources.fromSolrSuggest = function(results, fields) {
+    var resources = [];
+    console.log("Resources.fromSolr");
+
+    var split = fields.name.split("+")
+    var combine = ""
+    for(var i = 0; i < split.length; i++)
+    {
+        combine += split[i] + " "
+    }
+
+    fields.name = combine.trim()
+
+    if(fields.searchType == "resources") {
+        //console.log("results.response: " + JSON.stringify(results));
+        for (var i = 0; i < results.response.docs.length; i++) {
+            var doc = results.response.docs[i];
+
+            if (resources.indexOf(results.response.docs[i]["name"]) < 0) {
+                resources.push(results.response.docs[i]["name"]);
+            }
+        }
+    }
+
+    else if(fields.searchType == "tags")
+    {
+        tag_dict = {}
+        for (var i = 0; i < results.response.docs.length; i++) {
+            var doc = results.response.docs[i];
+            for(var j = 0; j < doc["tags"].length; j++)
+            {
+                tag_dict[doc["tags"][j]] = 1
+            }
+        }
+        for(key in tag_dict)
+        {
+            if(key.substring(0,fields.name.length).toUpperCase() == fields.name.toUpperCase() && tag_dict[key] == 1) {
+                resources.push(key)
+                tag_dict[key] = 0;
+            }
+        }
+        for(key in tag_dict)
+        {
+            for(var k = 0; k < key.length-fields.name.length+1; k++)
+            {
+                if(key.substring(k,k+fields.name.length).toUpperCase() == fields.name.toUpperCase() && tag_dict[key] == 1) {
+                    resources.push(key)
+                    tag_dict[key] = 0;
+                }
+            }
+
+        }
+    }
+
+    return resources;
+
+};
+
+
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
 

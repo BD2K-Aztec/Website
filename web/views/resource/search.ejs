@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/twitter-typeahead-search.css">
     <link href="/public/css/bd2k.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 
@@ -37,6 +38,92 @@
             var searchViewModel = new BD2K.Resource.SearchViewModel(options);
         });
     </script>
+
+    <script>
+        BD2K.ready(function() {
+
+
+            $('#autocomplete .form-control').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'resources',
+                        limit: 50,
+                        async: true,
+                        templates: {
+                            header: '<h3 class="header"><strong>Resources</strong></h3>'
+                        },
+                        source: function (query, processSync, processAsync) {
+                            query = query.split(" ");
+                            var new_query = "";
+                            for(var i = 0; i < query.length; i++) {
+                                if(query[i].length == 0)
+                                {
+                                    continue;
+                                }
+                                new_query += query[i];
+                                if(i < query.length-1)
+                                {
+                                    new_query += "+";
+                                }
+
+                            }
+                            console.log("new_query: " + new_query);
+                            json_query = {};
+                            json_query["searchFilters"] = {};
+                            json_query["searchFilters"]["resource"] = new_query;
+                            json_query["searchFilters"]["searchType"] = "resources"
+                            return $.ajax({
+                                url: "/resource/autocomplete",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    return processAsync(JSON.parse(data).slice(0,7));
+                                    // return data;
+                                }
+                            });
+                        }
+                    },
+                    {
+                        name: 'tags',
+                        limit: 50,
+                        async: true,
+                        templates: {
+                            header: '<h3 class="header"><strong>Tags</strong></h3>'
+                        },
+                        source: function (query, processSync, processAsync) {
+                            query = query.split(" ");
+                            var new_query = "";
+                            for(var i = 0; i < query.length; i++) {
+                                if(query[i].length == 0)
+                                {
+                                    continue;
+                                }
+                                new_query += query[i];
+                                if(i < query.length-1)
+                                {
+                                    new_query += "+";
+                                }
+                            }
+                            json_query = {};
+                            json_query["searchFilters"] = {};
+                            json_query["searchFilters"]["resource"] = new_query;
+                            json_query["searchFilters"]["searchType"] = "tags"
+                            return $.ajax({
+                                url: "/resource/autocomplete",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    return processAsync(JSON.parse(data).slice(0,3));
+                                }
+                            });
+                        }
+                    });
+
+        });
+    </script>
 </head>
 <body style="height:100%;font-family: 'Open Sans', sans-serif;">
 <div id="divMenu" class="row" style="position: relative; background-color: #BBD2DB">
@@ -49,12 +136,14 @@
             </div>
             <div class="col-lg-7 vcenter">
                 <div class="input-group" id="submitForm">
-                    <input type="text" class="form-control" id="query" <% if(!subsearch) { %> placeholder="Search" <% } else {%>placeholder="Subsearch"<% } %>>
-                        <span class="input-group-btn">
-                            <button id="searchButton" class="btn btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
+                    <div id="autocomplete">
+                        <input type="text" class="form-control" id="query" <% if(!subsearch) { %> placeholder="Search" <% } else {%>placeholder="Subsearch"<% } %>>
+                    </div>
+                    <span class="input-group-btn">
+                        <button id="searchButton" class="btn btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
                     <input type="hidden" id="sendJson" name="input">
                 </div>
             </div>

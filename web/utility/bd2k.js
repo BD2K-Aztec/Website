@@ -307,6 +307,57 @@ BD2K.solr.delete = function(field, value, handler, handlerOptions){
     });
 };
 
+//--- search_suggest ------------------------------------------------------------------------------
+BD2K.solr.search_suggest = function(fields, handler) {
+    var options = {};
+    options.core = "BD2K";
+    options.host = config.solrHost;
+    options.port = config.solrPort;
+    var client = solr.createClient(options);
+    //var query = client.createQuery()
+    //    .q(query_str)
+    //    //.qf()
+    //    //.edismax()
+    //    //.mm("0%100")
+    //    //.qop("OR")
+    //    .start(0)
+    //    .rows(30);
+    //client.search(query,function(err,obj){
+    //    if(err){
+    //        console.log("Search: " + err);
+    //    }else{
+    //        handler(obj);
+    //    }
+    //});
+
+    var query = "q="+fields.name;
+
+    if(fields.searchType == "tags") {
+        query_str = "q=suggestTag:\""+fields.name + "\""  + "+OR+" + "suggestTagPrefix:\""+fields.name+"\"";
+
+        client.get('suggestResource', query_str, function (err, obj) {
+            if (err) {
+                console.log("Search: " + err);
+            } else {
+                handler(obj);
+            }
+        });
+    }
+    if(fields.searchType != "tags")
+    {
+        query_str = "q=suggestName:\""+fields.name + "\""  + "+OR+" + "suggestNamePrefix:\""+fields.name+"\"";
+        client.get('suggestResource', query_str, function (err, obj) {
+            if (err) {
+                console.log("Search: " + err);
+            } else {
+                console.log("Search: ");
+                handler(obj);
+            }
+        });
+    }
+};
+
+
 //--- add ------------------------------------------------------------------------------
 BD2K.solr.add = function(doc, handler, handlerOptions){
     var options = {};

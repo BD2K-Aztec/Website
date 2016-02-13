@@ -12,8 +12,10 @@
     <link href="/public/css/sticky-footer.css" rel="stylesheet">
     <link href="/public/css/bd2k.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/public/css/twitter-typeahead-create.css">
     <script src="/public/viewmodels/resource/create-viewmodel.js"></script>
     <script src="/public/js/bd2k.js"></script>
+    <script src="/public/js/typeahead.js"></script>
 
     <script>
 
@@ -36,6 +38,82 @@
                     }
                 });
             });
+
+            $('#autocomplete_resources .typeahead').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'resources',
+                        limit: 100,
+                        async: true,
+                        source: function (query, processSync, processAsync) {
+                            query = query.split(" ");
+                            var new_query = "";
+                            for(var i = 0; i < query.length; i++) {
+                                if(query[i].length == 0)
+                                {
+                                    continue;
+                                }
+                                new_query += query[i];
+                                if(i < query.length-1)
+                                {
+                                    new_query += "+";
+                                }
+                            }
+                            json_query = {};
+                            json_query["searchFilters"] = {};
+                            json_query["searchFilters"]["resource"] = new_query;
+                            json_query["searchFilters"]["searchType"] = "resources"
+                            return $.ajax({
+                                url: "/resource/autocomplete",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    return processAsync(JSON.parse(data).slice(0,7));
+                                }
+                            });
+                        }
+                    });
+
+            $('#autocomplete_tags .typeahead').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'tags',
+                        limit: 100,
+                        async: true,
+                        source: function (query, processSync, processAsync) {
+                            query = query.split(" ");
+                            var new_query = "";
+                            for(var i = 0; i < query.length; i++) {
+                                if(query[i].length == 0)
+                                {
+                                    continue;
+                                }
+                                new_query += query[i];
+                                if(i < query.length-1)
+                                {
+                                    new_query += "+";
+                                }
+                            }
+                            json_query = {};
+                            json_query["searchFilters"] = {};
+                            json_query["searchFilters"]["resource"] = new_query;
+                            json_query["searchFilters"]["searchType"] = "tags"
+                            return $.ajax({
+                                url: "/resource/autocomplete",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    return processAsync(JSON.parse(data).slice(0,7));
+                                }
+                            });
+                        }
+                    });
         });
     </script>
 
@@ -125,13 +203,13 @@
                     <tr><td align="middle"><b>Output File Types</b></td><td></td></tr>
                     <tr><td>Output File Type<i data-content="Output file format." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="outputType" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="outputTypeButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Downstream Tools</b></td><td></td></tr>
-                    <tr><td>Downstream Tool<i data-content="Downstream resource (optional)." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="downstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="downstreamButton">Add</button></td></tr>
+                    <tr><td>Downstream Tool<i data-content="Downstream resource (optional)." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><div id="autocomplete_resources"><input style="width:100%" id="downstream" type="text" class="typeahead"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="downstreamButton">Add</button></div></td></tr>
                     <tr><td align="middle"><b>Upstream Tools</b></td><td></td></tr>
-                    <tr><td>Upstream Tool<i data-content="Upstream resource (optional)." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="upstream" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="upstreamButton">Add</button></td></tr>
+                    <tr><td>Upstream Tool<i data-content="Upstream resource (optional)." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><div id="autocomplete_resources"><input style="width:100%" id="upstream" type="text" class="typeahead"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="upstreamButton">Add</button></div></td></tr>
                     <tr><td align="middle"><b>Dependencies</b></td><td></td></tr>
                     <tr><td>Dependency<i data-content="Required packages for this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="dependency" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="dependencyButton">Add</button></td></tr>
                     <tr><td align="middle"><b>Tags</b></td><td></td></tr>
-                    <tr><td>Tag<i data-content="Descriptive keywords to facilitate the search of this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="tag" type="text" placeholder="e.g. RNA-seq"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="tagButton">Add</button></td></tr>
+                    <tr><td>Tag<i data-content="Descriptive keywords to facilitate the search of this resource." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><div id="autocomplete_tags"><input style="width:70%" id="tag" type="text" placeholder="e.g. RNA-seq" class="typeahead"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="tagButton">Add</button></div></td></tr>
                     <tr><td align="middle"><b>Maintainers</b></td><td></td></tr>
                     <tr><td>Maintainer<i data-content="The personnel who maintains the software." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="maintainer" type="text"/></td></tr>
                     <tr><td>Maintainer Email<i data-content="Contact email for the maintainer." style="float:right;font-size:20px" class="pop fa fa-question-circle" data-toggle="popover" data-placement="top"></i></td><td><input style="width:70%" id="maintainerEmail" type="text"/><button style="width:25%;float:right" type="button" class="btn btn-primary btn-sm" id="maintainerButton">Add</button></td></tr>

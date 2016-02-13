@@ -25,6 +25,13 @@
     <script src="/public/js/pieCharts.js"></script>
     <script src="/public/js/bubbles.js"></script>
     <%- include ../shared/analytics.ejs%>
+    <script src="/public/js/typeahead.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/public/css/twitter-typeahead-index.css">
     <script>
         BD2K.ready(function(){
             pie_charts_repos_omics();
@@ -33,7 +40,120 @@
             $("#liHome").addClass("active");
         });
     </script>
-    </head>
+
+    <script>
+        var suggestions = [];
+        BD2K.ready(function() {
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+
+                    // an array that will be populated with substring matches
+                    matches = [];
+
+                    // regex used to determine if a string contains the substring `q`
+                    substrRegex = new RegExp(q, 'i');
+
+                    // iterate through the pool of strings and for any string that
+                    // contains the substring `q`, add it to the `matches` array
+                    $.each(strs, function (i, str) {
+                        //  if (substrRegex.test(str)) {
+                        console.log("push: " + str);
+                        matches.push(str);
+                        //  }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            $('#autocomplete .input-lg').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'resources',
+                        limit: 50,
+                        async: true,
+                        templates: {
+                            header: '<h3 class="header"><strong>Resources</strong></h3>'
+                        },
+                        source: function (query, processSync, processAsync) {
+                            query = query.split(" ");
+                            new_query = "";
+                            for(var i = 0; i < query.length; i++){
+                                if(query[i].length == 0)
+                                {
+                                    continue;
+                                }
+                                new_query += query[i]
+                                if(i < query.length-1)
+                                {
+                                    new_query += "+";
+                                }
+                            }
+                            console.log("new_query: " + new_query);
+                            json_query = {};
+                            json_query["searchFilters"] = {};
+                            json_query["searchFilters"]["resource"] = new_query;
+                            json_query["searchFilters"]["searchType"] = "resources"
+                            return $.ajax({
+                                url: "/resource/autocomplete",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    console.log("data: " + data);
+                                    return processAsync(JSON.parse(data).slice(0,7));
+                                    // return data;
+                                }
+                            });
+                        }
+                    },
+                    {
+                        name: 'tags',
+                        limit: 50,
+                        async: true,
+                        templates: {
+                            header: '<h3 class="header"><strong>Tags</strong></h3>'
+                        },
+                        source: function (query, processSync, processAsync) {
+                            query = query.split(" ");
+                            new_query = "";
+                            for(var i = 0; i < query.length; i++){
+                                if(query[i].length == 0)
+                                {
+                                    continue;
+                                }
+                                new_query += query[i]
+                                if(i < query.length-1)
+                                {
+                                    new_query += "+";
+                                }
+                            }
+                            console.log("new_query: " + new_query);
+                            json_query = {};
+                            json_query["searchFilters"] = {};
+                            json_query["searchFilters"]["resource"] = new_query;
+                            json_query["searchFilters"]["searchType"] = "tags"
+                            return $.ajax({
+                                url: "/resource/autocomplete",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    console.log("data: " + data);
+                                    return processAsync(JSON.parse(data).slice(0,3));
+                                    // return data;
+                                }
+                            });
+                        }
+                    });
+
+        });
+
+    </script>
+
+</head>
 <body style="font-family: 'Open Sans', sans-serif;">
 <div class="visible-xs visible-sm" style="color:black;">
     Mobile Version Coming Soon...
@@ -59,15 +179,21 @@
                     <br><br>
                     <p class="lead" id="searchkey" >Search Resources by Name, DOI, Description, Tags, or Authors.</p>
                     <form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">
-                        <div align="middle" class="input-group add-on form-group">
+                        <div align="middle" class="input-group add-on form-group" style="margin:auto">
                             <!--col-sm-10 col-sm-offset-1-->
-                            <input type="text" class="form-control input-lg" placeholder="Search" style="color:black" id="query">
+                            <div id="autocomplete">
+                                <input type="text" class="form-control input-lg" placeholder="Search" style="color:black;position:relative;" id="query" autocomplete="off">
+                            </div>
                             <div class="input-group-btn">
                                 <button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                         <input type="hidden" id="sendJson" name="input">
                     </form>
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <div class="list-group" id="results"></div>
+                    </div>
+
                     <p class="lead" id="tested-GC">Thoroughly tested on Google Chrome.</p>
                 </div>
             </div>
