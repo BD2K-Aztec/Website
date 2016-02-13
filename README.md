@@ -24,6 +24,7 @@ docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
 * node_modules/forever/bin/forever start server.json
 * Direct browser to /resource/update
 * cd web and run: node scripts/insert_stats.js
+* run pip install --upgrade google-api-python-client
 
 ##How To:
 
