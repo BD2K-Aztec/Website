@@ -6,7 +6,7 @@ gapi.analytics.ready(function() {
      */
     gapi.analytics.auth.authorize({
         'serverAuth': {
-            'access_token': 'ya29.hwJqW0B5mwys1OEpxqaM7zcGsD7fnEdcRCDd2Uw--ZWQFUC9iNRWOh_IpCdYbq-VrYCj'
+            'access_token': 'ya29.hwJqW0B5mwys1OpxqaM7zcGsD7fnEdcRCDd2Uw--ZWQFUC9iNRWOh_IpCdYbq-VrYCj'
         }
     });
 

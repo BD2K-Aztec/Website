@@ -9,6 +9,7 @@ var User = require('../models/user.js');
 var BD2K = require('../utility/bd2k.js');
 var uuid = require('uuid');
 var nodemailer = require('nodemailer');
+var PythonShell = require('python-shell');
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
@@ -45,9 +46,17 @@ function HomeController() {
 
 //--- index -----------------------------------------------------------------------
 HomeController.prototype._index = function (self, req, res) {
-    res.render("home/index", {
-        loggedIn: req.loggedIn,
-        user: req.user
+
+    PythonShell.run('controllers/service-account.py', function (err, results) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        console.log('results: %j', results);
+
+        res.render("home/index", {
+            loggedIn: req.loggedIn,
+            user: req.user,
+            authorizationToken: results[0]
+        });
     });
 };
 

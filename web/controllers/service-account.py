@@ -5,7 +5,7 @@ from oauth2client.client import SignedJwtAssertionCredentials
 SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
 
 # the location of the keyfile that has the keydata
-KEY_FILEPATH = 'secret.json'
+KEY_FILEPATH = 'controllers/secret.json'
 
 # load the key file's private data
 with open(KEY_FILEPATH) as key_file:
