@@ -131,12 +131,54 @@ Resource.prototype._update = function (self, callback) {
         }
     });
 
+    var sourceQuery = client.createQuery()
+        .q("*")
+        .edismax()
+        .mm("0%25")
+        .groupBy("source")
+        .start(0)
+        .rows(1000);
+    client.search(sourceQuery,function(err,obj){
+        if(err){
+            console.log("solr" + err);
+        }else{
+            console.log(obj);
+
+            var stringify = [];
+            var minValue = 5;
+            for(var group in obj.grouped.source.groups){
+                if(obj.grouped.source.groups[group].groupValue !== null && obj.grouped.source.groups[group].doclist.numFound >= minValue){
+                    var name = "";
+                    if(obj.grouped.source.groups[group].groupValue == "submission"){
+                        name = "User Submission";
+                    }
+                    else{
+                        name = obj.grouped.source.groups[group].groupValue.charAt(0).toUpperCase() + obj.grouped.source.groups[group].groupValue.slice(1);
+                    }
+                    stringify.push({domain:{name:name, value:obj.grouped.source.groups[group].doclist.numFound}});
+                }
+            }
+
+            var stat = {};
+            stat.type = "sources";
+            stat.data = stringify;
+
+            var search = {};
+            search.type = "sources";
+
+            mongo.upsert("resource_stats", search, stat, function (err) {
+                self.sources = true;
+                self.onUpdate();
+            });
+        }
+    });
+
     self.onUpdate();
 };
 
 //--- onUpdate -----------------------------------------------------------------------------
 Resource.prototype._onUpdate = function(self){
-    if(BD2K.has([self.tags, self.platforms]))
+    if(BD2K.has([self.tags, self.platforms, self.sources]))
         self._crud.fire(self);
 };
 
