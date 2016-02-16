@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
 var https = require('https');
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 var morgan = require('morgan');
@@ -14,7 +14,7 @@ var config = require('./config/app.json');
 var favicon = require('serve-favicon');
 var fs = require('fs');
 
-//mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(configDB.url); // connect to our database
 
 //*********************************************************************************
 //  init

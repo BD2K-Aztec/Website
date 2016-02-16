@@ -5,6 +5,9 @@
 //---------------------------------------------------------------------------------
 //  SearchViewModel
 //
+
+//searchnig by time [2016-01-10T00:00:00Z TO 2016-01-12T23:59:59Z]
+
 BD2K.Resource.SearchViewModel = function(options){
     var self = this;
 
