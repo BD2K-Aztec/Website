@@ -1431,6 +1431,8 @@
                 areEquivalent = areQueriesEquivalent(val, this.query);
                 hasDifferentWhitespace = areEquivalent ? this.query.length !== val.length : false;
                 this.query = val;
+                this.query = this.query.trim()
+                this.query = this.query.replace(/\s+/g, ' ');
                 if (!silent && !areEquivalent) {
                     this.trigger("queryChanged", this.query);
                 } else if (!silent && hasDifferentWhitespace) {
