@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo node web/scripts/insert_stats.js
+sudo node /home/developer/Aztec-Web/web/scripts/insert_stats.js
