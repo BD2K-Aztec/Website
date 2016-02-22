@@ -58,7 +58,7 @@ ToolController.prototype._edit = function (self, req, res){
                 }));
             }
             else{
-                res.render("tool/unedtiable", i);
+                res.render("tool/uneditable", i);
             }
         }
         else {

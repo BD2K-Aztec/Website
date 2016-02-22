@@ -126,7 +126,7 @@ Resources.fromSolrSuggest = function(results, fields) {
             var doc = results.response.docs[i];
             for(var j = 0; j < doc["tags"].length; j++)
             {
-                tag_dict[doc["tags"][j]] = 1
+                tag_dict[doc["tags"][j].toLowerCase()] = 1
             }
         }
         for(key in tag_dict)

@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
     firstName    : String,
     lastName     : String,
     authenticated: Boolean,
-    authenticateToken : String
+    authenticateToken : String,
+    passwordToken: String
 
 });
 
