@@ -15,7 +15,7 @@ docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
 
 ##Server Setup
 
-* Pull Repository
+* Pull repository
 * Install Nodejs and npm
 * cd web && npm install
 * cd scripts/bash and run install_graphviz
