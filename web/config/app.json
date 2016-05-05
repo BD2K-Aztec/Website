@@ -1,12 +1,16 @@
 {
   "serverPort":"3000",
   "sslPort":"3443",
-  "mysqlHost":"localhost",
-  "mysqlUser":"9cb182249d9a9c001b17a72fcd17dc28",
-  "mysqlPassword":"6594e577f9bdf2e8e6ac04c9338eb458",
+  "mysqlHost":"192.168.99.100",
+  "mysqlUser":"42cd90893007e9529ab3c112934c1d92",
+  "mysqlPassword":"3c257ac3e4c0056b9209bcc1161b68dd",
+  "mysqlPort":"3306",
+  "mysqlDB":"AZ_Curation",
   "solrHost":"dev.aztec.io",
   "solrPort":"8983",
-  "mongoHost":"dev.aztec.io",
+  "mongoUsername": "42cd90893007e9529ab3c112934c1d92",
+  "mongoPassword": "054222a99e6d58d7ebcfa61794ce86a8",
+  "mongoHost":"192.168.99.100",
   "mongoPort":"27017",
   "neo4jUrl": "http://localhost:7474"
 }
