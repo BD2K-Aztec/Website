@@ -1,7 +1,7 @@
 {
   "serverPort":"3000",
   "sslPort":"3443",
-  "mysqlHost":"192.168.99.100",
+  "mysqlHost":"localhost",
   "mysqlUser":"42cd90893007e9529ab3c112934c1d92",
   "mysqlPassword":"3c257ac3e4c0056b9209bcc1161b68dd",
   "mysqlPort":"3306",
@@ -10,7 +10,7 @@
   "solrPort":"8983",
   "mongoUsername": "42cd90893007e9529ab3c112934c1d92",
   "mongoPassword": "054222a99e6d58d7ebcfa61794ce86a8",
-  "mongoHost":"192.168.99.100",
+  "mongoHost":"localhost",
   "mongoPort":"27017",
   "neo4jUrl": "http://localhost:7474"
 }
