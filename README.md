@@ -2,16 +2,19 @@
 
 ###[Solr](https://hub.docker.com/r/makuk66/docker-solr/)
 
-SOLR_CONTAINER=$(docker run -d -p 8983:8983 -t tanpatrick/aztec-solr)
+docker run -d -p 8983:8983 -t tanpatrick/aztec-solr
 
 ###[Neo4j](https://hub.docker.com/r/tpires/neo4j/)
 
 docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -p 7474:7474 tanpatrick/aztec-neo4j
 
-###[MongoDB](https://docs.docker.com/examples/mongodb/)
+###[MongoDB](https://hub.docker.com/r/vincekyi/aztec-mongo/)
 
-docker run -p 27017:27017 -d tanpatrick/aztec-mongo --noprealloc --smallfiles
+docker run -d -p 27017:27017 vincekyi/aztec-mongo
 
+###[MySQL](https://hub.docker.com/r/vincekyi/aztec-mysql/)
+
+docker run -d -p 3306:3306 vincekyi/aztec-mysql
 
 ##Server Setup
 
@@ -40,3 +43,9 @@ curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @fi
 
 ###View Files in Docker
 http://stackoverflow.com/questions/28037802/docker-exec-failed-to-exec-exec-cd-executable-file-not-found-in-path
+
+###Restart the Server
+
+Move to Aztec-Web/web
+
+Run the restart.sh script with sudo
