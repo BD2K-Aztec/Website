@@ -1,5 +1,6 @@
 function Info(resource, neo4j) {
     var acc = "";
+
     if (resource.name) {
         var typeArr = [];
         var typeStr = "";
@@ -50,11 +51,24 @@ function Info(resource, neo4j) {
     if (resource.description) {
         acc += createAcc("Description", resource.description);
     }
+    var tDescription = "NA";
+    if (resource.description) {
+        tDescription = resource.description;
+    }
+    $("#tdescription").html(tDescription);
+    
     var linkArr = [];
 
     if (resource.sourceCodeURL) {
         linkArr.push("Source Code: <a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a>");
+        var tSourcecode_list = [];
+        tSourcecode_list.push("<a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a></div>");
+        var tSourcecode = createList(tSourcecode_list);
     }
+    else{
+        var tSourcecode = createList(["NA"]);
+    }
+    $("#tsourcecode").html(tSourcecode);
 
     if (resource.linkDescriptions) {
         for (var i in resource.linkDescriptions) {
@@ -62,20 +76,39 @@ function Info(resource, neo4j) {
                 linkArr.push(resource.linkDescriptions[i] + ": " + "<a href='" + resource.linkUrls[i] + "'>" + resource.linkUrls[i] + "</a>");
         }
     }
+    var tHomepage_url_list=[];
+    if (resource.linkDescriptions) {
+        for (var i in resource.linkDescriptions) {
+            if(resource.linkDescriptions[i] == "Homepage" && resource.linkUrls[i])
+                tHomepage_url_list.push("<a href='" + resource.linkUrls[i] + "'>" + resource.linkUrls[i] + "</a>");
+        }
+        if (tHomepage_url_list.length == 0){
+            tHomepage_url_list.push('NA')
+        }
+        var tHomepage_url = createList(tHomepage_url_list)
+    }
+    $("#thomepage_url").html(tHomepage_url);
+    
     if (linkArr.length > 0){
         acc += createAccList("Links", linkArr);
     }
+
+
+    var doiArr = ['NA'];
     if (resource.publicationDOI) {
         var dois = [resource.publicationDOI];
         if(resource.otherPublicationDOI)
             dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
         var doiArr = [];
         for(var i = 0; i < dois.length; i++){
-            var doi = dois[i].replace(/ *\([^)]*\) */g, "");;
+            var doi = dois[i].replace(/ *\([^)]*\) */g, "");
             doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
         }
         acc += createAccList("Publication DOIs", doiArr);
     }
+    tPublications = createList(doiArr);
+    $("#tpublications").html(tPublications);
+    
     if (resource.toolDOI) {
         acc += createAcc("Tool DOI", resource.toolDOI);
     }
@@ -85,9 +118,13 @@ function Info(resource, neo4j) {
     if (resource.versionDate) {
         acc += createAcc("Version Date", resource.versionDate);
     }
+    var tTypes_list = ['NA'];
     if (resource.types) {
         acc += createAccList("Resource Types", resource.types);
+        tTypes_list = resource.types;
     }
+    var tTypes = createList(tTypes_list);
+    $("#ttypes").html(tTypes);
     var regEx = /<|>/g;
     if (resource.licenses) {
         var licenseArr = [];
@@ -103,15 +140,32 @@ function Info(resource, neo4j) {
     if (resource.domains) {
         acc += createAccList("Domains", resource.domains);
     }
+    var tDatatypes ="NA";
     if (resource.dataTypes) {
         acc += createAccList("Data Types", resource.dataTypes);
+        tDatatypes = resource.dataTypes;
     }
+    $("#tdatatypes").html(tDatatypes);
+    
+    var tPlatforms = "NA";
     if (resource.platforms) {
         acc += createAccList("Platforms", resource.platforms);
+        tPlatforms = createList(resource.platforms);
     }
+    $("#tplatforms").html(tPlatforms);
+
     if (resource.language) {
         acc += createAcc("Language", resource.language);
+        var tLanguage_list=[];
+        tLanguage_list.push(resource.language);
+        var tLanguage = createList(tLanguage_list);
     }
+    else{
+        var tLanguage = createList(['NA']);
+    }
+    $("#tlanguage").html(tLanguage);
+    
+    var tAuthor = "NA";
     if(resource.authors){
         var authorArr = [];
         for(var i = 0; i < resource.authors.length; i++){
@@ -122,7 +176,10 @@ function Info(resource, neo4j) {
                 authorArr.push(resource.authors[i]);
         }
         acc += createAccList("Authors", authorArr);
+        tAuthor = authorArr;
     }
+    $("#tauthor").html(tAuthor);
+
     if(resource.maintainers){
         var maintainerArr = [];
         for(var i = 0; i < resource.maintainers.length; i++){
@@ -133,29 +190,54 @@ function Info(resource, neo4j) {
                 maintainerArr.push(resource.maintainers[i]);
         }
         acc += createAccList("Maintainers", maintainerArr);
+        var tMaintainers = createList(maintainerArr);
     }
+    else{
+        var tMaintainers = createList(["NA"]);
+    }
+    $("#tmaintainers").html(tMaintainers);
+    
+    var tInstitutions = ["NA"];
     if(resource.institutions){
         acc += createAccList("Institutions", resource.institutions);
+        tInstitutions = resource.institutions;
     }
+
+    $("#tinstitutions").html(tInstitutions);
+    $("#tinstitutions_2").html(createList(tInstitutions));
+
     if(resource.funding){
         acc += createAccList("Funding", resource.funding);
+        var tFundings = createList(resource.funding);
     }
+    else{
+        var tFundings = createList(['NA'])
+    }
+    $("#tfundings").html(tFundings);
+    
     if(resource.dependencies){
         acc += createAccList("Dependencies", resource.dependencies);
     }
+    var tSource ="";
     if (resource.source) {
         acc += createAcc("Source", resource.source);
+        tSource = createList(resource.source);
     }
+    $("#tsource").html(tSource);
+
+    var tTag = "";
     if(resource.tags){
         var tagsHtml = "";
         tagsHtml += '<div class="row" id="tagRemove" align="left" ><div class="tag col-lg-12">';
         for(var i = 0; i < resource.tags.length; i++){
-            tagsHtml += '&nbsp;<button type="button" class="btn btn-info btn-xs"><i class="fa fa-tag"></i>&nbsp;' + resource.tags[i] + '</button>';
+            tagsHtml += '&nbsp;<a type="button" class="btn btn-info btn-xs">&nbsp;' + resource.tags[i] + '</a>';
         }
         tagsHtml += '</div></div>';
         //$("#tag").html('<b>Tags: </b><span>' + tagsHtml + '</span>');
         acc += createAcc("Tags", tagsHtml);
+        tTag = tagsHtml;
     }
+    $("#ttagsHtml").html(tTag);
 
     var svgElement = document.getElementsByTagName("svg");
     $("svg").css("width", "100%");
@@ -280,4 +362,13 @@ function createAccList(header, arr){
     ret += '</ul></div></div>';
     accCount++;
     return ret;
+}
+
+function createList(arr){
+    var ret = "";
+    ret += '<div class="list-group">';
+    for(var i = 0; i < arr.length; i++)
+        ret += '<li class="" style="padding-left:33px">' + arr[i] + '</li>';
+    ret += '</div>';
+    return ret
 }

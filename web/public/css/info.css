@@ -255,3 +255,16 @@ body {
 #divPanels div.panel{
     background-color: rgb(245, 245, 245);
 }
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+.underline{
+    text-decoration: underline ;
+}
+.fixed-row-height {
+    line-height:250px;
+}

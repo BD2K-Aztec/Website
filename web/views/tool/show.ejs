@@ -49,108 +49,148 @@
         });
     </script>
 </head>
-<body style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%); font-family: 'Open Sans', sans-serif;">
-<div class="site-wrapper" style="margin-top:15px">
+<body style="background-color:#FAFAFA; font-family: 'Open Sans', sans-serif;">
+<div class="site-wrapper">
 
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <%- include ../shared/header.ejs %>
         </div>
 
-        <div class="row" style="margin-left:20px; margin-right:20px">
-            <div class="col-md-1"></div>
-            <div class="col-md-6" style="padding-left:20px">
-                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
-                    <h3 id="name" class="text-left"></h3>
+        <div class="row" style="background-image: linear-gradient(to bottom,#75bed7 0,#b0dae8 100%)">
+            <div class="col-md-10" style="padding-left:50px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden">
+                    <h3 style="color:white;"class="text-left">HOME>TOOL</h3>
                 </div>
             </div>
         </div>
 
-        <div class="row" style="margin-left: 20px; margin-right: 20px">
+        <div class="row row-eq-height" style="background-color:#FFFFFF">
             <div class="col-md-1"></div>
-            <div class="col-md-6" style="padding:20px">
-                <div>
-                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-                        </div>
-
+            <div class="col-md-9" style="padding-left:20px">
+                <div class="row">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
+                    <h3 id="name" class="text-left"></h3>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
+                        <h4 id="tauthor" class="text-left"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
+                        <h4 id="tinstitutions" class="text-left underline" style="margin-bottom:20px"></h4>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" style="padding:20px">
-                <!--<div>-->
-                    <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-heading" style="background-image: linear-gradient(to bottom,#d6ebf2 0,#BBD2DB 100%);">-->
-                            <!--<h3 class="panel-title"><b>Workflow Chart (Coming Soon)</b></h3>-->
-                        <!--</div>-->
-                        <!--<div class="panel-body">-->
-                            <!--<div id="workflowGraph">-->
-                                <!--<%- svg %>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background-image: linear-gradient(to bottom,#d6ebf2 0,#BBD2DB 100%);">
-                            <h3 class="panel-title"><b>Reference Datasets (Coming Soon)</b></h3>
-                        </div>
-                        <div class="panel-body">
-                            <div align="left">
-                                <p>
-                                    <b>Example Input File: </b><a href="#" id="referenceDataset">Download Link</a>
-                                </p>
-                            </div>
-                        </div>
+            <div class="col-md-1" style="padding-left:20px">
+                <div class="row" style="margin-top:25px;margin-bottom:10px">
+                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
+                        <a class="btn btn-info pull-right" href ="#" role ="botton">Free</a>
                     </div>
                 </div>
-                <div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background-image: linear-gradient(to bottom,#d6ebf2 0,#BBD2DB 100%);">
-                            <h3 class="panel-title"><b>Similar Resources (Coming Soon)</b></h3>
-                        </div>
-                        <div class="panel-body" style="border-top:solid; border-color:lightgray; border-width:2px">
-                            <div class="row featurette" style="cursor: pointer;" onclick="window.location='/AZ5656'">
-                                <div class="col-md-6">
-                                    <h3 class="featurette-heading">Sailfish<br></h3><!--<h4><span class="text-muted">Authors or some other important info</span></h4>-->
-                                    <p class="lead" style="font-size:12px">Sailfish: Rapid Alignment-free Quantification of Isoform Abundance. RNA-seq expression estimates need not take longer than a cup of coffee</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <img style="width:100%;" src="http://www.cs.cmu.edu/~ckingsf/software/sailfish/images/sailfish_logo.png" alt="logo">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="panel-body" style="border-top:solid; border-color:lightgray; border-width:2px">
-                            <div class="row featurette" style="cursor: pointer;" onclick="window.location='/AZ510'">
-                                <div class="col-md-6">
-                                    <h3 class="featurette-heading">PDB<br></h3><!--<h4><span class="text-muted">Authors or some other important info</span></h4>-->
-                                    <p class="lead" style="font-size:12px">RESTful interface to search and retrieve data from the Protein Data Bank (PDB). The Protein Data Bank is the single worldwide repository of information about the 3D structures of large biological molecules, including proteins and nucleic acids. </p>
-                                </div>
-                                <div class="col-md-6">
-                                    <img style="padding-top:50px; width:100%;" src="http://www.wwpdb.org/img/core/rcsb-pdb.png" alt="logo">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="panel-body" style="border-top:solid; border-color:lightgray; border-width:2px">
-                            <div class="row featurette" style="cursor: pointer;" onclick="window.location='/AZ4798'">
-                                <div class="col-md-6">
-                                    <h3 class="featurette-heading">Proteowizard<br></h3><!--<h4><span class="text-muted">Authors or some other important info</span></h4>-->
-                                    <p class="lead" style="font-size:12px">The ProteoWizard Library and Tools are a set of modular and extensible open-source, cross-platform tools and software libraries that facilitate proteomics data analysis.</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <img style="width:100%;" src="http://proteowizard.sourceforge.net/images/pwiz_purple_logo.png" alt="logo">
-                                </div>
-
-                            </div>
-                        </div>
+                <div class="row" style="margin-top:10px;margin-bottom:10px">
+                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
+                        <a class="btn btn-warning pull-right" href ="#" role ="botton">No License</a>
                     </div>
+                </div>
+                <div class="row" style="margin-top:10px;margin-bottom:10px">
+                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
+                        <a class="btn btn-info pull-right" href ="#" role ="botton">Cite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="background-color:#F5F5F5">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px;" align="left">
+                    <div id="tdescription" style ="margin-bottom:10px"></div>
+                    <div id="ttagsHtml"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-left:20px; margin-right:20px">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h3 class="text-center">DETAILS</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row row-eq-height" style="margin-left:20px; margin-right:20px">
+            <div class="col-md-1"></div>
+            <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h4 class="text-left">Software Type:</h4>
+                    <div id="ttypes"></div>
+                    <h4 class="text-left">Supported Platforms:</h4>
+                    <div id="tplatforms"></div>
+                    <h4 class="text-left">Tool Languages:</h4>
+                    <div id="tlanguage"></div>
+                </div>
+            </div>
+            <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h4 class="text-left">Source Code:</h4>
+                    <div id="tsourcecode"></div>
+                    <h4 class="text-left">Home Page URL:</h4>
+                    <div id="thomepage_url"></div>
+                    <h4 class="text-left">Institution:</h4>
+                    <div id="tinstitutions_2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-left:20px; margin-right:20px"></div>
+        <div class="row" style="margin-left:20px; margin-right:20px">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h3 class="text-center">PUBLICATIONS</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-left:20px; margin-right:20px">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="background-color:#FFFFFF;padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h4 class="text-left">Title:</h4>
+                    <p>Author</p>
+                    <h4 class="text-left">Publications:</h4>
+                    <div id ="tpublications"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row fixed-row-height" style="margin-left:20px; margin-right:20px">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h3 class="text-center">CREDITS</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row row-eq-height" style="margin-left:20px; margin-right:20px">
+            <div class="col-md-1"></div>
+            <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h4 class="text-left">Funding:</h4>
+                    <div id="tfundings"></div>
+                </div>
+            </div>
+            <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <h4 class="text-left">Maintainers:</h4>
+                    <div id="tmaintainers"></div>
+                    <h4 class="text-left" >BD2K</h4>
+                    <p style="padding-left:33px;margin-bottom:30px">HeartDB2K<br></p>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <%- include ../shared/footer.ejs %>
