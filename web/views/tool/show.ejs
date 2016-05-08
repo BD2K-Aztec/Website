@@ -57,7 +57,7 @@
             <%- include ../shared/header.ejs %>
         </div>
 
-        <div class="row" style="background-image: linear-gradient(to bottom,#75bed7 0,#b0dae8 100%)">
+        <div class="row" style="background-image: linear-gradient(to bottom,#9FC3CF 0,#BAD2DB 100%)">
             <div class="col-md-10" style="padding-left:50px">
                 <div class="" id="dataset_upper_right" style="overflow:hidden">
                     <h3 style="color:white;"class="text-left">HOME>TOOL</h3>
@@ -67,7 +67,7 @@
 
         <div class="row row-eq-height" style="background-color:#FFFFFF">
             <div class="col-md-1"></div>
-            <div class="col-md-9" style="padding-left:20px">
+            <div class="col-md-7" style="padding-left:20px">
                 <div class="row">
                 <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
                     <h3 id="name" class="text-left"></h3>
@@ -84,30 +84,37 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1" style="padding-left:20px">
+            <div class="col-md-3" style="padding-left:20px">
                 <div class="row" style="margin-top:25px;margin-bottom:10px">
-                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
-                        <a class="btn btn-info pull-right" href ="#" role ="botton">Free</a>
+                    <div class ="text-center pull-right" style="color: #ffffff;background-color:#5d7e89;overflow:hidden;height:30px;margin-right:20px; margin-left:20px">
+                        <div style="line-height: 30px;vertical-align: middle;padding-left:30px;padding-right:30px">Free</div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;margin-bottom:10px">
+                    <div class ="text-center pull-right" style="color: #000000;background-color:#FFE2C6;overflow:hidden;height:30px;margin-right:20px; margin-left:20px">
+                        <div style="line-height:30px;vertical-align:middle;padding-left:30px;padding-right:30px" id ="tlicense"></div>
                     </div>
                 </div>
                 <div class="row" style="margin-top:10px;margin-bottom:10px">
                     <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
-                        <a class="btn btn-warning pull-right" href ="#" role ="botton">No License</a>
+                        <a id="citation" class="btn btn-info pull-right" style="padding-left:30px;padding-right:30px;border-radius:0px" href ="#" role ="botton">Cite</a>
                     </div>
                 </div>
-                <div class="row" style="margin-top:10px;margin-bottom:10px">
-                    <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px">
-                        <a class="btn btn-info pull-right" href ="#" role ="botton">Cite</a>
-                    </div>
-                </div>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <p id="citeinfo"></p>
             </div>
         </div>
 
         <div class="row" style="background-color:#F5F5F5">
             <div class="col-md-1"></div>
             <div class="col-md-10" style="padding:20px">
-                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px;" align="left">
-                    <div id="tdescription" style ="margin-bottom:10px"></div>
+                <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
+                    <div id="tdescription" style="margin-bottom:10px"></div>
                     <div id="ttagsHtml"></div>
                 </div>
             </div>
@@ -125,21 +132,21 @@
             <div class="col-md-1"></div>
             <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
                 <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <h4 class="text-left">Software Type:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Software Type:</h4>
                     <div id="ttypes"></div>
-                    <h4 class="text-left">Supported Platforms:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Supported Platforms:</h4>
                     <div id="tplatforms"></div>
-                    <h4 class="text-left">Tool Languages:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Tool Languages:</h4>
                     <div id="tlanguage"></div>
                 </div>
             </div>
             <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
                 <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <h4 class="text-left">Source Code:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Source Code:</h4>
                     <div id="tsourcecode"></div>
-                    <h4 class="text-left">Home Page URL:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Home Page URL:</h4>
                     <div id="thomepage_url"></div>
-                    <h4 class="text-left">Institution:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Institution:</h4>
                     <div id="tinstitutions_2"></div>
                 </div>
             </div>
@@ -157,9 +164,9 @@
             <div class="col-md-1"></div>
             <div class="col-md-10" style="background-color:#FFFFFF;padding:20px">
                 <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <h4 class="text-left">Title:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Title:</h4>
                     <p>Author</p>
-                    <h4 class="text-left">Publications:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Publications:</h4>
                     <div id ="tpublications"></div>
                 </div>
             </div>
@@ -176,15 +183,15 @@
             <div class="col-md-1"></div>
             <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
                 <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <h4 class="text-left">Funding:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Funding:</h4>
                     <div id="tfundings"></div>
                 </div>
             </div>
             <div class="col-md-5" style="background-color:#FFFFFF;padding:20px">
                 <div class="" id="dataset_upper_right" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <h4 class="text-left">Maintainers:</h4>
+                    <h4 class="text-left" style="font-weight:bold">Maintainers:</h4>
                     <div id="tmaintainers"></div>
-                    <h4 class="text-left" >BD2K</h4>
+                    <h4 class="text-left" style="font-weight:bold">BD2K</h4>
                     <p style="padding-left:33px;margin-bottom:30px">HeartDB2K<br></p>
                 </div>
             </div>

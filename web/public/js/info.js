@@ -41,8 +41,8 @@ function Info(resource, neo4j) {
 
         }
 
-        $("#name").html(typeStr + '<span style="margin-left:15px; font-weight:600; font-style:bold">' + resource.name + '</span>');
-        $("[data-icon]").html(typeStr + '<span style="margin-left:15px; font-weight:600; font-style:bold">' + resource.name[0] + '</span>');
+        $("#name").html(typeStr + '<span style="margin-left:15px; font-weight:600; font-weight:bold">' + resource.name + '</span>');
+        $("[data-icon]").html(typeStr + '<span style="margin-left:15px; font-weight:600; font-weight:bold">' + resource.name[0] + '</span>');
 
         if(resource.editable){
             $("#name").html($("#name").html() + '&nbsp; &nbsp; <a href="/tool/edit?id=' + resource.id + '" class="btn btn-info" role="button">Edit Resource</a>') //change: put in if block
@@ -126,6 +126,7 @@ function Info(resource, neo4j) {
     var tTypes = createList(tTypes_list);
     $("#ttypes").html(tTypes);
     var regEx = /<|>/g;
+
     if (resource.licenses) {
         var licenseArr = [];
         for(var i = 0; i < resource.licenses.length; i++){
@@ -136,7 +137,12 @@ function Info(resource, neo4j) {
                 licenseArr.push(resource.licenses[i]);
         }
         acc += createAccList("Licenses", licenseArr);
+        var tLicense= licenseArr;
     }
+    else{
+        var tLicense = "No License";
+    }
+    $("#tlicense").html(tLicense);
     if (resource.domains) {
         acc += createAccList("Domains", resource.domains);
     }
@@ -230,7 +236,7 @@ function Info(resource, neo4j) {
         var tagsHtml = "";
         tagsHtml += '<div class="row" id="tagRemove" align="left" ><div class="tag col-lg-12">';
         for(var i = 0; i < resource.tags.length; i++){
-            tagsHtml += '&nbsp;<a type="button" class="btn btn-info btn-xs">&nbsp;' + resource.tags[i] + '</a>';
+            tagsHtml += '&nbsp;<button type="button" class="btn btn-info btn-xs" style="font-weight: bold;border-radius:7px">&nbsp;' + resource.tags[i] + '</button>';
         }
         tagsHtml += '</div></div>';
         //$("#tag").html('<b>Tags: </b><span>' + tagsHtml + '</span>');
@@ -243,6 +249,7 @@ function Info(resource, neo4j) {
     $("svg").css("width", "100%");
     //svgElement[0].setAttribute("width", "100%");
     //svgElement[0].removeAttribute("height");
+
 
     $("#accordion").html(acc);
     $('#submitTopForm').submit(function() {
@@ -267,6 +274,25 @@ function Info(resource, neo4j) {
         $("#submitTopForm").submit();
         return false; // return false to cancel form action
     });
+
+    var modal = document.getElementById('myModal');
+    var citation = document.getElementById('citation');
+    var span = document.getElementsByClassName("close")[0];
+    citation.addEventListener('click', popupCitation);
+    function popupCitation(){
+        //alert("Publication Information");
+        modal.style.display = "block";
+
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    $("#citeinfo").html("Publication information")
 
 //    function idIndex(a,id) {
 //        for (var i=0;i<a.length;i++) {
