@@ -171,7 +171,7 @@ function Info(resource, neo4j) {
     }
     $("#tlanguage").html(tLanguage);
     
-    var tAuthor = "NA";
+    var tAuthor = "";
     if(resource.authors){
         var authorArr = [];
         for(var i = 0; i < resource.authors.length; i++){
@@ -203,14 +203,19 @@ function Info(resource, neo4j) {
     }
     $("#tmaintainers").html(tMaintainers);
     
-    var tInstitutions = ["NA"];
+    var tInstitutions = "";
     if(resource.institutions){
         acc += createAccList("Institutions", resource.institutions);
         tInstitutions = resource.institutions;
+        $("#tinstitutions_2").html(createList(tInstitutions));
+    }
+    else{
+        $("#tinstitutions_2").html(createList(['NA']));
     }
 
     $("#tinstitutions").html(tInstitutions);
-    $("#tinstitutions_2").html(createList(tInstitutions));
+
+
 
     if(resource.funding){
         acc += createAccList("Funding", resource.funding);
