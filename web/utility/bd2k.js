@@ -53,6 +53,13 @@ BD2K.decrypt = function (encrypted) {
     return decrypted;
 };
 
+BD2K.decrypt = function (key, encrypted) {
+    var algorithm = 'aes256';
+    var decipher = crypto.createDecipher(algorithm, key);
+    var decrypted = decipher.update(encrypted, 'hex', 'utf8') + decipher.final('utf8');
+    return decrypted;
+};
+
 //--- query ------------------------------------------------------------------------------
 BD2K.mysql = function (sql, handler, params, passOptions) {
 
@@ -388,7 +395,9 @@ BD2K.mongo.search = function(collectionStr, search, callback){
 
     var host = config.mongoHost;
     var port = config.mongoPort;
-    var url = 'mongodb://' + host + ':' + port  + '/BD2K';
+    var username = BD2K.decrypt('user', config.mongoUsername);
+    var password = BD2K.decrypt('password', config.mongoPassword);
+    var url = 'mongodb://'+username+':'+password+'@'+ host + ':' + port  + '/BD2K';
 
     var container = {};
 
@@ -434,7 +443,10 @@ BD2K.mongo.insert = function(collectionStr, data, callback){
 
     var host = config.mongoHost;
     var port = config.mongoPort;
-    var url = 'mongodb://' + host + ':' + port  + '/BD2K';
+    var username = BD2K.decrypt('user', config.mongoUsername);
+    var password = BD2K.decrypt('password', config.mongoPassword);
+    var url = 'mongodb://'+username+':'+password+'@'+ host + ':' + port  + '/BD2K';
+
 
     var container = {};
 
@@ -479,7 +491,9 @@ BD2K.mongo.upsert = function(collectionStr, search, document, callback){
 
     var host = config.mongoHost;
     var port = config.mongoPort;
-    var url = 'mongodb://' + host + ':' + port  + '/BD2K';
+    var username = BD2K.decrypt('user', config.mongoUsername);
+    var password = BD2K.decrypt('password', config.mongoPassword);
+    var url = 'mongodb://'+username+':'+password+'@'+ host + ':' + port  + '/BD2K';
 
     var container = {};
 
@@ -526,7 +540,10 @@ BD2K.mongo.update = function(collectionStr, search, document, callback){
 
     var host = config.mongoHost;
     var port = config.mongoPort;
-    var url = 'mongodb://' + host + ':' + port  + '/BD2K';
+    var username = BD2K.decrypt('user', config.mongoUsername);
+    var password = BD2K.decrypt('password', config.mongoPassword);
+    var url = 'mongodb://'+username+':'+password+'@'+ host + ':' + port  + '/BD2K';
+
 
     var container = {};
 

@@ -21,8 +21,3 @@ _credentials = SignedJwtAssertionCredentials(
 	#return _credentials.get_access_token().access_token
 
 print _credentials.get_access_token().access_token
-
-
-
-
-
