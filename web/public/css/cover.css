@@ -36,7 +36,20 @@ h1{
 #tested-GC{
     font-size: small;
 }
-
+#navigation{
+    clear: both;
+    font-weight: 200;
+}
+#roatation90 {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg); /* Standard syntax */
+}
+#cover-background{
+    background-color: rgb(255, 255, 224);
+}
+.cover-panel-body {
+    background:rgb(255, 255, 224);}
 /* Custom default button */
 /*.btn-default,*/
 /*.btn-default:hover,*/

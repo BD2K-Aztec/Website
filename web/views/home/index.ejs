@@ -243,6 +243,7 @@
                     <div class="cover-container">
                         <%- include ../shared/header.ejs %>
                         <div class="inner cover">
+                            <br><br><br><br><br><br><br><br>
                             <table>
                                 <tr>
                                     <td>
@@ -273,17 +274,33 @@
                             </div>
 
                             <p class="lead" id="tested-GC">Thoroughly tested on Google Chrome.</p>
+                            <div>
+                                <br><br><br><br>
+                                <p class="lead" id="navgation"> <a style="color:white;text-decoration:none;" href="#jump"> What can we help you find? </a></p>
+                                <p> <a style="color:white;text-decoration:none;" href="#jump"><span class="glyphicon glyphicon-menu-down" ></span></a></p>
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
 
-        <div class="container">
+        <div>
             <!--<h2>Dynamic Tabs</h2>-->
-            <ul class="nav nav-tabs"  style="font-family: 'Open Sans', sans-serif;font-size: 110%">
+
+        <!--
+            <nav class="navbar navbar-default">
+                <div class="container-fluid" style = "margin-left: auto; margin-right: auto" >
+                    <ul class="nav navbar-nav" style="font-family: 'Open Sans';  font-size: 110%">
+                        <li class="active"><a data-toggle="tab" href="#Overview">Overview</a></li>
+                        <li><a data-toggle="tab" href="#StatisticsandTags">Statistics and Tags</a></li>
+                        <li><a data-toggle="tab" href="#PlatformsandTechnologies">Platforms and Technologies</a></li>
+                    </ul>
+                </div>
+            </nav>
+        <-->
+
+            <ul class="nav nav-tabs"  id = "jump" style="font-family: 'Open Sans';  font-size: 110%">
                 <li class="active col-md-4"><a data-toggle="tab" href="#Overview">Overview</a></li>
                 <li class="col-md-4"><a data-toggle="tab" href="#StatisticsandTags">Statistics and Tags</a></li>
                 <li class="col-md-4"><a data-toggle="tab" href="#PlatformsandTechnologies">Platforms and Technologies</a></li>
@@ -295,12 +312,11 @@
                         </div>
                         <div class="col-md-8 ">
                             <div class="text-left">
-                                <h1 id="title" style="color:black"> <img border="0" src="/public/images/bd2k.png" width="200" style="margin-bottom:30px">&nbsp;&nbsp;&nbsp;&nbsp;Overview </h1>
-
-                                <p align="justify" class="lead" style="clear:both; font-weight:600; color: black;">
-                                    BD2K Aztec is an amalgamation of A to Z technology. The emblem of our service is a Mesoamerican step pyramid. These ancient structures reached great heights because they were built from the bottom up, so that each block was supported by a massive underlying layer of stone. Similarly, modern biomedicine relies on a enormous infrastructure of computational tools, and the apex of the pyramid represents its ultimate goal: successful investigations leading to novel biological insights and enhanced clinical therapies.
+                                <p align="justify" class="lead" style="clear:both; font-family: 'Open Sans'; color: black; font-size: 130%;">
+                                    <br /><br /><br /><br />
+                                        BD2K Aztec is an amalgamation of A to Z technology. The emblem of our service is a Mesoamerican step pyramid. These ancient structures reached great heights because they were built from the bottom up, so that each block was supported by a massive underlying layer of stone. Similarly, modern biomedicine relies on a enormous infrastructure of computational tools, and the apex of the pyramid represents its ultimate goal: successful investigations leading to novel biological insights and enhanced clinical therapies.
                                 </p>
-                                <p align="justify" class="lead" style="clear:both; font-weight:600; color: black;"">
+                                <p align="justify" class="lead" style="clear:both; font-family: 'Open Sans'; color: black; font-size: 130%;">
                                 BD2K Aztec is a global biomedical resource discovery index that allows users to simultaneously search a diverse array of tools. The resources indexed include web services, standalone software, publications, and large libraries composed of many interrelated functions. Aztec will ensure that software tools remain findable in the long term by issuing persistent DOIs and routinely updating metadata for the entire index. Aztec’s established ontologies and robust API support the programmatic query of its entire database, as well as the construction of indexes for specialized subdomains. Aztec fosters an environment of sustainable resource support and discovery, empowering researchers to overcome the challenges of information science in the 21st century.
                                 </p>
                             </div>
@@ -309,32 +325,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="StatisticsandTags" class="tab-pane fade">
-                    <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
-                        <!--<h3>Statistics and Tags</h3><-->
-                        <div class="col-md-6 col-sm-6 hero-feature">
-
-                            <div>
-                                <h1> <i class="fa fa-road" style="color:lightslategray"></i>&nbsp;Site Traffic</h1>
-                            </div>
-                            <div id="chart-1-container" class="panel panel-default" style="width:100%; height:360px;">
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 col-sm-6 hero-feature">
-
-                            <div>
-                                <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;User Countries</h1>
-                            </div>
-                            <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="PlatformsandTechnologies" class="tab-pane fade in active">
+                <div id="StatisticsandTags" class="tab-pane fade in active">
                     <div class="row text-center" style="color:black; margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
                         <!--<h3>Platforms and Technologies</h3><-->
-                        <div class="col-md-6 col-sm-6 hero-feature">
+                        <div class="col-md-4 col-sm-4 hero-feature">
                             <div>
                                 <h1> <i class="fa fa-bar-chart" style="color:lightslategray"></i>&nbsp;Statistics</h1>
                             </div>
@@ -350,25 +344,42 @@
                                 </blockquote>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 hero-feature">
-                            <div>
-                                <h1> <i class="fa fa-laptop" style="color:lightslategray"></i>&nbsp;Platforms</h1>
-                            </div>
-                            <div id="platformBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
-                            </div>
-                        </div>
-                        <div class="col-md-6" style="font: 14px sans-serif;">
+                        <div class="col-md-4" style="font: 14px sans-serif;">
                             <div>
                                 <h1> <i class="fa fa-tags" style="color:lightslategray"></i>&nbsp;Tags</h1>
                             </div>
                             <div id="tagBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4" >
                             <div>
                                 <h1> <i class="fa fa-database" style="color:lightslategray"></i>&nbsp;Repositories</h1>
                             </div>
-                            <div id="chart_repos_omics" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+                            <div id="chart_repos_omics" class="panel panel-default"  style="min-width:100%; height:360px; max-width:none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="PlatformsandTechnologies" class="tab-pane fade in active">
+                    <div class="container">
+                        <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
+                            <!--<h3>Statistics and Tags</h3><-->
+                            <div class="col-md-6 col-sm-6 hero-feature">
+
+                                <div>
+                                    <h1> <i class="fa fa-road" style="color:lightslategray"></i>&nbsp;Site Traffic</h1>
+                                </div>
+                                <div id="chart-1-container" class="panel panel-default" style="width:100%; height:360px;">
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-sm-6 hero-feature">
+
+                                <div>
+                                    <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;User Countries</h1>
+                                </div>
+                                <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
+                                </div>
                             </div>
                         </div>
                     </div>
