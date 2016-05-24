@@ -26,10 +26,19 @@
     <script src="/public/js/bubbles.js"></script>
     <%- include ../shared/analytics.ejs%>
     <script src="/public/js/typeahead.js"></script>
-    <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
-    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <script src="/public/js/autocomplete.js"></script>
+    <script src="/public/js/google-analytics.js"></script>
+
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type="text/javascript" src="/public/js/loader.js"></script>
+
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="/public/css/twitter-typeahead-index.css">
+    <link rel="stylesheet" href="/public/css/index-ejs.css">
+
+
 
     <script>
         (function(w,d,s,g,js,fs){
@@ -40,73 +49,7 @@
         }(window,document,'script'));
     </script>
 
-    <script>
-        // dashboard-components js script
-        gapi.analytics.ready(function() {
 
-            /**
-             * Authorize the user with an access token obtained server side.
-             */
-            gapi.analytics.auth.authorize({
-                'serverAuth': {
-                    'access_token': '<%- authorizationToken -%>'
-                }
-            });
-
-
-            /**
-             * Creates a new DataChart instance showing sessions over the past 30 days.
-             * It will be rendered inside an element with the id "chart-1-container".
-             */
-            var dataChart1 = new gapi.analytics.googleCharts.DataChart({
-                query: {
-                    'ids': 'ga:111291353', // AZtec view.
-                    'start-date': '30daysAgo',
-                    'end-date': 'yesterday',
-                    'metrics': 'ga:sessions,ga:users',
-                    'dimensions': 'ga:date'
-                },
-                chart: {
-                    'container': 'chart-1-container',
-                    'type': 'LINE',
-                    'options': {
-                        'width': '100%'
-                    }
-                }
-            });
-            dataChart1.execute();
-
-
-            /**
-             * Creates a new DataChart instance showing top 5 most popular demos/tools
-             * amongst returning users only.
-             * It will be rendered inside an element with the id "chart-3-container".
-             */
-            var dataChart2 = new gapi.analytics.googleCharts.DataChart({
-                query: {
-                    'ids': 'ga:111291353', // AZtec view.
-                    'start-date': '30daysAgo',
-                    'end-date': 'yesterday',
-                    'metrics': 'ga:users',
-                    'dimensions': 'ga:country',
-                    //'calculated': 'ga: country',
-                    //'sort': '-ga:country',
-                    'filters': 'ga:country!=/',
-                    'max-results': 7
-                },
-                chart: {
-                    'container': 'chart-2-container',
-                    'type': 'PIE',
-                    'options': {
-                        'width': '100%',
-                        'pieHole': 4/9,
-                    }
-                }
-            });
-            dataChart2.execute();
-
-        });
-    </script>
 
     <script>
         BD2K.ready(function(){
@@ -117,117 +60,131 @@
         });
     </script>
 
-    <script>
-        var suggestions = [];
-        BD2K.ready(function() {
-            var substringMatcher = function (strs) {
-                return function findMatches(q, cb) {
-                    var matches, substringRegex;
+<script>
 
-                    // an array that will be populated with substring matches
-                    matches = [];
+   // var dataChart1;
+    // dashboard-components js script
+   var nameList = {};
+   var nameToUrlList = {};
+   var resourceChartDrawn = true;
+    gapi.analytics.ready(function() {
 
-                    // regex used to determine if a string contains the substring `q`
-                    substrRegex = new RegExp(q, 'i');
 
-                    // iterate through the pool of strings and for any string that
-                    // contains the substring `q`, add it to the `matches` array
-                    $.each(strs, function (i, str) {
-                        //  if (substrRegex.test(str)) {
-                        console.log("push: " + str);
-                        matches.push(str);
-                        //  }
-                    });
+        // Authorize the user with an access token obtained server side.
 
-                    cb(matches);
-                };
-            };
-
-            $('#autocomplete .input-lg').typeahead({
-                        hint: true,
-                        highlight: true,
-                        minLength: 1
-                    },
-                    {
-                        name: 'resources',
-                        limit: 50,
-                        async: true,
-                        templates: {
-                            header: '<h3 class="header"><strong>Resources</strong></h3>'
-                        },
-                        source: function (query, processSync, processAsync) {
-                            query = query.split(" ");
-                            new_query = "";
-                            for(var i = 0; i < query.length; i++){
-                                if(query[i].length == 0)
-                                {
-                                    continue;
-                                }
-                                new_query += query[i]
-                                if(i < query.length-1)
-                                {
-                                    new_query += "+";
-                                }
-                            }
-                            console.log("new_query: " + new_query);
-                            json_query = {};
-                            json_query["searchFilters"] = {};
-                            json_query["searchFilters"]["resource"] = new_query;
-                            json_query["searchFilters"]["searchType"] = "resources"
-                            return $.ajax({
-                                url: "/resource/autocomplete",
-                                type: "GET",
-                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
-                                success: function(data) {
-                                    console.log("data: " + data);
-                                    return processAsync(JSON.parse(data).slice(0,7));
-                                    // return data;
-                                }
-                            });
-                        }
-                    },
-                    {
-                        name: 'tags',
-                        limit: 50,
-                        async: true,
-                        templates: {
-                            header: '<h3 class="header"><strong>Tags</strong></h3>'
-                        },
-                        source: function (query, processSync, processAsync) {
-                            query = query.split(" ");
-                            new_query = "";
-                            for(var i = 0; i < query.length; i++){
-                                if(query[i].length == 0)
-                                {
-                                    continue;
-                                }
-                                new_query += query[i]
-                                if(i < query.length-1)
-                                {
-                                    new_query += "+";
-                                }
-                            }
-                            console.log("new_query: " + new_query);
-                            json_query = {};
-                            json_query["searchFilters"] = {};
-                            json_query["searchFilters"]["resource"] = new_query;
-                            json_query["searchFilters"]["searchType"] = "tags"
-                            return $.ajax({
-                                url: "/resource/autocomplete",
-                                type: "GET",
-                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
-                                success: function(data) {
-                                    console.log("data: " + data);
-                                    return processAsync(JSON.parse(data).slice(0,3));
-                                    // return data;
-                                }
-                            });
-                        }
-                    });
-
+        gapi.analytics.auth.authorize({
+            'serverAuth': {
+                'access_token': '<%- authorizationToken -%>'
+            }
         });
 
-    </script>
+        // Creates a new DataChart instance showing sessions over the past 30 days.
+        // It will be rendered inside an element with the id "chart-1-container".
+
+        dataChart1 = new gapi.analytics.googleCharts.DataChart({
+            query: {
+                'ids': 'ga:111291353', // AZtec view.
+                'start-date': '30daysAgo',
+                'end-date': 'yesterday',
+                'metrics': 'ga:sessions,ga:users',
+                'dimensions': 'ga:date'
+            },
+            chart: {
+                'container': 'chart-1-container',
+                'type': 'LINE',
+                'options': {
+                    'width': '100%'
+                }
+            }
+        });
+        dataChart1.execute();
+
+        gapi.client.analytics.data.ga.get({
+            'auth': '<%= authorizationToken %>',
+            'ids': 'ga:111291353',
+            'metrics': 'ga:pageviews',
+            'dimensions': 'ga:pagePath',
+            'start-date': '60daysAgo',
+            'end-date': 'yesterday',
+            'sort': '-ga:pagePath',
+            //'filters': 'ga:country!=/',
+            'filters' : 'ga:pagePath=~/AZ[0-9]{7}',
+            'max-results': 8,
+            // 'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
+        }).then(function(response) {
+                    var formattedJson = JSON.stringify(response.result, null, 2);
+                    console.log(formattedJson);
+                    var rows = response.result["rows"];
+                    var idList = {};
+                    //console.log(rows);
+                    var idToUrlList = {}
+                    for(var i = 0; i < rows.length; i++) {
+                        var id = rows[i][0];
+                        var new_id = "";
+                        for(var j = 3; j < id.length; j++)
+                        {
+                            if(id[j] == '0')
+                                continue
+                            else
+                            {
+                                new_id = id.substring(j,id.length);
+                                break;
+                            }
+
+                        }
+                        idList[new_id] =  rows[i][1];
+                        idToUrlList[new_id] = id;
+                    }
+
+                    var count = 0
+                    for(var key in idList)
+                    {
+                        (function(key, idList, callback) {
+                            var json_query = {};
+                            json_query["id"] = key;
+
+                            console.log(JSON.stringify(json_query));
+                            $.ajax({
+                                url: "/resource/getNameFromID",
+                                type: "GET",
+                                data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function (data) {
+                                    console.log("data: " + data);
+                                    nameList[data]= idList[key];
+                                    console.log(nameList);
+                                    nameToUrlList[data] = idToUrlList[key];
+                                    callback();
+                                    count++;
+                                }
+                            });
+                        })(key, idList, function(){
+                            if(Object.keys(nameList).length == 8)
+                            {
+                                console.log("final nameList: " + JSON.stringify(nameList));
+                                loadResourceChart(nameList, nameToUrlList);
+                            }
+                        });
+                    }
+                })
+                .then( function(err) {
+                    // Log any errors.
+                    console.log(err);
+                });
+
+    });
+
+   setTimeout(myFunc, 5000);
+   function myFunc()
+   {
+       console.log("myFunc");
+       if(resourceChartDrawn == false && Object.keys(nameList).length > 2) {
+           loadResourceChart(nameList, nameToUrlList);
+       }
+   }
+
+</script>
+
+
 
 </head>
 <body style="font-family: 'Open Sans', sans-serif;">
@@ -280,6 +237,7 @@
         </div>
     </div>
 </div>
+
 <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
 
     <div class="col-md-4 col-sm-6 hero-feature">
@@ -312,7 +270,7 @@
     <div class="col-md-4 col-sm-6 hero-feature">
 
         <div>
-            <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;User Countries</h1>
+            <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;Popular Resources</h1>
         </div>
         <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
         </div>

@@ -224,8 +224,9 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
     options.host = config.solrHost;
     options.port = config.solrPort;
     var client = solr.createClient(options);
-
+    console.log("fields: " + JSON.stringify(fields));
     for(var key in fields){
+
         var lengthField = fields[key].length;
         for(var i = 0; i < lengthField; i++){
             var val = fields[key][i]

@@ -41,6 +41,7 @@ Resource.prototype._stat = function (self, type, callback) {
     mongo.search("resource_stats", search, function(r) {
         callback(r[0].data);
     });
+
 };
 
 //--- update ------------------------------------------------------------------------------
