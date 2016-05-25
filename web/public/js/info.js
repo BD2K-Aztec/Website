@@ -87,29 +87,7 @@ function Info(resource, neo4j) {
     }
     $("#thomepage_url").html(tHomepage_url);
 
-    var doiArr = ['NA'];
-    var PublicationInfo = "Not Available";
-    var outPublication = "";
-    if (resource.publicationDOI) {
-        var dois = [resource.publicationDOI];
-        if(resource.otherPublicationDOI)
-            dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
-        var doiArr = [];
-        for(var i = 0; i < dois.length; i++){
-            var doi = dois[i].replace(/ *\([^)]*\) */g, "");
-            doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
-        }
-        var doiCrossref = dois[0].replace(/ *\([^)]*\) */g, "").substring(4).trim();
-        PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
-        var outPublication = changeFormatPublication(PublicationInfo); //for PUBLICATION part
-        changeFormatCitation(doiCrossref); //for Cite part
-    }
-    else {
-        $("#citationinfo").html("Not Available")
-    }
-    $("#publicationinfo").html(outPublication);
-    tPublications = createList(doiArr);
-    $("#tpublications").html(tPublications);
+
     // didn't show in this version
     if (resource.toolDOI) {
         acc += createAcc("Tool DOI", resource.toolDOI);
@@ -250,6 +228,35 @@ function Info(resource, neo4j) {
         tTag = tagsHtml;
     }
     $("#ttagsHtml").html(tTag);
+
+    var doiArr = ['NA'];
+    var PublicationInfo = "Not Available";
+    var outPublication = "";
+    if (resource.publicationDOI) {
+        var dois = [resource.publicationDOI];
+        if(resource.otherPublicationDOI)
+            dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
+        var doiArr = [];
+        for(var i = 0; i < dois.length; i++){
+            var doi = dois[i].replace(/ *\([^)]*\) */g, "");
+            doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
+        }
+        var doiCrossref = dois[0].replace(/ *\([^)]*\) */g, "").substring(4).trim();
+        if( !isNaN(doiCrossref[0])){ //still some invalid doi in our database
+            PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
+            var outPublication = changeFormatPublication(PublicationInfo); //for PUBLICATION part
+            changeFormatCitation(doiCrossref); //for Cite part
+        }
+        else{
+            $("#citationinfo").html("Not Available")
+        }
+    }
+    else {
+        $("#citationinfo").html("Not Available")
+    }
+    $("#publicationinfo").html(outPublication);
+    tPublications = createList(doiArr);
+    $("#tpublications").html(tPublications);
 
     var svgElement = document.getElementsByTagName("svg");
     $("svg").css("width", "100%");
