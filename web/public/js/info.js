@@ -48,9 +48,6 @@ function Info(resource, neo4j) {
             $("#name").html($("#name").html() + '&nbsp; &nbsp; <a href="/tool/edit?id=' + resource.id + '" class="btn btn-info" role="button">Edit Resource</a>') //change: put in if block
         }
     }
-    if (resource.description) {
-        acc += createAcc("Description", resource.description);
-    }
     var tDescription = "NA";
     if (resource.description) {
         tDescription = resource.description;
@@ -68,6 +65,7 @@ function Info(resource, neo4j) {
     else{
         var tSourcecode = createList(["NA"]);
     }
+
     $("#tsourcecode").html(tSourcecode);
 
     if (resource.linkDescriptions) {
@@ -88,13 +86,10 @@ function Info(resource, neo4j) {
         var tHomepage_url = createList(tHomepage_url_list)
     }
     $("#thomepage_url").html(tHomepage_url);
-    
-    if (linkArr.length > 0){
-        acc += createAccList("Links", linkArr);
-    }
-
 
     var doiArr = ['NA'];
+    var PublicationInfo = "Not Available";
+    var outPublication = "";
     if (resource.publicationDOI) {
         var dois = [resource.publicationDOI];
         if(resource.otherPublicationDOI)
@@ -104,11 +99,18 @@ function Info(resource, neo4j) {
             var doi = dois[i].replace(/ *\([^)]*\) */g, "");
             doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
         }
-        acc += createAccList("Publication DOIs", doiArr);
+        var doiCrossref = dois[0].replace(/ *\([^)]*\) */g, "").substring(4).trim();
+        PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
+        var outPublication = changeFormatPublication(PublicationInfo); //for PUBLICATION part
+        changeFormatCitation(doiCrossref); //for Cite part
     }
+    else {
+        $("#citationinfo").html("Not Available")
+    }
+    $("#publicationinfo").html(outPublication);
     tPublications = createList(doiArr);
     $("#tpublications").html(tPublications);
-    
+    // didn't show in this version
     if (resource.toolDOI) {
         acc += createAcc("Tool DOI", resource.toolDOI);
     }
@@ -118,13 +120,14 @@ function Info(resource, neo4j) {
     if (resource.versionDate) {
         acc += createAcc("Version Date", resource.versionDate);
     }
+    //
     var tTypes_list = ['NA'];
     if (resource.types) {
-        acc += createAccList("Resource Types", resource.types);
         tTypes_list = resource.types;
     }
     var tTypes = createList(tTypes_list);
     $("#ttypes").html(tTypes);
+
     var regEx = /<|>/g;
 
     if (resource.licenses) {
@@ -136,16 +139,17 @@ function Info(resource, neo4j) {
             else
                 licenseArr.push(resource.licenses[i]);
         }
-        acc += createAccList("Licenses", licenseArr);
-        var tLicense= licenseArr;
+        var tLicense= licenseArr.join('; ').trim();
     }
     else{
         var tLicense = "No License";
     }
     $("#tlicense").html(tLicense);
+    //not use
     if (resource.domains) {
         acc += createAccList("Domains", resource.domains);
     }
+    //
     var tDatatypes ="NA";
     if (resource.dataTypes) {
         acc += createAccList("Data Types", resource.dataTypes);
@@ -155,13 +159,14 @@ function Info(resource, neo4j) {
     
     var tPlatforms = "NA";
     if (resource.platforms) {
-        acc += createAccList("Platforms", resource.platforms);
         tPlatforms = createList(resource.platforms);
+    }
+    else{
+        tPlatforms = createList(['NA']);
     }
     $("#tplatforms").html(tPlatforms);
 
     if (resource.language) {
-        acc += createAcc("Language", resource.language);
         var tLanguage_list=[];
         tLanguage_list.push(resource.language);
         var tLanguage = createList(tLanguage_list);
@@ -181,8 +186,7 @@ function Info(resource, neo4j) {
             else
                 authorArr.push(resource.authors[i]);
         }
-        acc += createAccList("Authors", authorArr);
-        tAuthor = authorArr;
+        tAuthor = authorArr.join('; ');
     }
     $("#tauthor").html(tAuthor);
 
@@ -195,7 +199,6 @@ function Info(resource, neo4j) {
             else
                 maintainerArr.push(resource.maintainers[i]);
         }
-        acc += createAccList("Maintainers", maintainerArr);
         var tMaintainers = createList(maintainerArr);
     }
     else{
@@ -206,8 +209,8 @@ function Info(resource, neo4j) {
     var tInstitutions = "";
     if(resource.institutions){
         acc += createAccList("Institutions", resource.institutions);
-        tInstitutions = resource.institutions;
-        $("#tinstitutions_2").html(createList(tInstitutions));
+        tInstitutions = resource.institutions.join('; ');
+        $("#tinstitutions_2").html(createList(resource.institutions));
     }
     else{
         $("#tinstitutions_2").html(createList(['NA']));
@@ -215,23 +218,22 @@ function Info(resource, neo4j) {
 
     $("#tinstitutions").html(tInstitutions);
 
-
-
+    var tFundings="";
     if(resource.funding){
-        acc += createAccList("Funding", resource.funding);
-        var tFundings = createList(resource.funding);
+        tFundings = createList(resource.funding);
     }
     else{
-        var tFundings = createList(['NA'])
+        tFundings = createList(['NA'])
     }
     $("#tfundings").html(tFundings);
-    
+
+    // not use
     if(resource.dependencies){
         acc += createAccList("Dependencies", resource.dependencies);
     }
+    //
     var tSource ="";
     if (resource.source) {
-        acc += createAcc("Source", resource.source);
         tSource = createList(resource.source);
     }
     $("#tsource").html(tSource);
@@ -239,13 +241,12 @@ function Info(resource, neo4j) {
     var tTag = "";
     if(resource.tags){
         var tagsHtml = "";
-        tagsHtml += '<div class="row" id="tagRemove" align="left" ><div class="tag col-lg-12">';
+        tagsHtml += '<div class="row" id="tagRemove" align="left"><div class="tag col-lg-12"  style="padding-bottom: 5px;padding-top: 5px">';
         for(var i = 0; i < resource.tags.length; i++){
-            tagsHtml += '&nbsp;<button type="button" class="btn btn-info btn-xs" style="font-weight: bold;border-radius:7px">&nbsp;' + resource.tags[i] + '</button>';
+            tagsHtml += '&nbsp;<button type="button" class="btn btn-info btn-xs" style="font-weight: bold;font-size:14px;border-radius:10px;margin-bottom:5px;padding-left:12px;padding-right: 12px">' + resource.tags[i] + '</button>';
         }
         tagsHtml += '</div></div>';
         //$("#tag").html('<b>Tags: </b><span>' + tagsHtml + '</span>');
-        acc += createAcc("Tags", tagsHtml);
         tTag = tagsHtml;
     }
     $("#ttagsHtml").html(tTag);
@@ -280,9 +281,11 @@ function Info(resource, neo4j) {
         return false; // return false to cancel form action
     });
 
+//popup citation
     var modal = document.getElementById('myModal');
     var citation = document.getElementById('citation');
     var span = document.getElementsByClassName("close")[0];
+
     citation.addEventListener('click', popupCitation);
     function popupCitation(){
         //alert("Publication Information");
@@ -297,7 +300,7 @@ function Info(resource, neo4j) {
             modal.style.display = "none";
         }
     }
-    $("#citeinfo").html("Publication information")
+
 
 //    function idIndex(a,id) {
 //        for (var i=0;i<a.length;i++) {
@@ -401,5 +404,81 @@ function createList(arr){
     for(var i = 0; i < arr.length; i++)
         ret += '<li class="" style="padding-left:33px">' + arr[i] + '</li>';
     ret += '</div>';
-    return ret
+    return ret;
+}
+
+
+// get publication information by DOI
+function setXMLHttpRequest() {
+    var xhr = null;
+    if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject) {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    return xhr;
+}
+
+var xmlhttp = setXMLHttpRequest();
+
+function getPublication(DOI){
+    var information = "";
+    var url = 'http://api.crossref.org/works/'+DOI+'/transform/application/vnd.citationstyles.csl+json';//application/x-bibtex'
+    xmlhttp.open("GET",url,false);//syn or asynronous????
+    //xmlhttp.onreadystatechange=function()
+    //{
+    //    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    //    {
+            //document.getElementById("citeinfo").innerHTML=xmlhttp.responseText;
+    //        information=xmlhttp.responseText;
+    //    }
+        //alert(xmlhttp.readyState);
+    //}
+    xmlhttp.send();
+    information=xmlhttp.responseText;
+    return information;
+}
+
+function getCitation(DOI,type) {
+    var information = "";
+    var url = 'http://api.crossref.org/works/' + DOI+ '/transform/application/'+type;//text/x-bibliography?style='+type;
+    xmlhttp.open("GET", url, true);//syn or asynronous????
+    //xmlhttp.setRequestHeader("Accept","text/bibliography; style=bibtex");
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById(type+"info").innerHTML = xmlhttp.responseText;
+        }
+        //alert(xmlhttp.readyState);
+    }
+    xmlhttp.send();
+}
+
+function changeFormatPublication(information){
+    var outPublication="";
+    var JSONinfo = JSON.parse(information);
+    outPublication = '<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Title:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo.title+'</div></div>';
+    outPublication = outPublication+'<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Author:</h4><div style="padding-left:33px;margin-bottom: 10px">';
+    for(var i=0;i<JSONinfo.author.length;i++){
+        outPublication=outPublication+JSONinfo.author[i].family+', '+JSONinfo.author[i].given+'; ';
+    }
+    outPublication = outPublication+'</div></div>';
+    outPublication = outPublication+'<div class="row"><div class="col-md-6" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Journal:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo['container-title']+'</div></div>';
+    outPublication = outPublication+'<div class="col-md-6" style="padding-left:20px"><div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left"><h4 class="text-left" style="font-weight:bold">Date:</h4><div style="padding-left:33px;margin-bottom: 10px">'+mapDate(JSONinfo.deposited['date-parts'][0])+'</div></div></div>';
+    //outPublication = outPublication+'<div class="col-md-4"><h4 class="text-left" style="font-weight:bold">Publications:</h4><div style="padding-left:33px">'+'DOI: <a href="http://dx.doi.org/' + JSONinfo.DOI + '">' + JSONinfo.DOI + '</a>'+'</div></div></div>';
+    return outPublication;
+}
+
+function changeFormatCitation(DOI){
+    var formatstring='<div class ="row"><div class="col-md-2">BibTeX</div><div class="col-md-8" id = "x-bibtexinfo"></div></div>';
+    ////formatstring = formatstring+'<div class ="row"><div class="col-md-2">APA</div><div class="col-md-8" id = "apainfo"></div></div>';
+    document.getElementById("citationinfo").innerHTML = formatstring;
+    //getCitation(DOI,'chicago-annotated-bibliography');
+    getCitation(DOI,"x-bibtex");
+}
+
+function mapDate(Date){
+    var monthList=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var newDate=monthList[Date[1]-1]+' '+Date[2].toString()+', '+Date[0].toString();
+    return newDate;
 }
