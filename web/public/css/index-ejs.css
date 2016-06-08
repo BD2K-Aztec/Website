@@ -11,6 +11,14 @@
     color: #999
 }
 
+.goog-tooltip{
+    color: black;
+}
+
+.chart-tooltip{
+    color: black;
+}
+
 .tt-menu {    /* used to be tt-dropdown-menu in older versions */
     width: 100%;
 
