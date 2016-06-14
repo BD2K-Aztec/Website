@@ -74,8 +74,9 @@ function Info(resource, neo4j) {
                 linkArr.push(resource.linkDescriptions[i] + ": " + "<a href='" + resource.linkUrls[i] + "'>" + resource.linkUrls[i] + "</a>");
         }
     }
-    var tHomepage_url_list=[];
+    var tHomepage_url_list=["NA"];
     if (resource.linkDescriptions) {
+        tHomepage_url_list = [];
         for (var i in resource.linkDescriptions) {
             if(resource.linkDescriptions[i] == "Homepage" && resource.linkUrls[i])
                 tHomepage_url_list.push("<a href='" + resource.linkUrls[i] + "'>" + resource.linkUrls[i] + "</a>");
@@ -83,8 +84,8 @@ function Info(resource, neo4j) {
         if (tHomepage_url_list.length == 0){
             tHomepage_url_list.push('NA')
         }
-        var tHomepage_url = createList(tHomepage_url_list)
     }
+    var tHomepage_url = createList(tHomepage_url_list)
     $("#thomepage_url").html(tHomepage_url);
 
 
@@ -230,7 +231,7 @@ function Info(resource, neo4j) {
     $("#ttagsHtml").html(tTag);
 
     var doiArr = ['NA'];
-    var PublicationInfo = "Not Available";
+    //var outPublication = "Not Available";
     var outPublication = "";
     if (resource.publicationDOI) {
         var dois = [resource.publicationDOI];
@@ -243,20 +244,32 @@ function Info(resource, neo4j) {
         }
         var doiCrossref = dois[0].replace(/ *\([^)]*\) */g, "").substring(4).trim();
         if( !isNaN(doiCrossref[0])){ //still some invalid doi in our database
-            PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
-            var outPublication = changeFormatPublication(PublicationInfo); //for PUBLICATION part
-            changeFormatCitation(doiCrossref); //for Cite part
+            //PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
+            getPublication(doiCrossref);
+            //var outPublication = changeFormatPublication(PublicationInfo);
+            //changeFormatCitationAPA(PublicationInfo);
+            //changeFormatCitation(doiCrossref); //for Cite part
+            /*if(PublicationInfo!=""){
+                var outPublication = changeFormatPublication(PublicationInfo);
+                changeFormatCitationAPA(PublicationInfo);
+                changeFormatCitation(doiCrossref); //for Cite part
+            } //for PUBLICATION part*/
+            // else{
+            //     $("#citationAPAinfo").html("Not Available")
+            // }
         }
         else{
-            $("#citationinfo").html("Not Available")
+            $("#citationAPAinfo").html("Not Available");
+            $("#citationBibinfo").html("Not Available");
         }
     }
     else {
-        $("#citationinfo").html("Not Available")
+        $("#citationAPAinfo").html("Not Available");
+        $("#citationBibinfo").html("Not Available");
     }
-    $("#publicationinfo").html(outPublication);
-    tPublications = createList(doiArr);
-    $("#tpublications").html(tPublications);
+    //$("#publicationinfo").html(outPublication);
+    //tPublications = createList(doiArr);
+    //$("#tpublications").html(tPublications);
 
     var svgElement = document.getElementsByTagName("svg");
     $("svg").css("width", "100%");
@@ -289,24 +302,43 @@ function Info(resource, neo4j) {
     });
 
 //popup citation
-    var modal = document.getElementById('myModal');
+    var modal = document.getElementById('citationAPA');
+    var modal2 = document.getElementById('citationBibTex');
     var citation = document.getElementById('citation');
-    var span = document.getElementsByClassName("close")[0];
+    var bib = document.getElementById('bibtex');
+    var span1 = document.getElementsByClassName("close")[0];
+    var span2 = document.getElementsByClassName("close")[1];
 
-    citation.addEventListener('click', popupCitation);
-    function popupCitation(){
+    citation.addEventListener('click', popupCitation1);
+    function popupCitation1(){
         //alert("Publication Information");
         modal.style.display = "block";
 
     }
-    span.onclick = function() {
+    bib.addEventListener('click', popupCitation2);
+    span2.onclick = function() {
+        modal2.style.display = "none";
+    }
+
+    function popupCitation2(){
+        //alert("Publication Information");
+        modal2.style.display = "block";
+    }
+    span1.onclick = function() {
         modal.style.display = "none";
     }
+
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
+        if (event.target == modal2) {
+            modal2.style.display = "none";
+        }
     }
+
+
+
 
 
 //    function idIndex(a,id) {
@@ -428,61 +460,130 @@ function setXMLHttpRequest() {
 }
 
 var xmlhttp = setXMLHttpRequest();
-
+var xmlhttp2 = setXMLHttpRequest();
 function getPublication(DOI){
     var information = "";
-    var url = 'http://api.crossref.org/works/'+DOI+'/transform/application/vnd.citationstyles.csl+json';//application/x-bibtex'
-    xmlhttp.open("GET",url,false);//syn or asynronous????
-    //xmlhttp.onreadystatechange=function()
-    //{
-    //    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    //    {
-            //document.getElementById("citeinfo").innerHTML=xmlhttp.responseText;
-    //        information=xmlhttp.responseText;
-    //    }
-        //alert(xmlhttp.readyState);
-    //}
-    xmlhttp.send();
-    information=xmlhttp.responseText;
-    return information;
-}
-
-function getCitation(DOI,type) {
-    var information = "";
-    var url = 'http://api.crossref.org/works/' + DOI+ '/transform/application/'+type;//text/x-bibliography?style='+type;
-    xmlhttp.open("GET", url, true);//syn or asynronous????
-    //xmlhttp.setRequestHeader("Accept","text/bibliography; style=bibtex");
-    xmlhttp.onreadystatechange = function () {
+    var url = 'https://api.crossref.org/works/'+DOI+'/transform/application/vnd.citationstyles.csl+json';//application/x-bibtex'
+    xmlhttp.open("GET",url,true);//syn or asynronous????
+    //alert(xmlhttp.status);
+    xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById(type+"info").innerHTML = xmlhttp.responseText;
+            //var outPublication='<div class="row" style="margin:20px"><div class="col-md-1"></div><div class="col-md-10" style="padding:20px"><div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left"><h3 class="text-center">PUBLICATIONS</h3></div></div></div>';
+            var JSONinfo = JSON.parse(xmlhttp.responseText);
+            var outPublication = '<div class="col-md-1"></div><div class="col-md-10" style="background-color:#FFFFFF;padding:20px"><div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">';
+            outPublication = outPublication+'<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Title:</h4><div style="padding-left:33px;margin-bottom: 10px">';
+            outPublication = outPublication+JSONinfo.title+'</div></div>';
+            outPublication = outPublication+'<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Author:</h4><div style="padding-left:33px;margin-bottom: 10px">';
+            for(var i=0;i<JSONinfo.author.length;i++){
+                outPublication=outPublication+JSONinfo.author[i].family+', '+JSONinfo.author[i].given+'; ';
+            }
+            outPublication = outPublication+'</div></div>';
+            outPublication = outPublication+'<div class="row"><div class="col-md-6" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Journal:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo['container-title']+'</div></div>';
+            outPublication = outPublication+'<div class="col-md-6" style="padding-left:20px"><div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left"><h4 class="text-left" style="font-weight:bold">Date:</h4><div style="padding-left:33px;margin-bottom: 10px">'+mapDate(JSONinfo.deposited['date-parts'][0])+'</div></div></div>';
+            outPublication = outPublication+'<div class="col-md-4"><h4 class="text-left" style="font-weight:bold">Publications:</h4><div style="padding-left:33px">'+'DOI: <a href="http://dx.doi.org/' + JSONinfo.DOI + '">' + JSONinfo.DOI + '</a>'+'</div></div></div>';
+            outPublication=outPublication+'</div></div>';
+            document.getElementById("pubtitle").innerHTML = "PUBLICATIONS";
+            document.getElementById("publicationinfo").innerHTML = outPublication;
+            var outAPA = "<h4>APA</h4><p>";
+            //var JSONinfo = JSON.parse(information);
+            for(var i=0;i<JSONinfo.author.length-1;i++){
+                outAPA=outAPA+JSONinfo.author[i].family+", ";
+                var givenname = JSONinfo.author[i].given.split(" ");
+                for(var j = 0; j<givenname.length;j++){
+                    outAPA=outAPA+givenname[j][0]+". ";
+                }
+                outAPA=outAPA+', ';
+            }
+            outAPA=outAPA+JSONinfo.author[JSONinfo.author.length-1].family+", ";
+            var givenname = JSONinfo.author[i].given.split(" ");
+            for(var j = 0; j<givenname.length;j++){
+                outAPA=outAPA+givenname[j][0]+". ";
+            }
+            outAPA=outAPA+"("+JSONinfo.deposited['date-parts'][0][0]+"). ";
+            outAPA=outAPA+JSONinfo.title+". ";
+            outAPA=outAPA+ JSONinfo['container-title']+", ";
+            outAPA=outAPA+JSONinfo['volume'] +"("+JSONinfo['issue']+"), ";
+            outAPA=outAPA+JSONinfo['page']+".</p>";
+            //outAPA=outAPA+"<a id = 'bibtex' href='#'>Bibtex</a>";
+            document.getElementById("citationAPAinfo").innerHTML = outAPA;
+            //document.getElementById("citationAPAinfo").innerHTML = outAPA;
+        }
+        else if(xmlhttp.status = 404){
+            document.getElementById("citationAPAinfo").innerHTML = "Not Available";
         }
         //alert(xmlhttp.readyState);
     }
     xmlhttp.send();
-}
-
-function changeFormatPublication(information){
-    var outPublication="";
-    var JSONinfo = JSON.parse(information);
-    outPublication = '<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Title:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo.title+'</div></div>';
-    outPublication = outPublication+'<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Author:</h4><div style="padding-left:33px;margin-bottom: 10px">';
-    for(var i=0;i<JSONinfo.author.length;i++){
-        outPublication=outPublication+JSONinfo.author[i].family+', '+JSONinfo.author[i].given+'; ';
-    }
-    outPublication = outPublication+'</div></div>';
-    outPublication = outPublication+'<div class="row"><div class="col-md-6" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Journal:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo['container-title']+'</div></div>';
-    outPublication = outPublication+'<div class="col-md-6" style="padding-left:20px"><div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left"><h4 class="text-left" style="font-weight:bold">Date:</h4><div style="padding-left:33px;margin-bottom: 10px">'+mapDate(JSONinfo.deposited['date-parts'][0])+'</div></div></div>';
-    //outPublication = outPublication+'<div class="col-md-4"><h4 class="text-left" style="font-weight:bold">Publications:</h4><div style="padding-left:33px">'+'DOI: <a href="http://dx.doi.org/' + JSONinfo.DOI + '">' + JSONinfo.DOI + '</a>'+'</div></div></div>';
-    return outPublication;
-}
-
-function changeFormatCitation(DOI){
-    var formatstring='<div class ="row"><div class="col-md-2">BibTeX</div><div class="col-md-8" id = "x-bibtexinfo"></div></div>';
-    ////formatstring = formatstring+'<div class ="row"><div class="col-md-2">APA</div><div class="col-md-8" id = "apainfo"></div></div>';
-    document.getElementById("citationinfo").innerHTML = formatstring;
-    //getCitation(DOI,'chicago-annotated-bibliography');
     getCitation(DOI,"x-bibtex");
+    //information=xmlhttp.responseText;
+    //return information;
 }
+
+function getCitation(DOI,type) {
+    var information = "";
+    var url = 'https://api.crossref.org/works/' + DOI+ '/transform/application/'+type;//text/x-bibliography?style='+type;
+    xmlhttp2.open("GET", url, true);//syn or asynronous????
+    //xmlhttp.setRequestHeader("Accept","text/bibliography; style=bibtex");
+    xmlhttp2.onreadystatechange = function () {
+        if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+            var formatstring='<h4>BibTeX</h4><p>';
+            formatstring=formatstring+xmlhttp2.responseText+'</p>';
+            document.getElementById("citationBibinfo").innerHTML = formatstring;
+        }
+        else if (xmlhttp2.status == 404){
+            document.getElementById("citationBibinfo").innerHTML = "Not Available";
+        }
+    }
+    xmlhttp2.send();
+}
+// function changeFormatCitationAPA(information){
+//     var outAPA = "<h4>APA</h4><p>";
+//     var JSONinfo = JSON.parse(information);
+//     for(var i=0;i<JSONinfo.author.length-1;i++){
+//         outAPA=outAPA+JSONinfo.author[i].family+", ";
+//         var givenname = JSONinfo.author[i].given.split(" ");
+//         for(var j = 0; j<givenname.length;j++){
+//             outAPA=outAPA+givenname[j][0]+". ";
+//         }
+//         outAPA=outAPA+', ';
+//     }
+//     outAPA=outAPA+JSONinfo.author[JSONinfo.author.length-1].family+", ";
+//     var givenname = JSONinfo.author[i].given.split(" ");
+//     for(var j = 0; j<givenname.length;j++){
+//         outAPA=outAPA+givenname[j][0]+". ";
+//     }
+//     outAPA=outAPA+"("+JSONinfo.deposited['date-parts'][0][0]+"). ";
+//     outAPA=outAPA+JSONinfo.title+". ";
+//     outAPA=outAPA+ JSONinfo['container-title']+", ";
+//     outAPA=outAPA+JSONinfo['volume'] +"("+JSONinfo['issue']+"), ";
+//     outAPA=outAPA+JSONinfo['page']+".</p><a id = 'bibtex' href = '#'>BibTex</a>";
+//     document.getElementById("citationAPAinfo").innerHTML = outAPA;
+// }
+// function changeFormatPublication(information){
+//     var outPublication="";
+//     var JSONinfo = JSON.parse(information);
+//     outPublication = '<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Title:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo.title+'</div></div>';
+//     outPublication = outPublication+'<div class="row" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Author:</h4><div style="padding-left:33px;margin-bottom: 10px">';
+//     for(var i=0;i<JSONinfo.author.length;i++){
+//         outPublication=outPublication+JSONinfo.author[i].family+', '+JSONinfo.author[i].given+'; ';
+//     }
+//     outPublication = outPublication+'</div></div>';
+//     outPublication = outPublication+'<div class="row"><div class="col-md-6" style="padding-left:20px"><h4 class="text-left" style="font-weight:bold">Journal:</h4><div style="padding-left:33px;margin-bottom: 10px">'+JSONinfo['container-title']+'</div></div>';
+//     outPublication = outPublication+'<div class="col-md-6" style="padding-left:20px"><div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left"><h4 class="text-left" style="font-weight:bold">Date:</h4><div style="padding-left:33px;margin-bottom: 10px">'+mapDate(JSONinfo.deposited['date-parts'][0])+'</div></div></div>';
+//     //outPublication = outPublication+'<div class="col-md-4"><h4 class="text-left" style="font-weight:bold">Publications:</h4><div style="padding-left:33px">'+'DOI: <a href="http://dx.doi.org/' + JSONinfo.DOI + '">' + JSONinfo.DOI + '</a>'+'</div></div></div>';
+//     $("#publicationinfo").html(outPublication);
+//     //return outPublication;
+// }
+
+// function changeFormatCitation(DOI){
+//     ///var formatstring='<div class ="row"><div class="col-md-2">BibTeX</div><div class="col-md-8" id = "x-bibtexinfo"></div></div>';
+//     var formatstring='<h4>BibTeX</h4><p id = "x-bibtexinfo"></p>';
+//     //console.log(Console);
+//     ////formatstring = formatstring+'<div class ="row"><div class="col-md-2">APA</div><div class="col-md-8" id = "apainfo"></div></div>';
+//     document.getElementById("citationBibinfo").innerHTML = formatstring;
+//     //getCitation(DOI,'chicago-annotated-bibliography');
+//     getCitation(DOI,"x-bibtex");
+// }
 
 function mapDate(Date){
     var monthList=['January','February','March','April','May','June','July','August','September','October','November','December'];
