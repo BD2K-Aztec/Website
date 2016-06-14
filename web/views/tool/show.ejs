@@ -103,14 +103,7 @@
                 </div>
             </div>
         </div>
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">×</span>
-                <p id="citationinfo"></p>
-            </div>
-        </div>
-        <!--end-->
+
 
         <div class="row" style="background-color:#F5F5F5">
             <div class="col-md-1"></div>
@@ -154,26 +147,27 @@
             </div>
         </div>
 
-        <% if (resource.publicationDOI){%>
+
         <div class="row" style="margin:20px">
             <div class="col-md-1"></div>
             <div class="col-md-10" style="padding:20px">
                 <div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <h3 class="text-center">PUBLICATIONS</h3>
+                    <h3 class="text-center" id = "pubtitle"></h3>
                 </div>
             </div>
         </div>
         <div class="row" style="margin-left:20px; margin-right:20px">
-            <div class="col-md-1"></div>
-            <div class="col-md-10" style="background-color:#FFFFFF;padding:20px">
-                <div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">
-                    <div id = "publicationinfo"></div>
-                    <h4 class="text-left" style="font-weight:bold">Publications:</h4>
-                    <div id ="tpublications"></div>
-                </div>
-            </div>
+            <div id = "publicationinfo"></div>
+            <!--<div class="col-md-1"></div>-->
+            <!--<div class="col-md-10" style="background-color:#FFFFFF;padding:20px">-->
+                <!--<div class="" style="overflow:hidden;margin-right:20px; margin-left:20px" align="left">-->
+                    <!--<div id = "publicationinfo"></div>-->
+                    <!--&lt;!&ndash;<h4 class="text-left" style="font-weight:bold">Publications:</h4>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div id ="tpublications"></div>&ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
-        <%}%>
+
 
         <div class="row" style="margin: 20px">
             <div class="col-md-1"></div>
@@ -201,6 +195,23 @@
             </div>
         </div>
     </div>
+    </div>
+    <!-- The Modal -->
+    <div id="citationAPA" class="modal">
+        <div class="modal-content">
+            <span id = "close1" class="close">×</span>
+            <p id="citationAPAinfo"></p>
+            <a id = 'bibtex' href='#'>Bibtex</a>
+        </div>
+    </div>
+    <!--end-->
+    <!-- The Modal -->
+    <div id="citationBibTex" class="modal">
+        <div class="modal-content">
+            <span id = "close2" class="close">×</span>
+            <p id="citationBibinfo"></p>
+            <!--<a id = "bibtex" href = "#citationBibinfo">BibTex</a>-->
+        </div>
     </div>
 
 </div>
