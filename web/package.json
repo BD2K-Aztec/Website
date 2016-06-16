@@ -15,6 +15,7 @@
     "express": "^4.9.5",
     "express-session": "~1.0.0",
     "forever": "*",
+    "googleapis": "^5.2.1",
     "graphviz": "*",
     "method-override": "~1.0.0",
     "moment": "*",
@@ -54,8 +55,6 @@
     "passport-google-oauth" : "~0.1.5",
     "connect-flash" : "~0.1.1",
     "bcrypt-nodejs" : "latest",
-    "nodemailer": "*",
-    "python-shell": "*",
     "morgan": "~1.0.0",
     "cookie-parser": "~1.0.0",
     "method-override": "~1.0.0",
@@ -63,6 +62,12 @@
     "bookshelf": "0.8.2",
     "knex": "0.8.6",
     "async": "1.4.2",
-    "collections": "^3.0.0"
+    "collections": "^3.0.0",
+    "solr-client": "*",
+    "supervisor": "*",
+    "uuid": "*",
+    "xml2js": "*",
+    "xmldom": "*",
+    "xpath": "*"
   }
 }

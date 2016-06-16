@@ -28,6 +28,7 @@ function ResourceController() {
     this.stat = function(req, res) { self._stat(self, req, res) };
     this.add = function(req, res) { self._add(self, req, res) };
     this.advanced = function(req, res) { self._advanced(self, req, res) };
+    this.getNameFromID = function(req, res){ self._getNameFromID(self, req, res)};
 }
 
 //--- advanced -----------------------------------------------------------------------
@@ -132,6 +133,20 @@ ResourceController.prototype._autocomplete = function (self,req,res){
     });
 
 };
+
+ResourceController.prototype._getNameFromID = function(self, req, res)
+{
+    var json = req.query
+    console.log("json: " + JSON.stringify(json));
+    BD2K.solr.search(json, function (obj) {
+        console.log("obj: " + JSON.stringify(obj));
+        if(obj.response.docs.length > 0) {
+            var results = obj.response.docs[0]["name"];
+            console.log("results1: " + JSON.stringify(results));
+            res.send(results);
+        }
+    });
+}
 
 //--- add -----------------------------------------------------------------------
 ResourceController.prototype._add = function (self,req,res){

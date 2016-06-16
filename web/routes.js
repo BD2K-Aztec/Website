@@ -29,6 +29,7 @@ module.exports = function(app, passport) {
     app.get('/resource/stat', ResourceController.stat);
     app.get('/resource/add', ResourceController.add);
     app.get('/resource/autocomplete', ResourceController.autocomplete);
+    app.get('/resource/getNameFromID', ResourceController.getNameFromID);
 
     app.get('/tool/filters', ToolController.filters);
     //app.get('/tool/show', getLoginInformation, ToolController.show);
