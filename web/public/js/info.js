@@ -528,7 +528,7 @@ function getCitation(DOI,type) {
     //xmlhttp.setRequestHeader("Accept","text/bibliography; style=bibtex");
     xmlhttp2.onreadystatechange = function () {
         if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-            var formatstring='<h4>BibTeX</h4><pre align="left">';
+            var formatstring='<h4>BibTeX</h4><pre style = "text-align:left">';
             formatstring=formatstring+xmlhttp2.responseText+'</pre>';
             document.getElementById("citationBibinfo").innerHTML = formatstring;
         }
