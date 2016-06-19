@@ -235,8 +235,6 @@ function Info(resource, neo4j) {
     var outPublication = "";
     if (resource.publicationDOI) {
         var dois = [resource.publicationDOI];
-        console.log("dois are ");
-        console.log(dois);// new console log
         if(resource.otherPublicationDOI)
             dois = [resource.publicationDOI].concat(resource.otherPublicationDOI);
         var doiArr = [];
