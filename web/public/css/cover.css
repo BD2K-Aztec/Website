@@ -82,7 +82,6 @@ h1{
 .myDiv {
     position: relative;
     background-color: #333;
-    z-index: 1;
 }
 
 .myDiv .bg {
@@ -108,6 +107,12 @@ h1{
     width: 420px;
     height: 310px;
 }
+.btn-lg{
+    z-index: 0;
+    margin-left: 0px; 
+    margin-top: -4%;
+}
+
 #aztec-malarkey {
     line-height: 1.2;
     display: inline-block;
