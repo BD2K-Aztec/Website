@@ -49,6 +49,7 @@ function HomeController() {
     this.resetPasswordGet = function(req, res) { self._resetPasswordGet(self, req, res); };
     this.resetPasswordPost = function(req, res) { self._resetPasswordPost(self, req, res); };
     this.recover = function(req, res) { self._recover(self, req, res); };
+    this.changelog = function(req, res) {self._changelog(self, req, res) ; };
 }
 
 //--- index -----------------------------------------------------------------------
@@ -114,6 +115,14 @@ HomeController.prototype._technologies = function (self, req, res) {
 //--- sources -----------------------------------------------------------------------
 HomeController.prototype._sources = function (self, req, res) {
     res.render("home/sources", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
+};
+
+//--- changelog -----------------------------------------------------------------------
+HomeController.prototype._changelog = function (self, req, res) {
+    res.render("home/changelog", {
         loggedIn: req.loggedIn,
         user: req.user
     });
