@@ -6,7 +6,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/" style="padding-left:2em">AZ<span style="font-size: 80%;">TEC</span></a>
+            <a class="navbar-brand" href="/" style="padding-left:2em">AZ<span style="font-size: 80%;">TEC</span>
+            <sup>beta</sup>
+            </a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -33,12 +35,13 @@
                         <li><a href="https://datascience.nih.gov/bd2k">NIH BD2K Initiative</a></li>
                     </ul>
                 </li>
+                <li><a href="/home/changelog">Changelog</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" style="float:right">
                 <% if(loggedIn) {%>
                 <ul class="nav navbar-nav navbar-right" style="margin: 0;padding: 0px 15px;">
-                    <li> <a href="/home/profile" id="profile-btn" class="navbar-nav"><span class="fa fa-user"> <%- user.firstName %></a> </li>
+                    <li> <a href="/home/profile" id="profile-btn" class="navbar-nav"><span class="fa fa-user"> <div id="user" style="display: inline-block;font-family: 'Open Sans', sans-serif;font-weight: 200;font-size: 15px !important;"><%- user.firstName %></div></a> </li>
                     <li> <a href="/home/logout" id="logout-btn" class="navbar-nav">Log Out</a> </li>
                 </ul>
                 <% } else { %>

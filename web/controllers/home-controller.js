@@ -9,7 +9,11 @@ var User = require('../models/user.js');
 var BD2K = require('../utility/bd2k.js');
 var uuid = require('uuid');
 var nodemailer = require('nodemailer');
-var PythonShell = require('python-shell');
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
+
+var google_api_key = require('./secret.json');
+
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
@@ -19,6 +23,9 @@ var transporter = nodemailer.createTransport({
         pass: '2eyxv2ewbr'
     }
 });
+// info@aztec.bio
+// dh3t3umqv3
+//var oauth2Client = new OAuth2("115305594630579250587", "4098b6ae84b299d78bc106b58f6e8feea32ce707", "");
 
 // NB! No need to recreate the transporter object. You can use
 // the same transporter object for all e-mails
@@ -42,22 +49,27 @@ function HomeController() {
     this.resetPasswordGet = function(req, res) { self._resetPasswordGet(self, req, res); };
     this.resetPasswordPost = function(req, res) { self._resetPasswordPost(self, req, res); };
     this.recover = function(req, res) { self._recover(self, req, res); };
+    this.changelog = function(req, res) {self._changelog(self, req, res) ; };
 }
 
 //--- index -----------------------------------------------------------------------
 HomeController.prototype._index = function (self, req, res) {
+    var SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
+    var jwtClient = new google.auth.JWT(google_api_key.client_email, null, google_api_key.private_key, [SCOPE, SCOPE], null);
 
-    PythonShell.run('controllers/service-account.py', function (err, results) {
+    jwtClient.authorize(function(err, tokens) {
+        //console.log("jwt: "  + JSON.stringify(jwtClient));
+
         if (err) throw err;
-        // results is an array consisting of messages collected during execution
-        console.log('results: %j', results);
 
         res.render("home/index", {
             loggedIn: req.loggedIn,
             user: req.user,
-            authorizationToken: results[0]
+            authorizationToken: jwtClient["credentials"]["access_token"]
         });
+
     });
+
 };
 
 //--- success -----------------------------------------------------------------------
@@ -103,6 +115,14 @@ HomeController.prototype._technologies = function (self, req, res) {
 //--- sources -----------------------------------------------------------------------
 HomeController.prototype._sources = function (self, req, res) {
     res.render("home/sources", {
+        loggedIn: req.loggedIn,
+        user: req.user
+    });
+};
+
+//--- changelog -----------------------------------------------------------------------
+HomeController.prototype._changelog = function (self, req, res) {
+    res.render("home/changelog", {
         loggedIn: req.loggedIn,
         user: req.user
     });

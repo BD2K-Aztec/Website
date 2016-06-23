@@ -22,6 +22,15 @@
     font-size: 15px !important;
 }
 
+.search-content{
+    height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.position-div-below{
+    clear:both;
+}
+
 /*malarkey text styling
 */
 
@@ -36,7 +45,20 @@ h1{
 #tested-GC{
     font-size: small;
 }
-
+#navigation{
+    clear: both;
+    font-weight: 200;
+}
+#roatation90 {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg); /* Standard syntax */
+}
+#cover-background{
+    background-color: rgb(255, 255, 224);
+}
+.cover-panel-body {
+    background:rgb(255, 255, 224);}
 /* Custom default button */
 /*.btn-default,*/
 /*.btn-default:hover,*/
@@ -69,7 +91,6 @@ h1{
 .myDiv {
     position: relative;
     background-color: #333;
-    z-index: 1;
 }
 
 .myDiv .bg {
@@ -95,6 +116,12 @@ h1{
     width: 420px;
     height: 310px;
 }
+.btn-lg{
+    z-index: 0;
+    margin-left: 0px; 
+    margin-top: -4%;
+}
+
 #aztec-malarkey {
     line-height: 1.2;
     display: inline-block;

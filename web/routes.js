@@ -14,6 +14,7 @@ module.exports = function(app, passport) {
     app.get('/home/metadata', getLoginInformation, HomeController.metadata);
     app.get('/home/technologies', getLoginInformation, HomeController.technologies);
     app.get('/home/sources', getLoginInformation, HomeController.sources);
+    app.get('/home/changelog', getLoginInformation, HomeController.changelog);
     app.get('/home/authenticate', getLoginInformation, HomeController.authenticate);
     app.get('/home/recover', getLoginInformation, HomeController.recover);
     app.post('/home/sendPassword', getLoginInformation, HomeController.sendPassword);
@@ -29,6 +30,7 @@ module.exports = function(app, passport) {
     app.get('/resource/stat', ResourceController.stat);
     app.get('/resource/add', ResourceController.add);
     app.get('/resource/autocomplete', ResourceController.autocomplete);
+    app.get('/resource/getNameFromID', ResourceController.getNameFromID);
 
     app.get('/tool/filters', ToolController.filters);
     //app.get('/tool/show', getLoginInformation, ToolController.show);

@@ -28,6 +28,8 @@ docker run -d -p 3306:3306 vincekyi/aztec-mysql
 * Direct browser to /resource/update
 * cd web and run: node scripts/insert_stats.js
 * run pip install --upgrade google-api-python-client
+* sudo pip install oauth2client==1.5.2
+* sudo pip install pyopenssl
 
 ##How To:
 

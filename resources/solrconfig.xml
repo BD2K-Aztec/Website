@@ -28,7 +28,14 @@
        You may also specify a fully qualified Java classname if you
        have your own custom plugins.
     -->
+	
+	<!--<lib dir="C:/Users/awong/Downloads/solr-5.4.0/solr-5.4.0/server/lib/hon-lucene-synonyms-2.0.0.jar"/> -->
+	
+	<!-- <lib dir="/server/solr-webapp/webapp/WEB-INF/lib/hon-lucene-synonyms-2.0.0.jar"/> -->
+	 <lib dir="../../lib"/>
+	 <lib dir="../../compile"/>
 
+	<!-- <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" /> -->
   <!-- Controls what version of Lucene various components of Solr
        adhere to.  Generally, you want to use the latest version to
        get all bug fixes and improvements. It is highly recommended
@@ -36,7 +43,14 @@
        affect both how text is indexed and queried.
   -->
   <luceneMatchVersion>5.2.1</luceneMatchVersion>
+ <!-- <luceneMatchVersion>4.10.3</luceneMatchVersion> -->
+	<!-- <lib path="../../../lib/hon-lucene-synonyms-1.0.jar"/> -->
+	<!-- <lib path="../../../lib/auto-phrase-tokenfilter-1.0.jar"/> -->
+	<!--<lib path="../../../lib/test.jar"/> -->
 
+
+	<lib path="C:\Users\awong\Downloads\solr-5.4.0\solr-5.4.0\server\solr-webapp\webapp\WEB-INF\lib\tet.jar"/>
+	<!-- <lib path="../../../lib/hon-lucene-synonyms-1.3.5-solr-4.3.0"/> -->
   <!-- Data Directory
 
        Used to specify an alternate directory to hold all index data
@@ -45,6 +59,7 @@
        configuration.
     -->
   <dataDir>${solr.data.dir:}</dataDir>
+
 
 
   <!-- The DirectoryFactory to use for indexes.
@@ -196,6 +211,8 @@
      </autoSoftCommit>
 
   </updateHandler>
+  
+
   
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Query section - these settings control query time things like caches
@@ -419,6 +436,13 @@
        not be initialized until the first request that uses it.
 
     -->
+	
+	<queryParser name="AutoPhrasingQParserPlugin"
+			   class="com.lucidworks.analysis.AutoPhrasingQParserPlugin" >
+		<str name="phrases">phrase_list.txt</str>
+		<str name="replaceWhitespaceWith">x</str>
+	</queryParser> 
+		
   <!-- SearchHandler
 
        http://wiki.apache.org/solr/SearchHandler
@@ -429,22 +453,23 @@
        queries across multiple shards
     -->
   <requestHandler name="/select" class="solr.SearchHandler">
-    <!-- default values for query parameters can be specified, these
-         will be overridden by parameters in the request
-      -->
-     <lst name="defaults">
-       <str name="echoParams">explicit</str>
-	   <str name="qf">text_suggest_prefix^70 text_suggest^50</str>
-       <int name="rows">30</int>
+
+    <lst name="defaults">
+	<str name="echoParams">explicit</str>
+	<str name="bq">(*:* -source:elixir)^999999 (*:* -source:galaxy)^999999</str> 
+	<!-- <str name="defType">AutoPhrasingQParserPlugin</str> -->
+	<str name="bq">(description:*)^1.5 (publicationDOI:*)^1.5 (linkUrls:*)^1.5 (tags:*)^1.5 (authors:*)^1.5 (institutions:*)^1.5</str>
+     <!--  <int name="rows">30</int> -->
      </lst>
 
-    </requestHandler>
+  </requestHandler>
 	
 	<requestHandler name="/suggestResource" class="solr.SearchHandler">
      <lst name="defaults">
        <str name="echoParams">explicit</str>
-	   <str name="qf">text_suggest_prefix^70 text_suggest^50</str>
+	   <str name="qf">suggestName^70 suggestNamePrefix^50</str>
        <int name="rows">30</int>
+	   
      </lst>
 
     </requestHandler>
@@ -452,8 +477,9 @@
 	<requestHandler name="/suggestTag" class="solr.SearchHandler">
      <lst name="defaults">
        <str name="echoParams">explicit</str>
-	   <str name="qf">text_suggest_prefix^70 text_suggest^50</str>
+		<str name="qf">suggestTag^70 suggestTagPrefix^50</str>
        <int name="rows">30</int>
+	   
      </lst>
 
     </requestHandler>
