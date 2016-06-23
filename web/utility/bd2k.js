@@ -344,7 +344,7 @@ BD2K.solr.search_suggest = function(fields, handler) {
 
         client.get('suggestResource', query_str, function (err, obj) {
             if (err) {
-                console.log("Search: " + err);
+                console.log("Search Suggest: " + err);
             } else {
                 handler(obj);
             }
@@ -355,9 +355,9 @@ BD2K.solr.search_suggest = function(fields, handler) {
         query_str = "q=suggestName:\""+fields.name + "\""  + "+OR+" + "suggestNamePrefix:\""+fields.name+"\"";
         client.get('suggestResource', query_str, function (err, obj) {
             if (err) {
-                console.log("Search: " + err);
+                console.log("Search Suggest: " + err);
             } else {
-                console.log("Search: ");
+                console.log("Search Suggest: ");
                 handler(obj);
             }
         });

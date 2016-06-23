@@ -85,6 +85,9 @@ function Info(resource, neo4j) {
     if (resource.versionDate) {
         acc += createAcc("Version Date", resource.versionDate);
     }
+    if(resource.dateCreated) {
+        acc += createAcc("Date Created", resource.dateCreated);
+    }
     if (resource.types) {
         acc += createAccList("Resource Types", resource.types);
     }
