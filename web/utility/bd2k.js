@@ -281,8 +281,30 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
         }
     }
 
+    if('resource' in fields)
+        delete fields["resource"]
+
+    //build query
+    var solrQuery = "";
+    first = true;
+    for(key in fields){
+        //console.log(key)
+        var indexes = fields[key];
+        for(index in indexes){
+            var value = indexes[index].match(/\S+/g);
+            for(token in value) {
+                //console.log(value[token])
+                if(!first) {
+                    solrQuery += " OR ";
+                }
+                solrQuery += key + ":" + value[token];
+                first = false;
+            }
+        }
+    }
+
     var query = client.createQuery()
-        .q(querystring.stringify(fields, " OR ", ":"))
+        .q(solrQuery)
         .edismax()
         //.qf()
         .mm("0%25")
