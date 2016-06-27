@@ -22,7 +22,6 @@
     <script>
         BD2K.ready(function () {
             var resource = <%-JSON.stringify(resource)%>;
-            var neo4j = <%-JSON.stringify(neo4j)%>;
 
             new Info(resource, neo4j);
             $('[data-toggle="tooltip"]').tooltip();

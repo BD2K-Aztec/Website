@@ -290,17 +290,28 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
     for(key in fields){
         //console.log(key)
         var indexes = fields[key];
-        for(index in indexes){
-            var value = indexes[index].match(/\S+/g);
-            for(token in value) {
-                //console.log(value[token])
-                if(!first) {
-                    solrQuery += " OR ";
+
+        if(Array.isArray(indexes)){
+            for(index in indexes){
+                var value = indexes[index].match(/\S+/g);
+                for(token in value) {
+                    //console.log(value[token])
+                    if(!first) {
+                        solrQuery += " OR ";
+                    }
+                    solrQuery += key + ":" + value[token];
+                    first = false;
                 }
-                solrQuery += key + ":" + value[token];
-                first = false;
             }
         }
+        else { //single term
+            if(!first) {
+                solrQuery += " OR ";
+            }
+            solrQuery += key + ":" + fields[key];
+            first = false;
+        }
+
     }
 
     var query = client.createQuery()

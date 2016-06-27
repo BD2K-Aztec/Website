@@ -102,7 +102,7 @@ ToolController.prototype._idRoute = function (self,req,res){
             res.redirect('/home/failure');
             return false;
         }
-
+    
         if(req.params.id.substring(2).length != 7){
             var newId = ("0000000" + req.params.id.substring(2)).slice(-7);
             res.redirect('/AZ' + newId)

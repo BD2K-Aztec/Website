@@ -60,30 +60,30 @@ ToolInfoViewModel.prototype._load = function (self, callback) {
             self.onLoad();
         });
 
-        request({
-            url: 'http://neo4j:scailab@localhost:7474/db/data/transaction/commit',
-            json: {
-                "statements": [{
-                    "statement": "MATCH (n:resource { name: 'This Tool' })-[:Downstream]-(neighbors) RETURN n,neighbors",
-                    "resultDataContents": ["row", "graph"]
-                }]
-            }, //Query string data
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json; charset=UTF-8'
-            }
-        }, function (error, response, body) {
-            if (error) {
-                console.log("run -> neo4j: " + error);
-                self.neo4j = [];
-                self.onLoad();
-            } else {
-                console.log(response.statusCode, body);
-                self.neo4j = body.results[0];
-                self.onLoad();
-            }
-        });
+        //request({
+        //    url: 'http://neo4j:scailab@localhost:7474/db/data/transaction/commit',
+        //    json: {
+        //        "statements": [{
+        //            "statement": "MATCH (n:resource { name: 'This Tool' })-[:Downstream]-(neighbors) RETURN n,neighbors",
+        //            "resultDataContents": ["row", "graph"]
+        //        }]
+        //    }, //Query string data
+        //    method: 'POST',
+        //    headers: {
+        //        'Content-Type': 'application/json',
+        //        'Accept': 'application/json; charset=UTF-8'
+        //    }
+        //}, function (error, response, body) {
+        //    if (error) {
+        //        console.log("run -> neo4j: " + error);
+        //        self.neo4j = [];
+        //        self.onLoad();
+        //    } else {
+        //        console.log(response.statusCode, body);
+        //        self.neo4j = body.results[0];
+        //        self.onLoad();
+        //    }
+        //});
     };
 
     cont.loadSvg();
@@ -91,7 +91,7 @@ ToolInfoViewModel.prototype._load = function (self, callback) {
 
 //--- onLoad ------------------------------------------------------------------------------
 ToolInfoViewModel.prototype._onLoad = function (self) {
-    { if(BD2K.has([self.resource, self.neo4j])) self._crud.fire(self); }
+    { if(BD2K.has([self.resource])) self._crud.fire(self); }
 };
 
 //---------------------------------------------------------------------------------
