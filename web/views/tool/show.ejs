@@ -23,7 +23,7 @@
         BD2K.ready(function () {
             var resource = <%-JSON.stringify(resource)%>;
 
-            new Info(resource, neo4j);
+            new Info(resource);
             $('[data-toggle="tooltip"]').tooltip();
             //var searchViewModel = new BD2K.Resource.SearchViewModel({});
 

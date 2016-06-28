@@ -1,4 +1,4 @@
-function Info(resource, neo4j) {
+function Info(resource) {
     var acc = "";
 
     if (resource.name) {
