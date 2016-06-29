@@ -4,7 +4,7 @@ var Tool = require('./tool.js');
 // define the schema for our tool model
 var userSchema = Bookshelf.Model.extend({
 
-    tableName: 'TOOL_USER_AZ',
+    tableName: 'TOOL_USER',
     tool: function() {
       return this.belongsTo('Tool', 'AZID');
     }

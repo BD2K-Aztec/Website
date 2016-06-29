@@ -74,13 +74,15 @@
         });
 
         $('#mySavedTable tbody').on( 'click', 'button', function () {
-          var idx = savedTable.row(this).index();
-          var data = savedTable.row(idx).data();
+          var tr = $(this).closest('tr');
+          var idx = submittedTable.page.info().start+tr.index(0);
+          var data = submittedTable.row(idx).data();
           window.open('/review/saved/'+data['id']);
         } );
 
         $('#mySubmittedTools tbody').on( 'click', 'button', function () {
-          var idx = submittedTable.row(this).index();
+          var tr = $(this).closest('tr');
+          var idx = submittedTable.page.info().start+tr.index(0);
           var data = submittedTable.row(idx).data();
           window.open('/review/update/'+data['AZID']);
         } );
