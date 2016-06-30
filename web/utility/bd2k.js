@@ -326,7 +326,7 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
         if(err){
             console.log("Search: " + err);
         }else{
-            handler(obj, handlerOptions);
+            return handler(obj, handlerOptions);
         }
     });
 };

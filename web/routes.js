@@ -4,6 +4,7 @@ var ResourceController = require('./controllers/resource-controller.js');
 var ToolController = require('./controllers/tool-controller.js');
 var ReviewController = require('./controllers/review-controller.js');
 var QueryController = require('./controllers/query-controller.js');
+var PdfController = require('./controllers/pdf-controller.js');
 
 module.exports = function(app, passport) {
 
@@ -49,6 +50,8 @@ module.exports = function(app, passport) {
     app.get('/review/api/saved', isLoggedIn, ReviewController.allSaved);
     app.get('/review/api/mytools', isLoggedIn, ReviewController.userTools);
     app.get('/review/api/form/:id', ReviewController.formApi);
+    app.post('/review/pdf-upload', PdfController.middleware.single('pdf'), PdfController.upload);
+    app.post('/review/pdf-delete', PdfController.delete_file);
 
     app.get('/api/institution', QueryController.InstController.search);
     app.get('/api/language', QueryController.LangController.search);
