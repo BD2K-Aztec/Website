@@ -15,7 +15,7 @@ def getAllFiles(path):
 
 def getXMLFromPDF(inFilename, outFilename):
 	subprocess.call(["curl", "-v", "-include", "--form", "input=@" + inFilename,
-					"192.168.99.100:8080/processFulltextDocument", "-o", outFilename])
+					"localhost:8080/processFulltextDocument", "-o", outFilename])
 
 def convertXMLToTEI(outFilename):
 	lines = open(outFilename).readlines()
