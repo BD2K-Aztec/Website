@@ -231,7 +231,7 @@ def findSourceLinks(linksRecord, textRecord):
         sentences = getWordSentence(linkRecord, textRecord)
         for sentence in sentences:
             for word in words:
-                if str(word) in str(sentence):
+                if str(word.encode('utf-8')) in str(sentence.encode('utf-8')):
                     sourceLinks.append(linkRecord)
     return list(set(sourceLinks))
 
