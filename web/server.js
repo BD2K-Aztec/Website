@@ -47,6 +47,8 @@ app.set('view engine', 'ejs');
 app.set('view options', { layout: false });
 app.use('/public', express.static('public'));
 app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/images/bd2k.ico'));
 require('./config/passport')(passport); // pass passport for configuration

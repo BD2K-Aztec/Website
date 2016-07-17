@@ -22,6 +22,7 @@ module.exports = function(app, passport) {
     app.post('/home/resetPassword', getLoginInformation, HomeController.resetPasswordPost);
     app.get('/home/success', getLoginInformation, HomeController.success);
     app.get('/home/failure', getLoginInformation, HomeController.failure);
+    app.post('/home/feedback', HomeController.feedback);
 
     app.get('/resource/raw', ResourceController.raw);
     app.get('/resource/advanced', ResourceController.advanced);

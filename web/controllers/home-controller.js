@@ -6,6 +6,7 @@
 //  HomeController
 //
 var User = require('../models/user.js');
+var Feedback = require('../models/feedback.js');
 var BD2K = require('../utility/bd2k.js');
 var uuid = require('uuid');
 var nodemailer = require('nodemailer');
@@ -50,6 +51,7 @@ function HomeController() {
     this.resetPasswordPost = function(req, res) { self._resetPasswordPost(self, req, res); };
     this.recover = function(req, res) { self._recover(self, req, res); };
     this.changelog = function(req, res) {self._changelog(self, req, res) ; };
+    this.feedback = function(req, res) {self._feedback(self, req, res) ; };
 }
 
 //--- index -----------------------------------------------------------------------
@@ -319,6 +321,20 @@ HomeController.prototype._resetPasswordGet = function (self, req, res) {
             res.redirect('/home/failure')
         }
     });
+};
+
+//--- feedback -----------------------------------------------------------------------
+HomeController.prototype._feedback = function (self, req, res) {
+    var issue = new Feedback({issue:JSON.parse(req.body.data)[0]["Issue"], screenshot:JSON.parse(req.body.data)[1]});
+    issue.save(function (err) {
+        if (err) {
+            return err;
+        }
+        else {
+            console.log("Issue saved");
+        }
+    });
+    res.end("Success");
 };
 
 //---------------------------------------------------------------------------------
