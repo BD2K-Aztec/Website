@@ -2,765 +2,813 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%=title%></title>
-  <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/public/css/ng-tags-input.min.css">
-  <link href="/public/css/tool-form.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/public/css/ionicons.min.css">
-  <script src="/public/js/jquery-2.1.4.js"></script>
-  <script src="/public/js/form/validator.js"></script>
+<title><%=title%></title>
+<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+<link rel="stylesheet" href="/public/css/ng-tags-input.min.css">
+<link href="/public/css/tool-form.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/public/css/ionicons.min.css">
+<script src="/public/js/jquery-2.1.4.js"></script>
+<script src="/public/js/form/validator.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/public/css/tool-form2.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/tool-form2.css">
 
-    <script>
-    // This is for file upload
-     $(document).on('change', '.btn-file :file', function() {
-      console.log("Document on function triggered");
-    var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [numFiles, label]);
-    console.log("file uploaded");
-    console.log(numFiles);
-    console.log(label);
-  });
+  <script>
+  // This is for file upload
+   $(document).on('change', '.btn-file :file', function() {
+    console.log("Document on function triggered");
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+  console.log("file uploaded");
+  console.log(numFiles);
+  console.log(label);
+});
 
-      var current_sec = '#part1';
-      $(window).load(function() {
-  	$(".page-loader").fadeOut("slow");
-  })
-      $(document).ready(function() {
+    var current_sec = '#part1';
+    $(window).load(function() {
+	$(".page-loader").fadeOut("slow");
+})
+    $(document).ready(function() {
 
-        $('#b1next').on('click', function() {
-          $('#part1').hide();
-          $('#part2').show();
-          current_sec = '#part2';
-        });
-        $('#b2prev').on('click', function() {
-          $('#part2').hide();
-          $('#part1').show();
-          current_sec = '#part1';
-        });
-        $('#b2next').on('click', function() {
-          $('#part2').hide();
-          $('#part3').show();
-          current_sec = '#part3';
-        });
-        $('#b3prev').on('click', function() {
-          $('#part3').hide();
-          $('#part2').show();
-          current_sec = '#part2';
-        });
-        $('#b3next').on('click', function() {
-          $('#part3').hide();
-          $('#part4').show();
-          current_sec = '#part4';
-        });
-        $('#b4prev').on('click', function() {
-          $('#part4').hide();
-          $('#part3').show();
-          current_sec = '#part3';
-        });
-        $('#b4next').on('click', function() {
-          $('#part4').hide();
-          $('#part5').show();
-          current_sec = '#part5';
-        });
-        $('#b5prev').on('click', function() {
-          $('#part5').hide();
-          $('#part4').show();
-          current_sec = '#part4';
-        });
-        $('#b5next').on('click', function() {
-          $('#part5').hide();
-          $('#part6').show();
-          current_sec = '#part6';
-        });
-        $('#b6prev').on('click', function() {
-          $('#part6').hide();
-          $('#part5').show();
-          current_sec = '#part5';
-        });
-        $('#b6next').on('click', function() {
-          $('#part6').hide();
-          $('#part7').show();
-          current_sec = '#part7';
-        });
-        $('#b7prev').on('click', function() {
-          $('#part7').hide();
-          $('#part6').show();
-          current_sec = '#part6';
-        });
-        $('#b7next').on('click', function() {
-          $('#part7').hide();
-          $('#part8').show();
-          current_sec = '#part8';
-        });
-        $('#b8prev').on('click', function() {
-          $('#part8').hide();
-          $('#part7').show();
-          current_sec = '#part7';
-        });
-        $('#b8next').on('click', function() {
-          $('#part8').hide();
-          $('#part9').show();
-          current_sec = '#part9';
-        });
-        $('#b9prev').on('click', function() {
-          $('#part9').hide();
-          $('#part8').show();
-          current_sec = '#part8';
-        });
+      $('#b1next').on('click', function() {
+        $('#part1').hide();
+        $('#part2').show();
+        current_sec = '#part2';
+      });
+      $('#b2prev').on('click', function() {
+        $('#part2').hide();
+        $('#part1').show();
+        current_sec = '#part1';
+      });
+      $('#b2next').on('click', function() {
+        $('#part2').hide();
+        $('#part3').show();
+        current_sec = '#part3';
+      });
+      $('#b3prev').on('click', function() {
+        $('#part3').hide();
+        $('#part2').show();
+        current_sec = '#part2';
+      });
+      $('#b3next').on('click', function() {
+        $('#part3').hide();
+        $('#part4').show();
+        current_sec = '#part4';
+      });
+      $('#b4prev').on('click', function() {
+        $('#part4').hide();
+        $('#part3').show();
+        current_sec = '#part3';
+      });
+      $('#b4next').on('click', function() {
+        $('#part4').hide();
+        $('#part5').show();
+        current_sec = '#part5';
+      });
+      $('#b5prev').on('click', function() {
+        $('#part5').hide();
+        $('#part4').show();
+        current_sec = '#part4';
+      });
+      $('#b5next').on('click', function() {
+        $('#part5').hide();
+        $('#part6').show();
+        current_sec = '#part6';
+      });
+      $('#b6prev').on('click', function() {
+        $('#part6').hide();
+        $('#part5').show();
+        current_sec = '#part5';
+      });
+      $('#b6next').on('click', function() {
+        $('#part6').hide();
+        $('#part7').show();
+        current_sec = '#part7';
+      });
+      $('#b7prev').on('click', function() {
+        $('#part7').hide();
+        $('#part6').show();
+        current_sec = '#part6';
+      });
+      $('#b7next').on('click', function() {
+        $('#part7').hide();
+        $('#part8').show();
+        current_sec = '#part8';
+      });
+      $('#b8prev').on('click', function() {
+        $('#part8').hide();
+        $('#part7').show();
+        current_sec = '#part7';
+      });
+      $('#b8next').on('click', function() {
+        $('#part8').hide();
+        $('#part9').show();
+        current_sec = '#part9';
+      });
+      $('#b9prev').on('click', function() {
+        $('#part9').hide();
+        $('#part8').show();
+        current_sec = '#part8';
+      });
 
 
-        $('#pre1').on('click', function() {
-          $(current_sec).hide();
-          $('#part1').show();
-          current_sec = '#part1';
-        });
-        $('#pre2').on('click', function() {
-          $(current_sec).hide();
-          $('#part2').show();
-          current_sec = '#part2';
-        });
-        $('#pre3').on('click', function() {
-          $(current_sec).hide();
-          $('#part3').show();
-          current_sec = '#part3';
-        });
-        $('#pre4').on('click', function() {
-          $(current_sec).hide();
-          $('#part4').show();
-          current_sec = '#part4';
-        });
-        $('#pre5').on('click', function() {
-          $(current_sec).hide();
-          $('#part5').show();
-          current_sec = '#part5';
-        });
-        $('#pre6').on('click', function() {
-          $(current_sec).hide();
-          $('#part6').show();
-          current_sec = '#part6';
-        });
-        $('#pre7').on('click', function() {
-          $(current_sec).hide();
-          $('#part7').show();
-          current_sec = '#part7';
-        });
-        $('#pre8').on('click', function() {
-          $(current_sec).hide();
-          $('#part8').show();
-          current_sec = '#part8';
-        });
-        $('#pre9').on('click', function() {
-          $(current_sec).hide();
-          $('#part9').show();
-          current_sec = '#part9';
-        });
-        var temp = ($(document).width())* 0.024 ;
-        var margin = temp.toString();
-        margin = margin + "%";
-        $("#registerHeading").css("margin-right", margin);
+      $('#pre1').on('click', function() {
+        $(current_sec).hide();
+        $('#part1').show();
+        current_sec = '#part1';
+      });
+      $('#pre2').on('click', function() {
+        $(current_sec).hide();
+        $('#part2').show();
+        current_sec = '#part2';
+      });
+      $('#pre3').on('click', function() {
+        $(current_sec).hide();
+        $('#part3').show();
+        current_sec = '#part3';
+      });
+      $('#pre4').on('click', function() {
+        $(current_sec).hide();
+        $('#part4').show();
+        current_sec = '#part4';
+      });
+      $('#pre5').on('click', function() {
+        $(current_sec).hide();
+        $('#part5').show();
+        current_sec = '#part5';
+      });
+      $('#pre6').on('click', function() {
+        $(current_sec).hide();
+        $('#part6').show();
+        current_sec = '#part6';
+      });
+      $('#pre7').on('click', function() {
+        $(current_sec).hide();
+        $('#part7').show();
+        current_sec = '#part7';
+      });
+      $('#pre8').on('click', function() {
+        $(current_sec).hide();
+        $('#part8').show();
+        current_sec = '#part8';
+      });
+      $('#pre9').on('click', function() {
+        $(current_sec).hide();
+        $('#part9').show();
+        current_sec = '#part9';
+      });
+      var temp = ($(document).width())* 0.024 ;
+      var margin = temp.toString();
+      margin = margin + "%";
+      $("#registerHeading").css("margin-right", margin);
 
-         $(window).resize(function(){
-         var tm = ($(document).width())* 0.024  ;
-        var winm = tm.toString();
-        winm = winm + "%";
-        $("#registerHeading").css("margin-right", winm);
+       $(window).resize(function(){
+       var tm = ($(document).width())* 0.024  ;
+      var winm = tm.toString();
+      winm = winm + "%";
+      $("#registerHeading").css("margin-right", winm);
 
-           });
-        <% if(title  !='Register') { %>
-          // $('#save').css("color", "transparent");
-          // $('#save').css("background-color", "transparen/t");
-          $('#save').css("visibility", "hidden");
-        <% } %>
+         });
+      <% if(title  !='Register') { %>
+        // $('#save').css("color", "transparent");
+        // $('#save').css("background-color", "transparen/t");
+        $('#save').css("visibility", "hidden");
+      <% } %>
 
-        $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+      $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 
-          var input = $(this).parents('.input-group').find(':text'),
-              log = numFiles > 1 ? numFiles + ' files selected' : label;
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
 
-          if( input.length ) {
-              input.val(log);
-          } else {
-              if( log ) alert(log);
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+
+     });
+var allow_submit = true;
+
+$("#pdf-form").submit(function(e)
+{
+    if(!allow_submit){
+      return false;
+    }
+    allow_submit = false;
+    var formObj = $(this);
+    var formURL = formObj.attr("action");
+    var formData = new FormData(this);
+    $("#ld-img").css("visibility","visible");
+    $.ajax({
+      url: formURL,
+      type: 'POST',
+      data:  formData,
+      mimeType:"multipart/form-data",
+      contentType: false,
+      cache: false,
+      processData:false,
+    success: function(data, textStatus, jqXHR)
+    {
+      console.log(data);
+      $("#ld-img").hide();
+      obj = $.parseJSON(data);
+      // why is it JSON Stringifying twice?
+      object = $.parseJSON(obj);
+      $("#pdf-data").css("visibility", "visible");
+      for (var key in object){
+        var parsedObj = object[key];
+        if(parsedObj.authors.length == 0){
+          $("#auth").css("visibility","collapse");
+        }
+        for (var i = parsedObj.authors.length - 1; i >= 0; i--) {
+          $("#auth-dt").append(parsedObj.authors[i]);
+          if(i!=0){
+            $("#auth-dt").append(', ');
           }
+        };
+        $("#nm-dt").append(parsedObj.pubTitle);
+        $("#abs-dt").append(parsedObj.abstract);
+      if(parsedObj.links.length == 0){
+          $("#lnks").css("visibility","collapse");
+        }
+      for (var i = parsedObj.links.length - 1; i >= 0; i--) {
+          $("#lnks-dt").append(parsedObj.links[i]);
+          $("#lnks-dt").append("<br>");
+        };
+
+        if(parsedObj.grants.length == 0){
+          $("#fd").css("visibility","collapse");
+        }
+
+      for (var i = parsedObj.grants.length - 1; i >= 0; i--) {
+          $("#fd-dt").append(parsedObj.grants[i]);
+        };
+
+        if(parsedObj.affiliations.length == 0){
+          $("#af").css("visibility","collapse");
+        }
+
+      for (var i = parsedObj.affiliations.length - 1; i >= 0; i--) {
+          $("#af-dt").append(parsedObj.affiliations[i]);
+              if(i!=0){
+            $("#af-dt").append(', ');
+          }
+        };
+
+
+       };
+       // make ajax faster using vanillaJS
+       $.ajax({
+        type: 'POST',
+        url:'/review/pdf-delete' ,
+        success: function(data){
+          console.log('pdf has been deleted');
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          console.log(errorThrown);
+        }
 
        });
 
-  $("#pdf-form").submit(function(e)
-  {
-
-      var formObj = $(this);
-      var formURL = formObj.attr("action");
-      var formData = new FormData(this);
-      $("#ld-img").css("visibility","visible");
-      $.ajax({
-        url: formURL,
-        type: 'POST',
-        data:  formData,
-        mimeType:"multipart/form-data",
-        contentType: false,
-        cache: false,
-        processData:false,
-      success: function(data, textStatus, jqXHR)
-      {
-        $("#ld-img").hide();
-        console.log(data);
-        var obj = $.parseJSON(data);
-        console.log(obj);
-        $("#pdf-data").css("visibility", "visible");
-        $("#nm-dt").append(obj.name);
-        for (var i = obj.authors.length - 1; i >= 0; i--) {
-          $("#auth-dt").append(obj.authors[i]);
-          $("#auth-dt").append("<br>");
-        };
-        $("#sc-dt").append(obj.source_code);
-        for (var i = obj.funding.length - 1; i >= 0; i--) {
-          $("#fd-dt").append(obj.funding[i]);
-          $("#fd-dt").append("<br>");
-        };
-
-        for (var i = obj.keywords.length - 1; i >= 0; i--) {
-          $("#kw-dt").append(obj.keywords[i]);
-          $("#kw-dt").append("<br>");
-        };
+    },
+     error: function(jqXHR, textStatus, errorThrown)
+     {
+        alert('Pdf was unable to be uploaded, please refresh and try again.');
+        alert(errorThrown);
+     }
+    });
+    e.preventDefault(); //Prevent Default action.
+    e.unbind();
+});
 
 
-      },
-       error: function(jqXHR, textStatus, errorThrown)
-       {
-       }
-      });
-      e.preventDefault(); //Prevent Default action.
-      e.unbind();
-  });
+// cache the dom so you only look at it once?
+  document.getElementById("titlebtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubTitle-deet"));
+    });
+  document.getElementById("pubUrlbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubURL-deet"));
+    });
+  document.getElementById("gitDisbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("gitDisc-deet"));
+    });
+  document.getElementById("gitlangbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("gitLang-deet"));
+    });
+  document.getElementById("gurlbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("gitURL-deet"));
+    });
+  document.getElementById("publinkbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubLink-deet"));
+    });
+  document.getElementById("licensebtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubLicense-deet"));
+    });
+  document.getElementById("maintainerbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubMaintainer-deet"));
+    });
+  document.getElementById("versionbtn").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("pubVersion-deet"));
+    });
 
+function copyToClipboard(elem) {
+    // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
 
+    // copy the selection
+    var succeed;
+    try {
+        succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
 
-    document.getElementById("titlebtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("pubTitle-deet"));
-      });
-    document.getElementById("pubUrlbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("pubURL-deet"));
-      });
-    document.getElementById("gitDisbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("gitDisc-deet"));
-      });
-    document.getElementById("gitlangbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("gitLang-deet"));
-      });
-    document.getElementById("gurlbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("gitURL-deet"));
-      });
-    document.getElementById("publinkbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("pubLink-deet"));
-      });
-    document.getElementById("licensebtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("pubLicense-deet"));
-      });
-    document.getElementById("maintainerbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("pubMaintainer-deet"));
-      });
-    document.getElementById("versionbtn").addEventListener("click", function() {
-      copyToClipboard(document.getElementById("pubVersion-deet"));
-      });
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
 
-  function copyToClipboard(elem) {
-      // create hidden text element, if it doesn't already exist
-      var targetId = "_hiddenCopyText_";
-      var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-      var origSelectionStart, origSelectionEnd;
-      if (isInput) {
-          // can just use the original source element for the selection and copy
-          target = elem;
-          origSelectionStart = elem.selectionStart;
-          origSelectionEnd = elem.selectionEnd;
-      } else {
-          // must use a temporary form element for the selection and copy
-          target = document.getElementById(targetId);
-          if (!target) {
-              var target = document.createElement("textarea");
-              target.style.position = "absolute";
-              target.style.left = "-9999px";
-              target.style.top = "0";
-              target.id = targetId;
-              document.body.appendChild(target);
-          }
-          target.textContent = elem.textContent;
-      }
-      // select the content
-      var currentFocus = document.activeElement;
-      target.focus();
-      target.setSelectionRange(0, target.value.length);
+ });
 
-      // copy the selection
-      var succeed;
-      try {
-          succeed = document.execCommand("copy");
-      } catch(e) {
-          succeed = false;
-      }
-      // restore original focus
-      if (currentFocus && typeof currentFocus.focus === "function") {
-          currentFocus.focus();
-      }
-
-      if (isInput) {
-          // restore prior selection
-          elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-      } else {
-          // clear temporary content
-          target.textContent = "";
-      }
-      return succeed;
-  }
-
-   });
-
-      // End of Jquery - copy to clipboard attempt
+    // End of Jquery - copy to clipboard attempt
 
 
 
-    </script>
-    <style>
-      pre:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
+  </script>
+  <style>
+    pre:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
 
-      .repeat_section {
-        margin-top: 25px
-      }
-    </style>
-  </head>
+    .repeat_section {
+      margin-top: 25px
+    }
+  </style>
+</head>
 
-  <body ng-app="Aztec" ng-controller="MainController as vm" <%= init %> >
-    <%- include ../shared/header.ejs %>
+<body ng-app="Aztec" ng-controller="MainController as vm" <%= init %> >
+  <%- include ../shared/header.ejs %>
 
-    <div class='fstrow'>
-        <div class="page-loader"></div>
-      <div class="breadcrumbs">
-        <h2> <a href="/"> HOME </a> > <a href="/review/form"> REGISTER NEW RESOURCE </a> >  </h2>
-      </div>
-      <div class= "titlestuff">
-        <h1 class="reg-h1" id="registerHeading"><%=heading%></h1>
+  <div class='fstrow'>
+      <div class="page-loader"></div>
+    <div class="breadcrumbs">
+      <h2> <a href="/home"> HOME </a> > <a href="/reg"> REGISTER NEW RESOURCE </a> >  </h2>
+    </div>
+    <div class= "titlestuff">
+      <h1 class="reg-h1" id="registerHeading"><%=heading%></h1>
 
-          <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
+        <button id='save' class="btn btn-primary" ng-click="vm.beforeSaveCheck()" data-toggle="modal" data-target="#saveModal">Save</button>
 
-          <button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">  <a href="javascript:grecaptcha.reset();">Submit</a></button>
+        <button id='submit' class="btn btn-primary" ng-click="vm.checkForm()" data-toggle="modal" data-target="#submitModal">  <a href="javascript:grecaptcha.reset();">Submit</a></button>
 
-       </div>
+     </div>
+  </div>
+
+<div class = "container" id="overall">
+
+
+  <div class="row">
+
+    <!-- The main form -->
+
+    <div class="container col-md-7">
+      <form data-toggle="validator" novalidate>
+        <div id='part1'>
+          <h1>Basic Information</h1>
+          <formly-form model="vm.basic_section" fields="vm.basicFields" form="vm.basicForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b1next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part2' style='display:none'>
+          <h1>Authors</h1>
+          <formly-form model="vm.author_section" fields="vm.authorFields" form="vm.authorForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b2prev' class="btn btn-success">Prev</button>
+            <button id='b2next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part3' style='display:none'>
+          <h1>Publications</h1>
+          <formly-form model="vm.pub_section" fields="vm.pubFields" form="vm.pubForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b3prev' class="btn btn-success">Prev</button>
+            <button id='b3next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part4' style='display:none'>
+          <h1>Links</h1>
+          <formly-form model="vm.link_section" fields="vm.linkFields" form="vm.linksForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b4prev' class="btn btn-success">Prev</button>
+            <button id='b4next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part5' style='display:none'>
+          <h1>Development</h1>
+          <formly-form model="vm.dev_section" fields="vm.devFields" form="vm.devForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b5prev' class="btn btn-success">Prev</button>
+            <button id='b5next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part6' style='display:none'>
+          <h1>Version History</h1>
+          <formly-form model="vm.version_section" fields="vm.versionFields" form="vm.versionForm" options="vm.versionOptions">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b6prev' class="btn btn-success">Prev</button>
+            <button id='b6next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part7' style='display:none'>
+          <h1>I/O (coming soon)</h1>
+          <formly-form model="vm.io" fields="vm.ioFields" form="vm.ioForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b7prev' class="btn btn-success">Prev</button>
+            <button id='b7next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part8' style='display:none'>
+          <h1>Licenses</h1>
+          <formly-form model="vm.license_section" fields="vm.licenseFields" form="vm.licenseForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b8prev' class="btn btn-success">Prev</button>
+            <button id='b8next' class="btn btn-success">Next</button>
+          </div>
+        </div>
+        <div id='part9' style='display:none'>
+          <h1>Funding</h1>
+          <formly-form model="vm.funding_section" fields="vm.fundingFields" form="vm.fundingForm">
+          </formly-form>
+          <div class="row text-center">
+            <button id='b9prev' class="btn btn-success">Prev</button>
+
+          </div>
+        </div>
+      </form>
     </div>
 
-  <div class = "container" id="overall">
+    <div class="container col-md-3">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class = "active">
+           <a href="#summary" role="tab" data-toggle="tab">
+            Summary
+           </a>
+        </li>
+        <li>
+           <a href="#suggestor" role="tab" data-toggle="tab">
+            Suggest
+           </a>
+        </li>
 
+        <li>
+           <a href="#upload" role="tab" data-toggle="tab">
+            Upload
+           </a>
+        </li>
+      </ul>
+           <!---Tabbed stuff-->
+  <div class= "tab-content">
 
-    <div class="row">
+      <div class="tab-pane fade" id="suggestor">
+         <center><button class="btn btn-primary" ng-click="vm.suggest()" id="suggestBtn">Suggest</button></center>
+         <div id='loading' style='display:none'>
+          <center><img src='/public/images/magnify.gif'/></center>
+         </div>
+         <div id="invalidSuggestion"></div>
 
-      <!-- The main form -->
-
-      <div class="container col-md-7">
-        <form data-toggle="validator" novalidate>
-          <div id='part1'>
-            <h1>Basic Information</h1>
-            <formly-form model="vm.basic_section" fields="vm.basicFields" form="vm.basicForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b1next' class="btn btn-success">Next</button>
-            </div>
+         <div class='suggestions' style='word-wrap: break-word;'>
+          Click on <i class="ion-ios-copy-outline"> </i> to copy field
+          <div class="pub-title" id="pubTitle">
+            <i class="ion-ios-copy-outline" id="titlebtn"> </i>
+            Publication Title
           </div>
-          <div id='part2' style='display:none'>
-            <h1>Authors</h1>
-            <formly-form model="vm.author_section" fields="vm.authorFields" form="vm.authorForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b2prev' class="btn btn-success">Prev</button>
-              <button id='b2next' class="btn btn-success">Next</button>
-            </div>
+          <div class="pub-rect" id="pubTitle-deet">
+            Not Found
           </div>
-          <div id='part3' style='display:none'>
-            <h1>Publications</h1>
-            <formly-form model="vm.pub_section" fields="vm.pubFields" form="vm.pubForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b3prev' class="btn btn-success">Prev</button>
-              <button id='b3next' class="btn btn-success">Next</button>
-            </div>
+          <div class="pub-title" id="pubURL">
+           <i class="ion-ios-copy-outline" id="pubUrlbtn"> </i> Publication URL
           </div>
-          <div id='part4' style='display:none'>
-            <h1>Links</h1>
-            <formly-form model="vm.link_section" fields="vm.linkFields" form="vm.linksForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b4prev' class="btn btn-success">Prev</button>
-              <button id='b4next' class="btn btn-success">Next</button>
-            </div>
+          <div class="pub-rect" id="pubURL-deet">
+            Not Found
           </div>
-          <div id='part5' style='display:none'>
-            <h1>Development</h1>
-            <formly-form model="vm.dev_section" fields="vm.devFields" form="vm.devForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b5prev' class="btn btn-success">Prev</button>
-              <button id='b5next' class="btn btn-success">Next</button>
-            </div>
+          <div class="pub-title" id="gitDisc">
+            <i class="ion-ios-copy-outline" id="gitDisbtn"> </i>
+            Github Description
           </div>
-          <div id='part6' style='display:none'>
-            <h1>Version History</h1>
-            <formly-form model="vm.version_section" fields="vm.versionFields" form="vm.versionForm" options="vm.versionOptions">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b6prev' class="btn btn-success">Prev</button>
-              <button id='b6next' class="btn btn-success">Next</button>
-            </div>
-          </div>
-          <div id='part7' style='display:none'>
-            <h1>I/O (coming soon)</h1>
-            <formly-form model="vm.io" fields="vm.ioFields" form="vm.ioForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b7prev' class="btn btn-success">Prev</button>
-              <button id='b7next' class="btn btn-success">Next</button>
-            </div>
-          </div>
-          <div id='part8' style='display:none'>
-            <h1>Licenses</h1>
-            <formly-form model="vm.license_section" fields="vm.licenseFields" form="vm.licenseForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b8prev' class="btn btn-success">Prev</button>
-              <button id='b8next' class="btn btn-success">Next</button>
-            </div>
-          </div>
-          <div id='part9' style='display:none'>
-            <h1>Funding</h1>
-            <formly-form model="vm.funding_section" fields="vm.fundingFields" form="vm.fundingForm">
-            </formly-form>
-            <div class="row text-center">
-              <button id='b9prev' class="btn btn-success">Prev</button>
-
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="container col-md-3">
-        <ul class="nav nav-tabs" role="tablist">
-          <li class = "active">
-             <a href="#summary" role="tab" data-toggle="tab">
-              Summary
-             </a>
-          </li>
-          <li>
-             <a href="#suggestor" role="tab" data-toggle="tab">
-              Suggest
-             </a>
-          </li>
-
-          <li>
-             <a href="#upload" role="tab" data-toggle="tab">
-              Upload
-             </a>
-          </li>
-        </ul>
-             <!---Tabbed stuff-->
-    <div class= "tab-content">
-
-        <div class="tab-pane fade" id="suggestor">
-           <center><button class="btn btn-primary" ng-click="vm.suggest()" id="suggestBtn">Suggest</button></center>
-           <div id='loading' style='display:none'>
-            <center><img src='/public/images/magnify.gif'/></center>
+          <div class="pub-rect" id="gitDisc-deet">
+            Not Found
            </div>
-           <div id="invalidSuggestion"></div>
-
-           <div class='suggestions' style='word-wrap: break-word;'>
-            Click on <i class="ion-ios-copy-outline"> </i> to copy field
-            <div class="pub-title" id="pubTitle">
-              <i class="ion-ios-copy-outline" id="titlebtn"> </i>
-              Publication Title
-            </div>
-            <div class="pub-rect" id="pubTitle-deet">
-              Not Found
-            </div>
-            <div class="pub-title" id="pubURL">
-             <i class="ion-ios-copy-outline" id="pubUrlbtn"> </i> Publication URL
-            </div>
-            <div class="pub-rect" id="pubURL-deet">
-              Not Found
-            </div>
-            <div class="pub-title" id="gitDisc">
-              <i class="ion-ios-copy-outline" id="gitDisbtn"> </i>
-              Github Description
-            </div>
-            <div class="pub-rect" id="gitDisc-deet">
-              Not Found
-             </div>
-            <div class="pub-title" id="gitURL">
-              <i class="ion-ios-copy-outline" id="gurlbtn"> </i>
-              Github URL
-            </div>
-            <div class="pub-rect" id="gitURL-deet">
-              Not Found
-             </div>
-            <div class="pub-title" id="gitLang">
-              <i class="ion-ios-copy-outline" id="gitlangbtn"> </i>
-              Github Language
-            </div>
-            <div class="pub-rect" id="gitLang-deet">
-              Not Found
-             </div>
-            <div class="pub-title" id="pubLink">
-              <i class="ion-ios-copy-outline" id="publinkbtn"> </i>
-              Link
-            </div>
-            <div class="pub-rect" id="pubLink-deet">
-              Not Found
-             </div>
-            <div class="pub-title" id="pubLicense">
-              <i class="ion-ios-copy-outline" id="licensebtn"> </i>
-              License
-            </div>
-            <div class="pub-rect" id="pubLicense-deet">
-              Not Found
-             </div>
-            <div class="pub-title" id="pubVersion">
-              <i class="ion-ios-copy-outline" id="versionbtn"> </i>
-              Version
-            </div>
-            <div class="pub-rect" id="pubVersion-deet">
-              Not Found
-             </div>
-            <div class="pub-title" id="pubMaintainer">
-              <i class="ion-ios-copy-outline" id="maintainerbtn"> </i>
-              Maintainers
-            </div>
-            <div class="pub-rect" id="pubMaintainer-deet">
-              Not Found
-             </div>
+          <div class="pub-title" id="gitURL">
+            <i class="ion-ios-copy-outline" id="gurlbtn"> </i>
+            Github URL
+          </div>
+          <div class="pub-rect" id="gitURL-deet">
+            Not Found
+           </div>
+          <div class="pub-title" id="gitLang">
+            <i class="ion-ios-copy-outline" id="gitlangbtn"> </i>
+            Github Language
+          </div>
+          <div class="pub-rect" id="gitLang-deet">
+            Not Found
+           </div>
+          <div class="pub-title" id="pubLink">
+            <i class="ion-ios-copy-outline" id="publinkbtn"> </i>
+            Link
+          </div>
+          <div class="pub-rect" id="pubLink-deet">
+            Not Found
+           </div>
+          <div class="pub-title" id="pubLicense">
+            <i class="ion-ios-copy-outline" id="licensebtn"> </i>
+            License
+          </div>
+          <div class="pub-rect" id="pubLicense-deet">
+            Not Found
+           </div>
+          <div class="pub-title" id="pubVersion">
+            <i class="ion-ios-copy-outline" id="versionbtn"> </i>
+            Version
+          </div>
+          <div class="pub-rect" id="pubVersion-deet">
+            Not Found
+           </div>
+          <div class="pub-title" id="pubMaintainer">
+            <i class="ion-ios-copy-outline" id="maintainerbtn"> </i>
+            Maintainers
+          </div>
+          <div class="pub-rect" id="pubMaintainer-deet">
+            Not Found
+           </div>
 
 
-            </div>
-        </div>
+          </div>
+      </div>
 
-      <div class="tab-pane fade active in" id="summary">
-        <pre id='pre1'><h2 class="sum_">BASIC</h2>Name: {{vm.basic_section.name}} <br>Tags: <span ng-repeat="tag in vm.basic_section.tags track by $index">{{($index!=0) ? ", ":""}}{{vm.basic_section.tags[$index].text}}</span></pre>
-        <pre id='pre2'><h2 class="sum_">AUTHORS</h2><div ng-repeat = "authors in vm.author_section.authors track by $index" id = "author-repeater">Author {{$index+1}}: {{vm.author_section.authors[$index].last_name}}, {{vm.author_section.authors[$index].first_name}} <{{vm.author_section.authors[$index].email}}> </div>
-        </pre>
-        <pre id='pre3'><h2 class="sum_">PUBLICATIONS</h2>Resource DOI: {{vm.pub_section.resource_doi}}<br>Main Pub. DOI:{{vm.pub_section.primary_pub_doi}} <br>Publication DOIs: <span ng-repeat = "pub_dois in vm.pub_section.pub_dois track by $index" id = "pub-sec">{{($index!=0) ? ", ":""}}{{vm.pub_section.pub_dois[$index].pub_doi}}</span>
-        </pre>
-        <pre id='pre4'><h2 class="sum_">LINKS</h2><div ng-repeat = "links in vm.link_section.links track by $index">Name: {{vm.link_section.links[$index].name}} <br>URL: <a href="{{vm.checkLink(vm.link_section.links[$index].url)}}" class="link-link">{{vm.link_section.links[$index].url}}</a></div>
-          </pre>
-        <pre id='pre5'><h2 class="sum_">DEVELOPMENT</h2>Source: {{vm.dev_section.code_url}}<br>Languages: <span ng-repeat="language in vm.dev_section.language track by $index">{{($index!=0) ? ", ":""}}{{vm.dev_section.language[$index].PRIMARY_NAME}}</span><br>Platforms: <span ng-repeat="platform in vm.dev_section.platform track by $index">{{($index!=0) ? ", ":""}}{{vm.dev_section.platform[$index].name}}</span>
-
-        </pre>
-        <pre id='pre6'><h2 class="sum_">VERSIONS</h2>Latest Version: {{vm.version_section.latest_version}}<br>Date: {{vm.version_section.latest_version_date | date:'mediumDate'}}<br>Description: {{vm.version_section.latest_version_desc}}<div ng-repeat="prev_versions in vm.version_section.prev_versions track by $index">Previous version {{$index+1}}: {{vm.version_section.prev_versions[$index]}}<br>Date: {{vm.version_section.prev_versions[$index].version_date | date:'mediumDate'}}<br>Description:{{vm.version_section.prev_versions[$index].description}}</div>
+    <div class="tab-pane fade active in" id="summary">
+      <pre id='pre1'><h2 class="sum_">BASIC</h2>Name: {{vm.basic_section.name}} <br>Tags: <span ng-repeat="tag in vm.basic_section.tags track by $index">{{($index!=0) ? ", ":""}}{{vm.basic_section.tags[$index].text}}</span></pre>
+      <pre id='pre2'><h2 class="sum_">AUTHORS</h2><div ng-repeat = "authors in vm.author_section.authors track by $index" id = "author-repeater">Author {{$index+1}}: {{vm.author_section.authors[$index].last_name}}, {{vm.author_section.authors[$index].first_name}} <{{vm.author_section.authors[$index].email}}> </div>
       </pre>
-  <!--       <pre id='pre7'>IO {{vm.io}}
-         <div id="wrapper">
-          Dependencies:
-          <div ng-repeat ="dependencies in vm.io.dependencies track by $index" style="display:inline;">
-            {{vm.io.dependencies[$index].text}}
-          </div>
-          </div>
+      <pre id='pre3'><h2 class="sum_">PUBLICATIONS</h2>Resource DOI: {{vm.pub_section.resource_doi}}<br>Main Pub. DOI:{{vm.pub_section.primary_pub_doi}} <br>Publication DOIs: <span ng-repeat = "pub_dois in vm.pub_section.pub_dois track by $index" id = "pub-sec">{{($index!=0) ? ", ":""}}{{vm.pub_section.pub_dois[$index].pub_doi}}</span>
+      </pre>
+      <pre id='pre4'><h2 class="sum_">LINKS</h2><div ng-repeat = "links in vm.link_section.links track by $index">Name: {{vm.link_section.links[$index].name}} <br>URL: <a href="{{vm.checkLink(vm.link_section.links[$index].url)}}" class="link-link">{{vm.link_section.links[$index].url}}</a></div>
+        </pre>
+      <pre id='pre5'><h2 class="sum_">DEVELOPMENT</h2>Source: {{vm.dev_section.code_url}}<br>Languages: <span ng-repeat="language in vm.dev_section.language track by $index">{{($index!=0) ? ", ":""}}{{vm.dev_section.language[$index].PRIMARY_NAME}}</span><br>Platforms: <span ng-repeat="platform in vm.dev_section.platform track by $index">{{($index!=0) ? ", ":""}}{{vm.dev_section.platform[$index].name}}</span>
 
-        </pre> -->
-        <pre id='pre8'><h2 class="sum_">LICENSES</h2><div ng-repeat = "licenses in vm.license_section.licenses track by $index">License {{$index+1}}: {{vm.license_section.licenses[$index].type}} </div>
-          </pre>
-        <pre id='pre9'><h2 class="sum_">FUNDING</h2><div ng-repeat="funding in vm.funding_section.funding track by $index"> Agency: {{(vm.funding_section.funding[$index].missing == false || vm.funding._sectionfunding[$index].missing == undefined)  ? vm.funding_section.funding[$index].agency : vm.funding_section.funding[$index].new_agency}} <br> Grant: {{vm.funding_section.funding[$index].grant}}
-        </div>BD2K Center(s): <span ng-repeat="bd2k in vm.funding_section.bd2k track by $index">{{($index!=0) ? ", ":""}}{{vm.funding_section.bd2k[$index].center}}</span>
-  </pre>
+      </pre>
+      <pre id='pre6'><h2 class="sum_">VERSIONS</h2>Latest Version: {{vm.version_section.latest_version}}<br>Date: {{vm.version_section.latest_version_date | date:'mediumDate'}}<br>Description: {{vm.version_section.latest_version_desc}}<div ng-repeat="prev_versions in vm.version_section.prev_versions track by $index">Previous version {{$index+1}}: {{vm.version_section.prev_versions[$index]}}<br>Date: {{vm.version_section.prev_versions[$index].version_date | date:'mediumDate'}}<br>Description:{{vm.version_section.prev_versions[$index].description}}</div>
+    </pre>
+<!--       <pre id='pre7'>IO {{vm.io}}
+       <div id="wrapper">
+        Dependencies:
+        <div ng-repeat ="dependencies in vm.io.dependencies track by $index" style="display:inline;">
+          {{vm.io.dependencies[$index].text}}
+        </div>
+        </div>
+
+      </pre> -->
+      <pre id='pre8'><h2 class="sum_">LICENSES</h2><div ng-repeat = "licenses in vm.license_section.licenses track by $index">License {{$index+1}}: {{vm.license_section.licenses[$index].type}} </div>
+        </pre>
+      <pre id='pre9'><h2 class="sum_">FUNDING</h2><div ng-repeat="funding in vm.funding_section.funding track by $index"> Agency: {{(vm.funding_section.funding[$index].missing == false || vm.funding._sectionfunding[$index].missing == undefined)  ? vm.funding_section.funding[$index].agency : vm.funding_section.funding[$index].new_agency}} <br> Grant: {{vm.funding_section.funding[$index].grant}}
+      </div>BD2K Center(s): <span ng-repeat="bd2k in vm.funding_section.bd2k track by $index">{{($index!=0) ? ", ":""}}{{vm.funding_section.bd2k[$index].center}}</span>
+</pre>
+    </div>
+
+
+      <div class="tab-pane fade" id="upload">
+      <center>
+        <!-- enctype="multipart/form-data" -->
+        <form name ="pdf-form" id ="pdf-form" action="/review/pdf-upload" method="post">
+
+        <p id="uploaderSlct">Select a file to upload</p>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Choose File&hellip; <input type="file" name="pdf" accept="application/pdf">
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>
+        <input type="submit" value="Upload" name="submit" id="uploadBtn">
+      </form>
+
+      <div id='load-pdf'>
+          <center><div id="ld-img"><img id="load-image" src='/public/images/page-loader.gif'/></div></center>
+      </div>
+      <div id="pdf-data">
+        <h1 class="pdf-name">Name</h1>
+        <div class="pdf-nm-dt" id="nm-dt">
+        </div>
+        <h1 class="pdf-name">Abstract</h1>
+        <div class="pdf-nm-dt" id="abs-dt">
+        </div>
+        <h1 class= "pdf-name" id="auth">Authors</h1>
+        <div class="pdf-nm-dt" id="auth-dt">
+        </div>
+        <h1 class= "pdf-name" id ="lnks">Links</h1>
+        <div class="pdf-nm-dt" id="lnks-dt">
+        </div>
+        <h1 class="pdf-name" id ="fd">Funding </h1>
+        <div class="pdf-nm-dt" id="fd-dt">
+        </div>
+        <h1 class="pdf-name" id="af">Affiliations</h1>
+        <div class="pdf-nm-dt" id="af-dt">
+        </div>
       </div>
 
-
-        <div class="tab-pane fade" id="upload">
-        <center>
-          <!-- enctype="multipart/form-data" -->
-          <form name ="pdf-form" id ="pdf-form" action="/pdf-upload" method="post">
-
-          <p id="uploaderSlct">Select a file to upload</p>
-              <div class="input-group">
-                  <span class="input-group-btn">
-                      <span class="btn btn-primary btn-file">
-                          Choose File&hellip; <input type="file" name="pdf" accept="application/pdf">
-                      </span>
-                  </span>
-                  <input type="text" class="form-control" readonly>
-              </div>
-          <input type="submit" value="Upload" name="submit" id="uploadBtn">
-        </form>
-
-        <div id='load-pdf'>
-            <center><div id="ld-img"><img id="load-image" src='/public/images/page-loader.gif'/></div></center>
-        </div>
-        <div id="pdf-data">
-          <h1 class="pdf-name">Name</h1>
-          <div class="pdf-nm-dt" id="nm-dt">
-          </div>
-          <h1 class= "pdf-name" id="auth">Authors</h1>
-          <div class="pdf-nm-dt" id="auth-dt">
-          </div>
-          <h1 class= "pdf-name" id ="sc">Source Code</h1>
-          <div class="pdf-nm-dt" id="sc-dt">
-          </div>
-          <h1 class="pdf-name" id ="fd">Funding </h1>
-          <div class="pdf-nm-dt" id="fd-dt">
-          </div>
-          <h1 class="pdf-name" id="kw">Keywords</h1>
-          <div class="pdf-nm-dt" id="kw-dt">
-          </div>
-        </div>
-
-        </center>
-        </div>
-
-   </div>
-
+      </center>
       </div>
 
+ </div>
 
     </div>
 
 
-    <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <center>
-              <h4 class="modal-title" id="saveModalLabel">Save</h4>
-            </center>
-          </div>
-          <div id='pre-save'>
-          </div>
-          <div id='modal-save' class='modal-footer'>
+  </div>
 
-            <button type='button' class='btn btn-default' ng-click='vm.save()'>Yes</button>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button>
-          </div>
-          <div id='modal-save-warn' class='modal-footer' style="display: none;">
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <center>
-              <h4 class="modal-title" id="submitModalLabel"></h4>
-            </center>
-          </div>
-          <div id='pre-submit'>
-          </div>
-          <div id='modal-submit' class='modal-footer' style="display: none;">
-            <div id='submit-recaptcha' class="g-recaptcha" data-sitekey="6Lc4DxYTAAAAAHqTlTb1np-XR8JKh6RYvgYvf4NQ"></div>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-            <button type='button' class='btn btn-default' ng-click='vm.<%=submitFunc%>'>Submit resource</button>
-          </div>
-          <div id='modal-warn' class='modal-footer' style="display: none;">
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
-            <button type='button' class='btn btn-default' ng-click='vm.passWarning()'>Continue</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="MessageModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
+  <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
           <center>
-            <h4 class="modal-title" id="messageLabel"></h4>
+            <h4 class="modal-title" id="saveModalLabel">Save</h4>
           </center>
         </div>
-        <div class="modal-body" id="messageBody" style="text-align:center">
+        <div id='pre-save'>
         </div>
-        <div class='modal-footer' >
-          <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+        <div id='modal-save' class='modal-footer'>
+
+          <button type='button' class='btn btn-default' ng-click='vm.save()'>Yes</button>
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button>
+        </div>
+        <div id='modal-save-warn' class='modal-footer' style="display: none;">
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
         </div>
       </div>
-
     </div>
   </div>
-    <script type="text/ng-template" id="repeatSection.html">
-      <div>
-        <!--loop through each element in model array-->
-        <div class="{{hideRepeat}}">
-          <div class="repeatsection" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
-            <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
-            <formly-form fields="fields" model="element" form="form">
-            </formly-form>
-            <div style="margin-bottom:20px;">
-              <br>
-              <button type="button" class="btn btn-sm btn-danger pull-right" ng-click="model[options.key].splice($index, 1)">
-                Remove
-              </button>
-              <br/>
-            </div>
-          </div>
-          <p class="AddNewButton form-group ng-scope" ng-class="{'has-error': showError}">
-            <button type="button" class="btn btn-secondary control-label" ng-click="addNew()">{{to.btnText}}{{to.required ? '*' : ''}}</button>
-          </p>
-          <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
-        </div>
-    </script>
-    <script type="text/ng-template" id="datepicker.html">
-      <p class="input-group">
-        <input type="text" id="{{::id}}" name="{{::id}}" ng-model="model[options.key]" class="form-control" ng-click="datepicker.open($event)" datepicker-popup="{{to.datepickerOptions.format}}" is-open="datepicker.opened" datepicker-options="to.datepickerOptions"
-        readonly/>
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-default" ng-click="datepicker.open($event)" ng-disabled="to.disabled"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-      </p>
-    </script>
-    <script type="text/ng-template" id="typeahead-async.html">
-    <div class="form-group ng-scope" ng-class="{'has-error': showError}">
-      <label class="control-label">{{to.label}}{{to.required ? '*' : ''}}</label>
-      <input type="text" class="form-control ng-pristine ng-invalid ng-valid-required ng-touched" ng-model="model[options.key]" placeholder="{{to.placeholder}}" uib-typeahead="item for item in getItems($viewValue, to.link)" typeahead-loading="loadingItems"
-      typeahead-no-results="noResults" required>
-      <i ng-show="loadingItems" class="glyphicon glyphicon-refresh"></i>
-      <div ng-show="noResults">
-        <i class="glyphicon glyphicon-remove"></i> No Results Found
-      </div>
-      </div>
-    </script>
-    <script type="text/ng-template" id="typeahead.html">
-      <input type="text" ng-model="model[options.key]" uib-typeahead="item for item in to.options | filter:$viewValue | limitTo:8" class="form-control">
-    </script>
-    <script type="text/ng-template" id="tags.html">
-      <label>{{to.label}}</label>
-      <tags-input ng-model="model[options.key]">
-        <auto-complete source="getItems($query, to.link, to.attr)"></auto-complete>
-      </tags-input>
-    </script>
-    <script type="text/ng-template" id="error-messages.html">
-        <formly-transclude></formly-transclude>
-        <div ng-messages="fc.$error" ng-if="form.$submitted || options.formControl.$touched" class="error-messages">
-          <div ng-message="{{ ::name }}" ng-repeat="(name, message) in ::options.validation.messages" class="message">{{ message(fc.$viewValue, fc.$modelValue, this)}}</div>
-        </div>
-    </script>
-    <script type="text/ng-template" id="ui-select-single-async-search.html">
-        <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
 
-          <ui-select-match placeholder="{{to.placeholder}}">
-          {{$select.selected[to.valueProp]|| model[to.otherProp]}} [{{$select.selected[to.labelProp]}}]
-
-          </ui-select-match>
-          <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options, to.endpoint)" data-refresh-delay="{{to.refreshDelay}}">
-            <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
-            <div><small>{{option[to.valueProp]}}</small></div>
-          </ui-select-choices>
-        </ui-select>
-      </script>
+  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <center>
+            <h4 class="modal-title" id="submitModalLabel"></h4>
+          </center>
+        </div>
+        <div id='pre-submit'>
+        </div>
+        <div id='modal-submit' class='modal-footer' style="display: none;">
+          <div id='submit-recaptcha' class="g-recaptcha" data-sitekey="6Lc4DxYTAAAAAHqTlTb1np-XR8JKh6RYvgYvf4NQ"></div>
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+          <button type='button' class='btn btn-default' ng-click='vm.<%=submitFunc%>'>Submit resource</button>
+        </div>
+        <div id='modal-warn' class='modal-footer' style="display: none;">
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Okay</button>
+          <button type='button' class='btn btn-default' ng-click='vm.passWarning()'>Continue</button>
+        </div>
+      </div>
+    </div>
   </div>
-  </body>
+  <div id="MessageModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <center>
+          <h4 class="modal-title" id="messageLabel"></h4>
+        </center>
+      </div>
+      <div class="modal-body" id="messageBody" style="text-align:center">
+      </div>
+      <div class='modal-footer' >
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <script type="text/ng-template" id="repeatSection.html">
+    <div>
+      <!--loop through each element in model array-->
+      <div class="{{hideRepeat}}">
+        <div class="repeatsection" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
+          <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+          <formly-form fields="fields" model="element" form="form">
+          </formly-form>
+          <div style="margin-bottom:20px;">
+            <br>
+            <button type="button" class="btn btn-sm btn-danger pull-right" ng-click="model[options.key].splice($index, 1)">
+              Remove
+            </button>
+            <br/>
+          </div>
+        </div>
+        <p class="AddNewButton form-group ng-scope" ng-class="{'has-error': showError}">
+          <button type="button" class="btn btn-secondary control-label" ng-click="addNew()">{{to.btnText}}{{to.required ? '*' : ''}}</button>
+        </p>
+        <hr style="border: 0; height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+      </div>
+  </script>
+  <script type="text/ng-template" id="datepicker.html">
+    <p class="input-group">
+      <input type="text" id="{{::id}}" name="{{::id}}" ng-model="model[options.key]" class="form-control" ng-click="datepicker.open($event)" datepicker-popup="{{to.datepickerOptions.format}}" is-open="datepicker.opened" datepicker-options="to.datepickerOptions"
+      readonly/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="datepicker.open($event)" ng-disabled="to.disabled"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </script>
+  <script type="text/ng-template" id="typeahead-async.html">
+  <div class="form-group ng-scope" ng-class="{'has-error': showError}">
+    <label class="control-label">{{to.label}}{{to.required ? '*' : ''}}</label>
+    <input type="text" class="form-control ng-pristine ng-invalid ng-valid-required ng-touched" ng-model="model[options.key]" placeholder="{{to.placeholder}}" uib-typeahead="item for item in getItems($viewValue, to.link)" typeahead-loading="loadingItems"
+    typeahead-no-results="noResults" required>
+    <i ng-show="loadingItems" class="glyphicon glyphicon-refresh"></i>
+    <div ng-show="noResults">
+      <i class="glyphicon glyphicon-remove"></i> No Results Found
+    </div>
+    </div>
+  </script>
+  <script type="text/ng-template" id="typeahead.html">
+    <input type="text" ng-model="model[options.key]" uib-typeahead="item for item in to.options | filter:$viewValue | limitTo:8" class="form-control">
+  </script>
+  <script type="text/ng-template" id="tags.html">
+    <label>{{to.label}}</label>
+    <tags-input ng-model="model[options.key]">
+      <auto-complete source="getItems($query, to.link, to.attr)"></auto-complete>
+    </tags-input>
+  </script>
+  <script type="text/ng-template" id="error-messages.html">
+      <formly-transclude></formly-transclude>
+      <div ng-messages="fc.$error" ng-if="form.$submitted || options.formControl.$touched" class="error-messages">
+        <div ng-message="{{ ::name }}" ng-repeat="(name, message) in ::options.validation.messages" class="message">{{ message(fc.$viewValue, fc.$modelValue, this)}}</div>
+      </div>
+  </script>
+  <script type="text/ng-template" id="ui-select-single-async-search.html">
+      <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
+
+        <ui-select-match placeholder="{{to.placeholder}}">
+        {{$select.selected[to.valueProp]|| model[to.otherProp]}} [{{$select.selected[to.labelProp]}}]
+
+        </ui-select-match>
+        <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options, to.endpoint)" data-refresh-delay="{{to.refreshDelay}}">
+          <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>
+          <div><small>{{option[to.valueProp]}}</small></div>
+        </ui-select-choices>
+      </ui-select>
+    </script>
+</div>
+</body>
 
 
 <!-- Application Dependencies -->
@@ -776,6 +824,7 @@
 <script src="//cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script src="//rawgit.com/angular/bower-angular-messages/v1.4.4/angular-messages.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-sanitize.js"></script>
+
 
 
 <script src="/public/js/select.js"></script>

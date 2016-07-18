@@ -94,6 +94,7 @@ ResourceController.prototype._search = function (self,req,res){
 
     var onSave = function (s) {
         var json = JSON.parse(searchStr);
+        console.log(json);
         var options = {};
         options.searchFilters = json.searchFilters;
         options.back = json.back || false;

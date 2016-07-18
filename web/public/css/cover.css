@@ -29,6 +29,7 @@
 }
 .position-div-below{
     clear:both;
+    height: 82%;
 }
 
 /*malarkey text styling
@@ -118,8 +119,11 @@ h1{
 }
 .btn-lg{
     z-index: 0;
-    margin-left: 0px; 
-    margin-top: -4%;
+    margin-left: 0px;
+}
+
+.search-btn{
+  margin-top: -4%;
 }
 
 #aztec-malarkey {

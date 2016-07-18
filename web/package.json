@@ -6,7 +6,6 @@
     "start": "supervisor server.js"
   },
   "dependencies": {
-    "bcrypt-nodejs": "latest",
     "bignumber.js": "*",
     "body-parser": "*",
     "connect-flash": "~0.1.1",
@@ -65,6 +64,9 @@
     "collections": "^3.0.0",
     "solr-client": "*",
     "supervisor": "*",
+    "strip-ansi": "^3.0.1",
+    "multer": "^1.1.0",
+    "mkdirp": "^0.5.1",
     "uuid": "*",
     "xml2js": "*",
     "xmldom": "*",

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" id="home-index">
+
 <head>
     <title>AZTEC</title>
     <meta charset="utf-8">
@@ -10,7 +11,8 @@
     <script src="/public/js/jquery-2.1.4.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/css/cover.css" rel="stylesheet">
@@ -47,19 +49,24 @@
         }(window,document,'script'));
     </script>
 
-
-
     <script>
-        BD2K.ready(function(){
+        BD2K.ready(function() {
             pie_charts_repos_omics();
             TagBubbles();
             PlatformBubbles();
             $("#liHome").addClass("active");
         });
+        $(document).ready(function(){
+          $('a[href*=#]').on('click', function(event) {
+              event.preventDefault();
+              $('html,body').animate({
+                  scrollTop: $(this.hash).offset().top
+              }, 500);
+          });
+        });
     </script>
 
     <script>
-
         // var dataChart1;
         // dashboard-components js script
         var nameList = {};
@@ -98,152 +105,157 @@
             dataChart1.execute();
 
             gapi.client.analytics.data.ga.get({
-                'auth': '<%= authorizationToken %>',
-                'ids': 'ga:111291353',
-                'metrics': 'ga:pageviews',
-                'dimensions': 'ga:pagePath',
-                'start-date': '60daysAgo',
-                'end-date': 'yesterday',
-                'sort': '-ga:pagePath',
-                //'filters': 'ga:country!=/',
-                'filters' : 'ga:pagePath=~/AZ[0-9]{7}',
-                'max-results': 8,
-                // 'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
-            }).then(function(response) {
-                        var formattedJson = JSON.stringify(response.result, null, 2);
-                        console.log(formattedJson);
-                        var rows = response.result["rows"];
-                        var idList = {};
-                        //console.log(rows);
-                        var idToUrlList = {}
-                        for(var i = 0; i < rows.length; i++) {
-                            var id = rows[i][0];
-                            var new_id = "";
-                            for(var j = 3; j < id.length; j++)
-                            {
-                                if(id[j] == '0')
-                                    continue
-                                else
-                                {
-                                    new_id = id.substring(j,id.length);
-                                    break;
-                                }
-
+                    'auth': '<%= authorizationToken %>',
+                    'ids': 'ga:111291353',
+                    'metrics': 'ga:pageviews',
+                    'dimensions': 'ga:pagePath',
+                    'start-date': '60daysAgo',
+                    'end-date': 'yesterday',
+                    'sort': '-ga:pagePath',
+                    //'filters': 'ga:country!=/',
+                    'filters': 'ga:pagePath=~/AZ[0-9]{7}',
+                    'max-results': 8,
+                    // 'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
+                }).then(function(response) {
+                    var formattedJson = JSON.stringify(response.result, null, 2);
+                    console.log(formattedJson);
+                    var rows = response.result["rows"];
+                    var idList = {};
+                    //console.log(rows);
+                    var idToUrlList = {}
+                    for (var i = 0; i < rows.length; i++) {
+                        var id = rows[i][0];
+                        var new_id = "";
+                        for (var j = 3; j < id.length; j++) {
+                            if (id[j] == '0')
+                                continue
+                            else {
+                                new_id = id.substring(j, id.length);
+                                break;
                             }
-                            idList[new_id] =  rows[i][1];
-                            idToUrlList[new_id] = id;
+
                         }
+                        idList[new_id] = rows[i][1];
+                        idToUrlList[new_id] = id;
+                    }
 
-                        var count = 0
-                        for(var key in idList)
-                        {
-                            (function(key, idList, callback) {
-                                var json_query = {};
-                                json_query["id"] = key;
+                    var count = 0
+                    for (var key in idList) {
+                        (function(key, idList, callback) {
+                            var json_query = {};
+                            json_query["id"] = key;
 
-                                console.log(JSON.stringify(json_query));
-                                $.ajax({
-                                    url: "/resource/getNameFromID",
-                                    type: "GET",
-                                    data: json_query,//"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
-                                    success: function (data) {
-                                        console.log("data: " + data);
-                                        nameList[data]= idList[key];
-                                        console.log(nameList);
-                                        nameToUrlList[data] = idToUrlList[key];
-                                        callback();
-                                        count++;
-                                    }
-                                });
-                            })(key, idList, function(){
-                                if(Object.keys(nameList).length == 8)
-                                {
-                                    console.log("final nameList: " + JSON.stringify(nameList));
-                                    loadResourceChart(nameList, nameToUrlList);
+                            console.log(JSON.stringify(json_query));
+                            $.ajax({
+                                url: "/resource/getNameFromID",
+                                type: "GET",
+                                data: json_query, //"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
+                                success: function(data) {
+                                    console.log("data: " + data);
+                                    nameList[data] = idList[key];
+                                    console.log(nameList);
+                                    nameToUrlList[data] = idToUrlList[key];
+                                    callback();
+                                    count++;
                                 }
                             });
-                        }
-                    })
-                    .then( function(err) {
-                        // Log any errors.
-                        console.log(err);
-                    });
+                        })(key, idList, function() {
+                            if (Object.keys(nameList).length == 8) {
+                                console.log("final nameList: " + JSON.stringify(nameList));
+                                loadResourceChart(nameList, nameToUrlList);
+                            }
+                        });
+                    }
+                })
+                .then(function(err) {
+                    // Log any errors.
+                    console.log(err);
+                });
 
         });
 
         setTimeout(myFunc, 5000);
-        function myFunc()
-        {
+
+        function myFunc() {
             console.log("myFunc");
-            if(resourceChartDrawn == false && Object.keys(nameList).length > 2) {
+            if (resourceChartDrawn == false && Object.keys(nameList).length > 2) {
                 loadResourceChart(nameList, nameToUrlList);
             }
         }
-
     </script>
 
-
-
 </head>
+
 <body style="font-family: 'Open Sans', sans-serif;">
 
-<!-- <div class="visible-xs visible-sm" style="color:black;">
+    <!-- <div class="visible-xs visible-sm" style="color:black;">
     Mobile Version Coming Soon...
 </div> -->
-<div class="search-content">
-    <div class="site-wrapper">
-        <!--<div class="site-wrapper-inner myDiv" style="background-color: #BBD2DB">-->
-        <div class="site-wrapper-inner myDiv" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%) ">
-            <div class="cover-container">
-                <%- include ../shared/header.ejs %>
-                <div class="inner cover">
-                    <br><br><br><br><br><br><br><br>
-                    <table>
-                        <tr>
-                            <td>
-                                <img border="0" src="/public/images/bd2k.png" width="300">
-                            </td>
-                            <td>
-                                <h1 class="cover-heading"><span>AZ<span style="font-size: 80%">TEC</span></span> is <span id="aztec-malarkey"></span>
+    <div class="search-content">
+        <div class="site-wrapper">
+            <!--<div class="site-wrapper-inner myDiv" style="background-color: #BBD2DB">-->
+            <div class="site-wrapper-inner myDiv" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%) ">
+                <div class="cover-container">
+                    <%- include ../shared/header.ejs %>
+                        <div class="inner cover">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img border="0" src="/public/images/bd2k.png" width="300">
+                                    </td>
+                                    <td>
+                                        <h1 class="cover-heading"><span>AZ<span style="font-size: 80%">TEC</span></span> is <span id="aztec-malarkey"></span>
                             </td>
                         </tr>
                     </table>
                     </h1>
-                    <br><br>
-                    <p class="lead" id="searchkey" >Search Resources by Name, DOI, Description, Tags, or Authors.</p>
-                    <form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">
-                        <div align="middle" class="input-group add-on form-group" style="margin:auto">
-                            <!--col-sm-10 col-sm-offset-1-->
-                            <div id="autocomplete">
-                                <input type="text" class="form-control input-lg" placeholder="Search" style="color:black;position:relative;" id="query" autocomplete="off">
-                            </div>
-                            <div class="input-group-btn">
-                                <button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <input type="hidden" id="sendJson" name="input">
-                    </form>
-                    <div class="col-xs-8 col-xs-offset-2">
-                        <div class="list-group" id="results"></div>
-                    </div>
+                                        <br>
+                                        <br>
+                                        <p class="lead" id="searchkey">Search Resources by Name, DOI, Description, Tags, or Authors.</p>
+                                        <form class="form-horizontal" role="form" action="/resource/search" method="GET" id="submitForm">
+                                            <div align="middle" class="input-group add-on form-group" style="margin:auto">
+                                                <!--col-sm-10 col-sm-offset-1-->
+                                                <div id="autocomplete">
+                                                    <input type="text" class="form-control input-lg" placeholder="Search" style="color:black;position:relative;" id="query" autocomplete="off">
+                                                </div>
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default btn-lg search-btn" type="submit"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="sendJson" name="input">
+                                        </form>
+                                        <div class="col-xs-8 col-xs-offset-2">
+                                            <div class="list-group" id="results"></div>
+                                        </div>
 
-                    <p class="lead" id="tested-GC">Thoroughly tested on Google Chrome.</p>
-                    <div>
-                        <br><br><br><br>
-                        <p class="lead" id="navgation"> <a style="color:white;text-decoration:none;" href="#jump"> What can we help you find? </a></p>
-                        <p> <a style="color:white;text-decoration:none;" href="#jump"><span class="glyphicon glyphicon-menu-down" ></span></a></p>
-                    </div>
+                                        <p class="lead" id="tested-GC">Thoroughly tested on Google Chrome.</p>
+                                        <div>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <p class="lead" id="navgation"> <a style="color:white;text-decoration:none;" href="#jump"> What can we help you find? </a></p>
+                                            <p> <a style="color:white;text-decoration:none;" href="#jump"><span class="glyphicon glyphicon-menu-down" ></span></a></p>
+                                        </div>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<div class="position-div-below">
-    <!--<h2>Dynamic Tabs</h2>-->
+    <div class="position-div-below">
+        <!--<h2>Dynamic Tabs</h2>-->
 
-    <!--
+        <!--
         <nav class="navbar navbar-default">
             <div class="container-fluid" style = "margin-left: auto; margin-right: auto" >
                 <ul class="nav navbar-nav" style="font-family: 'Open Sans';  font-size: 110%">
@@ -255,103 +267,115 @@
         </nav>
     <-->
 
-    <ul class="nav nav-tabs"  id = "jump" style="font-family: 'Open Sans';  font-size: 110%">
-        <li class="active col-md-4 "><a data-toggle="tab" href="#Overview">Overview</a></li>
-        <li class="col-md-4"><a data-toggle="tab" href="#StatisticsandTags">Statistics and Tags</a></li>
-        <li class="col-md-4"><a data-toggle="tab" href="#PlatformsandTechnologies">Platforms and Technologies</a></li>
-    </ul>
+        <ul class="nav nav-tabs" id="jump" style="font-family: 'Open Sans';  font-size: 110%">
+            <li class="active col-md-4 "><a data-toggle="tab" href="#Overview">Overview</a></li>
+            <li class="col-md-4"><a data-toggle="tab" href="#StatisticsandTags">Statistics and Tags</a></li>
+            <li class="col-md-4"><a data-toggle="tab" href="#PlatformsandTechnologies">Platforms and Technologies</a></li>
+        </ul>
 
-    <div class="tab-content">
-        <div id="Overview" class="tab-pane fade in active">
-            <div class="row" style="padding-bottom: 4em">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8 ">
-                    <div class="text-left">
-                        <p align="justify" class="lead" style="clear:both; font-family: 'Open Sans'; color: black; font-size: 130%;">
-                            <br /><br /><br /><br />
-                            BD2K Aztec is an amalgamation of A to Z technology. The emblem of our service is a Mesoamerican step pyramid. These ancient structures reached great heights because they were built from the bottom up, so that each block was supported by a massive underlying layer of stone. Similarly, modern biomedicine relies on a enormous infrastructure of computational tools, and the apex of the pyramid represents its ultimate goal: successful investigations leading to novel biological insights and enhanced clinical therapies.
-                        </p>
-                        <p align="justify" class="lead" style="clear:both; font-family: 'Open Sans'; color: black; font-size: 130%;">
-                            BD2K Aztec is a global biomedical resource discovery index that allows users to simultaneously search a diverse array of tools. The resources indexed include web services, standalone software, publications, and large libraries composed of many interrelated functions. Aztec will ensure that software tools remain findable in the long term by issuing persistent DOIs and routinely updating metadata for the entire index. Aztec’s established ontologies and robust API support the programmatic query of its entire database, as well as the construction of indexes for specialized subdomains. Aztec fosters an environment of sustainable resource support and discovery, empowering researchers to overcome the challenges of information science in the 21st century.
-                        </p>
+        <div class="tab-content">
+            <div id="Overview" class="tab-pane fade in active">
+                <div class="row" style="padding-bottom: 4em">
+                    <div class="col-md-2">
                     </div>
-                </div>
-                <div class="col-md-2">
-                </div>
-            </div>
-        </div>
-        <div id="StatisticsandTags" class="tab-pane">
-            <div class="row text-center" style="color:black; margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
-                <!--<h3>Platforms and Technologies</h3><-->
-                <div class="col-md-4 col-sm-4 hero-feature">
-                    <div>
-                        <h1> <i class="fa fa-bar-chart" style="color:lightslategray"></i>&nbsp;Statistics</h1>
-                    </div>
-                    <div class="panel panel-default" style="height:360px">
-
-                        <blockquote>
-                            <p id="statisticsBox" style="margin:8px" align="left">
-                                6125 <b>resources</b> <br><br>
-                                on 48 <b>platforms</b> <br><br>
-                                in 7 <b>domains</b><br><br>
-                                with 2242 <b>tags</b><br><br>
+                    <div class="col-md-8 ">
+                        <div class="text-left">
+                            <p align="justify" class="lead" style="clear:both; font-family: 'Open Sans'; color: black; font-size: 130%;">
+                                <br />
+                                <br />
+                                <br />
+                                <br /> BD2K Aztec is an amalgamation of A to Z technology. The emblem of our service is a Mesoamerican step pyramid. These ancient structures reached great heights because they were built from the bottom up, so that each block
+                                was supported by a massive underlying layer of stone. Similarly, modern biomedicine relies on a enormous infrastructure of computational tools, and the apex of the pyramid represents its ultimate goal: successful investigations
+                                leading to novel biological insights and enhanced clinical therapies.
                             </p>
-                        </blockquote>
+                            <p align="justify" class="lead" style="clear:both; font-family: 'Open Sans'; color: black; font-size: 130%;">
+                                BD2K Aztec is a global biomedical resource discovery index that allows users to simultaneously search a diverse array of tools. The resources indexed include web services, standalone software, publications, and large libraries composed of many interrelated
+                                functions. Aztec will ensure that software tools remain findable in the long term by issuing persistent DOIs and routinely updating metadata for the entire index. Aztec’s established ontologies and robust API support the
+                                programmatic query of its entire database, as well as the construction of indexes for specialized subdomains. Aztec fosters an environment of sustainable resource support and discovery, empowering researchers to overcome
+                                the challenges of information science in the 21st century.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4" style="font: 14px sans-serif;">
-                    <div>
-                        <h1> <i class="fa fa-tags" style="color:lightslategray"></i>&nbsp;Tags</h1>
-                    </div>
-                    <div id="tagBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
-                    </div>
-                </div>
-                <div class="col-md-4" >
-                    <div>
-                        <h1> <i class="fa fa-database" style="color:lightslategray"></i>&nbsp;Repositories</h1>
-                    </div>
-                    <div id="chart_repos_omics" class="panel panel-default"  style="min-width:100%; height:360px; max-width:none;">
+                    <div class="col-md-2">
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="PlatformsandTechnologies" class="tab-pane">
-            <div class="container">
-                <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
-                    <!--<h3>Statistics and Tags</h3><-->
-                    <div class="col-md-6 col-sm-6 hero-feature">
-
+            <div id="StatisticsandTags" class="tab-pane">
+                <div class="row text-center" style="color:black; margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
+                    <!--<h3>Platforms and Technologies</h3><-->
+                    <div class="col-md-4 col-sm-4 hero-feature">
                         <div>
-                            <h1> <i class="fa fa-road" style="color:lightslategray"></i>&nbsp;Site Traffic</h1>
+                            <h1> <i class="fa fa-bar-chart" style="color:lightslategray"></i>&nbsp;Statistics</h1>
                         </div>
-                        <div id="chart-1-container" class="panel panel-default" style="width:100%; height:360px;">
-                        </div>
+                        <div class="panel panel-default" style="height:360px">
 
+                            <blockquote>
+                                <p id="statisticsBox" style="margin:8px" align="left">
+                                    6125 <b>resources</b>
+                                    <br>
+                                    <br> on 48 <b>platforms</b>
+                                    <br>
+                                    <br> in 7 <b>domains</b>
+                                    <br>
+                                    <br> with 2242 <b>tags</b>
+                                    <br>
+                                    <br>
+                                </p>
+                            </blockquote>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 hero-feature">
+                    <div class="col-md-4" style="font: 14px sans-serif;">
+                        <div>
+                            <h1> <i class="fa fa-tags" style="color:lightslategray"></i>&nbsp;Tags</h1>
+                        </div>
+                        <div id="tagBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <h1> <i class="fa fa-database" style="color:lightslategray"></i>&nbsp;Repositories</h1>
+                        </div>
+                        <div id="chart_repos_omics" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="PlatformsandTechnologies" class="tab-pane">
+                <div class="container">
+                    <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
+                        <!--<h3>Statistics and Tags</h3><-->
+                        <div class="col-md-6 col-sm-6 hero-feature">
 
-                        <!--<div>
+                            <div>
+                                <h1> <i class="fa fa-road" style="color:lightslategray"></i>&nbsp;Site Traffic</h1>
+                            </div>
+                            <div id="chart-1-container" class="panel panel-default" style="width:100%; height:360px;">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 hero-feature">
+
+                            <!--<div>
                             <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;User Countries</h1>
                         </div>
                         <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
                         </div>-->
 
-                        <div>
-                            <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;Popular Resources</h1>
-                        </div>
-                        <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
-                        </div>
+                            <div>
+                                <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;Popular Resources</h1>
+                            </div>
+                            <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<%- include ../shared/footer.ejs %>
+    <%- include ../shared/footer.ejs %>
 
 </body>
-</html>
 
+</html>
