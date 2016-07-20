@@ -118,7 +118,7 @@
                     // 'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
                 }).then(function(response) {
                     var formattedJson = JSON.stringify(response.result, null, 2);
-                    console.log(formattedJson);
+//                    console.log(formattedJson);
                     var rows = response.result["rows"];
                     var idList = {};
                     //console.log(rows);
@@ -145,15 +145,15 @@
                             var json_query = {};
                             json_query["id"] = key;
 
-                            console.log(JSON.stringify(json_query));
+//                            console.log(JSON.stringify(json_query));
                             $.ajax({
                                 url: "/resource/getNameFromID",
                                 type: "GET",
                                 data: json_query, //"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
                                 success: function(data) {
-                                    console.log("data: " + data);
+//                                    console.log("data: " + data);
                                     nameList[data] = idList[key];
-                                    console.log(nameList);
+//                                    console.log(nameList);
                                     nameToUrlList[data] = idToUrlList[key];
                                     callback();
                                     count++;
@@ -161,7 +161,7 @@
                             });
                         })(key, idList, function() {
                             if (Object.keys(nameList).length == 8) {
-                                console.log("final nameList: " + JSON.stringify(nameList));
+//                                console.log("final nameList: " + JSON.stringify(nameList));
                                 loadResourceChart(nameList, nameToUrlList);
                             }
                         });
@@ -177,7 +177,7 @@
         setTimeout(myFunc, 5000);
 
         function myFunc() {
-            console.log("myFunc");
+//            console.log("myFunc");
             if (resourceChartDrawn == false && Object.keys(nameList).length > 2) {
                 loadResourceChart(nameList, nameToUrlList);
             }
@@ -268,13 +268,13 @@
     <-->
 
         <ul class="nav nav-tabs" id="jump" style="font-family: 'Open Sans';  font-size: 110%">
-            <li class="active col-md-4 "><a data-toggle="tab" href="#Overview">Overview</a></li>
+            <li class="col-md-4 "><a data-toggle="tab" href="#Overview">Overview</a></li>
             <li class="col-md-4"><a data-toggle="tab" href="#StatisticsandTags">Statistics and Tags</a></li>
-            <li class="col-md-4"><a data-toggle="tab" href="#PlatformsandTechnologies">Platforms and Technologies</a></li>
+            <li class="active col-md-4"><a data-toggle="tab" href="#PlatformsandTechnologies">Platforms and Technologies</a></li>
         </ul>
 
         <div class="tab-content">
-            <div id="Overview" class="tab-pane fade in active">
+            <div id="Overview" class="tab-pane">
                 <div class="row" style="padding-bottom: 4em">
                     <div class="col-md-2">
                     </div>
@@ -301,46 +301,48 @@
                 </div>
             </div>
             <div id="StatisticsandTags" class="tab-pane">
-                <div class="row text-center" style="color:black; margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
-                    <!--<h3>Platforms and Technologies</h3><-->
-                    <div class="col-md-4 col-sm-4 hero-feature">
-                        <div>
-                            <h1> <i class="fa fa-bar-chart" style="color:lightslategray"></i>&nbsp;Statistics</h1>
-                        </div>
-                        <div class="panel panel-default" style="height:360px">
+                <div class="container">
+                    <div class="row text-center" style="color:black; margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
+                        <!--<h3>Platforms and Technologies</h3><-->
+                        <!--<div class="col-md-4 col-sm-4 hero-feature">-->
+                            <!--<div>-->
+                                <!--<h1> <i class="fa fa-bar-chart" style="color:lightslategray"></i>&nbsp;Statistics</h1>-->
+                            <!--</div>-->
+                            <!--<div class="panel panel-default" style="height:360px">-->
 
-                            <blockquote>
-                                <p id="statisticsBox" style="margin:8px" align="left">
-                                    6125 <b>resources</b>
-                                    <br>
-                                    <br> on 48 <b>platforms</b>
-                                    <br>
-                                    <br> in 7 <b>domains</b>
-                                    <br>
-                                    <br> with 2242 <b>tags</b>
-                                    <br>
-                                    <br>
-                                </p>
-                            </blockquote>
+                                <!--<blockquote>-->
+                                    <!--<p id="statisticsBox" style="margin:8px" align="left">-->
+                                        <!--6125 <b>resources</b>-->
+                                        <!--<br>-->
+                                        <!--<br> on 48 <b>platforms</b>-->
+                                        <!--<br>-->
+                                        <!--<br> in 7 <b>domains</b>-->
+                                        <!--<br>-->
+                                        <!--<br> with 2242 <b>tags</b>-->
+                                        <!--<br>-->
+                                        <!--<br>-->
+                                    <!--</p>-->
+                                <!--</blockquote>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="col-md-6" style="font: 14px sans-serif;">
+                            <div>
+                                <h1> <i class="fa fa-tags" style="color:lightslategray"></i>&nbsp;Tags</h1>
+                            </div>
+                            <div id="tagBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4" style="font: 14px sans-serif;">
-                        <div>
-                            <h1> <i class="fa fa-tags" style="color:lightslategray"></i>&nbsp;Tags</h1>
-                        </div>
-                        <div id="tagBubbles" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <h1> <i class="fa fa-database" style="color:lightslategray"></i>&nbsp;Repositories</h1>
-                        </div>
-                        <div id="chart_repos_omics" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+                        <div class="col-md-6">
+                            <div>
+                                <h1> <i class="fa fa-database" style="color:lightslategray"></i>&nbsp;Repositories</h1>
+                            </div>
+                            <div id="chart_repos_omics" class="panel panel-default" style="min-width:100%; height:360px; max-width:none;">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="PlatformsandTechnologies" class="tab-pane">
+            <div id="PlatformsandTechnologies" class="tab-pane fade in active">
                 <div class="container">
                     <div class="row text-center" style="margin-top:25px; margin-left:20px; margin-right:20px; color:#000">
                         <!--<h3>Statistics and Tags</h3><-->
@@ -354,12 +356,6 @@
 
                         </div>
                         <div class="col-md-6 col-sm-6 hero-feature">
-
-                            <!--<div>
-                            <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;User Countries</h1>
-                        </div>
-                        <div id="chart-2-container" class="panel panel-default" style="width:100%; height:360px;">
-                        </div>-->
 
                             <div>
                                 <h1> <i class="fa fa-fire" style="color:lightslategray"></i>&nbsp;Popular Resources</h1>

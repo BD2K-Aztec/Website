@@ -9,7 +9,7 @@ function loadResourceChart(resourceStats, nameToUrlList) {
     resourceChartDrawn = true;
     var google2 = getGoogle();
     google2.charts.load('current', {'packages': ['corechart']});
-    console.log("here0");
+    //console.log("here0");
     google2.charts.setOnLoadCallback(drawChart);
     function drawChart() {
 
@@ -32,10 +32,10 @@ function loadResourceChart(resourceStats, nameToUrlList) {
             });
         }
 
-        console.log(dataTable);
+        //console.log(dataTable);
         popularResourceData = google2.visualization.arrayToDataTable(dataTable);
 
-        console.log(nameToUrlList);
+        //console.log(nameToUrlList);
 
         popularResourceOptions = {
             bar: {groupWidth: "95%"},
