@@ -328,6 +328,7 @@ HomeController.prototype._feedback = function (self, req, res) {
     var issue = new Feedback({issue:JSON.parse(req.body.data)[0]["Issue"], screenshot:JSON.parse(req.body.data)[1]});
     issue.save(function (err) {
         if (err) {
+            console.log(err);
             return err;
         }
         else {
