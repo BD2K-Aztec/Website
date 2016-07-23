@@ -332,9 +332,9 @@ HomeController.prototype._feedback = function (self, req, res) {
         }
         else {
             console.log("Issue saved");
+            res.end("Success");
         }
     });
-    res.end("Success");
 };
 
 //---------------------------------------------------------------------------------
