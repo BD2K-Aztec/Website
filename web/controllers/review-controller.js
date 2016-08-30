@@ -8,6 +8,7 @@
 
 var ReviewTool = require('../models/review-tool.js');
 var SavedTool = require('../models/mongo/savedTool.js');
+var Feedback = require('../models/feedback.js');
 var User = require('../models/mysql/user_az.js');
 var Tool = require('../models/mysql/tool.js');
 
@@ -20,11 +21,13 @@ function ReviewController() {
     this.update = function(req, res) {self._update(self, req, res); };
     this.getEditForm = function(req, res) {self._getEditForm(self, req, res)};
     this.allSaved = function(req, res) {self._allSaved(self, req, res); };
+    this.getFeedback = function(req, res) {self._getFeedback(self, req, res); };
     this.save = function(req, res) {self._save(self, req, res); };
     this.savedJson = function(req, res) {self._savedJson(self, req, res); };
     this.getSaved = function(req, res) {self._getSaved(self, req, res); };
     this.userTools = function(req, res) {self._userTools(self, req, res); };
     this.portal = function(req, res) {self._portal(self, req, res); };
+    this.feedback = function(req, res) {self._feedback(self, req, res); };
     this.formApi = function(req, res) {self._formApi(self, req, res); }
 }
 
@@ -225,6 +228,39 @@ ReviewController.prototype._allSaved = function (self, req, res) {
 
 };
 
+//--- getFeedback -----------------------------------------------------------------------
+ReviewController.prototype._getFeedback = function (self, req, res) {
+  if(!req.isAuthenticated()){
+    var response = {
+      status  : 'error',
+      message   : 'Not logged in'
+    };
+    return res.json(response);
+  }
+  else{
+    var user = req.user.email;
+    Feedback.find({}, function(err, feedbacks){
+      if (err || feedbacks == null){
+        var response = {
+          status  : 'error',
+          message   : 'Feedbacks not found'
+        };
+        return res.json(response);
+      }
+      else{
+        var sendFeedbacks = [];
+        feedbacks.forEach(function(feedback){
+          var feedbackJson = feedback.toJSON();
+          feedbackJson['id'] = feedbackJson['_id'];
+          sendFeedbacks.push(feedbackJson);
+        });
+        return res.json(sendFeedbacks);
+      }
+    });
+  }
+
+};
+
 //--- userTools -----------------------------------------------------------------------
 ReviewController.prototype._userTools = function(self, req, res){
   if(!req.isAuthenticated){
@@ -272,6 +308,15 @@ ReviewController.prototype._portal = function (self, req, res) {
       loggedIn : req.loggedIn,
       user : req.user, // get the user out of session and pass to template
       message: req.flash('profileMessage')});
+
+};
+
+//--- portal -----------------------------------------------------------------------
+ReviewController.prototype._feedback = function (self, req, res) {
+  res.render('home/feedback', {
+    loggedIn : req.loggedIn,
+    user : req.user, // get the user out of session and pass to template
+    message: req.flash('profileMessage')});
 
 };
 //--- formApi -----------------------------------------------------------------------

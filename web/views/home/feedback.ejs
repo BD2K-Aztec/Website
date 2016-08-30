@@ -1,0 +1,106 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link href="/public/css/bd2k.css" rel="stylesheet">
+
+    <script src="/public/js/jquery-2.1.4.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/info.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
+    <%- include ../shared/scripts.ejs%>
+    <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script>
+      var feedbackTable;
+      $(document).ready(function() {
+        feedbackTable = $('#feedback').DataTable({
+          ajax: {
+                  url: '/review/api/feedback',
+                  dataSrc: ""
+                },
+          columnDefs: [ {
+                   searchable: false,
+                   orderable: false,
+                   targets: 0
+               } ],
+          columns : [{
+            width: "10%",
+              data: null,
+              defaultContent: "<button class='btn btn-info'>Click to edit</button>"
+            },
+            { width: "10%",
+              data: 'id'
+            },
+            { width: "80%",
+            data : 'issue'}
+          ]
+        });
+
+        $('#feedback tbody').on( 'click', 'button', function () {
+          var tr = $(this).closest('tr');
+          var idx = feedbackTable.page.info().start+tr.index(0);
+          var data = feedbackTable.row(idx).data();
+          window.open('/review/screenshot/'+data['id']);
+        } );
+
+      });
+    </script>
+
+
+    <style>
+        html{
+            min-height:100%;/* make sure it is at least as tall as the viewport */
+            position:relative;
+        }
+        body{
+            height:100%; /* force the BODY element to match the height of the HTML element */
+            word-wrap:break-word;
+        }
+        #back-container{
+
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            z-index:-1; /* Remove this line if it's not going to be a background! */
+        }
+        .vertical-align {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body style="font-family: 'Open Sans', sans-serif;">
+<%- include ../shared/header.ejs %>
+<div id="container" style="background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+    <div class="container" style="padding: 80px; background-image: linear-gradient(#99C0CC 0px, #BBD2DB 100%);">
+
+        <div class="row">
+            <div id='saved' class='tab-pane'>
+              <center><h1>Feedback</h1></center>
+              <table id="feedback" class="table hover table-bordered" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                      <th>EDIT</th>
+                      <th>ID</th>
+                      <th>ISSUE</th>
+                  </tr>
+              </thead>
+
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+    <%- include ../shared/footer.ejs %>
+</div>
+</body>
+</html>

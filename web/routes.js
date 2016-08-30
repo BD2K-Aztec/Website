@@ -40,6 +40,7 @@ module.exports = function(app, passport) {
     app.get('/tool/edit', getLoginInformation, ToolController.edit);
 
     app.get('/review/index', isLoggedIn, getLoginInformation, ReviewController.portal);
+    app.get('/review/feedback', isLoggedIn, getLoginInformation, ReviewController.feedback);
     app.get('/review/tool/:id', ReviewController.getTool);
     app.get('/review/form', isLoggedIn, ReviewController.showForm);
     app.post('/review/form', isLoggedIn, ReviewController.create);
@@ -49,6 +50,7 @@ module.exports = function(app, passport) {
     app.get('/review/saved/:id', isLoggedIn, ReviewController.getSaved);
     app.get('/review/api/saved/:id', isLoggedIn, ReviewController.savedJson);
     app.get('/review/api/saved', isLoggedIn, ReviewController.allSaved);
+    app.get('/review/api/feedback', isLoggedIn, ReviewController.getFeedback);
     app.get('/review/api/mytools', isLoggedIn, ReviewController.userTools);
     app.get('/review/api/form/:id', ReviewController.formApi);
     app.post('/review/pdf-upload', PdfController.middleware.single('pdf'), PdfController.upload);
@@ -142,4 +144,8 @@ function getLoginInformation(req, res, next) {
         req.loggedIn = false;
     }
     return next();
+}
+
+function checkAdmin(req, res, next) {
+
 }
