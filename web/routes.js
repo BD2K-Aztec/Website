@@ -9,7 +9,7 @@ var PdfController = require('./controllers/pdf-controller.js');
 module.exports = function(app, passport) {
 
     app.get('/testing', function (req, res) {
-        res.send('hello world');
+        res.send('hello world!');
     });
 
     app.get('/', getLoginInformation, HomeController.index);
