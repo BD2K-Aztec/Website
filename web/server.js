@@ -92,3 +92,5 @@ console.log("server up and running on port " + port);
 /**http.createServer(app).listen(port);
 https.createServer(options, app).listen(sslPort);
 console.log("server up and running on port " + port + " and on port " + sslPort);**/
+
+module.exports = app;
