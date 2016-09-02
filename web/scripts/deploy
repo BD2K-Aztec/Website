@@ -4,6 +4,7 @@ ssh developer@dev.aztec.io <<EOF
   cd ~/Aztec-web/web
   git pull origin dev
   npm install
-  sudo forever restartall
+  cd scripts
+  /bin/bash ./restart.sh
   exit
 EOF
