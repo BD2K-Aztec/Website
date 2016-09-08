@@ -138,12 +138,9 @@ ResourceController.prototype._autocomplete = function (self,req,res){
 ResourceController.prototype._getNameFromID = function(self, req, res)
 {
     var json = req.query
-    console.log("json: " + JSON.stringify(json));
     BD2K.solr.search(json, function (obj) {
-        console.log("obj: " + JSON.stringify(obj));
         if(obj.response.docs.length > 0) {
             var results = obj.response.docs[0]["name"];
-            console.log("results1: " + JSON.stringify(results));
             res.send(results);
         }
     });
