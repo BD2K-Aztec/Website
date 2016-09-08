@@ -2,29 +2,27 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><%=title%></title>
-<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
-<link rel="stylesheet" href="/public/css/ng-tags-input.min.css">
-<link href="/public/css/tool-form.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/public/css/ionicons.min.css">
-<script src="/public/js/jquery-2.1.4.js"></script>
-<script src="/public/js/form/validator.js"></script>
+    <title><%=title%></title>
     <%- include ../shared/scripts.ejs%>
+    <link rel="stylesheet" href="/public/css/ng-tags-input.min.css">
+    <link href="/public/css/tool-form.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/public/css/ionicons.min.css">
+    <script src="/public/js/form/validator.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="/public/css/tool-form2.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/tool-form2.css">
 
-  <script>
-  // This is for file upload
-   $(document).on('change', '.btn-file :file', function() {
+    <script>
+    // This is for file upload
+    $(document).on('change', '.btn-file :file', function() {
     console.log("Document on function triggered");
-  var input = $(this),
+    var input = $(this),
       numFiles = input.get(0).files ? input.get(0).files.length : 1,
       label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-  input.trigger('fileselect', [numFiles, label]);
-  console.log("file uploaded");
-  console.log(numFiles);
-  console.log(label);
-});
+    input.trigger('fileselect', [numFiles, label]);
+    console.log("file uploaded");
+    console.log(numFiles);
+    console.log(label);
+    });
 
     var current_sec = '#part1';
     $(window).load(function() {

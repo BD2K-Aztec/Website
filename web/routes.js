@@ -39,9 +39,7 @@ module.exports = function(app, passport) {
     app.get('/resource/getNameFromID', ResourceController.getNameFromID);
 
     app.get('/tool/filters', ToolController.filters);
-    //app.get('/tool/show', getLoginInformation, ToolController.show);
     app.get('/tool/create', getLoginInformation, ToolController.create);
-    app.get('/tool/edit', getLoginInformation, ToolController.edit);
 
     app.get('/review/index', isLoggedIn, getLoginInformation, ReviewController.portal);
     app.get('/review/feedback', isLoggedIn, getLoginInformation, ReviewController.feedback);
