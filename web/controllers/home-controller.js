@@ -54,6 +54,7 @@ function HomeController() {
 /**
  * Represents a book.
  * @constructor
+ * @alias index
  */
 HomeController.prototype._index = function (self, req, res) {
     var SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'

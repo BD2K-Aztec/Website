@@ -1,0 +1,26 @@
+{
+    "source": {
+        "include": ["controllers", "models", "public", "utility", "viewmodels"],
+        "exclude": ["public/js/google-analytics.js", 
+            "pubilc/js/d3.js", 
+            "pubilc/js/d3.min.js", 
+            "pubilc/js/ga.js", 
+            "pubilc/js/html2canvas.js", 
+            "pubilc/js/jquery-2.1.4.js", 
+            "pubilc/js/loader.js", 
+            "pubilc/js/malarkey.js", 
+            "pubilc/js/malarkey.min.js", 
+            "pubilc/js/queue.v1.min.js", 
+            "pubilc/js/select.js", 
+            "pubilc/js/typeahead.js",
+            "pubilc/js/npm.js"],
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "opts": {
+        "template": "templates/default",  // same as -t templates/default
+        "encoding": "utf8",               // same as -e utf8
+        "destination": "./docs/",         // same as -d ./out/
+        "recurse": true                   // same as -r
+    }
+}

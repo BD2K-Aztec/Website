@@ -11,4 +11,5 @@ archive/
 web/node_modules
 web/security
 *.log
-web/config/app.json
+web/config/
+web/docs/
