@@ -17,6 +17,11 @@
     
     pip install pyopenssl
   ```
+* Install forever globally with npm:
+```
+  npm install forever -g
+```
+
 * To start running the server, navigate to the From web folder and run: 
 
   ```
