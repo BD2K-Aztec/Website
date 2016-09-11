@@ -52,13 +52,13 @@ ToolController.prototype._idRoute = function (self,req,res){
         console.log(req.params.id);
 
         if(req.params.id.substring(0,2) != 'AZ') {
-            res.redirect('/home/failure');
+            return res.redirect('/home/failure');
             return false;
         }
 
         if(req.params.id.substring(2).length != 7){
             var newId = ("0000000" + req.params.id.substring(2)).slice(-7);
-            res.redirect('/AZ' + newId)
+            return res.redirect('/AZ' + newId)
         }
 
         var id = parseInt(req.params.id.substring(2), 10);
@@ -80,7 +80,7 @@ ToolController.prototype._idRoute = function (self,req,res){
         });
     }
     else{
-        res.redirect('/home/failure');
+        return res.redirect('/home/failure');
     }
 };
 

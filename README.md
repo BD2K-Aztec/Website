@@ -17,6 +17,11 @@
     
     pip install pyopenssl
   ```
+* Install forever globally with npm:
+```
+  sudo npm -g install forever
+```
+
 * To start running the server, navigate to the From web folder and run: 
 
   ```
@@ -27,7 +32,13 @@
 
   Default app.json files are located in config. If changes are required, create a local version of app.json. DO NOT change app.release.json
 
-##Docker Images Usage
+## [JSDoc](https://github.com/jsdoc3/jsdoc)
+
+Follow the commenting style described at https://google.github.io/styleguide/javascriptguide.xml#Comments and http://usejsdoc.org/. 
+
+TO generate docs, run document.sh from the web folder.
+
+## Docker Images Usage
 
 Pull Aztec docker images to machine:
 ```
