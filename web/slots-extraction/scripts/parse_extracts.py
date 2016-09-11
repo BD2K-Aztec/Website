@@ -175,11 +175,11 @@ def getKeywords(record, filename, key):
     # Keywords from CrossRef DOI reference:
     keywords = []
     dataRecord = readRecords(filename)
-    if(key[:-4] in dataRecord):
-        if "subject" in dataRecord[key[:-4]]["crossRef"]["message"]:
-            keywords += dataRecord[key[:-4]]["crossRef"]["message"]["subject"]
-        if "container-title" in dataRecord[key[:-4]]["crossRef"]["message"]:
-            keywords += dataRecord[key[:-4]]["crossRef"]["message"]["container-title"]
+    if(key[:-8] in dataRecord):
+        if "subject" in dataRecord[key[:-8]]["crossRef"]["message"]:
+            keywords += dataRecord[key[:-8]]["crossRef"]["message"]["subject"]
+        if "container-title" in dataRecord[key[:-8]]["crossRef"]["message"]:
+            keywords += dataRecord[key[:-8]]["crossRef"]["message"]["container-title"]
 
     # Keywords from publication text:
     profile = record["TEI"]["teiHeader"]["profileDesc"]
