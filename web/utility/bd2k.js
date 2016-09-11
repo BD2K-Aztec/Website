@@ -282,31 +282,36 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
     }
 
         // create unique list of terms to query
-    var queryPermutations = new Set(fields['resource']);
-    for(var synonyms of fields['resource']){
-      var wordTokens = synonyms.match(/\S+/g);
-      if(Array.isArray(wordTokens)){
+    var queryPermutations = [];
+    if(fields['id']){
+      queryPermutations = [fields['id']];
+    }else if(fields['resource']){
+      queryPermutations = new Set(fields['resource']);
+      for(var synonyms of fields['resource']){
+        var wordTokens = synonyms.match(/\S+/g);
+        if(Array.isArray(wordTokens)){
 
-          // add distinct words
-          var distinctWords = new Set(wordTokens);
-          console.log(distinctWords);
-          for(word of distinctWords){
-            console.log(word);
-            queryPermutations.add(word);
-          }
-          
-          // add consecutive word permutations of length 2 to len(all words)-1
-          var numWords = wordTokens.length;
-          for(var klen = 2; klen < numWords; klen++){
-            for(var i = 0; i <= numWords-klen; i++){
-              var klenWord = "";
-              for(var j=0; j<klen; j++){
-                klenWord+=" "+wordTokens[i+j]
-              }
-              queryPermutations.add(klenWord);
+            // add distinct words
+            var distinctWords = new Set(wordTokens);
+            console.log(distinctWords);
+            for(word of distinctWords){
+              console.log(word);
+              queryPermutations.add(word);
             }
-          }
 
+            // add consecutive word permutations of length 2 to len(all words)-1
+            var numWords = wordTokens.length;
+            for(var klen = 2; klen < numWords; klen++){
+              for(var i = 0; i <= numWords-klen; i++){
+                var klenWord = "";
+                for(var j=0; j<klen; j++){
+                  klenWord+=" "+wordTokens[i+j]
+                }
+                queryPermutations.add(klenWord);
+              }
+            }
+
+        }
       }
     }
 
