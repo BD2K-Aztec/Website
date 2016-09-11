@@ -1,6 +1,5 @@
 /**
- * @fileoverview Description of file, its uses and information
- * about its dependencies.
+ * @fileoverview Home Controller for index pages, profile management, and about pages.
  */
 var User = require('../models/user.js');
 var Feedback = require('../models/feedback.js');
@@ -21,12 +20,6 @@ var transporter = nodemailer.createTransport({
         pass: '2eyxv2ewbr'
     }
 });
-// info@aztec.bio
-// dh3t3umqv3
-//var oauth2Client = new OAuth2("115305594630579250587", "4098b6ae84b299d78bc106b58f6e8feea32ce707", "");
-
-// NB! No need to recreate the transporter object. You can use
-// the same transporter object for all e-mails
 
 function HomeController() {
     var self = this;
@@ -52,7 +45,7 @@ function HomeController() {
 }
 
 /**
- * Represents a book.
+ * Controller function for index page. Contains initial google Oauth for Google Analytics)
  * @constructor
  * @alias index
  */
@@ -75,39 +68,59 @@ HomeController.prototype._index = function (self, req, res) {
 
 };
 
-//--- success -----------------------------------------------------------------------
-HomeController.prototype._success = function (self, req, res) {
+/**
+ * Controller function for success page. Shown when user actions are successful
+ * @constructor
+ * @alias success
+ */
+ HomeController.prototype._success = function (self, req, res) {
     res.render("home/success", {
         loggedIn: req.loggedIn,
         user: req.user
     });
 };
 
-//--- failure -----------------------------------------------------------------------
-HomeController.prototype._failure = function (self, req, res) {
+/**
+ * Controller function for failure page. Shown when user actions fail
+ * @constructor
+ * @alias failure
+ */
+ HomeController.prototype._failure = function (self, req, res) {
     res.render("home/failure", {
         loggedIn: req.loggedIn,
         user: req.user
     });
 };
 
-//--- overview -----------------------------------------------------------------------
-HomeController.prototype._overview = function (self, req, res) {
+/**
+ * Controller function for overview page. Shows the overview about page.
+ * @constructor
+ * @alias overview
+ */
+ HomeController.prototype._overview = function (self, req, res) {
     res.render("home/overview", {
         loggedIn: req.loggedIn,
         user: req.user
     });
 };
 
-//--- metadata -----------------------------------------------------------------------
-HomeController.prototype._metadata = function (self, req, res) {
+/**
+ * Controller function for metadata page. Shows the metadata about page.
+ * @constructor
+ * @alias metadata
+ */
+ HomeController.prototype._metadata = function (self, req, res) {
     res.render("home/metadata", {
         loggedIn: req.loggedIn,
         user: req.user
     });
 };
 
-//--- technologies -----------------------------------------------------------------------
+/**
+ * Controller function for technologies page. Shows the technologies about page.
+ * @constructor
+ * @alias technologies
+ */
 HomeController.prototype._technologies = function (self, req, res) {
     res.render("home/technologies", {
         loggedIn: req.loggedIn,
@@ -115,7 +128,11 @@ HomeController.prototype._technologies = function (self, req, res) {
     });
 };
 
-//--- sources -----------------------------------------------------------------------
+/**
+ * Controller function for sources page. Shows the sources about page.
+ * @constructor
+ * @alias sources
+ */
 HomeController.prototype._sources = function (self, req, res) {
     res.render("home/sources", {
         loggedIn: req.loggedIn,
@@ -123,7 +140,11 @@ HomeController.prototype._sources = function (self, req, res) {
     });
 };
 
-//--- changelog -----------------------------------------------------------------------
+/**
+ * Controller function for changelog page.
+ * @constructor
+ * @alias changelog
+ */
 HomeController.prototype._changelog = function (self, req, res) {
     res.render("home/changelog", {
         loggedIn: req.loggedIn,
@@ -131,7 +152,12 @@ HomeController.prototype._changelog = function (self, req, res) {
     });
 };
 
-//--- recover -----------------------------------------------------------------------
+/**
+ * Controller function for profile recovery page.
+ * @constructor
+ * @alias recover
+ * @param {String} recoverMessage - flash message to inform user about recovery state
+ */
 HomeController.prototype._recover = function (self, req, res) {
     res.render("home/recover", {
         loggedIn: req.loggedIn,
@@ -140,7 +166,13 @@ HomeController.prototype._recover = function (self, req, res) {
     });
 };
 
-//--- password -----------------------------------------------------------------------
+/**
+ * Controller function to change user password.
+ * @constructor
+ * @alias password
+ * @param {String} passwordMessage - flash message to inform user about password change state
+ * @param {String} email - user email
+ */
 HomeController.prototype._password = function (self, req, res) {
     if(req.isAuthenticated()){
         i = {};
@@ -153,7 +185,14 @@ HomeController.prototype._password = function (self, req, res) {
     }
 };
 
-//--- profile -----------------------------------------------------------------------
+/**
+ * Controller function for profile page.
+ * @constructor
+ * @alias profile
+ * @param {String} email - user email
+ * @param {String} profileMessage - Used to alert user of success or failure of authentication or password change.
+ * @param {Array} docs - List of tools owned by the user
+ */
 HomeController.prototype._profile = function (self, req, res) {
     BD2K.solr.search({owners: req.user.email}, function(r){
         res.render('home/profile', {
@@ -165,9 +204,14 @@ HomeController.prototype._profile = function (self, req, res) {
     })
 };
 
-
-
-//--- postPassword -----------------------------------------------------------------------
+/**
+ * Controller function for password page. Page shown after [password()]{@link password}, showing success or failure of password change.
+ * @constructor
+ * @alias postPassword
+ * @param {String} profileMessage - contains result of attempted password change
+ * @param {String} password - User's new password
+ * @param {String} email - User's email
+ */
 HomeController.prototype._postPassword = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
         if (!error && user) {
@@ -183,8 +227,14 @@ HomeController.prototype._postPassword = function (self, req, res) {
     });
 };
 
-
-//--- signup -----------------------------------------------------------------------
+/**
+ * Controller function for signup page. Page shown after [password()]{@link password}, showing success or failure of password change.
+ * @constructor
+ * @alias signup
+ * @param {String} profileMessage - contains result of attempted password change
+ * @param {String} password - User's new password
+ * @param {String} email - User's email
+ */
 HomeController.prototype._signup = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
         if (!error && user) {
@@ -195,7 +245,7 @@ HomeController.prototype._signup = function (self, req, res) {
             user.save(function () {
                 // setup e-mail data with unicode symbols
                 var mailOptions = {
-                    from: 'Aztec <patricktan4@gmail.com>', // sender address
+                    from: 'Aztec <admin@bd2kcc.org>', // sender address
                     to: req.body.email, // list of receivers
                     subject: 'Authenticate Aztec Account', // Subject line
                     text: 'Hi ' + user.firstName + ',\n\n' +
@@ -225,7 +275,16 @@ HomeController.prototype._signup = function (self, req, res) {
     });
 };
 
-//--- sendPassword -----------------------------------------------------------------------
+ /**
+ * Controller function for sendPassword. Function is run when a user enters email in the [recover()]{@link recover} page. 
+ *     Sends an email to the user containing a token to access a password reset page.
+ * @constructor
+ * @alias sendPassword
+ * @param {String} loginMessage - message to show when redirected to the login page (token sent successfully)
+ * @param {String} email - User's email
+ * @param {String} recoverMessage - message to show when redirected to the recover page (email isn't found)
+ */
+
 HomeController.prototype._sendPassword = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
         if (!error && user) {
@@ -234,7 +293,7 @@ HomeController.prototype._sendPassword = function (self, req, res) {
             user.save(function () {
                 // setup e-mail data with unicode symbols
                 var mailOptions = {
-                    from: 'Aztec <patricktan4@gmail.com>', // sender address
+                    from: 'Aztec <admin@bd2kcc.org>', // sender address
                     to: req.body.email, // list of receivers
                     subject: 'Reset Aztec Password', // Subject line
                     text: 'Hi ' + user.firstName + ',\n\n' +
@@ -265,7 +324,13 @@ HomeController.prototype._sendPassword = function (self, req, res) {
     });
 };
 
-//--- authenticate -----------------------------------------------------------------------
+/**
+ * Controller function for user authentication. User arrives here after following authentication email. 
+ * Redirects to either a success or failure page depending on result.
+ * @constructor
+ * @alias authenticate
+ * @param {String} token - token sent to the user's email from [signup()]{@link signup}
+ */
 HomeController.prototype._authenticate = function (self, req, res) {
     var token = req.query.token;
     User.findOne({authenticateToken: token}, function (error, user) {
@@ -281,8 +346,16 @@ HomeController.prototype._authenticate = function (self, req, res) {
     });
 };
 
-//--- resetPasswordPost -----------------------------------------------------------------------
-HomeController.prototype._resetPasswordPost = function (self, req, res) {
+/**
+ * Controller function for resetPasswordPost. Result page after [resetPasswordGet()]{@link resetPasswordGet}.
+ * Rechecks the user's token and then replaces the user's password in the mongo database with a hashed password. 
+ * @constructor
+ * @alias resetPasswordPost
+ * @param {String} token - token sent to the user's email from [sendPassword()]{@link sendPassword}
+ * @param {String} email - User's email
+ * @param {String} new - User's new input password
+ */
+ HomeController.prototype._resetPasswordPost = function (self, req, res) {
     i = {};
     i.email = req.body.email;
     i.message = req.flash('resettingPasswordMessage');
@@ -304,8 +377,15 @@ HomeController.prototype._resetPasswordPost = function (self, req, res) {
     });
 };
 
-//--- resetPasswordGet -----------------------------------------------------------------------
-HomeController.prototype._resetPasswordGet = function (self, req, res) {
+/**
+ * Controller function for resetPasswordGet. Checks if the token matches to stored 
+ * token corresponding to the user in Mongo. If so, it shows the password reset page. Else, it shows the failure page.
+ * @constructor
+ * @alias resetPasswordGet
+ * @param {String} token - token sent to the user's email from [sendPassword()]{@link sendPassword}
+ * @param {String} email - User's email
+ */
+ HomeController.prototype._resetPasswordGet = function (self, req, res) {
     i = {};
     i.email = req.query.email;
     i.message = req.flash('resettingPasswordMessage');
@@ -324,9 +404,13 @@ HomeController.prototype._resetPasswordGet = function (self, req, res) {
     });
 };
 
-//--- feedback -----------------------------------------------------------------------
-HomeController.prototype._feedback = function (self, req, res) {
-    var issue = new Feedback({issue:JSON.parse(req.body.data)[0]["Issue"], screenshot:JSON.parse(req.body.data)[1]});
+/**
+ * Controller function for feedback. Shows all feedback submitted by users.
+ * @constructor
+ * @alias feedback
+ */
+ HomeController.prototype._feedback = function (self, req, res) {
+    var issue = new Feedback({issue:JSON.parse(req.body.data)[0]["Issue"], screenshot:JSON.parse(req.body.data)[1]}); //list of all feedback from mongo
     issue.save(function (err) {
         if (err) {
             console.log(err);
