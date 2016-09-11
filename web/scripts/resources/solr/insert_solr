@@ -1,7 +1,0 @@
-#!/bin/bash
-
-curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @elixir.json -H 'Content-type:application/json'
-curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @biojs.json -H 'Content-type:application/json'
-curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @bioconductor.json -H 'Content-type:application/json'
-curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @biocatalogue.json -H 'Content-type:application/json'
-curl 'http://localhost:8983/solr/BD2K/update/json?commit=true' --data-binary @galaxy.json -H 'Content-type:application/json'
