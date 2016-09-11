@@ -281,39 +281,53 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
         }
     }
 
+        // create unique list of terms to query
+    var queryPermutations = new Set(fields['resource']);
+    for(var synonyms of fields['resource']){
+      var wordTokens = synonyms.match(/\S+/g);
+      if(Array.isArray(wordTokens)){
+
+          // add distinct words
+          var distinctWords = new Set(wordTokens);
+          console.log(distinctWords);
+          for(word of distinctWords){
+            console.log(word);
+            queryPermutations.add(word);
+          }
+          
+          // add consecutive word permutations of length 2 to len(all words)-1
+          var numWords = wordTokens.length;
+          for(var klen = 2; klen < numWords; klen++){
+            for(var i = 0; i <= numWords-klen; i++){
+              var klenWord = "";
+              for(var j=0; j<klen; j++){
+                klenWord+=" "+wordTokens[i+j]
+              }
+              queryPermutations.add(klenWord);
+            }
+          }
+
+      }
+    }
+
+
     if('resource' in fields)
         delete fields["resource"]
 
-    //build query
+    //build solr query
     var solrQuery = "";
     first = true;
     for(key in fields){
-        //console.log(key)
         var indexes = fields[key];
-
-        if(Array.isArray(indexes)){
-            for(index in indexes){
-                var value = indexes[index].match(/\S+/g);
-                for(token in value) {
-                    //console.log(value[token])
-                    if(!first) {
-                        solrQuery += " OR ";
-                    }
-                    solrQuery += key + ":" + value[token];
-                    first = false;
-                }
-            }
-        }
-        else { //single term
-            if(!first) {
-                solrQuery += " OR ";
-            }
-            solrQuery += key + ":" + fields[key];
-            first = false;
+        for(queryTerm of queryPermutations){
+          if(!first) {
+              solrQuery += " OR ";
+          }
+          solrQuery += key + ":" + queryTerm;
+          first = false;
         }
 
     }
-
     var query = client.createQuery()
         .q(solrQuery)
         .edismax()
