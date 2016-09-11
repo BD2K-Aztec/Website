@@ -1,5 +1,5 @@
 /**
- * @fileoverview Home Controller for index pages, profile management, and about pages.
+ * @fileoverview Home Controller: index pages, profile management, and about pages.
  */
 var User = require('../models/user.js');
 var Feedback = require('../models/feedback.js');
@@ -12,7 +12,7 @@ var OAuth2 = google.auth.OAuth2;
 var google_api_key = require('./secret.json');
 
 
-// create reusable transporter object using SMTP transport
+// create reusable transporter object using SMTP transport (automated emails)
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -21,6 +21,11 @@ var transporter = nodemailer.createTransport({
     }
 });
 
+/**
+ * @class HomeController
+ * @constructor
+ * @classdesc Controller for index pages, profile management, and about pages.
+ */
 function HomeController() {
     var self = this;
 
@@ -46,7 +51,8 @@ function HomeController() {
 
 /**
  * Controller function for index page. Contains initial google Oauth for Google Analytics)
- * @constructor
+ * @memberof HomeController
+ * @function
  * @alias index
  */
 HomeController.prototype._index = function (self, req, res) {
@@ -70,7 +76,8 @@ HomeController.prototype._index = function (self, req, res) {
 
 /**
  * Controller function for success page. Shown when user actions are successful
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias success
  */
  HomeController.prototype._success = function (self, req, res) {
@@ -82,7 +89,8 @@ HomeController.prototype._index = function (self, req, res) {
 
 /**
  * Controller function for failure page. Shown when user actions fail
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias failure
  */
  HomeController.prototype._failure = function (self, req, res) {
@@ -94,7 +102,8 @@ HomeController.prototype._index = function (self, req, res) {
 
 /**
  * Controller function for overview page. Shows the overview about page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias overview
  */
  HomeController.prototype._overview = function (self, req, res) {
@@ -106,7 +115,8 @@ HomeController.prototype._index = function (self, req, res) {
 
 /**
  * Controller function for metadata page. Shows the metadata about page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias metadata
  */
  HomeController.prototype._metadata = function (self, req, res) {
@@ -118,7 +128,8 @@ HomeController.prototype._index = function (self, req, res) {
 
 /**
  * Controller function for technologies page. Shows the technologies about page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias technologies
  */
 HomeController.prototype._technologies = function (self, req, res) {
@@ -130,7 +141,8 @@ HomeController.prototype._technologies = function (self, req, res) {
 
 /**
  * Controller function for sources page. Shows the sources about page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias sources
  */
 HomeController.prototype._sources = function (self, req, res) {
@@ -142,7 +154,8 @@ HomeController.prototype._sources = function (self, req, res) {
 
 /**
  * Controller function for changelog page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias changelog
  */
 HomeController.prototype._changelog = function (self, req, res) {
@@ -154,7 +167,8 @@ HomeController.prototype._changelog = function (self, req, res) {
 
 /**
  * Controller function for profile recovery page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias recover
  * @param {String} recoverMessage - flash message to inform user about recovery state
  */
@@ -168,7 +182,8 @@ HomeController.prototype._recover = function (self, req, res) {
 
 /**
  * Controller function to change user password.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias password
  * @param {String} passwordMessage - flash message to inform user about password change state
  * @param {String} email - user email
@@ -187,7 +202,8 @@ HomeController.prototype._password = function (self, req, res) {
 
 /**
  * Controller function for profile page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias profile
  * @param {String} email - user email
  * @param {String} profileMessage - Used to alert user of success or failure of authentication or password change.
@@ -206,7 +222,8 @@ HomeController.prototype._profile = function (self, req, res) {
 
 /**
  * Controller function for password page. Page shown after [password()]{@link password}, showing success or failure of password change.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias postPassword
  * @param {String} profileMessage - contains result of attempted password change
  * @param {String} password - User's new password
@@ -229,7 +246,8 @@ HomeController.prototype._postPassword = function (self, req, res) {
 
 /**
  * Controller function for signup page. Page shown after [password()]{@link password}, showing success or failure of password change.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias signup
  * @param {String} profileMessage - contains result of attempted password change
  * @param {String} password - User's new password
@@ -278,7 +296,8 @@ HomeController.prototype._signup = function (self, req, res) {
  /**
  * Controller function for sendPassword. Function is run when a user enters email in the [recover()]{@link recover} page. 
  *     Sends an email to the user containing a token to access a password reset page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias sendPassword
  * @param {String} loginMessage - message to show when redirected to the login page (token sent successfully)
  * @param {String} email - User's email
@@ -327,7 +346,8 @@ HomeController.prototype._sendPassword = function (self, req, res) {
 /**
  * Controller function for user authentication. User arrives here after following authentication email. 
  * Redirects to either a success or failure page depending on result.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias authenticate
  * @param {String} token - token sent to the user's email from [signup()]{@link signup}
  */
@@ -349,7 +369,8 @@ HomeController.prototype._authenticate = function (self, req, res) {
 /**
  * Controller function for resetPasswordPost. Result page after [resetPasswordGet()]{@link resetPasswordGet}.
  * Rechecks the user's token and then replaces the user's password in the mongo database with a hashed password. 
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias resetPasswordPost
  * @param {String} token - token sent to the user's email from [sendPassword()]{@link sendPassword}
  * @param {String} email - User's email
@@ -378,9 +399,10 @@ HomeController.prototype._authenticate = function (self, req, res) {
 };
 
 /**
- * Controller function for resetPasswordGet. Checks if the token matches to stored 
+ * Controller function for resetPasswordGet. Checks if the token sent from [sendPassword()]{@link sendPassword} matches to stored 
  * token corresponding to the user in Mongo. If so, it shows the password reset page. Else, it shows the failure page.
- * @constructor
+ * @memberOf HomeController
+ * @function
  * @alias resetPasswordGet
  * @param {String} token - token sent to the user's email from [sendPassword()]{@link sendPassword}
  * @param {String} email - User's email
@@ -405,8 +427,9 @@ HomeController.prototype._authenticate = function (self, req, res) {
 };
 
 /**
- * Controller function for feedback. Shows all feedback submitted by users.
- * @constructor
+ * Controller function for feedback. Saves submitted feedback into mongo.
+ * @memberOf HomeController
+ * @function
  * @alias feedback
  */
  HomeController.prototype._feedback = function (self, req, res) {

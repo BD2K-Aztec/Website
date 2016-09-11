@@ -377,21 +377,6 @@ BD2K.solr.search_suggest = function(fields, handler) {
     options.host = config.solrHost;
     options.port = config.solrPort;
     var client = solr.createClient(options);
-    //var query = client.createQuery()
-    //    .q(query_str)
-    //    //.qf()
-    //    //.edismax()
-    //    //.mm("0%100")
-    //    //.qop("OR")
-    //    .start(0)
-    //    .rows(30);
-    //client.search(query,function(err,obj){
-    //    if(err){
-    //        console.log("Search: " + err);
-    //    }else{
-    //        handler(obj);
-    //    }
-    //});
 
     var query = "q="+fields.name;
 

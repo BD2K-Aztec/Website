@@ -1,7 +1,6 @@
 // app/routes.js
 var HomeController = require('./controllers/home-controller.js');
 var ResourceController = require('./controllers/resource-controller.js');
-var ToolController = require('./controllers/tool-controller.js');
 var ReviewController = require('./controllers/review-controller.js');
 var QueryController = require('./controllers/query-controller.js');
 var PdfController = require('./controllers/pdf-controller.js');
@@ -13,7 +12,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/', getLoginInformation, HomeController.index);
-    app.get('/:id', getLoginInformation, ToolController.idRoute);
+    app.get('/:id', getLoginInformation, ResourceController.idRoute);
     app.get('/home/index', getLoginInformation, HomeController.index);
     app.get('/home/overview', getLoginInformation, HomeController.overview);
     app.get('/home/metadata', getLoginInformation, HomeController.metadata);
@@ -29,17 +28,12 @@ module.exports = function(app, passport) {
     app.get('/home/failure', getLoginInformation, HomeController.failure);
     app.post('/home/feedback', HomeController.feedback);
 
-    app.get('/resource/raw', ResourceController.raw);
     app.get('/resource/advanced', ResourceController.advanced);
     app.get('/resource/search', ResourceController.search);
     app.get('/resource/update', ResourceController.update);
     app.get('/resource/stat', ResourceController.stat);
-    app.get('/resource/add', ResourceController.add);
     app.get('/resource/autocomplete', ResourceController.autocomplete);
     app.get('/resource/getNameFromID', ResourceController.getNameFromID);
-
-    app.get('/tool/filters', ToolController.filters);
-    app.get('/tool/create', getLoginInformation, ToolController.create);
 
     app.get('/review/index', isLoggedIn, getLoginInformation, ReviewController.portal);
     app.get('/review/feedback', isLoggedIn, getLoginInformation, ReviewController.feedback);

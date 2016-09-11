@@ -39,19 +39,6 @@ Resources.prototype._combine = function (self, resourcesArr) {
             if (!has) { first.group.splice(i, 1); break; }
         }
     }
-    //
-    //for (var i=first.group.length-1; i>=0; i--) {
-    //    var resource = first.group[i];
-    //    for (var j=1; j<resourcesArr.length; j++) {
-    //        var curResources = resourcesArr[j];
-    //        var has = false;
-    //        for (var k=0; k<curResources.group.length; k++){
-    //            var curResource = curResources.group[k];
-    //            if (resource.isSame(curResource)) { has = true; break; }
-    //        }
-    //        if (!has) { first.group.splice(i, 1); break; }
-    //    }
-    //}
 
     self.group = first.group;
 };

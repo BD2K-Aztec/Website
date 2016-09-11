@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Resource Model
+ */
+
 var BD2K = require('../utility/bd2k.js');
 var mongo = BD2K.mongo;
 var Event = require('../utility/event.js');
@@ -6,20 +10,17 @@ var path = require('path');
 var config = require('../config/app.json');
 var solr = require('solr-client');
 
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//  Resource
-//
+/**
+ * @class Resource
+ * @constructor
+ * @classdesc Resource _________
+ */
 function Resource() {
     var self = this;
 
     this.onUpdate = function (rows) { return self._onUpdate(self, rows); };
     this.update = function (callback) { return self._update(self, callback); };
     this.stat = function(type, callback) { return self._stat(self, type, callback); };
-    this.isSame = function(resource) { return self._isSame(self, resource); };
     this.add = function(json, callback) { return self._add(self, json, callback); };
     this.onAdd = function() { return self._onAdd(self); };
 
@@ -28,11 +29,6 @@ function Resource() {
     this._crud = crud;
     this.crud = crud.register;
 }
-
-//--- isSame ------------------------------------------------------------------------------
-Resource.prototype._isSame = function (self, resource) {
-    return JSON.stringify(self) == JSON.stringify(resource);
-};
 
 //--- stat ------------------------------------------------------------------------------
 Resource.prototype._stat = function (self, type, callback) {
@@ -44,7 +40,12 @@ Resource.prototype._stat = function (self, type, callback) {
 
 };
 
-//--- update ------------------------------------------------------------------------------
+/**
+ * Updates statistics in mongo. Queries solr for tags, platforms, and sources, then puts results in mongo.
+ * @function
+ * @memberof Resource
+ * @alias update
+ */
 Resource.prototype._update = function (self, callback) {
 
     self.crud(callback);
