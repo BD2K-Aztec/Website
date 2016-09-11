@@ -18,26 +18,28 @@ docker run -d -p 3306:3306 vincekyi/aztec-mysql
 
 ##Server Setup
 
-* Pull Repository
-* Install Nodejs and npm
+* Pull Repository to the home folder (i.e.  cd ~)
+* Install Nodejs and npm to the system
 * cd web && npm install
-* cd scripts/bash and run install_graphviz
-* Link nodejs to node command: ln -s /usr/bin/nodejs /usr/bin/node
 * Start all docker images (see above)
-* node_modules/forever/bin/forever start server.json
+* From web folder, run: forever start server.js or deploy_server.js (note: deploy_server contains ssl certificates. For local system, use server.js)
+* Note: Default app.json files are located in config. 
 * Direct browser to /resource/update
 * cd web and run: node scripts/insert_stats.js
 * run pip install --upgrade google-api-python-client
 * sudo pip install oauth2client==1.5.2
 * sudo pip install pyopenssl
 
+### Updating Statistics Automatically
+* Navigate to the updateStats script in web/scripts
+* Change the file path to direct to the insert_stats.js file in the scripts file (path may change depending on the system) 
+* Set up a cronjob for the updateStats script. (i.e. For linux-based systems, copy the file to /var/cron.daily)
+
 ##How To:
 
 ###Copy Files to Docker
 
 http://stackoverflow.com/questions/22907231/copying-files-from-host-to-docker-container
-
-sudo cp schema.xml /var/lib/docker/aufs/mnt/a3be2e5897bf48c36805f005cbd6a9a31878b02c25edbf71a782d929c689fa13/opt/solr-5.3.0/server/solr/BD2K/conf
 
 ###Input json file to Solr
 
@@ -48,6 +50,6 @@ http://stackoverflow.com/questions/28037802/docker-exec-failed-to-exec-exec-cd-e
 
 ###Restart the Server
 
-Move to Aztec-Web/web
+Move to Aztec-Web/web/scripts
 
 Run the restart.sh script with sudo
