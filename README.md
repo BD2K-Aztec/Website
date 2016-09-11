@@ -1,36 +1,75 @@
-##Docker Images Usage
-
-###[Solr](https://hub.docker.com/r/makuk66/docker-solr/)
-
-docker run -d -p 8983:8983 -t tanpatrick/aztec-solr
-
-###[Neo4j](https://hub.docker.com/r/tpires/neo4j/)
-
-docker run -i -t -d --name neo4j --cap-add=SYS_RESOURCE -v /var/lib/neo4j/data -p 7474:7474 tanpatrick/aztec-neo4j
-
-###[MongoDB](https://hub.docker.com/r/vincekyi/aztec-mongo/)
-
-docker run -d -p 27017:27017 vincekyi/aztec-mongo
-
-###[MySQL](https://hub.docker.com/r/vincekyi/aztec-mysql/)
-
-docker run -d -p 3306:3306 vincekyi/aztec-mysql
-
 ##Server Setup
 
-* Pull Repository to the home folder (i.e.  cd ~)
-* Install Nodejs and npm to the system
-* cd web && npm install
-* Start all docker images (see above)
-* From web folder, run: forever start server.js or deploy_server.js (note: deploy_server contains ssl certificates. For local system, use server.js)
-* Note: Default app.json files are located in config. 
-* Direct browser to /resource/update
-* cd web and run: node scripts/insert_stats.js
-* run pip install --upgrade google-api-python-client
-* sudo pip install oauth2client==1.5.2
-* sudo pip install pyopenssl
+* Pull Repository
+* Install [Nodejs](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) to the system (Note: installing nodejs should automatically install npm)
+* Install node modules: 
 
-### Updating Statistics Automatically
+  ```
+    cd web && npm install
+  ```
+* Docker Setup (see below)
+* Installing [oauth python client for GoogleAnalytics](https://github.com/google/google-api-python-client):
+
+  ```
+    pip install --upgrade google-api-python-client
+    
+    pip install oauth2client==1.5.2
+    
+    pip install pyopenssl
+  ```
+* To start running the server, navigate to the From web folder and run: 
+
+  ```
+    forever start server.js
+  ```
+  
+  If running on deployment server, run deploy_server.js instead of server.js to run with ssl security.
+
+  Default app.json files are located in config. If changes are required, create a local version of app.json. DO NOT change app.release.json
+
+##Docker Images Usage
+
+Pull Aztec docker images to machine:
+```
+docker pull tanpatrick/aztec-solr:web
+
+docker pull vincekyi/aztec-mongo:web
+
+docker pull vincekyi/aztec-mysql:web
+
+docker pull asgard/docker-grobid-service
+```
+
+Start docker images.
+
+###[Solr](https://hub.docker.com/r/makuk66/docker-solr/)
+```
+docker run -d -p 8983:8983 -t tanpatrick/aztec-solr
+```
+
+###[MongoDB](https://hub.docker.com/r/vincekyi/aztec-mongo/)
+```
+docker run -d -p 27017:27017 vincekyi/aztec-mongo
+```
+
+###[MySQL](https://hub.docker.com/r/vincekyi/aztec-mysql/)
+```
+docker run -d -p 3306:3306 vincekyi/aztec-mysql
+```
+
+###[GROBID](https://hub.docker.com/r/asgard/docker-grobid-service/)
+```
+docker run -d -p 8081:8000 asgard/docker-grobid-service
+```
+
+### Updating Statistics Manually
+* Direct browser to localhost:xxxx/resource/update to initialize statistics
+* To place statistics in Mongo: 
+  ```
+    cd web && node scripts/insert_stats.js
+  ```
+  
+### Updating Statistics Automatically with Cronjob
 * Navigate to the updateStats script in web/scripts
 * Change the file path to direct to the insert_stats.js file in the scripts file (path may change depending on the system) 
 * Set up a cronjob for the updateStats script. (i.e. For linux-based systems, copy the file to /var/cron.daily)
