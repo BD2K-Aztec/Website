@@ -20,6 +20,7 @@
     "forever": "*",
     "googleapis": "^5.2.1",
     "graphviz": "*",
+    "jsdoc": "^3.4.1",
     "knex": "0.8.6",
     "method-override": "~1.0.0",
     "mkdirp": "^0.5.1",

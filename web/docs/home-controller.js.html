@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: home-controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: home-controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileoverview Description of file, its uses and information
  * about its dependencies.
  */
@@ -169,7 +197,7 @@ HomeController.prototype._profile = function (self, req, res) {
 //--- postPassword -----------------------------------------------------------------------
 HomeController.prototype._postPassword = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
-        if (!error && user) {
+        if (!error &amp;&amp; user) {
             user.password = user.generateHash(req.body.new);
             user.save(function () {
                 req.flash('profileMessage', 'Password changed successfully.');
@@ -186,7 +214,7 @@ HomeController.prototype._postPassword = function (self, req, res) {
 //--- signup -----------------------------------------------------------------------
 HomeController.prototype._signup = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
-        if (!error && user) {
+        if (!error &amp;&amp; user) {
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
             var token = uuid.v1();
@@ -194,7 +222,7 @@ HomeController.prototype._signup = function (self, req, res) {
             user.save(function () {
                 // setup e-mail data with unicode symbols
                 var mailOptions = {
-                    from: 'Aztec <patricktan4@gmail.com>', // sender address
+                    from: 'Aztec &lt;patricktan4@gmail.com>', // sender address
                     to: req.body.email, // list of receivers
                     subject: 'Authenticate Aztec Account', // Subject line
                     text: 'Hi ' + user.firstName + ',\n\n' +
@@ -227,19 +255,19 @@ HomeController.prototype._signup = function (self, req, res) {
 //--- sendPassword -----------------------------------------------------------------------
 HomeController.prototype._sendPassword = function (self, req, res) {
     User.findOne({email: req.body.email}, function (error, user) {
-        if (!error && user) {
+        if (!error &amp;&amp; user) {
             var token = uuid.v1();
             user.passwordToken = token;
             user.save(function () {
                 // setup e-mail data with unicode symbols
                 var mailOptions = {
-                    from: 'Aztec <patricktan4@gmail.com>', // sender address
+                    from: 'Aztec &lt;patricktan4@gmail.com>', // sender address
                     to: req.body.email, // list of receivers
                     subject: 'Reset Aztec Password', // Subject line
                     text: 'Hi ' + user.firstName + ',\n\n' +
                     'You have requested to reset your password.\n' +
                     'Please reset your password by clicking the link below:\n\n' +
-                    'http://' + req.headers.host + '/home/resetPassword?token=' + user.passwordToken + '&email=' + user.email + '\n\n' +
+                    'http://' + req.headers.host + '/home/resetPassword?token=' + user.passwordToken + '&amp;email=' + user.email + '\n\n' +
                     'Thanks!\n\n' +
                     'Aztec.bio'
                 };
@@ -268,7 +296,7 @@ HomeController.prototype._sendPassword = function (self, req, res) {
 HomeController.prototype._authenticate = function (self, req, res) {
     var token = req.query.token;
     User.findOne({authenticateToken: token}, function (error, user) {
-        if (!error && user) {
+        if (!error &amp;&amp; user) {
             user.authenticated = true;
             user.save(function () {
                 res.redirect('/home/success');
@@ -288,7 +316,7 @@ HomeController.prototype._resetPasswordPost = function (self, req, res) {
     i.token = req.query.token;
 
     User.findOne({passwordToken: req.body.token, email: req.body.email}, function (error, user) {
-        if (!error && user) {
+        if (!error &amp;&amp; user) {
             user.password = user.generateHash(req.body.new);
             user.passwordToken = uuid.v1();
 
@@ -311,7 +339,7 @@ HomeController.prototype._resetPasswordGet = function (self, req, res) {
     i.token = req.query.token;
 
     User.findOne({passwordToken: req.query.token, email: req.query.email}, function (error, user) {
-        if (!error && user) {
+        if (!error &amp;&amp; user) {
             res.render('home/resetPassword', BD2K.extend(i, {
                 loggedIn: req.loggedIn,
                 user: req.user
@@ -342,3 +370,26 @@ HomeController.prototype._feedback = function (self, req, res) {
 //---------------------------------------------------------------------------------
 
 module.exports = new HomeController();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="HomeController__index.html">_index</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Sun Sep 11 2016 11:33:10 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

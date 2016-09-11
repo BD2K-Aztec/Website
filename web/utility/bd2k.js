@@ -157,8 +157,8 @@ BD2K.json = function (res, data) {
 
 //----- public -----------------------------------------------------------------
 BD2K.public = function (file, callback) {
-    var public = path.join(__dirname, '../public/', file);
-    fs.readFile(public, "utf-8", function (err, data) { callback(data); });
+    var pub = path.join(__dirname, '../public/', file);
+    fs.readFile(pub, "utf-8", function (err, data) { callback(data); });
 };
 
 //----- clone -----------------------------------------------------------------
