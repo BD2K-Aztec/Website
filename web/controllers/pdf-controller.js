@@ -31,7 +31,7 @@ Uploader.prototype._upload = function(self, req, res) {
         const execFile = require('child_process').execFile;
         // make this path relative too.
 
-        const child = execFile('bash', ['../slots-extraction/scripts/getting_started.sh', user], (error, stdout, stderr) => {
+        const child = execFile('bash', ['./slots-extraction/scripts/getting_started.sh', user], (error, stdout, stderr) => {
             if(error){
                 console.log(error, stdout, stderr);
                 console.log("The pdf extractor was unable to run, no file in request object");
@@ -47,7 +47,7 @@ Uploader.prototype._delete_file = function(self, req, res) {
     var user = req.user.email;
     var exec = require('child_process').exec;
     const execFile = require('child_process').execFile;
-    const child = execFile('bash', ['../slots-extraction/scripts/delete_file.sh', user], (error, stdout, stderr) => {
+    const child = execFile('bash', ['./slots-extraction/scripts/delete_file.sh', user], (error, stdout, stderr) => {
         if (error) {}
         console.log(stdout);
     });
@@ -57,7 +57,7 @@ Uploader.prototype._delete_file = function(self, req, res) {
 Uploader.prototype._storage = multer.diskStorage({
     destination: function(req, file, cb) {
         var user = req.user.email;
-        var path = '../slots-extraction/data/' + user;
+        var path = './slots-extraction/data/' + user;
         mkdirp(path, cb, function(e) { // make this mkdirp - right now it runs if folders exist
             cb(null, path); // path earlier
         });
