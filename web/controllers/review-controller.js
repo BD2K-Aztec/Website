@@ -8,7 +8,7 @@
 
 var ReviewTool = require('../models/review-tool.js');
 var SavedTool = require('../models/mongo/savedTool.js');
-var Feedback = require('../models/feedback.js');
+var Feedback = require('../models/mongo/feedback.js');
 var User = require('../models/mysql/user_az.js');
 var Tool = require('../models/mysql/tool.js');
 

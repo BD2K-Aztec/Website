@@ -4,7 +4,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var User            = require('../models/user.js');
+var User            = require('../models/mongo/user.js');
 var nodemailer = require('nodemailer');
 
 // create reusable transporter object using SMTP transport
