@@ -1,7 +1,3 @@
-/**
- * @fileoverview Search Model
- */
-
 var BD2K = require('../utility/bd2k.js');
 var mongo = BD2K.mongo;
 var solr = BD2K.solr;

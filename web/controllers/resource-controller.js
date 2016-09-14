@@ -1,7 +1,3 @@
-/**
- * @fileoverview Resource Controller: solr management, statistics management, and searching.
- */
-
 var BD2K = require('../utility/bd2k.js');
 var SearchViewModel = require('../viewmodels/resource/search-viewmodel.js');
 var Resource = require('../models/resource.js');
@@ -54,7 +50,8 @@ ResourceController.prototype._advanced = function (self,req,res){
 };
 
 /**
- * Controller function for retrieving stat files (json files) from resource_stats collection in mongo.
+ * Controller function for retrieving stat files (json files) from resource_stats collection in mongo. 
+ * Calls [stat()]{@link Resource.stat} from [Resource]{@link Resource} class.
  * @function
  * @memberof ResourceController
  * @alias stat

@@ -1,7 +1,3 @@
-/**
- * @fileoverview Resource Model
- */
-
 var BD2K = require('../utility/bd2k.js');
 var mongo = BD2K.mongo;
 var Event = require('../utility/event.js');
@@ -13,7 +9,7 @@ var solr = require('solr-client');
 /**
  * @class Resource
  * @constructor
- * @classdesc Resource _________
+ * @classdesc Resource model: adding, updating, and getting statistics from mongo 
  */
 function Resource() {
     var self = this;
@@ -30,7 +26,13 @@ function Resource() {
     this.crud = crud.register;
 }
 
-//--- stat ------------------------------------------------------------------------------
+/**
+ * Pulls statistics json files stored in resource_stats collection in mongo.
+ * @function
+ * @memberof Resource
+ * @alias stat
+ * @param {String} type - file name
+ */
 Resource.prototype._stat = function (self, type, callback) {
     var search = {};
     search.type = type;
@@ -178,49 +180,48 @@ Resource.prototype._update = function (self, callback) {
     self.onUpdate();
 };
 
-//--- onUpdate -----------------------------------------------------------------------------
 Resource.prototype._onUpdate = function(self){
     if(BD2K.has([self.tags, self.platforms, self.sources]))
         self._crud.fire(self);
 };
 
-//--- add ------------------------------------------------------------------------------
-Resource.prototype._add = function (self, json, callback) {
-    self.crud(callback);
+// CURRENTLY UNUSED
+// Resource.prototype._add = function (self, json, callback) {
+//     self.crud(callback);
 
-    var insert = JSON.parse(json);
-    if(!insert.id){
-        BD2K.solr.search({id:-1}, function(result, insert){
-            var insertTool = insert[0];
-            var maxID = parseInt(result.response.docs[0].description);
-            insertTool.id = maxID;
-            insertTool.dateCreated = new Date().toISOString();
-            insertTool.dateUpdated = new Date().toISOString();
-            self.id = maxID;
+//     var insert = JSON.parse(json);
+//     if(!insert.id){ //No current ID (New Tool)
+//         BD2K.solr.search({id:-1}, function(result, insert){
+//             var insertTool = insert[0];
+//             var maxID = parseInt(result.response.docs[0].description);
+//             insertTool.id = maxID;
+//             insertTool.dateCreated = new Date().toISOString();
+//             insertTool.dateUpdated = new Date().toISOString();
+//             self.id = maxID;
 
-            BD2K.solr.add(insertTool, function(result){});
+//             BD2K.solr.add(insertTool, function(result){});
 
-            BD2K.solr.delete("id", "-1", function(obj, maxID){
-                BD2K.solr.add({"id":-1,"name":"maxID","source":"hidden",description:maxID[0]+1}, function(obj){ self.onAdd(); })
-            }, [maxID]);
+//             BD2K.solr.delete("id", "-1", function(obj, maxID){
+//                 BD2K.solr.add({"id":-1,"name":"maxID","source":"hidden",description:maxID[0]+1}, function(obj){ self.onAdd(); })
+//             }, [maxID]);
 
-        }, [insert]);
-    }
-    else{
-        self.id = insert.id;
-        insert.dateUpdated = new Date().toISOString();
-        BD2K.solr.delete("id", insert.id, function(obj){
-            BD2K.solr.add(insert, function(result){
-                self.onAdd();
-            })
-        });
-    }
-};
+//         }, [insert]);
+//     }
+//     else{ //Already has an ID (tool being edited)
+//         self.id = insert.id;
+//         insert.dateUpdated = new Date().toISOString();
+//         BD2K.solr.delete("id", insert.id, function(obj){
+//             BD2K.solr.add(insert, function(result){
+//                 self.onAdd();
+//             })
+//         });
+//     }
+// };
 
-//--- onAdd -----------------------------------------------------------------------------
-Resource.prototype._onAdd = function(self){
-    self._crud.fire(self);
-};
+// //--- onAdd -----------------------------------------------------------------------------
+// Resource.prototype._onAdd = function(self){
+//     self._crud.fire(self);
+// };
 
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------

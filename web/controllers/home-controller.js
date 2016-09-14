@@ -1,6 +1,3 @@
-/**
- * @fileoverview Home Controller: index pages, profile management, and about pages.
- */
 var User = require('../models/mongo/user.js');
 var Feedback = require('../models/mongo/feedback.js');
 var BD2K = require('../utility/bd2k.js');
