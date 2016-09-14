@@ -13,3 +13,4 @@ web/security
 *.log
 web/config/
 web/docs/
+slots-extraction/data/

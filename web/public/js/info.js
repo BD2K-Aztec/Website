@@ -1,3 +1,10 @@
+/**
+ * @class Info
+ * @constructor
+ * @classdesc populates the tool information page with the resource information passed in
+ * @param {Resource} resource - resource to show
+ */
+
 function Info(resource) {
     var acc = "";
 
