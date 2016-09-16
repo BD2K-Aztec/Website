@@ -157,8 +157,8 @@ BD2K.json = function (res, data) {
 
 //----- public -----------------------------------------------------------------
 BD2K.public = function (file, callback) {
-    var pub = path.join(__dirname, '../public/', file);
-    fs.readFile(pub, "utf-8", function (err, data) { callback(data); });
+    var public = path.join(__dirname, '../public/', file);
+    fs.readFile(public, "utf-8", function (err, data) { callback(data); });
 };
 
 //----- clone -----------------------------------------------------------------
@@ -227,9 +227,8 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
     //console.log("host: " + options.host);
     //console.log("port: " + options.port);
     var client = solr.createClient(options);
-    //console.log("fields: " + JSON.stringify(fields));
+    // console.log("fields: " + JSON.stringify(fields));
     for(var key in fields){
-
         var lengthField = fields[key].length;
         for(var i = 0; i < lengthField; i++){
             var val = fields[key][i]
@@ -281,58 +280,47 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
         }
     }
 
-        // create unique list of terms to query
-    var queryPermutations = [];
-    if(fields['id']){
-      queryPermutations = [fields['id']];
-    }else if(fields['resource']){
-      queryPermutations = new Set(fields['resource']);
-      for(var synonyms of fields['resource']){
-        var wordTokens = synonyms.match(/\S+/g);
-        if(Array.isArray(wordTokens)){
-
-            // add distinct words
-            var distinctWords = new Set(wordTokens);
-            console.log(distinctWords);
-            for(word of distinctWords){
-              console.log(word);
-              queryPermutations.add(word);
-            }
-
-            // add consecutive word permutations of length 2 to len(all words)-1
-            var numWords = wordTokens.length;
-            for(var klen = 2; klen < numWords; klen++){
-              for(var i = 0; i <= numWords-klen; i++){
-                var klenWord = "";
-                for(var j=0; j<klen; j++){
-                  klenWord+=" "+wordTokens[i+j]
-                }
-                queryPermutations.add(klenWord);
-              }
-            }
-
-        }
-      }
-    }
-
-
     if('resource' in fields)
         delete fields["resource"]
 
-    //build solr query
+    //build query
     var solrQuery = "";
     first = true;
     for(key in fields){
         var indexes = fields[key];
-        for(queryTerm of queryPermutations){
-          if(!first) {
-              solrQuery += " OR ";
-          }
-          solrQuery += key + ":" + queryTerm;
-          first = false;
+
+        if(Array.isArray(indexes)){
+            for(index in indexes){
+                solrQuery += key + ":" + indexes[index]
+                var value = indexes[index].match(/\S+/g);
+                for(distinct in value) {
+                    solrQuery += " OR " + key + ":" + value[distinct];
+                }
+
+                var numWords = value.length;
+                for(var klen = 2; klen < numWords; klen++){
+                  for(var i = 0; i <= numWords-klen; i++){
+                    var klenWord = "";
+                    for(var j=0; j<klen; j++){
+                      klenWord+=" "+value[i+j]
+                    }
+                    solrQuery += " OR " + key + ":" + klenWord;
+                  }
+                }
+            }
+        }
+        else { //single term
+            if(!first) {
+                solrQuery += " OR ";
+            }
+            solrQuery += key + ":" + fields[key];
+            first = false;
         }
 
     }
+
+    console.log(solrQuery)
+
     var query = client.createQuery()
         .q(solrQuery)
         .edismax()
@@ -377,6 +365,21 @@ BD2K.solr.search_suggest = function(fields, handler) {
     options.host = config.solrHost;
     options.port = config.solrPort;
     var client = solr.createClient(options);
+    //var query = client.createQuery()
+    //    .q(query_str)
+    //    //.qf()
+    //    //.edismax()
+    //    //.mm("0%100")
+    //    //.qop("OR")
+    //    .start(0)
+    //    .rows(30);
+    //client.search(query,function(err,obj){
+    //    if(err){
+    //        console.log("Search: " + err);
+    //    }else{
+    //        handler(obj);
+    //    }
+    //});
 
     var query = "q="+fields.name;
 
