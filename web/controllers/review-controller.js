@@ -19,6 +19,7 @@ function ReviewController() {
     this.showForm = function(req, res) {self._showForm(self, req, res); };
     this.create = function(req, res) {self._create(self, req, res); };
     this.update = function(req, res) {self._update(self, req, res); };
+    this.getEditForm2 = function(req, res) {self._getEditForm2(self, req, res)};
     this.getEditForm = function(req, res) {self._getEditForm(self, req, res)};
     this.allSaved = function(req, res) {self._allSaved(self, req, res); };
     this.getFeedback = function(req, res) {self._getFeedback(self, req, res); };
@@ -29,6 +30,7 @@ function ReviewController() {
     this.portal = function(req, res) {self._portal(self, req, res); };
     this.feedback = function(req, res) {self._feedback(self, req, res); };
     this.formApi = function(req, res) {self._formApi(self, req, res); }
+    this.getSubmit = function(req, res) {self._getSubmit(self, req, res); }
 }
 
 //--- getTool -----------------------------------------------------------------------
@@ -79,6 +81,22 @@ ReviewController.prototype._update = function (self, req, res) {
 };
 
 //--- getEditForm -----------------------------------------------------------------------
+ReviewController.prototype._getEditForm2 = function (self, req, res) {
+  var loginName = 'Login';
+  var obj = {basic_section: {
+    name: 'tool',
+    description: "test"
+  }};
+  return res.render('tool/form.ejs', {title: "Edit",
+    heading: "Edit Resource #",
+    user: req.user,
+    loggedIn : req.isAuthenticated(),
+    editURL: "",
+    submitFunc: "onEditSubmit()",
+    init: "vm.initEdit2("+JSON.stringify(obj)+")"
+  });
+};
+//--- getEditForm -----------------------------------------------------------------------
 ReviewController.prototype._getEditForm = function (self, req, res) {
   var id = req.params.id;
   id = parseInt(id);
@@ -91,7 +109,6 @@ ReviewController.prototype._getEditForm = function (self, req, res) {
     .where({AZID: id})
     .fetch({withRelated: ['users_az']})
     .then(function(tool){
-      console.log(1);
       var toolJson = tool.toJSON();
       var access = false;
       toolJson['users_az'].forEach(function(user){
@@ -333,6 +350,11 @@ ReviewController.prototype._formApi = function(self, req, res){
       };
       return res.send(response);
     }
+}
+
+//--- getSubmit -----------------------------------------------------------------------
+ReviewController.prototype._getSubmit = function(self, req, res){
+  return res.render('tool/submit', {loggedIn : req.isAuthenticated(), user: req.user});
 }
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------

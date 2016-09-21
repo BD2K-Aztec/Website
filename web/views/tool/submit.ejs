@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" id="home-index">
+
+<head>
+    <title>AZTEC</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <%- include ../shared/scripts.ejs%>
+
+    <!-- Jquery Imports -->
+    <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
+    <!-- Tool submission file upload JS  -->
+    <script src="/public/js/tool-submission.js" ></script>
+
+    <!-- Bootstrap/CSS -->
+    <link href="/public/css/cover.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/index-ejs.css">
+    <link rel="stylesheet" href="/public/css/tool-submission.css">
+
+    <script>
+    $(document).on('ready', function(){
+      // setup file input widget
+      $("#fileinput").fileinput({
+    		showUpload: false,
+    		showCaption: false,
+    		browseClass: "btn btn-success btn-md",
+    		fileType: "pdf",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>"
+    	});
+
+      // upload button is disabled by default
+      $('#uploadBtn').attr('disabled',true);
+
+      // enables and disables the upload button
+      // if the user inputs both a file and doi, then button is enabled
+      function disableButton(){
+        if($('#doi').val().length !=0 && $('#fileinput').val().length !=0)
+            $('#uploadBtn').attr('disabled', false);
+        else
+            $('#uploadBtn').attr('disabled',true);
+      };
+
+        // listener for doi field
+        // changes status of upload button if user inputs value into text field
+        $('#doi').on("input", function(){
+            disableButton();
+        });
+
+        // listener for file upload field
+        // changes status of upload button if user inputs a file
+        $('input[type=file]').change(function(){
+            disableButton();
+        });
+
+        // listener for tooltip
+        // changes tooltip message based on whether the form fields are filled out
+        $('#uploadBtn').mouseover(function(){
+          if($('#doi').val().length !=0 && $('#fileinput').val().length !=0){
+            $('#uploadBtn').attr('title', "Submit your tool to Aztec");
+          }else{
+            $('#uploadBtn').attr('title', "Must provide publication PDF and DOI");
+          }
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // listener for upload button
+        // hide the button and show loading gif when clicked
+        $('#uploadBtn').on('click', function(){
+          $('#uploadBtn').hide();
+          $('#page-loader').show();
+        });
+    });
+    </script>
+
+</head>
+
+<body>
+    <%- include ../shared/header.ejs %>
+    <center><h1>New Tool Submission</h1></center>
+    <div class='row'>
+      <div class="col-lg-3 col-center-block">
+        <form id ="pdf-form" class="form-group" action="/review/pdf-upload" method="post" enctype="multipart/form-data" >
+          <input type="file" name="file" id="fileinput" accept="application/pdf">
+          <div class="input-group">
+            <div class="input-group-addon">DOI</div>
+            <input type="text" class="form-control" name="doi" id="doi" placeholder="Publication DOI">
+          </div>
+          <div class="center-block">
+            <button type="submit" name="submit" id="uploadBtn" data-toggle="tooltip" class="btn btn-primary btn-lg" title="Must provide publication PDF and DOI">Submit</button>
+            <br/>
+            <img src="/public/images/page-loader.gif" id="page-loader"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%- include ../shared/footer.ejs %>
+
+
+</body>
+
+</html>

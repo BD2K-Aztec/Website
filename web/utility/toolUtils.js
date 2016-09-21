@@ -15,6 +15,9 @@ function ToolUtils() {
   this.mysql2form = function(json) {
     return self._mysql2form(self, json);
   };
+  this.extract2form = function(json){
+    return self._extract2form(self, json);
+  }
   this.rest2mysql = function(toolJSON) {
     return self._rest2mysql(self, toolJSON);
   };
@@ -354,6 +357,124 @@ ToolUtils.prototype._mysql2form = function(self, json) {
       funding_section['bd2k'].push(pushCenter);
     });
   }
+
+  var result = {
+    basic_section: basic_section,
+    author_section: author_section,
+    pub_section: pub_section,
+    link_section: link_section,
+    dev_section: dev_section,
+    version_section: version_section,
+    license_section: license_section,
+    funding_section: funding_section
+  };
+
+  return result;
+};
+
+ToolUtils.prototype._extract2form = function(self, json) {
+  var basic_section = {};
+  var author_section = {};
+  var pub_section = {};
+  var link_section = {};
+  var dev_section = {};
+  var version_section = {};
+  var license_section = {};
+  var funding_section = {};
+
+  basic_section['id'] = undefined;
+  basic_section['name'] = json['toolName'];
+  basic_section['description'] = json['abstract'];
+  var submit_date = new Date(json['updated']);
+  basic_section['submit_date'] = submit_date.toString();
+
+  basic_section['resource_types'] = [];
+
+
+  basic_section['domains'] = [];
+
+
+  basic_section['tags'] = [];
+  if (json['keyWords'] != undefined) {
+    json['keyWords'].forEach(function(tag) {
+      basic_section['tags'].push({
+        text: tag
+      });
+    });
+  }
+
+  author_section['authors'] = [];
+  if (json['authors'] != undefined) {
+    json['authors'].forEach(function(author) {
+      var tokens = author.trim().split(' ');
+      var first = tokens[0], last='';
+      if(tokens.length > 1){
+        last = tokens[tokens.length-1];
+      }
+
+      author_section['authors'].push({
+        first_name: first,
+        last_name: last,
+      });
+    });
+  }
+
+  author_section['maintainers'] = [];
+
+  author_section['affiliation'] = [];
+  if (json['affiliations'] != undefined) {
+    json['affiliations'].forEach(function(aff) {
+        author_section['affiliation'].push({
+          inst_name: aff
+        });
+    });
+  }
+
+  pub_section['resource_doi'] = json['TOOL_DOI'];
+  pub_section['pub_dois'] = [];
+  if (json['doi'] != undefined) {
+        pub_section['primary_pub_doi'] = json['doi'];
+  }
+
+
+  link_section['links'] = [];
+  if(json['links']!=undefined){
+    json['links'].forEach(function(link){
+      link_section['links'].push({url:link});
+    })
+  }
+
+  if(json['sourcelinks'].length>1){
+    dev_section['code_url'] = json['sourcelinks'][0];
+  }
+
+  dev_section['language'] = [];
+  if (json['tehcnologies'] != undefined) {
+    json['technologies'].forEach(function(lang) {
+      dev_section['language'].push({
+        PRIMARY_NAME: lang
+      });
+    });
+  }
+
+  dev_section['platform'] = [];
+
+
+  version_section['prev_versions'] = [];
+
+
+  funding_section['funding'] = [];
+  if(json['grants']!=undefined){
+    json['grants'].forEach(function(funding){
+      funding_section['funding'].push({
+        agency: {PRIMARY_NAME: funding[0]},
+        grant: funding[1]
+      })
+    });
+  }
+
+  funding_section['bd2k'] = [];
+
 
   var result = {
     basic_section: basic_section,

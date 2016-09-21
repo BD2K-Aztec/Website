@@ -213,7 +213,7 @@
     vm.suggest = suggest;
     vm.checkForm = checkForm;
     vm.passWarning = passWarning;
-    vm.initEdit = initEdit;
+    vm.initEdit2 = initEdit2;
     vm.initSaved = initSaved;
     vm.checkLink = checkLink;
     // The model object that we reference
@@ -1171,14 +1171,13 @@
       }else if(vm['link_section']!=undefined && vm['link_section']['links']){
         var atLeast1 = false;
         vm['link_section']['links'].forEach(function(link){
+          atLeast1 = true;
           if(link['name']==undefined || link['url']==undefined){
             if(atLeast1){
               errorMessages[3].setErr(true);
             } else {
               errorMessages[2].setErr(true);
             }
-          }else{
-            atLeast1 = true;
           }
         })
       }
@@ -1340,10 +1339,7 @@
             if(json['suggestedLicense']!=undefined){
               $('#pubLicense-deet').text(json['suggestedLicense']);
             }
-            //   $('.suggestions').append('<strong>License: </strong>'+
-            //     json['suggestedLicense']+'<br>'
-            //   );
-            // }
+
           });
           $.post("/suggest/query?field=versions", fields)
             .done(function(data) {
@@ -1365,10 +1361,7 @@
                  if(json['suggestedMaintainer']!=undefined){
                   $('#pubMaintainer-deet').append(json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')');
                  }
-                //   $('.suggestions').append('<strong>Maintainer: </strong>'+
-                //     json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')<br>'
-                //   );
-                // }
+
               });
     };
 
@@ -1453,6 +1446,19 @@
             vm.funding_section = data['funding_section'];
             $scope.$apply();
         });
+    };
+
+    function initEdit2(data){
+      console.log(data);
+        vm.orig = JSON.parse(JSON.stringify(data));
+        vm.basic_section = data['basic_section'];
+        vm.author_section = data['author_section'];
+        vm.pub_section = data['pub_section'];
+        vm.link_section = data['link_section'];
+        vm.dev_section = data['dev_section'];
+        vm.version_section = data['version_section'];
+        vm.license_section = data['license_section'];
+        vm.funding_section = data['funding_section'];
     };
 
     function initSaved(id){

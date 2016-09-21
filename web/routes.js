@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
     app.get('/review/tool/:id', ReviewController.getTool);
     app.get('/review/form', isLoggedIn, ReviewController.showForm);
     app.post('/review/form', isLoggedIn, ReviewController.create);
-    app.get('/review/update/:id', isLoggedIn, ReviewController.getEditForm);
+    app.get('/review/update/:id', isLoggedIn, ReviewController.getEditForm2);
     app.put('/review/update/:id', isLoggedIn, ReviewController.update);
     app.post('/review/save', isLoggedIn, ReviewController.save);
     app.get('/review/saved/:id', isLoggedIn, ReviewController.getSaved);
@@ -49,7 +49,9 @@ module.exports = function(app, passport) {
     app.get('/review/api/feedback', isLoggedIn, ReviewController.getFeedback);
     app.get('/review/api/mytools', isLoggedIn, ReviewController.userTools);
     app.get('/review/api/form/:id', ReviewController.formApi);
-    app.post('/review/pdf-upload', PdfController.middleware.single('pdf'), PdfController.upload);
+    app.get('/review/submit', isLoggedIn, ReviewController.getSubmit);
+    app.post('/review/pdf-upload', PdfController.upload);
+    app.post('/review/push', PdfController.push);
     app.post('/review/pdf-delete', PdfController.delete_file);
 
     app.get('/api/institution', QueryController.InstController.search);

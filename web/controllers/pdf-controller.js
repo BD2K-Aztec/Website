@@ -1,6 +1,7 @@
-var stripAnsi = require('strip-ansi');
-var multer = require('multer');
-var mkdirp = require('mkdirp');
+var fs = require('fs');
+var busboy = require('connect-busboy');
+var jsonfile = require('jsonfile');
+var util = require('../utility/toolUtils');
 
 
 var waitTime = 5000;
@@ -8,60 +9,145 @@ var waitTime = 5000;
 
 function Uploader() {
     var self = this;
-    self.middleware = multer({
-        storage: self._storage
-    });
+
     self.upload = function(req, res) {
         self._upload(self, req, res);
     };
     self.delete_file = function(req, res) {
         self._delete_file(self, req, res);
     };
+    self.extract = function (req, res) {
+        self._extract(self, req, res);
+    };
+    self.push = function (req, res) {
+        self._push(self, req, res);
+    }
+
 }
 
 
 
+/**
+ * Upload pdf file to user's directory, extract data and show it for editing.
+ * @param self
+ * @param req
+ * @param res
+ * @private
+ */
 Uploader.prototype._upload = function(self, req, res) {
-
+    var fstream;
     var user = req.user.email;
-    // pass the req.user object to the shell script in order to make specific folders and delete specific folders
-    if (req.file) {
-        var exec = require('child_process').exec;
-        var puts = "";
-        const execFile = require('child_process').execFile;
-        // make this path relative too.
-
-        const child = execFile('bash', ['../slots-extraction/scripts/getting_started.sh', user], (error, stdout, stderr) => {
-            if(error){
-                console.log(error, stdout, stderr);
-                console.log("The pdf extractor was unable to run, no file in request object");
+    var dir = '../slots-extraction/data/' + user + '/';
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+    var pdf_path = '../slots-extraction/data/' + user + '/';
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        pdf_path += filename;
+        console.log("Uploading: " + filename);
+        fstream = fs.createWriteStream(pdf_path);
+        var doi;
+        req.busboy.on('field', function (fieldname, value, filename) {
+            if(fieldname=='doi'){
+              doi = value;
             }
-            var a = JSON.stringify(stripAnsi(stdout), null, 3);
-            return res.json(JSON.parse(a));
+        });
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            console.log("Finished uploading");
+            if(doi){
+              return self._extract(self, req, doi, res);
+            }
 
         });
-    }
+    });
+
 };
+
+function delete_file(user, callback){
+  var exec = require('child_process').exec;
+  const execFile = require('child_process').execFile;
+  const child = execFile('bash', ['../slots-extraction/scripts/delete_data.sh', user], (error, stdout, stderr) => {
+      if (error) {
+        console.log(error);
+        return callback(error);
+      }
+
+      return callback();
+  });
+}
 
 Uploader.prototype._delete_file = function(self, req, res) {
     var user = req.user.email;
-    var exec = require('child_process').exec;
+    return delete_file(user, res);
+
+};
+
+/**
+ * Run the python extraction scripts through bash and render show extraction page
+ * @param self
+ * @param req
+ * @param res
+ * @private
+ */
+Uploader.prototype._extract = function (self, req, doi, res) {
     const execFile = require('child_process').execFile;
-    const child = execFile('bash', ['../slots-extraction/scripts/delete_file.sh', user], (error, stdout, stderr) => {
-        if (error) {}
-        console.log(stdout);
+    var user = req.user.email;
+    // make this path relative too.
+    execFile('bash', ['../slots-extraction/scripts/getting_started.sh'
+        , user, doi], (error, stdout, stderr) => {
+        if(error){
+            console.log(error, stdout, stderr);
+            console.log("The pdf extractor was unable to run, no file in request object");
+            return delete_file(user, function(msg){console.log(msg);});
+        }
+        else {
+            //Extraction was successful, get data and show it to user for editing
+            var file = '../slots-extraction/data/' + user + '/' + 'slotExtracts/slot_extracts.json';
+            jsonfile.readFile(file, function(err, obj) {
+                delete_file(user, function(msg){console.log(msg);});
+                if(err){
+                    console.log(err);
+                    console.log("Json loading of slot_extracts.json failed");
+                }
+                else {
+                    var loginName = 'Login';
+
+                    var formObj = util.extract2form(obj);
+                    return res.render('tool/form.ejs', {title: "Edit",
+                      heading: "Edit Resource #",
+                      user: req.user,
+                      loggedIn : req.isAuthenticated(),
+                      editURL: "",
+                      submitFunc: "onEditSubmit()",
+                      init: "vm.initEdit2("+JSON.stringify(formObj)+")"
+                    });
+                }
+            })
+        }
     });
+};
 
-}
+/**
+ * Push user edited input to Solr running on port 8983 and delete all extraction and pdf files
+ * @param self
+ * @param req
+ * @param res
+ * @private
+ */
+Uploader.prototype._push = function (self, req, res) {
+    var data = req.body;
+    var user = req.user.email;
+    var temp_file = '../slots-extraction/data/' + user + '/output.json';
+    jsonfile.writeFileSync(temp_file, data, {spaces: 4}, function (err) {
+        console.error(err)
+    });
+    require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', temp_file]);
+    self.delete_file(req, res);
+    console.log("Success");
 
-Uploader.prototype._storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        var user = req.user.email;
-        var path = '../slots-extraction/data/' + user;
-        mkdirp(path, cb, function(e) { // make this mkdirp - right now it runs if folders exist
-            cb(null, path); // path earlier
-        });
-    }
-});
+    //Show user some success message and send them back to homepage etc..
+};
 
 module.exports = new Uploader();
