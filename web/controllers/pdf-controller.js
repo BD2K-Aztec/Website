@@ -113,8 +113,8 @@ Uploader.prototype._extract = function (self, req, doi, res) {
                 }
                 else {
                     var loginName = 'Login';
-
                     var formObj = util.extract2form(obj);
+                    console.log("Form object is " + JSON.stringify(formObj));
                     return res.render('tool/form.ejs', {title: "Edit",
                       heading: "Edit Resource #",
                       user: req.user,
@@ -137,13 +137,21 @@ Uploader.prototype._extract = function (self, req, doi, res) {
  * @private
  */
 Uploader.prototype._push = function (self, req, res) {
-    var data = req.body;
+    console.log("In push function");
+    console.log(req.body);
+    var data = util.extract2form(req.body);
+    console.log(data);
     var user = req.user.email;
+    var dir = '../slots-extraction/data/' + user + '/';
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
     var temp_file = '../slots-extraction/data/' + user + '/output.json';
     jsonfile.writeFileSync(temp_file, data, {spaces: 4}, function (err) {
         console.error(err)
     });
-    require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', temp_file]);
+    console.log("Executing push to Solr");
+    require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', temp_file, user]);
     self.delete_file(req, res);
     console.log("Success");
 

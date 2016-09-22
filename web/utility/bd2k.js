@@ -319,7 +319,7 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
 
     }
 
-    console.log(solrQuery)
+    console.log("Solr query is " + solrQuery);
 
     var query = client.createQuery()
         .q(solrQuery)

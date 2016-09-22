@@ -61,122 +61,122 @@
         });
     </script>
 
-    <!-- Google Analytics Graphs-->
-    <script>
-        // var dataChart1;
-        // dashboard-components js script
-        var nameList = {};
-        var nameToUrlList = {};
-        var resourceChartDrawn = false;
-        gapi.analytics.ready(function() {
+    <!--&lt;!&ndash; Google Analytics Graphs&ndash;&gt;-->
+    <!--<script>-->
+        <!--// var dataChart1;-->
+        <!--// dashboard-components js script-->
+        <!--var nameList = {};-->
+        <!--var nameToUrlList = {};-->
+        <!--var resourceChartDrawn = false;-->
+        <!--gapi.analytics.ready(function() {-->
 
-            // Authorize the user with an access token obtained server side.
-            gapi.analytics.auth.authorize({
-                'serverAuth': {
-                    'access_token': '<%- authorizationToken -%>'
-                }
-            });
+            <!--// Authorize the user with an access token obtained server side.-->
+            <!--gapi.analytics.auth.authorize({-->
+                <!--'serverAuth': {-->
+                    <!--'access_token': '<%- authorizationToken -%>'-->
+                <!--}-->
+            <!--});-->
 
-            // Creates a new DataChart instance showing sessions over the past 30 days.
-            // It will be rendered inside an element with the id "chart-1-container".
+            <!--// Creates a new DataChart instance showing sessions over the past 30 days.-->
+            <!--// It will be rendered inside an element with the id "chart-1-container".-->
 
-            dataChart1 = new gapi.analytics.googleCharts.DataChart({
-                query: {
-                    'ids': 'ga:111291353', // AZtec view.
-                    'start-date': '30daysAgo',
-                    'end-date': 'yesterday',
-                    'metrics': 'ga:sessions,ga:users',
-                    'dimensions': 'ga:date'
-                },
-                chart: {
-                    'container': 'chart-1-container',
-                    'type': 'LINE',
-                    'options': {
-                        'width': '100%'
-                    }
-                }
-            });
-            dataChart1.execute();
+            <!--dataChart1 = new gapi.analytics.googleCharts.DataChart({-->
+                <!--query: {-->
+                    <!--'ids': 'ga:111291353', // AZtec view.-->
+                    <!--'start-date': '30daysAgo',-->
+                    <!--'end-date': 'yesterday',-->
+                    <!--'metrics': 'ga:sessions,ga:users',-->
+                    <!--'dimensions': 'ga:date'-->
+                <!--},-->
+                <!--chart: {-->
+                    <!--'container': 'chart-1-container',-->
+                    <!--'type': 'LINE',-->
+                    <!--'options': {-->
+                        <!--'width': '100%'-->
+                    <!--}-->
+                <!--}-->
+            <!--});-->
+            <!--dataChart1.execute();-->
 
-            gapi.client.analytics.data.ga.get({
-                    'auth': '<%= authorizationToken %>',
-                    'ids': 'ga:111291353',
-                    'metrics': 'ga:pageviews',
-                    'dimensions': 'ga:pagePath',
-                    'start-date': '60daysAgo',
-                    'end-date': 'yesterday',
-                    'sort': '-ga:pagePath',
-                    //'filters': 'ga:country!=/',
-                    'filters': 'ga:pagePath=~/AZ[0-9]{7}',
-                    'max-results': 8,
-                    // 'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
-                }).then(function(response) {
-                    var formattedJson = JSON.stringify(response.result, null, 2);
-//                    console.log(formattedJson);
-                    var rows = response.result["rows"];
-                    var idList = {};
-                    //console.log(rows);
-                    var idToUrlList = {}
-                    for (var i = 0; i < rows.length; i++) {
-                        var id = rows[i][0];
-                        var new_id = "";
-                        for (var j = 3; j < id.length; j++) {
-                            if (id[j] == '0')
-                                continue
-                            else {
-                                new_id = id.substring(j, id.length);
-                                break;
-                            }
+            <!--gapi.client.analytics.data.ga.get({-->
+                    <!--'auth': '<%= authorizationToken %>',-->
+                    <!--'ids': 'ga:111291353',-->
+                    <!--'metrics': 'ga:pageviews',-->
+                    <!--'dimensions': 'ga:pagePath',-->
+                    <!--'start-date': '60daysAgo',-->
+                    <!--'end-date': 'yesterday',-->
+                    <!--'sort': '-ga:pagePath',-->
+                    <!--//'filters': 'ga:country!=/',-->
+                    <!--'filters': 'ga:pagePath=~/AZ[0-9]{7}',-->
+                    <!--'max-results': 8,-->
+                    <!--// 'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',-->
+                <!--}).then(function(response) {-->
+                    <!--var formattedJson = JSON.stringify(response.result, null, 2);-->
+<!--//                    console.log(formattedJson);-->
+                    <!--var rows = response.result["rows"];-->
+                    <!--var idList = {};-->
+                    <!--//console.log(rows);-->
+                    <!--var idToUrlList = {}-->
+                    <!--for (var i = 0; i < rows.length; i++) {-->
+                        <!--var id = rows[i][0];-->
+                        <!--var new_id = "";-->
+                        <!--for (var j = 3; j < id.length; j++) {-->
+                            <!--if (id[j] == '0')-->
+                                <!--continue-->
+                            <!--else {-->
+                                <!--new_id = id.substring(j, id.length);-->
+                                <!--break;-->
+                            <!--}-->
 
-                        }
-                        idList[new_id] = rows[i][1];
-                        idToUrlList[new_id] = id;
-                    }
+                        <!--}-->
+                        <!--idList[new_id] = rows[i][1];-->
+                        <!--idToUrlList[new_id] = id;-->
+                    <!--}-->
 
-                    var count = 0
-                    for (var key in idList) {
-                        (function(key, idList, callback) {
-                            var json_query = {};
-                            json_query["id"] = key;
+                    <!--var count = 0-->
+                    <!--for (var key in idList) {-->
+                        <!--(function(key, idList, callback) {-->
+                            <!--var json_query = {};-->
+                            <!--json_query["id"] = key;-->
 
-//                            console.log(JSON.stringify(json_query));
-                            $.ajax({
-                                url: "/resource/getNameFromID",
-                                type: "GET",
-                                data: json_query, //"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",
-                                success: function(data) {
-//                                    console.log("data: " + data);
-                                    nameList[data] = idList[key];
-//                                    console.log(nameList);
-                                    nameToUrlList[data] = idToUrlList[key];
-                                    callback();
-                                    count++;
-                                }
-                            });
-                        })(key, idList, function() {
-                            if (Object.keys(nameList).length == 8) {
-//                                console.log("final nameList: " + JSON.stringify(nameList));
-                                loadResourceChart(nameList, nameToUrlList);
-                            }
-                        });
-                    }
-                })
-                .then(function(err) {
-                    // Log any errors.
-                    console.log(err);
-                });
+<!--//                            console.log(JSON.stringify(json_query));-->
+                            <!--$.ajax({-->
+                                <!--url: "/resource/getNameFromID",-->
+                                <!--type: "GET",-->
+                                <!--data: json_query, //"input=%7B\"searchFilters\"%3A%7B\"resource\"%3A\""+new_query+"\"%7D%7D",-->
+                                <!--success: function(data) {-->
+<!--//                                    console.log("data: " + data);-->
+                                    <!--nameList[data] = idList[key];-->
+<!--//                                    console.log(nameList);-->
+                                    <!--nameToUrlList[data] = idToUrlList[key];-->
+                                    <!--callback();-->
+                                    <!--count++;-->
+                                <!--}-->
+                            <!--});-->
+                        <!--})(key, idList, function() {-->
+                            <!--if (Object.keys(nameList).length == 8) {-->
+<!--//                                console.log("final nameList: " + JSON.stringify(nameList));-->
+                                <!--loadResourceChart(nameList, nameToUrlList);-->
+                            <!--}-->
+                        <!--});-->
+                    <!--}-->
+                <!--})-->
+                <!--.then(function(err) {-->
+                    <!--// Log any errors.-->
+                    <!--console.log(err);-->
+                <!--});-->
 
-        });
+        <!--});-->
 
-        setTimeout(myFunc, 5000);
+        <!--setTimeout(myFunc, 5000);-->
 
-        function myFunc() {
-//            console.log("myFunc");
-            if (resourceChartDrawn == false && Object.keys(nameList).length > 2) {
-                loadResourceChart(nameList, nameToUrlList);
-            }
-        }
-    </script>
+        <!--function myFunc() {-->
+<!--//            console.log("myFunc");-->
+            <!--if (resourceChartDrawn == false && Object.keys(nameList).length > 2) {-->
+                <!--loadResourceChart(nameList, nameToUrlList);-->
+            <!--}-->
+        <!--}-->
+    <!--</script>-->
 
 </head>
 

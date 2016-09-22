@@ -17,7 +17,7 @@ function ToolUtils() {
   };
   this.extract2form = function(json){
     return self._extract2form(self, json);
-  }
+  };
   this.rest2mysql = function(toolJSON) {
     return self._rest2mysql(self, toolJSON);
   };
@@ -383,9 +383,9 @@ ToolUtils.prototype._extract2form = function(self, json) {
   var funding_section = {};
 
   basic_section['id'] = undefined;
-  basic_section['name'] = json['toolName'];
-  basic_section['description'] = json['abstract'];
-  var submit_date = new Date(json['updated']);
+  basic_section['name'] = json['name'];
+  basic_section['description'] = json['description'];
+  var submit_date = new Date(json['lastUpdatedMilliseconds']);
   basic_section['submit_date'] = submit_date.toString();
 
   basic_section['resource_types'] = [];
@@ -395,8 +395,8 @@ ToolUtils.prototype._extract2form = function(self, json) {
 
 
   basic_section['tags'] = [];
-  if (json['keyWords'] != undefined) {
-    json['keyWords'].forEach(function(tag) {
+  if (json['tags'] != undefined) {
+    json['tags'].forEach(function(tag) {
       basic_section['tags'].push({
         text: tag
       });
@@ -414,17 +414,17 @@ ToolUtils.prototype._extract2form = function(self, json) {
 
       author_section['authors'].push({
         first_name: first,
-        last_name: last,
+        last_name: last
       });
     });
   }
 
   author_section['maintainers'] = [];
 
-  author_section['affiliation'] = [];
-  if (json['affiliations'] != undefined) {
-    json['affiliations'].forEach(function(aff) {
-        author_section['affiliation'].push({
+  author_section['institutions'] = [];
+  if (json['institutions'] != undefined) {
+    json['institutions'].forEach(function(aff) {
+        author_section['institutions'].push({
           inst_name: aff
         });
     });
@@ -432,25 +432,25 @@ ToolUtils.prototype._extract2form = function(self, json) {
 
   pub_section['resource_doi'] = json['TOOL_DOI'];
   pub_section['pub_dois'] = [];
-  if (json['doi'] != undefined) {
-        pub_section['primary_pub_doi'] = json['doi'];
+  if (json['publicationDOI'] != undefined) {
+        pub_section['primary_pub_doi'] = json['publicationDOI'];
   }
 
 
-  link_section['links'] = [];
-  if(json['links']!=undefined){
-    json['links'].forEach(function(link){
-      link_section['links'].push({url:link});
+  link_section['linkUrls'] = [];
+  if(json['linkUrls']!=undefined){
+    json['linkUrls'].forEach(function(link){
+      link_section['linkUrls'].push({url:link});
     })
   }
 
-  if(json['sourcelinks'].length>1){
-    dev_section['code_url'] = json['sourcelinks'][0];
+  if(json['sourceCodeURL'] != undefined && json['sourceCodeURL'].length>1){
+    dev_section['code_url'] = json['sourceCodeURL'][0];
   }
 
   dev_section['language'] = [];
-  if (json['tehcnologies'] != undefined) {
-    json['technologies'].forEach(function(lang) {
+  if (json['language'] != undefined) {
+    json['language'].forEach(function(lang) {
       dev_section['language'].push({
         PRIMARY_NAME: lang
       });
@@ -464,8 +464,8 @@ ToolUtils.prototype._extract2form = function(self, json) {
 
 
   funding_section['funding'] = [];
-  if(json['grants']!=undefined){
-    json['grants'].forEach(function(funding){
+  if(json['funding']!=undefined){
+    json['funding'].forEach(function(funding){
       funding_section['funding'].push({
         agency: {PRIMARY_NAME: funding[0]},
         grant: funding[1]

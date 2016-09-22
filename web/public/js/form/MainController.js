@@ -950,9 +950,6 @@
           }
         }];
 
-
-
-
     function onNewSubmit() {
       $('#submit-recaptcha').hide();
       $('#submitModal').modal('toggle');
@@ -1495,6 +1492,8 @@
       return link;
 
     }
+
+
 
   }
 

@@ -617,12 +617,123 @@ def find_source_links(linksRecord, textRecord, pub):
                     sourceLinks.append(linkRecord)
     pub.sourcelinks = list(set(sourceLinks))
 
+'''
+Suppressor class used to supress exceptions when converting to Solr schema format
+'''
+class Suppressor:
+    '''
+    Suppress exceptions, better than wrapping every single statement in a try catch block
+    '''
 
+    def __init__(self, exception_type, obj, output):
+        self._exception_type = exception_type
+        self.obj = obj
+        self.output = output
+        self.id = id
+
+    def __call__(self, expression):
+        try:
+            exec expression
+        except self._exception_type as e:
+            print 'Suppressor: suppressed exception %s with content \'%s\'' % (type(self._exception_type), e)
+
+
+def add_github_data(s, output, obj):
+    s.__call__(
+        'self.output["language"] = self.obj["github_data"]["languages"]')
+    s.__call__(
+        'self.output["dateUpdated"] = self.obj["github_data"]["updated_at"]')
+    s.__call__('self.output["owners"] = self.obj["github_data"]["owner"]')
+    s.__call__(
+        'self.output["licenses"] = self.obj["github_data"]["license"]')
+    s.__call__(
+        'self.output["dateCreated"] = self.obj["github_data"]["created_at"]')
+    s.__call__(
+        'self.output["maintainers"] = str(self.obj["github_data"]["contributors"])')
+    try:
+        latest = True
+        prev = []
+        for version in obj["github_data"]["versions"]:
+            if latest:
+                output["latest_version"] = version["zipball_url"]
+                latest = False
+                continue
+            prev.append(version["zipball_url"])
+        output['prev_version'] = prev
+    except Exception as e:
+        print e
+
+    s.__call__(
+        'self.output["subscribers"] = self.obj["github_data"]["subscribers"]')
+    s.__call__('self.output["forks"] = self.obj["github_data"]["forks"]')
+
+
+def add_sourceforge_data(s):
+    s.__call__(
+        'self.output["language"] = self.obj["sourceforge_data"]["languages"]')
+    s.__call__(
+        'self.output["licenses"] = self.obj["sourceforge_data"]["license"]')
+    s.__call__(
+        'self.output["maintainers"] = str(self.obj["sourceforge_data"]["developers"])')
+    s.__call__(
+        'self.output["latest_version"] = str(self.obj["sourceforge_data"]["Development Status"])')
+
+
+'''
+Function which converts all publication fields to Solr format
+'''
+def convert_to_solr(publications):
+    to_insert = []
+    for obj in publications:
+        obj = obj.data
+        output = dict()
+        s = Suppressor(Exception, obj, output)
+
+        s.__call__('self.output["name"] = self.obj["toolName"]')
+        s.__call__('self.output["publicationDOI"] = self.obj["doi"]')
+        s.__call__(
+            'self.output["sourceCodeURL"] = self.obj["sourcelinks"]')
+        s.__call__('self.output["linkUrls"] = self.obj["links"]')
+        s.__call__('self.output["authors"] = self.obj["authors"]')
+        s.__call__('self.output["funding"] = self.obj["grants"]')
+        s.__call__('self.output["lastUpdatedMilliseconds"] = self.obj["updated"]')
+
+        if 'github_data' in obj:
+            add_github_data(s, output, obj)
+            s.__call__('self.output["repo"] = "github"')
+        elif 'sourceforge_data' in obj:
+            s.__call__('self.output["repo"] = "sourceforge"')
+            add_sourceforge_data(s)
+        else:
+            s.__call__('self.output["name"] = self.obj["title"]')
+
+        if 'language' not in output:
+            s.__call__(
+                'self.output["language"] = self.obj["technologies"]')
+
+        s.__call__('self.output["tags"] = self.obj["keyWords"]')
+        s.__call__('self.output["citations"] = self.obj["citations"]')
+        s.__call__('self.output["description"] = self.obj["abstract"]')
+        s.__call__('self.output["summary"] = self.obj["summary"]')
+        s.__call__(
+            'self.output["acknowledgements"] = self.obj["acks"]')
+        s.__call__(
+            'self.output["institutions"] = self.obj["affiliations"]')
+        s.__call__(
+            'self.output["dateCreated"] = self.obj["dateCreated"]')
+
+        to_insert.append(output)
+    return to_insert
+
+'''
+Convert document fields to Solr format then write to file
+'''
 def write_records(filename):
     print "Writing extracted data for " + str(len(publications)) + " publications"
+    final_docs = convert_to_solr(publications)
     with open(filename, 'w') as outfile:
-        for pub in publications:
-            outfile.write(json.dumps(pub.data, indent=4))
+        for pub in final_docs:
+            outfile.write(json.dumps(pub, indent=4))
 
 
 def get_all_files(path):

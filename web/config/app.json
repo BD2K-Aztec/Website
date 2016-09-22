@@ -6,7 +6,7 @@
   "mysqlPassword":"3c257ac3e4c0056b9209bcc1161b68dd",
   "mysqlPort":"3306",
   "mysqlDB":"AZ_Curation",
-  "solrHost":"dev.aztec.io",
+  "solrHost":"localhost",
   "solrPort":"8983",
   "mongoUsername": "42cd90893007e9529ab3c112934c1d92",
   "mongoPassword": "054222a99e6d58d7ebcfa61794ce86a8",
