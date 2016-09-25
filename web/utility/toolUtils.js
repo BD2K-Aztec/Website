@@ -437,10 +437,10 @@ ToolUtils.prototype._extract2form = function(self, json) {
   }
 
 
-  link_section['linkUrls'] = [];
+  link_section['links'] = [];
   if(json['linkUrls']!=undefined){
     json['linkUrls'].forEach(function(link){
-      link_section['linkUrls'].push({url:link});
+      link_section['links'].push({url:link});
     })
   }
 
@@ -466,9 +466,11 @@ ToolUtils.prototype._extract2form = function(self, json) {
   funding_section['funding'] = [];
   if(json['funding']!=undefined){
     json['funding'].forEach(function(funding){
+      funding = funding.replace(/[\[\]']+/g,'');
+      var arr = funding.split(",");
       funding_section['funding'].push({
-        agency: {PRIMARY_NAME: funding[0]},
-        grant: funding[1]
+        agency: {PRIMARY_NAME: arr[0]},
+        grant: arr[1]
       })
     });
   }

@@ -17,6 +17,11 @@ function extract_id(originalUrl) {
 
 Tool_Editor.prototype._edit = function (self, req, res) {
     var id = extract_id(req.originalUrl);
+    if (req.user == undefined){
+        //Redirect to homepage, user has not logged in yet
+        console.log("User is undefined");
+        return res.redirect('/');
+    }
     BD2K.solr.search({id: id}, function (r) {
         var result = r.response.docs[0];
         if (result == undefined){
@@ -26,8 +31,8 @@ Tool_Editor.prototype._edit = function (self, req, res) {
         if (owners == undefined || owners.indexOf(req.user.email) <= -1){
             return res.render('tool/message.ejs', {message: "Permission denied"});
         }
-        console.log(result);
         var data = util.extract2form(result);
+        console.log("Form extracted data is "+ JSON.stringify(data));
         return res.render('tool/form.ejs', {title: "Edit",
             heading: "Edit Resource #",
             user: req.user,

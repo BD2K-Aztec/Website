@@ -989,7 +989,23 @@
         });
     };
 
+    function form2solr(data){
+      /**
+       * TODO: Add all fields here to change data to solr schema format.
+       * TODO: On upload, first push everything to Solr then extract2form and change push
+       * TODO: to update so same functions can be used for adding and updating
+       * @type {{}}
+         */
+      var result = {};
+      result.name = data.basic.name;
+      result.description = data.basic.description;
+      result.publicationDOI = data.publication.primary_pub_doi;
+
+      return result;
+    }
+
     function onEditSubmit() {
+      console.log("On edit submit function in MainController.js");
       $('#submit-recaptcha').hide();
       $('#submitModal').modal('toggle');
       $('#MessageModal').modal('toggle');
@@ -1005,10 +1021,11 @@
         license: vm.license_section,
         funding: vm.funding_section
       };
+      var data = form2solr(submit);
       $.ajax({
-          url: window.location.pathname,
-          type: 'PUT',
-          data: {orig:vm.orig, new: submit, recaptcha: $('#g-recaptcha-response').val()}
+          url: '/review/push',
+          type: 'POST',
+          data: {data}
       }).done(function(data) {
         $('#messageLabel').text(data.message);
         if(data.status=='success'){

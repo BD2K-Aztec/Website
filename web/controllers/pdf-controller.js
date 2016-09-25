@@ -138,9 +138,7 @@ Uploader.prototype._extract = function (self, req, doi, res) {
  */
 Uploader.prototype._push = function (self, req, res) {
     console.log("In push function");
-    console.log(req.body);
-    var data = util.extract2form(req.body);
-    console.log(data);
+    console.log(req.body.data);
     var user = req.user.email;
     var dir = '../slots-extraction/data/' + user + '/';
     if (!fs.existsSync(dir)){
