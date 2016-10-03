@@ -991,16 +991,38 @@
 
     function form2solr(data){
       /**
-       * TODO: Add all fields here to change data to solr schema format.
-       * TODO: On upload, first push everything to Solr then extract2form and change push
-       * TODO: to update so same functions can be used for adding and updating
        * @type {{}}
          */
       var result = {};
-      result.name = data.basic.name;
-      result.description = data.basic.description;
-      result.publicationDOI = data.publication.primary_pub_doi;
-
+      result['name'] = data.basic.name;
+      result['description'] = data.basic.description;
+      result['publicationDOI'] = data.publication.primary_pub_doi;
+      result['tags'] = [];
+      data.basic.tags.forEach(function(tag){
+        result['tags'].push(tag['text']);
+      });
+      result['authors'] = [];
+      data.authors.authors.forEach(function(author){
+        result['authors'].push(author['first_name'] + " " + author['last_name']);
+      });
+      result['institutions'] = [];
+      data.authors.institutions.forEach(function (institute) {
+        result['institutions'].push(institute['inst_name']);
+      });
+      // result['linkUrls'] = [];
+      // data.links.links.forEach(function (link) {
+      //   result['linkUrls'].push({url: link['url'], name: link['name']});
+      // });
+      result['language'] = [];
+      data.dev.language.forEach(function (tech) {
+        result['language'].push(tech['PRIMARY_NAME']);
+      });
+      result['funding'] = [];
+      data.funding.funding.forEach(function (grant) {
+        var pair = [];
+        pair.push(grant['agency']['PRIMARY_NAME'], grant['grant']);
+        result['funding'].push(pair);
+      });
       return result;
     }
 

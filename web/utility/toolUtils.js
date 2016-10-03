@@ -466,7 +466,7 @@ ToolUtils.prototype._extract2form = function(self, json) {
   funding_section['funding'] = [];
   if(json['funding']!=undefined){
     json['funding'].forEach(function(funding){
-      funding = funding.replace(/[\[\]']+/g,'');
+      funding = funding.toString().replace(/[\[\]']+/g,'');
       var arr = funding.split(",");
       funding_section['funding'].push({
         agency: {PRIMARY_NAME: arr[0]},

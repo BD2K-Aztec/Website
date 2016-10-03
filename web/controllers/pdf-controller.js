@@ -2,6 +2,9 @@ var fs = require('fs');
 var busboy = require('connect-busboy');
 var jsonfile = require('jsonfile');
 var util = require('../utility/toolUtils');
+var BD2K = require('../utility/bd2k.js');
+var solr = require('solr-client');
+
 
 
 var waitTime = 5000;
@@ -103,16 +106,18 @@ Uploader.prototype._extract = function (self, req, doi, res) {
             return delete_file(user, function(msg){console.log(msg);});
         }
         else {
-            //Extraction was successful, get data and show it to user for editing
+            //Extraction was successful, get data, push it to Solr and show it to user for editing
             var file = '../slots-extraction/data/' + user + '/' + 'slotExtracts/slot_extracts.json';
             jsonfile.readFile(file, function(err, obj) {
-                delete_file(user, function(msg){console.log(msg);});
                 if(err){
                     console.log(err);
                     console.log("Json loading of slot_extracts.json failed");
+                    delete_file(user, function(msg){console.log(msg);});
                 }
                 else {
-                    var loginName = 'Login';
+                    console.log("Pushing to Solr");
+                    require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', file, user]);
+                    delete_file(user, function(msg){console.log(msg);});
                     var formObj = util.extract2form(obj);
                     console.log("Form object is " + JSON.stringify(formObj));
                     return res.render('tool/form.ejs', {title: "Edit",
@@ -131,27 +136,45 @@ Uploader.prototype._extract = function (self, req, doi, res) {
 
 /**
  * Push user edited input to Solr running on port 8983 and delete all extraction and pdf files
+ * This function updates the already existing Solr document
  * @param self
  * @param req
  * @param res
  * @private
  */
 Uploader.prototype._push = function (self, req, res) {
-    console.log("In push function");
-    console.log(req.body.data);
-    var user = req.user.email;
-    var dir = '../slots-extraction/data/' + user + '/';
-    if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-    }
-    var temp_file = '../slots-extraction/data/' + user + '/output.json';
-    jsonfile.writeFileSync(temp_file, data, {spaces: 4}, function (err) {
-        console.error(err)
+    BD2K.solr.search({publicationDOI: req.body.data.publicationDOI}, function (r) {
+        var result = r.response.docs[0];
+        req.body.data['id'] = result['id'];
+        var data = JSON.stringify(req.body.data);
+        const execFile = require('child_process').execFile;
+        // make this path relative too.
+        execFile('bash', ['../slots-extraction/scripts/update.sh'
+            , data], (error, stdout, stderr) => {
+            if(error){
+                console.log(error, stdout, stderr);
+            }
+            else{
+                console.log("Success, user updated data pushed to Solr");
+            }
+        })
+        
     });
-    console.log("Executing push to Solr");
-    require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', temp_file, user]);
-    self.delete_file(req, res);
-    console.log("Success");
+    // console.log("In push function");
+    // var data = req.body.data;
+    // var user = req.user.email;
+    // var dir = '../slots-extraction/data/' + user + '/';
+    // if (!fs.existsSync(dir)){
+    //     fs.mkdirSync(dir);
+    // }
+    // var temp_file = '../slots-extraction/data/' + user + '/output.json';
+    // jsonfile.writeFileSync(temp_file, data, {spaces: 4}, function (err) {
+    //     console.error(err)
+    // });
+    // console.log("Executing push to Solr");
+    // require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', temp_file, user]);
+    // self.delete_file(req, res);
+    // console.log("Success");
 
     //Show user some success message and send them back to homepage etc..
 };
