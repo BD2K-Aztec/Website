@@ -26,7 +26,7 @@ def json_parse(fileobj, decoder=JSONDecoder(), buffersize=2048):
 
 def set_id_owners(f, cur_id, owners):
     for obj in json_parse(f):
-        id = get_id_from_solr(obj['doi'])
+        id = get_id_from_solr(obj['publicationDOI'])
         if id is None:
             id = cur_id
             increment = True

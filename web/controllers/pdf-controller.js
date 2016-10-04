@@ -147,34 +147,22 @@ Uploader.prototype._push = function (self, req, res) {
         var result = r.response.docs[0];
         req.body.data['id'] = result['id'];
         var data = JSON.stringify(req.body.data);
-        const execFile = require('child_process').execFile;
-        // make this path relative too.
-        execFile('bash', ['../slots-extraction/scripts/update.sh'
-            , data], (error, stdout, stderr) => {
-            if(error){
-                console.log(error, stdout, stderr);
-            }
-            else{
-                console.log("Success, user updated data pushed to Solr");
-            }
-        })
+        console.log("Data is " + data);
+        var PythonShell = require('python-shell');
+
+        var options = {
+            mode: 'text',
+            scriptPath: '../slots-extraction/scripts',
+            args: [data]
+        };
+
+        PythonShell.run('updateMetadata.py', options, function (err, results) {
+            if (err) throw err;
+            // results is an array consisting of messages collected during execution
+            console.log('results: %j', results);
+        });
         
     });
-    // console.log("In push function");
-    // var data = req.body.data;
-    // var user = req.user.email;
-    // var dir = '../slots-extraction/data/' + user + '/';
-    // if (!fs.existsSync(dir)){
-    //     fs.mkdirSync(dir);
-    // }
-    // var temp_file = '../slots-extraction/data/' + user + '/output.json';
-    // jsonfile.writeFileSync(temp_file, data, {spaces: 4}, function (err) {
-    //     console.error(err)
-    // });
-    // console.log("Executing push to Solr");
-    // require('child_process').execFileSync('bash', ['../slots-extraction/scripts/push_solr.sh', temp_file, user]);
-    // self.delete_file(req, res);
-    // console.log("Success");
 
     //Show user some success message and send them back to homepage etc..
 };

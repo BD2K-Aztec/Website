@@ -1009,10 +1009,11 @@
       data.authors.institutions.forEach(function (institute) {
         result['institutions'].push(institute['inst_name']);
       });
-      // result['linkUrls'] = [];
-      // data.links.links.forEach(function (link) {
-      //   result['linkUrls'].push({url: link['url'], name: link['name']});
-      // });
+      // Add link name functionality
+      result['linkUrls'] = [];
+      data.links.links.forEach(function (link) {
+        result['linkUrls'].push(link['url']);
+      });
       result['language'] = [];
       data.dev.language.forEach(function (tech) {
         result['language'].push(tech['PRIMARY_NAME']);
