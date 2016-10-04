@@ -1011,8 +1011,11 @@
       });
       // Add link name functionality
       result['linkUrls'] = [];
+      result['linkNames'] = [];
       data.links.links.forEach(function (link) {
+        console.log("Pushing link " + link);
         result['linkUrls'].push(link['url']);
+        result['linkNames'].push(link['name']);
       });
       result['language'] = [];
       data.dev.language.forEach(function (tech) {
@@ -1069,7 +1072,7 @@
           });
         }
       });
-    };
+    }
 
     function refreshAddresses(address, field) {
       var promise;

@@ -159,12 +159,12 @@ Uploader.prototype._push = function (self, req, res) {
         PythonShell.run('updateMetadata.py', options, function (err, results) {
             if (err) throw err;
             // results is an array consisting of messages collected during execution
-            console.log('results: %j', results);
+            //Show user some success message and send them back to homepage etc..
+            
         });
         
     });
 
-    //Show user some success message and send them back to homepage etc..
 };
 
 module.exports = new Uploader();

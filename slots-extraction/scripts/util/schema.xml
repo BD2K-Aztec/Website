@@ -150,7 +150,7 @@
 <field name="tags" type="standard" indexed="true" stored="true" required="false" multiValued="true"/>
 <field name="maintainers" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
 <field name="maintainerEmails" type="standard" indexed="true" stored="true" required="false" multiValued="true"/>
-<field name="owners" type="standard" indexed="false" stored="true" required="false" multiValued="true"/>
+<field name="owners" type="standard" indexed="true" stored="true" required="false" multiValued="true"/>
 <field name="dateCreated" type="date" indexed="true" stored="true" required="false" multiValued="true"/>
 <field name="dateUpdated" type="date" indexed="true" stored="true" required="false" multiValued="true"/>
 <field name ="citations" type="int" indexed="true" stored="true" required="false" multiValued="false"/>
@@ -159,6 +159,7 @@
 <field name="summary" type="standard" indexed="false" stored="true" required="false" multiValued="true"/>
 <field name="latest_version" type="string" indexed="false" stored="true" required="false" multiValued="true"/>
 <field name="prev_version" type="standard" indexed="false" stored="true" required="false" multiValued="true"/>
+<field name="linkNames" type="standard" indexed="true" stored="true" required="false" multiValued="true"/>
 <!-- <field name="signatureField" type="string" stored="true" indexed="true" multiValued="false"/>
  --><field name="subscribers" type="int" stored="true" indexed="false" multiValued="false"/>
 <field name="forks" type="int" stored="true" indexed="false" multiValued="false"/>

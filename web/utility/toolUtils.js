@@ -438,11 +438,13 @@ ToolUtils.prototype._extract2form = function(self, json) {
 
 
   link_section['links'] = [];
-  if(json['linkUrls']!=undefined){
-    json['linkUrls'].forEach(function(link){
-      link_section['links'].push({url:link});
-    })
+  //Assume link urls and link names have same length
+  if(json['linkUrls']!=undefined && json['linkNames'] != undefined){
+    for(var i = 0; i < json['linkUrls'].length; i++){
+      link_section['links'].push({url: json['linkUrls'][i], name: json['linkNames'][i]});
+    }
   }
+
 
   if(json['sourceCodeURL'] != undefined && json['sourceCodeURL'].length>1){
     dev_section['code_url'] = json['sourceCodeURL'][0];
