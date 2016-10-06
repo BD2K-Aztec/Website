@@ -1143,7 +1143,6 @@
       errorMessages.push(new ErrMsg(false, "Please enter the resource name.")); // resource name
       errorMessages.push(new ErrMsg(false, "Please enter the description of the resource.")); // resource description
       errorMessages.push(new ErrMsg(false, "Please enter at least 1 link or a source code URL.")); // links
-      errorMessages.push(new ErrMsg(false, "Please enter a name and/or URL for the link.")); // empty link
       errorMessages.push(new ErrMsg(false, "Cannot leave the resource type blank.")); // resource type
       errorMessages.push(new ErrMsg(false, "Cannot leave the biologial domain blank.")); // biological domain
 
@@ -1180,7 +1179,7 @@
         }else{
           vm['basic_section']['resource_types'].forEach(function(type){
             if(type['type']==undefined || type['type']==null){
-              errorMessages[4].setErr(true);
+              errorMessages[3].setErr(true);
             }
           });
         }
@@ -1189,7 +1188,7 @@
         }else{
           vm['basic_section']['domains'].forEach(function(domain){
             if(domain['domain']==undefined || domain['domain']==null){
-              errorMessages[5].setErr(true);
+              errorMessages[4].setErr(true);
             }
           });
         }
@@ -1213,9 +1212,7 @@
         vm['link_section']['links'].forEach(function(link){
           atLeast1 = true;
           if(link['name']==undefined || link['url']==undefined){
-            if(atLeast1){
-              errorMessages[3].setErr(true);
-            } else {
+            if(!atLeast1){
               errorMessages[2].setErr(true);
             }
           }

@@ -41,7 +41,6 @@ module.exports = function(app, passport) {
     app.get('/review/tool/:id', ReviewController.getTool);
     app.get('/review/form', isLoggedIn, ReviewController.showForm);
     app.post('/review/form', isLoggedIn, ReviewController.create);
-    app.get('/review/update/:id', isLoggedIn, ReviewController.getEditForm2);
 
     app.put('/review/pdf-upload', isLoggedIn, ReviewController.create);
 
@@ -53,7 +52,7 @@ module.exports = function(app, passport) {
     app.get('/review/api/mytools', isLoggedIn, ReviewController.userTools);
     app.get('/review/api/form/:id', ReviewController.formApi);
     app.get('/review/submit', isLoggedIn, ReviewController.getSubmit);
-    
+
     app.post('/review/pdf-upload', PdfController.upload);
     app.post('/review/push', PdfController.push);
     app.post('/review/pdf-delete', PdfController.delete_file);

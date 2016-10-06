@@ -19,7 +19,6 @@ function ReviewController() {
     this.showForm = function(req, res) {self._showForm(self, req, res); };
     this.create = function(req, res) {self._create(self, req, res); };
     this.update = function(req, res) {self._update(self, req, res); };
-    this.getEditForm2 = function(req, res) {self._getEditForm2(self, req, res)};
     this.getEditForm = function(req, res) {self._getEditForm(self, req, res)};
     this.allSaved = function(req, res) {self._allSaved(self, req, res); };
     this.getFeedback = function(req, res) {self._getFeedback(self, req, res); };
@@ -80,22 +79,7 @@ ReviewController.prototype._update = function (self, req, res) {
 
 };
 
-//--- getEditForm -----------------------------------------------------------------------
-ReviewController.prototype._getEditForm2 = function (self, req, res) {
-  var loginName = 'Login';
-  var obj = {basic_section: {
-    name: 'tool',
-    description: "test"
-  }};
-  return res.render('tool/form.ejs', {title: "Edit",
-    heading: "Edit Resource #",
-    user: req.user,
-    loggedIn : req.isAuthenticated(),
-    editURL: "",
-    submitFunc: "onEditSubmit()",
-    init: "vm.initEdit2("+JSON.stringify(obj)+")"
-  });
-};
+
 //--- getEditForm -----------------------------------------------------------------------
 ReviewController.prototype._getEditForm = function (self, req, res) {
   var id = req.params.id;

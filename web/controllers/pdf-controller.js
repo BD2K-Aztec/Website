@@ -142,6 +142,8 @@ Uploader.prototype._extract = function (self, req, doi, res) {
  * @param res
  * @private
  */
+// TODO: use BD2K.solr.add to insert into solr database
+// send an object with {status: "success"or"error", message:"error message"}
 Uploader.prototype._push = function (self, req, res) {
     BD2K.solr.search({publicationDOI: req.body.data.publicationDOI}, function (r) {
         var result = r.response.docs[0];
@@ -160,9 +162,9 @@ Uploader.prototype._push = function (self, req, res) {
             if (err) throw err;
             // results is an array consisting of messages collected during execution
             //Show user some success message and send them back to homepage etc..
-            
+
         });
-        
+
     });
 
 };
