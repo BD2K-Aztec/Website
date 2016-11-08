@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 var config = require('./config/app.json');
 var favicon = require('serve-favicon');
 var fs = require('fs');
+var multer = require('multer');
 var busboy = require('connect-busboy'); //middleware for form/file upload
 
 mongoose.connect(configDB.url); // connect to our database
@@ -63,7 +64,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/images/bd2k.ico'));
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass pass// port for configuration
 app.use(busboy()); //to make file upload work
 
 // set up our express application

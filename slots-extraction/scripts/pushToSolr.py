@@ -1,8 +1,10 @@
 import json
+import re
 import subprocess
 from json import JSONDecoder
 from functools import partial
 import sys
+import shutil
 from pysolr4 import Solr
 port = 8983
 to_insert = []
@@ -81,8 +83,16 @@ def get_id_from_solr(doi):
 
 def main(data, owners=None):
     cur_id = get_starting_id()
-    with open(data, 'rU') as f:
-        set_id_owners(f, cur_id, owners)
+    try:
+        with open(data, 'rU') as f:
+            set_id_owners(f, cur_id, owners)
+    except IOError as e:
+        # Data must be json blob
+        print e
+        with open('test.json', 'w+') as f:
+            f.write(data)
+            set_id_owners(f, cur_id, owners)
+            #shutil.rmtree('test.json')
 
     print "Total size is " + str(len(to_insert))
     for obj in to_insert:

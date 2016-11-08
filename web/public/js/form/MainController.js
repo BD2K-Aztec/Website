@@ -1061,7 +1061,7 @@
               count++;
               $('#messageBody').append('.  ');
               if(count > 2){
-                window.location.href = '/review/tool/'+data.id;
+                window.location.href = '/AZ'+data.id;
               }
             }, 1000);
         }else{
