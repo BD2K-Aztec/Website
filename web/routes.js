@@ -55,7 +55,6 @@ module.exports = function(app, passport) {
 
     app.post('/review/pdf-upload', PdfController.upload);
     app.post('/review/push', PdfController.push);
-    app.post('/review/pdf-delete', PdfController.delete_file);
 
     app.get('/tool/edit', ToolController.edit);
 
