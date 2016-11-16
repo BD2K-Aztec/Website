@@ -55,12 +55,12 @@ Start docker images.
 
 ###[Solr](https://hub.docker.com/r/makuk66/docker-solr/)
 ```
-docker run -d -p 8983:8983 -t tanpatrick/aztec-solr
+docker run -d -p 8983:8983 -t tanpatrick/aztec-solr:web
 ```
 
 ###[MongoDB](https://hub.docker.com/r/vincekyi/aztec-mongo/)
 ```
-docker run -d -p 27017:27017 vincekyi/aztec-mongo
+docker run -d -p 27017:27017 vincekyi/aztec-mongo:web
 ```
 
 ###[MySQL](https://hub.docker.com/r/vincekyi/aztec-mysql/)
