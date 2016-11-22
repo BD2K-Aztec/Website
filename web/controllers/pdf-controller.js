@@ -55,9 +55,9 @@ Uploader.prototype._upload = function(self, req, res) {
             data = Buffer.concat(data);
             // Now send to flask server
             var options = {
-                host: 'localhost',
+                host: 'aztec.bio',
                 port: '7777',
-                url: 'http://localhost:7777/extraction',
+                url: 'http://aztec.bio:7777/extraction',
                 path: '/extraction',
                 method: 'POST'
             };
