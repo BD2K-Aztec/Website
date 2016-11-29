@@ -309,7 +309,7 @@
                 <% if(resources.group[i].description) { %>
                 <div class="row" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                     <div class="col-lg-12" style="border: 0px solid black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                        <span><b>Description: </b><%= resources.group[i].description %></span>
+                        <span><b>Description: </b><%= resources.group[i].description.replace(/<a.*?href="(.*?)".*?>(.*?)<\/a>/gi, " $2").replace(/<(?:.|\s)*?>/g, "") %></span>
                     </div>
                 </div>
                 <% } %>

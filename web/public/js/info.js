@@ -67,11 +67,18 @@ function Info(resource) {
     if (resource.sourceCodeURL) {
         // linkArr.push("Source Code: <a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a>");
         for(var i=0;i<resource.sourceCodeURL.length;i++){
-            if(resource.sourceCodeURL[i].trim()!="" && (resource.sourceCodeURL[i].indexOf('github') >= 0 ||
+            if(resource.sourceCodeURL.length==1 || (resource.sourceCodeURL[i].trim()!="" && (resource.sourceCodeURL[i].indexOf('github') >= 0 ||
                 resource.sourceCodeURL[i].indexOf('code')>=0 || resource.sourceCodeURL[i].indexOf('bitbucket')>=0 ||
-                resource.sourceCodeURL[i].indexOf('sourceforge')>=0)){
-                console.log(resource.sourceCodeURL[i]);
+                resource.sourceCodeURL[i].indexOf('sourceforge')>=0))){
+                resource.sourceCodeURL[i] = resource.sourceCodeURL[i].replace(".Contact", "")
                 tSourcecode_list.push("<a href='" + resource.sourceCodeURL[i].trim() + "'>" + resource.sourceCodeURL[i].trim() + "</a>");
+            }
+        }
+        if(tSourcecode_list.length==0){
+            for(var i=0;i<resource.sourceCodeURL.length;i++){
+                if(resource.sourceCodeURL[i].indexOf('oxfordjournals') < 0){
+                    tSourcecode_list.push("<a href='" + resource.sourceCodeURL[i].trim() + "'>" + resource.sourceCodeURL[i].trim() + "</a>");
+                }
             }
         }
         tSourcecode_list.push("</div>");
