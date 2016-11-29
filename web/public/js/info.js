@@ -241,6 +241,7 @@ function Info(resource) {
     $("#ttagsHtml").html(tTag);
 
     var doiArr = ['NA'];
+    var actdoi = "";
     //var outPublication = "Not Available";
     var outPublication = "";
     if (resource.publicationDOI) {
@@ -250,9 +251,22 @@ function Info(resource) {
         var doiArr = [];
         for(var i = 0; i < dois.length; i++){
             var doi = dois[i].replace(/ *\([^)]*\) */g, "");
-            doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
+            if(doi.substring(0,4).toLowerCase() == 'doi:'){
+                actdoi = doi.substring(4);
+            }
+            else{
+                actdoi = doi;
+            }
+            doiArr.push('DOI: <a href="http://dx.doi.org/' + actdoi.trim() + '">' + actdoi.trim() + '</a>');
         }
-        var doiCrossref = dois[0].replace(/ *\([^)]*\) */g, "").substring(4).trim();
+        var doi = dois[0].replace(/ *\([^)]*\) */g, "");
+        if(doi.substring(0,4).toLowerCase() == 'doi:'){
+            actdoi = doi.substring(4);
+        }
+        else{
+            actdoi = doi;
+        }
+        var doiCrossref = actdoi.trim();
         if( !isNaN(doiCrossref[0])){ //still some invalid doi in our database
             //PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
             getPublication(doiCrossref);
