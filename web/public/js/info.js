@@ -62,11 +62,19 @@ function Info(resource) {
     $("#tdescription").html(tDescription);
     
     var linkArr = [];
+    var tSourcecode_list = [];
 
     if (resource.sourceCodeURL) {
-        linkArr.push("Source Code: <a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a>");
-        var tSourcecode_list = [];
-        tSourcecode_list.push("<a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a></div>");
+        // linkArr.push("Source Code: <a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a>");
+        for(var i=0;i<resource.sourceCodeURL.length;i++){
+            if(resource.sourceCodeURL[i].trim()!="" && (resource.sourceCodeURL[i].indexOf('github') >= 0 ||
+                resource.sourceCodeURL[i].indexOf('code')>=0 || resource.sourceCodeURL[i].indexOf('bitbucket')>=0 ||
+                resource.sourceCodeURL[i].indexOf('sourceforge')>=0)){
+                console.log(resource.sourceCodeURL[i]);
+                tSourcecode_list.push("<a href='" + resource.sourceCodeURL[i].trim() + "'>" + resource.sourceCodeURL[i].trim() + "</a>");
+            }
+        }
+        tSourcecode_list.push("</div>");
         var tSourcecode = createList(tSourcecode_list);
     }
     else{
