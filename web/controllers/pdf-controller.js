@@ -63,6 +63,7 @@ Uploader.prototype._upload = function(self, req, res) {
             };
             var post_req = request.post(options, function (err, resp, body) {
                 if (err) {
+		    console.log(err);
                     console.log('Error!');
                 } else {
                     data = [];

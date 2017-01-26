@@ -404,7 +404,7 @@ function output_error_info(errordiv) {
 
     tempdiv.selectAll("i").remove();
     tempdiv.append("p").attr("class", "error-info")
-        .html("Sorry, accessing to this web service was temporally failed.");
+        .html("Failed to access external resource.");
 }
 
 function output_getting_info(errordiv) {

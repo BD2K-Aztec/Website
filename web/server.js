@@ -27,8 +27,8 @@ var port = config.serverPort;
 var sslPort = config.sslPort;
 
 var key = fs.readFileSync('security/privateKey.key');
-var cert = fs.readFileSync('security/dev.aztec.io.crt')
-files = ['dev.aztec.io.CA.root.crt', 'security/dev.aztec.io.CA.intermediate.crt'];
+var cert = fs.readFileSync('security/aztec.bio.crt')
+files = ['aztec.bio.CA.root.crt', 'security/aztec.bio.CA.intermediate.crt'];
 
 ca = (function() {
   var i, len, results;
