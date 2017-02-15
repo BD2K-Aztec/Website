@@ -4,13 +4,11 @@ var solr = BD2K.solr;
 var uuid = require('uuid');
 var Resources = require('./resources.js');
 
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//  Search
-//
+/**
+ * @class Search
+ * @constructor
+ * @classdesc Search _________
+ */
 function Search() {
     var self = this;
     this.save = function(callback) { return self._save(self, callback); };
@@ -85,12 +83,15 @@ Search.prototype._insert = function (self, callback) {
     return search.uuid;
 };
 
-//---suggest-----------------------------------------------------------------------------
+/**
+ * Gets solr suggestions for type ahead (autocomplete)
+ * @function
+ * @memberof Search
+ * @alias suggest
+ */
 Search.prototype._suggest = function(self, callback) {
     query = self.query;
-    console.log("models/search.js self._suggest query: " + JSON.stringify(self.query));
     var fields = {}
-    //console.log( JSON.stringify(query["input"]searchFilters))
     fields.name = query["searchFilters"]["resource"];
     fields.searchType = query.searchFilters.searchType;
     solr.search_suggest(fields, function(r){

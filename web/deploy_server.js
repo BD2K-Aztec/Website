@@ -13,6 +13,8 @@ var bodyParser = require('body-parser');
 var config = require('./config/app.release.json');
 var favicon = require('serve-favicon');
 var fs = require('fs');
+var multer = require('multer');
+var busboy = require('connect-busboy');
 
 mongoose.connect(configDB.url); // connect to our database
 
@@ -25,9 +27,9 @@ var port = config.serverPort;
 var sslPort = config.sslPort;
 
 var hskey = fs.readFileSync('security/privateKey.key');
-var hscert = fs.readFileSync('security/dev.aztec.io.crt');
+var hscert = fs.readFileSync('security/aztec.bio.crt');
 
-var chainLines = fs.readFileSync('security/dev.aztec.io.CA.intermediate.crt', 'utf8').split("\n");
+var chainLines = fs.readFileSync('security/aztec.bio.CA.intermediate.crt', 'utf8').split("\n");
 var cert = [];
 var ca = [];
 chainLines.forEach(function(line) {
@@ -62,6 +64,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/public/images/bd2k.ico'));
 require('./config/passport')(passport); // pass passport for configuration
+app.use(busboy());
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console

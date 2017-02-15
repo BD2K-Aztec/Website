@@ -1,13 +1,10 @@
 var BD2K = require("./bd2k.js");
 
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//  Event
-//
-
+/**
+ * @class Event
+ * @constructor
+ * @classdesc registers and fires (runs) callbacks
+ */
 function Event(){
     var self = this;
     this.register = function (handler) { return self._register(self, handler); };
@@ -15,7 +12,13 @@ function Event(){
     this.Handlers = [];
 }
 
-//--- register ------------------------------------------------------------------------------
+/**
+ * registers a callback to the event
+ * @memberOf Event
+ * @function
+ * @alias register
+ * @param {Function} handler - callback function to register
+ */
 Event.prototype._register = function (self, handler) {
 
     if (!BD2K.has(handler)) { return; }
@@ -26,7 +29,13 @@ Event.prototype._register = function (self, handler) {
     return returnMutator;
 };
 
-//--- fire ------------------------------------------------------------------------------
+/**
+ * fires a callback function
+ * @memberOf Event
+ * @function
+ * @alias fire
+ * @param {Function} event - event that triggers the callback function
+ */
 Event.prototype._fire = function (self, event) {
 
     var append = self._append || {};
@@ -41,8 +50,5 @@ Event.prototype._fire = function (self, event) {
         handler(event, this, arguments.callee.caller);
     }
 };
-
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
 
 module.exports = Event;

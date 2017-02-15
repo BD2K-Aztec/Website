@@ -15,6 +15,9 @@ function ToolUtils() {
   this.mysql2form = function(json) {
     return self._mysql2form(self, json);
   };
+  this.extract2form = function(json){
+    return self._extract2form(self, json);
+  };
   this.rest2mysql = function(toolJSON) {
     return self._rest2mysql(self, toolJSON);
   };
@@ -354,6 +357,128 @@ ToolUtils.prototype._mysql2form = function(self, json) {
       funding_section['bd2k'].push(pushCenter);
     });
   }
+
+  var result = {
+    basic_section: basic_section,
+    author_section: author_section,
+    pub_section: pub_section,
+    link_section: link_section,
+    dev_section: dev_section,
+    version_section: version_section,
+    license_section: license_section,
+    funding_section: funding_section
+  };
+
+  return result;
+};
+
+ToolUtils.prototype._extract2form = function(self, json) {
+  var basic_section = {};
+  var author_section = {};
+  var pub_section = {};
+  var link_section = {};
+  var dev_section = {};
+  var version_section = {};
+  var license_section = {};
+  var funding_section = {};
+
+  basic_section['id'] = undefined;
+  basic_section['name'] = json['name'];
+  basic_section['description'] = json['description'];
+  var submit_date = new Date(json['lastUpdatedMilliseconds']);
+  basic_section['submit_date'] = submit_date.toString();
+
+  basic_section['resource_types'] = [];
+
+
+  basic_section['domains'] = [];
+
+
+  basic_section['tags'] = [];
+  if (json['tags'] != undefined) {
+    json['tags'].forEach(function(tag) {
+      basic_section['tags'].push({
+        text: tag
+      });
+    });
+  }
+
+  author_section['authors'] = [];
+  if (json['authors'] != undefined) {
+    json['authors'].forEach(function(author) {
+      var tokens = author.trim().split(' ');
+      var first = tokens[0], last='';
+      if(tokens.length > 1){
+        last = tokens[tokens.length-1];
+      }
+
+      author_section['authors'].push({
+        first_name: first,
+        last_name: last
+      });
+    });
+  }
+
+  author_section['maintainers'] = [];
+
+  author_section['institutions'] = [];
+  if (json['institutions'] != undefined) {
+    json['institutions'].forEach(function(aff) {
+        author_section['institutions'].push({
+          inst_name: aff
+        });
+    });
+  }
+
+  pub_section['resource_doi'] = json['TOOL_DOI'];
+  pub_section['pub_dois'] = [];
+  if (json['publicationDOI'] != undefined) {
+        pub_section['primary_pub_doi'] = json['publicationDOI'];
+  }
+
+
+  link_section['links'] = [];
+  //Assume link urls and link names have same length
+  if(json['linkUrls']!=undefined && json['linkNames'] != undefined){
+    for(var i = 0; i < json['linkUrls'].length; i++){
+      link_section['links'].push({url: json['linkUrls'][i], name: json['linkNames'][i]});
+    }
+  }
+
+
+  if(json['sourceCodeURL'] != undefined && json['sourceCodeURL'].length>1){
+    dev_section['code_url'] = json['sourceCodeURL'][0];
+  }
+
+  dev_section['language'] = [];
+  if (json['language'] != undefined) {
+    json['language'].forEach(function(lang) {
+      dev_section['language'].push({
+        PRIMARY_NAME: lang
+      });
+    });
+  }
+
+  dev_section['platform'] = [];
+
+
+  version_section['prev_versions'] = [];
+
+
+  funding_section['funding'] = [];
+  if(json['funding']!=undefined){
+    json['funding'].forEach(function(funding){
+      funding = funding.toString().replace(/[\[\]']+/g,'');
+      var arr = funding.split(",");
+      funding_section['funding'].push({
+        agency: {PRIMARY_NAME: arr[0]},
+        grant: arr[1]
+      })
+    });
+  }
+
+  funding_section['bd2k'] = [];
+
 
   var result = {
     basic_section: basic_section,

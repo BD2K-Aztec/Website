@@ -8,7 +8,7 @@
 
 var ReviewTool = require('../models/review-tool.js');
 var SavedTool = require('../models/mongo/savedTool.js');
-var Feedback = require('../models/feedback.js');
+var Feedback = require('../models/mongo/feedback.js');
 var User = require('../models/mysql/user_az.js');
 var Tool = require('../models/mysql/tool.js');
 
@@ -29,6 +29,7 @@ function ReviewController() {
     this.portal = function(req, res) {self._portal(self, req, res); };
     this.feedback = function(req, res) {self._feedback(self, req, res); };
     this.formApi = function(req, res) {self._formApi(self, req, res); }
+    this.getSubmit = function(req, res) {self._getSubmit(self, req, res); }
 }
 
 //--- getTool -----------------------------------------------------------------------
@@ -78,6 +79,7 @@ ReviewController.prototype._update = function (self, req, res) {
 
 };
 
+
 //--- getEditForm -----------------------------------------------------------------------
 ReviewController.prototype._getEditForm = function (self, req, res) {
   var id = req.params.id;
@@ -91,7 +93,6 @@ ReviewController.prototype._getEditForm = function (self, req, res) {
     .where({AZID: id})
     .fetch({withRelated: ['users_az']})
     .then(function(tool){
-      console.log(1);
       var toolJson = tool.toJSON();
       var access = false;
       toolJson['users_az'].forEach(function(user){
@@ -333,6 +334,11 @@ ReviewController.prototype._formApi = function(self, req, res){
       };
       return res.send(response);
     }
+}
+
+//--- getSubmit -----------------------------------------------------------------------
+ReviewController.prototype._getSubmit = function(self, req, res){
+  return res.render('tool/submit', {loggedIn : req.isAuthenticated(), user: req.user});
 }
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------

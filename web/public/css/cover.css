@@ -342,5 +342,8 @@ html#home-index,
 }
 
 .bd2k-footer {
-    margin:0; overflow-x: hidden
+    margin:0; overflow-x: hidden;
+    bottom: 0;
+    width: 100%;
+    position: relative;
 }

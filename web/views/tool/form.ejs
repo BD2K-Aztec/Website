@@ -379,7 +379,7 @@ function copyToClipboard(elem) {
   </style>
 </head>
 
-<body ng-app="Aztec" ng-controller="MainController as vm" <%= init %> >
+<body ng-app="Aztec" ng-controller="MainController as vm" data-ng-init="<%=init%>" >
   <%- include ../shared/header.ejs %>
 
   <div class='fstrow'>
@@ -611,7 +611,7 @@ function copyToClipboard(elem) {
       </pre> -->
       <pre id='pre8'><h2 class="sum_">LICENSES</h2><div ng-repeat = "licenses in vm.license_section.licenses track by $index">License {{$index+1}}: {{vm.license_section.licenses[$index].type}} </div>
         </pre>
-      <pre id='pre9'><h2 class="sum_">FUNDING</h2><div ng-repeat="funding in vm.funding_section.funding track by $index"> Agency: {{(vm.funding_section.funding[$index].missing == false || vm.funding._sectionfunding[$index].missing == undefined)  ? vm.funding_section.funding[$index].agency : vm.funding_section.funding[$index].new_agency}} <br> Grant: {{vm.funding_section.funding[$index].grant}}
+      <pre id='pre9'><h2 class="sum_">FUNDING</h2><div ng-repeat="funding in vm.funding_section.funding track by $index"> Agency: {{(vm.funding_section.funding[$index].missing == false || vm.funding._sectionfunding[$index].missing == undefined)  ? ((vm.funding_section.funding[$index].agency.PRIMARY_NAME==undefined) ? vm.funding_section.funding[$index].agency : vm.funding_section.funding[$index].agency.PRIMARY_NAME) : vm.funding_section.funding[$index].new_agency}} <br> Grant: {{vm.funding_section.funding[$index].grant}}
       </div>BD2K Center(s): <span ng-repeat="bd2k in vm.funding_section.bd2k track by $index">{{($index!=0) ? ", ":""}}{{vm.funding_section.bd2k[$index].center}}</span>
 </pre>
     </div>
@@ -818,7 +818,6 @@ function copyToClipboard(elem) {
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
 <script src="//npmcdn.com/angular-formly@7.5.2/dist/formly.js"></script>
 <script src="//npmcdn.com/angular-formly-templates-bootstrap@latest/dist/angular-formly-templates-bootstrap.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="//cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script src="//rawgit.com/angular/bower-angular-messages/v1.4.4/angular-messages.js"></script>

@@ -1,3 +1,10 @@
+/**
+ * @class Info
+ * @constructor
+ * @classdesc populates the tool information page with the resource information passed in
+ * @param {Resource} resource - resource to show
+ */
+
 function Info(resource) {
     var acc = "";
 
@@ -55,11 +62,26 @@ function Info(resource) {
     $("#tdescription").html(tDescription);
     
     var linkArr = [];
+    var tSourcecode_list = [];
 
     if (resource.sourceCodeURL) {
-        linkArr.push("Source Code: <a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a>");
-        var tSourcecode_list = [];
-        tSourcecode_list.push("<a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a></div>");
+        // linkArr.push("Source Code: <a href='" + resource.sourceCodeURL + "'>" + resource.sourceCodeURL + "</a>");
+        for(var i=0;i<resource.sourceCodeURL.length;i++){
+            if(resource.sourceCodeURL.length==1 || (resource.sourceCodeURL[i].trim()!="" && (resource.sourceCodeURL[i].indexOf('github') >= 0 ||
+                resource.sourceCodeURL[i].indexOf('code')>=0 || resource.sourceCodeURL[i].indexOf('bitbucket')>=0 ||
+                resource.sourceCodeURL[i].indexOf('sourceforge')>=0))){
+                resource.sourceCodeURL[i] = resource.sourceCodeURL[i].replace(".Contact", "")
+                tSourcecode_list.push("<a href='" + resource.sourceCodeURL[i].trim() + "'>" + resource.sourceCodeURL[i].trim() + "</a>");
+            }
+        }
+        if(tSourcecode_list.length==0){
+            for(var i=0;i<resource.sourceCodeURL.length;i++){
+                if(resource.sourceCodeURL[i].indexOf('oxfordjournals') < 0){
+                    tSourcecode_list.push("<a href='" + resource.sourceCodeURL[i].trim() + "'>" + resource.sourceCodeURL[i].trim() + "</a>");
+                }
+            }
+        }
+        tSourcecode_list.push("</div>");
         var tSourcecode = createList(tSourcecode_list);
     }
     else{
@@ -234,6 +256,7 @@ function Info(resource) {
     $("#ttagsHtml").html(tTag);
 
     var doiArr = ['NA'];
+    var actdoi = "";
     //var outPublication = "Not Available";
     var outPublication = "";
     if (resource.publicationDOI) {
@@ -243,9 +266,22 @@ function Info(resource) {
         var doiArr = [];
         for(var i = 0; i < dois.length; i++){
             var doi = dois[i].replace(/ *\([^)]*\) */g, "");
-            doiArr.push('DOI: <a href="http://dx.doi.org/' + doi.substring(4).trim() + '">' + doi.substring(4).trim() + '</a>');
+            if(doi.substring(0,4).toLowerCase() == 'doi:'){
+                actdoi = doi.substring(4);
+            }
+            else{
+                actdoi = doi;
+            }
+            doiArr.push('DOI: <a href="http://dx.doi.org/' + actdoi.trim() + '">' + actdoi.trim() + '</a>');
         }
-        var doiCrossref = dois[0].replace(/ *\([^)]*\) */g, "").substring(4).trim();
+        var doi = dois[0].replace(/ *\([^)]*\) */g, "");
+        if(doi.substring(0,4).toLowerCase() == 'doi:'){
+            actdoi = doi.substring(4);
+        }
+        else{
+            actdoi = doi;
+        }
+        var doiCrossref = actdoi.trim();
         if( !isNaN(doiCrossref[0])){ //still some invalid doi in our database
             //PublicationInfo = getPublication(doiCrossref);//string(JSON) from crossref
             getPublication(doiCrossref);

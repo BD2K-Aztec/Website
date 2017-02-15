@@ -1,10 +1,10 @@
 // app/routes.js
 var HomeController = require('./controllers/home-controller.js');
 var ResourceController = require('./controllers/resource-controller.js');
-var ToolController = require('./controllers/tool-controller.js');
 var ReviewController = require('./controllers/review-controller.js');
 var QueryController = require('./controllers/query-controller.js');
 var PdfController = require('./controllers/pdf-controller.js');
+var ToolController = require('./controllers/tool_edit-controller.js');
 
 module.exports = function(app, passport) {
 
@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/', getLoginInformation, HomeController.index);
-    app.get('/:id', getLoginInformation, ToolController.idRoute);
+    app.get('/:id', getLoginInformation, ResourceController.idRoute);
     app.get('/home/index', getLoginInformation, HomeController.index);
     app.get('/home/overview', getLoginInformation, HomeController.overview);
     app.get('/home/metadata', getLoginInformation, HomeController.metadata);
@@ -29,25 +29,21 @@ module.exports = function(app, passport) {
     app.get('/home/failure', getLoginInformation, HomeController.failure);
     app.post('/home/feedback', HomeController.feedback);
 
-    app.get('/resource/raw', ResourceController.raw);
     app.get('/resource/advanced', ResourceController.advanced);
     app.get('/resource/search', ResourceController.search);
     app.get('/resource/update', ResourceController.update);
     app.get('/resource/stat', ResourceController.stat);
-    app.get('/resource/add', ResourceController.add);
     app.get('/resource/autocomplete', ResourceController.autocomplete);
     app.get('/resource/getNameFromID', ResourceController.getNameFromID);
-
-    app.get('/tool/filters', ToolController.filters);
-    app.get('/tool/create', getLoginInformation, ToolController.create);
 
     app.get('/review/index', isLoggedIn, getLoginInformation, ReviewController.portal);
     app.get('/review/feedback', isLoggedIn, getLoginInformation, ReviewController.feedback);
     app.get('/review/tool/:id', ReviewController.getTool);
     app.get('/review/form', isLoggedIn, ReviewController.showForm);
     app.post('/review/form', isLoggedIn, ReviewController.create);
-    app.get('/review/update/:id', isLoggedIn, ReviewController.getEditForm);
-    app.put('/review/update/:id', isLoggedIn, ReviewController.update);
+
+    app.put('/review/pdf-upload', isLoggedIn, ReviewController.create);
+
     app.post('/review/save', isLoggedIn, ReviewController.save);
     app.get('/review/saved/:id', isLoggedIn, ReviewController.getSaved);
     app.get('/review/api/saved/:id', isLoggedIn, ReviewController.savedJson);
@@ -55,8 +51,12 @@ module.exports = function(app, passport) {
     app.get('/review/api/feedback', isLoggedIn, ReviewController.getFeedback);
     app.get('/review/api/mytools', isLoggedIn, ReviewController.userTools);
     app.get('/review/api/form/:id', ReviewController.formApi);
-    app.post('/review/pdf-upload', PdfController.middleware.single('pdf'), PdfController.upload);
-    app.post('/review/pdf-delete', PdfController.delete_file);
+    app.get('/review/submit', isLoggedIn, ReviewController.getSubmit);
+
+    app.post('/review/pdf-upload', PdfController.upload);
+    app.post('/review/push', PdfController.push);
+
+    app.get('/tool/edit', ToolController.edit);
 
     app.get('/api/institution', QueryController.InstController.search);
     app.get('/api/language', QueryController.LangController.search);

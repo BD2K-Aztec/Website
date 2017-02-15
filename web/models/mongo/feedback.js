@@ -1,3 +1,8 @@
+/**
+*	Mongo Feedback Model
+*	@param {String} issue - description of the issue
+*/
+
 // app/models/user.js
 // load the things we need
 var mongoose = require('mongoose');

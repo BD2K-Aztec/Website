@@ -213,7 +213,7 @@
     vm.suggest = suggest;
     vm.checkForm = checkForm;
     vm.passWarning = passWarning;
-    vm.initEdit = initEdit;
+    vm.initEdit2 = initEdit2;
     vm.initSaved = initSaved;
     vm.checkLink = checkLink;
     // The model object that we reference
@@ -950,9 +950,6 @@
           }
         }];
 
-
-
-
     function onNewSubmit() {
       $('#submit-recaptcha').hide();
       $('#submitModal').modal('toggle');
@@ -992,7 +989,49 @@
         });
     };
 
+    function form2solr(data){
+      /**
+       * @type {{}}
+         */
+      var result = {};
+      result['name'] = data.basic.name;
+      result['description'] = data.basic.description;
+      result['publicationDOI'] = data.publication.primary_pub_doi;
+      result['tags'] = [];
+      data.basic.tags.forEach(function(tag){
+        result['tags'].push(tag['text']);
+      });
+      result['authors'] = [];
+      data.authors.authors.forEach(function(author){
+        result['authors'].push(author['first_name'] + " " + author['last_name']);
+      });
+      result['institutions'] = [];
+      data.authors.institutions.forEach(function (institute) {
+        result['institutions'].push(institute['inst_name']);
+      });
+      // Add link name functionality
+      result['linkUrls'] = [];
+      result['linkNames'] = [];
+      data.links.links.forEach(function (link) {
+        console.log("Pushing link " + link);
+        result['linkUrls'].push(link['url']);
+        result['linkNames'].push(link['name']);
+      });
+      result['language'] = [];
+      data.dev.language.forEach(function (tech) {
+        result['language'].push(tech['PRIMARY_NAME']);
+      });
+      result['funding'] = [];
+      data.funding.funding.forEach(function (grant) {
+        var pair = [];
+        pair.push(grant['agency']['PRIMARY_NAME'], grant['grant']);
+        result['funding'].push(pair);
+      });
+      return result;
+    }
+
     function onEditSubmit() {
+      console.log("On edit submit function in MainController.js");
       $('#submit-recaptcha').hide();
       $('#submitModal').modal('toggle');
       $('#MessageModal').modal('toggle');
@@ -1008,10 +1047,11 @@
         license: vm.license_section,
         funding: vm.funding_section
       };
+      var data = form2solr(submit);
       $.ajax({
-          url: window.location.pathname,
-          type: 'PUT',
-          data: {orig:vm.orig, new: submit, recaptcha: $('#g-recaptcha-response').val()}
+          url: '/review/push',
+          type: 'POST',
+          data: {data}
       }).done(function(data) {
         $('#messageLabel').text(data.message);
         if(data.status=='success'){
@@ -1021,7 +1061,7 @@
               count++;
               $('#messageBody').append('.  ');
               if(count > 2){
-                window.location.href = '/review/tool/'+data.id;
+                window.location.href = '/AZ'+data.id;
               }
             }, 1000);
         }else{
@@ -1032,7 +1072,7 @@
           });
         }
       });
-    };
+    }
 
     function refreshAddresses(address, field) {
       var promise;
@@ -1103,7 +1143,6 @@
       errorMessages.push(new ErrMsg(false, "Please enter the resource name.")); // resource name
       errorMessages.push(new ErrMsg(false, "Please enter the description of the resource.")); // resource description
       errorMessages.push(new ErrMsg(false, "Please enter at least 1 link or a source code URL.")); // links
-      errorMessages.push(new ErrMsg(false, "Please enter a name and/or URL for the link.")); // empty link
       errorMessages.push(new ErrMsg(false, "Cannot leave the resource type blank.")); // resource type
       errorMessages.push(new ErrMsg(false, "Cannot leave the biologial domain blank.")); // biological domain
 
@@ -1140,7 +1179,7 @@
         }else{
           vm['basic_section']['resource_types'].forEach(function(type){
             if(type['type']==undefined || type['type']==null){
-              errorMessages[4].setErr(true);
+              errorMessages[3].setErr(true);
             }
           });
         }
@@ -1149,7 +1188,7 @@
         }else{
           vm['basic_section']['domains'].forEach(function(domain){
             if(domain['domain']==undefined || domain['domain']==null){
-              errorMessages[5].setErr(true);
+              errorMessages[4].setErr(true);
             }
           });
         }
@@ -1171,14 +1210,11 @@
       }else if(vm['link_section']!=undefined && vm['link_section']['links']){
         var atLeast1 = false;
         vm['link_section']['links'].forEach(function(link){
+          atLeast1 = true;
           if(link['name']==undefined || link['url']==undefined){
-            if(atLeast1){
-              errorMessages[3].setErr(true);
-            } else {
+            if(!atLeast1){
               errorMessages[2].setErr(true);
             }
-          }else{
-            atLeast1 = true;
           }
         })
       }
@@ -1340,10 +1376,7 @@
             if(json['suggestedLicense']!=undefined){
               $('#pubLicense-deet').text(json['suggestedLicense']);
             }
-            //   $('.suggestions').append('<strong>License: </strong>'+
-            //     json['suggestedLicense']+'<br>'
-            //   );
-            // }
+
           });
           $.post("/suggest/query?field=versions", fields)
             .done(function(data) {
@@ -1365,10 +1398,7 @@
                  if(json['suggestedMaintainer']!=undefined){
                   $('#pubMaintainer-deet').append(json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')');
                  }
-                //   $('.suggestions').append('<strong>Maintainer: </strong>'+
-                //     json['suggestedMaintainer']['maintainer_name']+' ('+json['suggestedMaintainer']['maintainer_email']+')<br>'
-                //   );
-                // }
+
               });
     };
 
@@ -1455,6 +1485,19 @@
         });
     };
 
+    function initEdit2(data){
+      console.log(data);
+        vm.orig = JSON.parse(JSON.stringify(data));
+        vm.basic_section = data['basic_section'];
+        vm.author_section = data['author_section'];
+        vm.pub_section = data['pub_section'];
+        vm.link_section = data['link_section'];
+        vm.dev_section = data['dev_section'];
+        vm.version_section = data['version_section'];
+        vm.license_section = data['license_section'];
+        vm.funding_section = data['funding_section'];
+    };
+
     function initSaved(id){
       $.get("/review/api/saved/"+id)
         .done(function(data) {
@@ -1489,6 +1532,8 @@
       return link;
 
     }
+
+
 
   }
 

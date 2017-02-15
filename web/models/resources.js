@@ -7,97 +7,102 @@ var config = require('../config/app.json');
 var solr = require('solr-client');
 var Resource = require('./resource.js');
 
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-//  Resources
-//
+/**
+ * @class Resources
+ * @constructor
+ * @classdesc Resources model: tools to check and handle resources from the [Resource]{@link Resource} model
+ */
 function Resources() {
     var self = this;
 
-    this.length = function() { return self.group.length; };
-    this.clone = function() { var r = new Resources(); r.group = BD2K.clone(self.group); return r; };
+    this.length = function() { return self._length(self); };
+    this.clone = function() { return self._clone(self); };
     this.combine = function(resourcesArr) { self._combine(self, resourcesArr); };
 
     this.group = [];
 }
 
-//--- combine ------------------------------------------------------------------------------
-Resources.prototype._combine = function (self, resourcesArr) {
-    var first = resourcesArr[0];
+/**
+ * Returns the number of resources in the group.
+ * @memberof Resources
+ * @function
+ * @alias length
+ * @returns {Number} number of resources in group
+ */
+Resources.prototype._length = function(self) {
+    return self.group.length;
+}
 
-    for (var i=first.group.length-1; i>=0; i--) {
-        var resourceID = first.group[i].id;
-        for (var j=1; j<resourcesArr.length; j++) {
-            var curResources = resourcesArr[j];
-            var has = false;
-            for (var k=0; k<curResources.group.length; k++){
-                if (resourceID === curResources.group[k].id) { has = true; break; }
+/**
+ * Returns a copy of the resources.
+ * @memberof Resources
+ * @function
+ * @alias clone
+ * @returns {Resources} return a copy of the Resources object
+ */
+Resources.prototype._clone = function(self) {
+    var r = new Resources(); 
+    r.group = BD2K.clone(self.group); 
+    return r;
+}
+
+/**
+ * Combines all Resources in resourcesArr (no duplicate IDs) and places the combined array into self.group
+ * @memberof Resources
+ * @function
+ * @alias combine
+ * @param {Array} resourcesArr - array of Resources to combine
+ * @returns {Array} combined arrays (no duplicate IDs)
+ */
+Resources.prototype._combine = function (self, resourcesArr) {
+    var first = resourcesArr[0]; //First Resources model in the resourcesArr
+
+    for (var i=first.group.length-1; i>=0; i--) { //Step through all Resource in first
+        var resourceID = first.group[i].id; //ID of every Resource in first
+        for (var j=1; j<resourcesArr.length; j++) { //go through all other Resources in resourcesArr
+            var curResources = resourcesArr[j]; //get the current Resources
+            var has = false; //initialize has as false, has indicates if the ID exists in curResources
+            for (var k=0; k<curResources.group.length; k++){ //step through all Resource in curResources
+                if (resourceID === curResources.group[k].id) { //if resourceID exists in the curResources
+                    has = true; break;  //set has to true and break
+                }
             }
-            if (!has) { first.group.splice(i, 1); break; }
+            if (!has) { //if the resource does not exist yet???
+                first.group.splice(i, 1); break; //remove the resource from first
+            }
         }
     }
-    //
-    //for (var i=first.group.length-1; i>=0; i--) {
-    //    var resource = first.group[i];
-    //    for (var j=1; j<resourcesArr.length; j++) {
-    //        var curResources = resourcesArr[j];
-    //        var has = false;
-    //        for (var k=0; k<curResources.group.length; k++){
-    //            var curResource = curResources.group[k];
-    //            if (resource.isSame(curResource)) { has = true; break; }
-    //        }
-    //        if (!has) { first.group.splice(i, 1); break; }
-    //    }
-    //}
 
     self.group = first.group;
 };
 
-//--- fromSolr ------------------------------------------------------------------------------
+/**
+ * Converts solr results to Resources
+ * @memberof Resources
+ * @function
+ * @alias fromSolr
+ * @param {Array} results - results returned by solr
+ * @returns {Resources} returns a Resources model with solr results stored into group
+ */
 Resources.fromSolr = function (results) {
     var resources = new Resources();
-    for (var i=0; i<results.response.docs.length; i++){
+    for (var i=0; i<results.response.docs.length; i++){ //go through all search results
         var doc = results.response.docs[i];
-        var resource = new Resource();
+        var resource = new Resource(); 
 
         for(var key in doc){
-            resource[key] = doc[key];
+            resource[key] = doc[key]; //connect solr result to a resource by key
         }
-
-        //resource.authors = doc.authors;
-        //resource.description = doc.description;
-        //publicationDOI
-        //toolDOI
-        //language
-        //prevVersion
-        //nextVersion
-        //
-        //
-        //resource.id = doc.id;
-        //resource.linkDescriptions = doc.linkDescriptions;
-        //resource.linkUrls = doc.linkUrls;
-        //resource.maintainers = doc.maintainers;
-        //resource.name = doc.name;
-        //resource.logo = doc.logo;
-        //resource.source = doc.source;
-        //resource.sourceCodeURL = doc.sourceCodeURL;
-        //resource.tags = doc.tags;
-        //resource.versionNum = doc.versionNum;
-        //resource.versionDate = doc.versionDate;
-        //resource.platforms = doc.platforms;
-        //resource.types = doc.types;
-        //resource.license = doc.license;
-        resources.group.push(resource);
+        resources.group.push(resource); //put resource into the return resources
     }
     return resources;
 };
 
+/**
+TODO
+*/
 Resources.fromSolrSuggest = function(results, fields) {
     var resources = [];
-    console.log("Resources.fromSolr");
 
     var split = fields.name.split("+")
     var combine = ""

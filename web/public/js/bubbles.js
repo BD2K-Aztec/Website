@@ -1,5 +1,10 @@
 var retry_limit_time = 10;
 
+/**
+ * @class TagBubbles
+ * @constructor
+ * @classdesc creates the tag bubble chart
+ */
 var TagBubbles = function(){
     var diameter = 300,
         format = d3.format(",d"),
@@ -10,12 +15,12 @@ var TagBubbles = function(){
         .size([diameter, diameter])
         .padding(1.5);
 
-    var svg = d3.select("#tagBubbles").append("svg")
+    var svg = d3.select("#tagBubbles").append("svg") //select the id to place bubble graph
         .attr("width", diameter)
         .attr("height", diameter)
         .attr("class", "bubble");
 
-    d3.json('/resource/stat?type=tags', function(error, root) {
+    d3.json('/resource/stat?type=tags', function(error, root) { //get the statistics
         if (error) throw error;
 
         var node = svg.selectAll(".node")
@@ -69,7 +74,11 @@ var TagBubbles = function(){
     d3.select(self.frameElement).style("height", diameter + "px");
 };
 
-
+/**
+ * @class PlatformBubbles
+ * @constructor
+ * @classdesc creates the platform bubble chart
+ */
 var PlatformBubbles = function(){
     var diameter = 300,
         format = d3.format(",d"),

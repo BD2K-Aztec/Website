@@ -227,9 +227,8 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
     //console.log("host: " + options.host);
     //console.log("port: " + options.port);
     var client = solr.createClient(options);
-    //console.log("fields: " + JSON.stringify(fields));
+    // console.log("fields: " + JSON.stringify(fields));
     for(var key in fields){
-
         var lengthField = fields[key].length;
         for(var i = 0; i < lengthField; i++){
             var val = fields[key][i]
@@ -288,19 +287,25 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
     var solrQuery = "";
     first = true;
     for(key in fields){
-        //console.log(key)
         var indexes = fields[key];
 
         if(Array.isArray(indexes)){
             for(index in indexes){
+                solrQuery += key + ":" + indexes[index]
                 var value = indexes[index].match(/\S+/g);
-                for(token in value) {
-                    //console.log(value[token])
-                    if(!first) {
-                        solrQuery += " OR ";
+                for(distinct in value) {
+                    solrQuery += " OR " + key + ":" + value[distinct];
+                }
+
+                var numWords = value.length;
+                for(var klen = 2; klen < numWords; klen++){
+                  for(var i = 0; i <= numWords-klen; i++){
+                    var klenWord = "";
+                    for(var j=0; j<klen; j++){
+                      klenWord+=" "+value[i+j]
                     }
-                    solrQuery += key + ":" + value[token];
-                    first = false;
+                    solrQuery += " OR " + key + ":" + klenWord;
+                  }
                 }
             }
         }
@@ -313,6 +318,8 @@ BD2K.solr.search = function(fields, handler, handlerOptions){
         }
 
     }
+
+    console.log("Solr query is " + solrQuery);
 
     var query = client.createQuery()
         .q(solrQuery)
